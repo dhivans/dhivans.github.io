@@ -1,6 +1,6 @@
 ---
 title: ESP32-C3-Supermini
-date: 2024-09-04 HH:MM:SS +/-TTTT
+date: 2024-09-04 20:00:00 +/-0000
 categories: [Components, Microcontrollers]
 tags: [esp32-c3-supermini]
 description: Basic setup guide for the ESP32-C3-Supermini.
