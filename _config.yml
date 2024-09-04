@@ -28,9 +28,6 @@ url: "https://dhivans.github.io"
 github:
   username: dhivans # change to your GitHub username
 
-instagram:
-  username: dhivanstech # change to your Twitter username
-
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
@@ -38,9 +35,9 @@ social:
   email: dhivanshahtech@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-      - https://instagram.com/dhivanstech # change to your Instagram homepage
       - https://github.com/dhivans # change to your GitHub homepage
     # Uncomment below to add more social links
+      - https://instagram.com/dhivanstech
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
     
