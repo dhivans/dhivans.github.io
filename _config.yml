@@ -28,9 +28,6 @@ url: "https://dhivans.github.io"
 github:
   username: dhivans # change to your GitHub username
 
-twitter:
-  username: dhivanstech # change to your Twitter username
-
 instagram:
   username: dhivanstech # change to your Twitter username
 
@@ -43,10 +40,11 @@ social:
     # The first element serves as the copyright owner's link
     # - https://www.x.com/dhivanstech # change to your Twitter homepage
       - https://github.com/dhivans # change to your GitHub homepage
+      - https://www.instagram.com/dhivanstech
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
-      - https://www.instagram.com/dhivanstech
+    
 
 # Site Verification Settings
 webmaster_verifications:
