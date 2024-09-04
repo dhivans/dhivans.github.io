@@ -9,7 +9,7 @@
 
 # Uncomment and complete the url below to enable more contact options
 - type: instagram
-  icon: "fa-brands fa-square-instagram"
+  icon: "fa-brands fa-instagram"
   url: 'https://www.instagram.com/dhivanstech'
 
 # - type: rss
