@@ -2,7 +2,7 @@
 title: ESP32-C3-Supermini
 author: dhivan
 date: 2024-09-04 20:00:00 +/-0000
-categories: [Components, Microcontrollers]
+categories: [Guides, Microcontrollers]
 tags: [esp32-c3-supermini]
 description: Basic setup guide for the ESP32-C3-Supermini.
 ---
