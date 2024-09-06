@@ -5,7 +5,7 @@
 const ATTR_DISPLAY = 'sidebar-display';
 
 class SidebarUtil {
-  static isExpanded = true;
+  static isExpanded = false;
 
   static toggle() {
     if (SidebarUtil.isExpanded === false) {
