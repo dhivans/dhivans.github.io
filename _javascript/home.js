@@ -3,6 +3,6 @@ import { initLocaleDatetime, loadImg } from './modules/plugins';
 
 loadImg();
 initLocaleDatetime();
-#initSidebar();
+
 initTopbar();
 basic();
