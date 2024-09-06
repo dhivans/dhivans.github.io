@@ -1,6 +1,15 @@
 <!-- The Side Bar -->
+<script>
+function onMouseOver() {
+  document.getElementById("sidebar").style.width = 20%;
+}
 
-<aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end" onmouseover='style="width: 30%;"' onmouseout='style="width: 5%;"'>
+function onMouseOut() {
+  document.getElementById("sidebar").style.width = 5%;
+}
+</script>
+
+<aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end" onmouseover="onMouseOver()" onmouseout="onMouseOut()">
   <header class="profile-wrapper">
     <a href="{{ '/' | relative_url }}" id="avatar" class="rounded-circle">
       {%- if site.avatar != empty and site.avatar -%}
