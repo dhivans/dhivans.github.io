@@ -1,6 +1,10 @@
 <!-- The Side Bar -->
-
-<aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end" onmouseover="this.classList.add('expanded')" onmouseout="this.classList.remove('expanded')">
+<style>
+aside {
+  width: 5%;
+}
+</style>
+<aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
   <header class="profile-wrapper">
     <a href="{{ '/' | relative_url }}" id="avatar" class="rounded-circle">
       {%- if site.avatar != empty and site.avatar -%}
