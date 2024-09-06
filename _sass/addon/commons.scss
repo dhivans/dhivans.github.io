@@ -1105,7 +1105,7 @@ search {
   z-index: 1;
 
   @at-root [#{$sidebar-display}] & {
-    display: none;
+    display: block !important;
   }
 }
 
