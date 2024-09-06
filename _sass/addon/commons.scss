@@ -682,6 +682,22 @@ $btn-mb: 0.5rem;
 #sidebar {
   @include pl-pr(0);
 
+##############################################################################################
+
+  
+&.sidebar-condensed {
+    width: 50px;
+    overflow: hidden;
+    transition: width 0.3s ease-in-out;
+  }
+  
+  &:hover {
+    width: auto;
+  }
+
+  
+##############################################################################################
+  
   position: fixed;
   top: 0;
   left: 0;
@@ -711,64 +727,6 @@ $btn-mb: 0.5rem;
     @extend %sidebar-links;
   }
 
-/* New property to control initial state */
-    --initial-state: condensed;
-
-    /* Transition for smooth expansion */
-    transition: width 0.3s ease-in-out;
-
-    /* Condensed state */
-    &[data-state="condensed"] {
-        width: 6rem;
-
-        .profile-wrapper {
-            display: none;
-        }
-
-        ul {
-            display: none;
-        }
-
-        .sidebar-bottom {
-            display: none;
-        }
-    }
-
-    /* Expanded state */
-    &[data-state="expanded"] {
-        width: $sidebar-width;
-
-        .profile-wrapper {
-            display: block;
-        }
-
-        ul {
-            display: block;
-        }
-
-        .sidebar-bottom {
-            display: block;
-        }
-    }
-}
-
-#sidebar-trigger {
-    display: block;
-    position: fixed;
-    top: 1rem;
-    left: 1rem;
-    z-index: 999;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    background-color: var(--sidebar-bg);
-    color: var(--sidebar-active-color);
-    cursor: pointer;
-
-    &:hover {
-        background-color: var(--sidebar-hover-bg);
-    }
-}
-  
   #avatar {
     display: block;
     width: 7rem;
