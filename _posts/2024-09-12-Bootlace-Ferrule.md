@@ -7,13 +7,13 @@ tags: [bootlace-ferrules]
 description: Guide on Bootlace Ferrules
 ---
 
-# Bootlace Ferrules
+## Bootlace Ferrules
 Bootlace ferrules are like tiny metal sleeves that you slip over the end of a wire. They're super useful for making sure your wires connect securely to electrical connectors. Think of them as little protective shields that keep the wire from fraying or bending too much. They come in different sizes to fit different wires, and they're usually made of brass or copper, which are good conductors of electricity. So next time you're hooking up something electrical, remember those bootlace ferrules – they're small but mighty!.
 
-# Ferrule Sizing
+## Ferrule Sizing
 Ferrule sizing is confusing, there are several different standards with different colour schemes for wiregauges. Often cheap ferrules dont even follow the colour schemes.
 
-## The solution
+### The solution
 When you open up your fresh pack of ferrules and the sizes arent listed, take out hte calipers and measure the diameter of the metal ferrule and refer to the table below.
 
 The table below shows what wire for what terminal type.

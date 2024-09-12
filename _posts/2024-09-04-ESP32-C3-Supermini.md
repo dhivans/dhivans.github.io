@@ -7,10 +7,10 @@ tags: [esp32-c3-supermini]
 description: Basic setup guide for the ESP32-C3-Supermini.
 ---
 
-# ESP32-C3-Supermini
+## ESP32-C3-Supermini
 The ESP32 C3 Supermini is a compact and low-power development board designed for IoT applications. Featuring a powerful 32-bit RISC-V processor, Wi-Fi and Bluetooth connectivity, and rich I/O options, it's ideal for battery-powered devices and small-scale projects. Its miniature size, combined with its security features, makes it a versatile and efficient choice for building Internet of Things solutions.
 
-## Setup
+### Setup
 1. Connect ESP32 C3 Supermini to computer with USB-C Cable
 2. Launch Arduino IDE
 * Go to File > Preferences
