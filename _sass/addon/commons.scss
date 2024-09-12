@@ -1262,7 +1262,7 @@ search {
 }
 
 /* hide sidebar and panel */
-@media all and (max-width: 1499px) {
+@media all and (max-width: 849px) {
   @mixin slide($append: null) {
     $basic: transform 0.4s ease;
 
@@ -1354,7 +1354,7 @@ search {
 } /* max-width: 849px */
 
 /* Sidebar is visible */
-@media all and (min-width: 1499px) {
+@media all and (min-width: 850px) {
   /* Solved jumping scrollbar */
   html {
     overflow-y: scroll;
@@ -1405,7 +1405,7 @@ search {
 }
 
 /* Pad horizontal */
-@media all and (min-width: 992px) and (max-width: 1499px) {
+@media all and (min-width: 992px) and (max-width: 1199px) {
   #main-wrapper > .container .col-lg-11 {
     flex: 0 0 96%;
     max-width: 96%;
@@ -1413,7 +1413,7 @@ search {
 }
 
 /* Compact icons in sidebar & panel hidden */
-@media all and (min-width: 1400px) and (max-width: 1499px) {
+@media all and (min-width: 850px) and (max-width: 1199px) {
   #search-results > div {
     max-width: 700px;
   }
@@ -1428,7 +1428,7 @@ search {
 }
 
 /* panel hidden */
-@media all and (max-width: 1499px) {
+@media all and (max-width: 1199px) {
   #panel-wrapper {
     display: none;
   }
@@ -1471,11 +1471,72 @@ search {
   }
 }
 
-@media all and (min-width: 1499px) {
+@media all and (min-width: 1400px) {
   #back-to-top {
     right: calc((100vw - $sidebar-width - 1140px) / 2 + 3rem);
   }
-  .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
-    max-width: 2000px;
 }
-}
+
+@media all and (min-width: 1650px) {
+  $icon-gap: 1rem;
+
+  #main-wrapper {
+    margin-left: $sidebar-width-large;
+  }
+
+  #topbar-wrapper {
+    left: $sidebar-width-large;
+  }
+
+  search {
+    margin-right: calc(
+      $main-content-max-width / 4 - $search-max-width - 0.75rem
+    );
+  }
+
+  #main-wrapper > .container {
+    max-width: $main-content-max-width;
+    padding-left: 1.75rem !important;
+    padding-right: 1.75rem !important;
+  }
+
+  main.col-12,
+  #tail-wrapper {
+    padding-right: 4.5rem !important;
+  }
+
+  #back-to-top {
+    right: calc(
+      (100vw - $sidebar-width-large - $main-content-max-width) / 2 + 2rem
+    );
+  }
+
+  #sidebar {
+    width: $sidebar-width-large;
+
+    .profile-wrapper {
+      margin-top: 3.5rem;
+      margin-bottom: 2.5rem;
+      padding-left: 3.5rem;
+    }
+
+    ul {
+      li.nav-item {
+        @include pl-pr(2.75rem);
+      }
+    }
+
+    .sidebar-bottom {
+      padding-left: 2.75rem;
+      margin-bottom: 1.75rem;
+
+      a:not(:last-child) {
+        margin-right: $sb-btn-gap-lg;
+      }
+
+      .icon-border {
+        @include ml-mr(calc(($sb-btn-gap-lg - $btn-border-width) / 2));
+      }
+    }
+  }
+} /* min-width: 1650px */
