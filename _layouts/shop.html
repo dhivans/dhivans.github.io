@@ -10,20 +10,14 @@ refractor: true
 <div id="item-list" class="flex-grow-1 px-xl-1">
   {% for item in items %}
 
-    <article class="px-1">
-      {% if page.layout == 'page' or page.collection == 'tabs' %}
-        {% assign tab_key = page.title | downcase %}
-        {% assign title = site.data.locales[lang].tabs[tab_key] | default: page.title %}
-        <h2 class="dynamic-title">
-          {{ title }}
-        </h2>
-        <div class="content">
-          {{ content }}
-        </div>
-      {% else %}
-        {{ content }}
-      {% endif %}
-    </article>
+    {% if item and item.categories.size > 0 %}
+      <h2 class="categories">
+        {{ item.categories.[0] }}
+      </h2>
+    {% else %}
+      <p>No categories found.</p>
+    {% endif %}
+
 
     <article class="card-wrapper card">
       <a href="{{ item.url | relative_url }}" class="item-preview row g-0 flex-md-row-reverse">
@@ -60,10 +54,10 @@ refractor: true
 
             <div class="item-meta flex-grow-1 d-flex align-items-end">
               <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                {% include datetime.html date=item.date lang=lang %}
-
+                <!-- price -->
+                <i class="fas fa-shopping-cart fa-fw me-1"></i>
+                <span class="price">£<span>{{ item.price }}</span></span>
+                
                 <!-- categories -->
                 {% if item.categories.size > 0 %}
                   <i class="far fa-folder-open fa-fw me-1"></i>

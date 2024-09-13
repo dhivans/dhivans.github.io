@@ -83,10 +83,17 @@
   }
 } /* #post-list */
 
+
 #item-list {
   margin-top: 2rem;
+/*
+  .row {
+    display: block;
+  }
+*/
 
   .card-wrapper {
+    max-width: 40%;
     &:hover {
       text-decoration: none;
     }
@@ -99,18 +106,7 @@
   .card {
     border: 0;
     background: none;
-
-    %img-radius {
-      border-radius: $radius-lg $radius-lg 0 0;
-    }
-
-    .preview-img {
-      @extend %img-radius;
-
-      img {
-        @extend %img-radius;
-      }
-    }
+    flex-direction: row;
 
     .card-body {
       height: 100%;
@@ -143,7 +139,7 @@
 
         i {
           &:not(:first-child) {
-            margin-left: 1.5rem;
+            margin-left: 1.75rem;
           }
         }
 
@@ -163,7 +159,6 @@
     }
   }
 } /* #item-list */
-
 
 .pagination {
   color: var(--text-color);
@@ -212,11 +207,7 @@
 
 /* Tablet */
 @media all and (min-width: 768px) {
-  %img-radius {
-    border-radius: 0 $radius-lg $radius-lg 0;
-  }
-
-  #post-list {
+    #post-list {
     .card {
       .card-body {
         padding: 1.75rem 1.75rem 1.25rem 1.75rem;
@@ -233,9 +224,18 @@
           }
         }
       }
+      %img-radius {
+        border-radius: 0 $radius-lg $radius-lg 0;
+      }
+    }
+  }
+  #item-list{
+    .card{
+      min-width: 390px;
     }
   }
 }
+
 
 /* Hide SideBar and TOC */
 @media all and (max-width: 830px) {
@@ -251,6 +251,10 @@
 /* Sidebar is visible */
 @media all and (min-width: 831px) {
   #post-list {
+    margin-top: 2.5rem;
+  }
+
+  #item-list {
     margin-top: 2.5rem;
   }
 
