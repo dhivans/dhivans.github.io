@@ -1,6 +1,8 @@
 ---
 title: Bootlace Ferrule ITEM
 description: Guide on Bootlace Ferrules
+author: dhivan
+date: 2024-09-12 15:00:00 +/-0000
 pin: false
 categories: [Connectors, Crimps]
 image:
