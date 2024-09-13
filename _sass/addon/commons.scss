@@ -224,6 +224,18 @@ i {
       transition: all 0.3s ease-in;
     }
   }
+
+  .item-tag {
+      line-height: 1.05rem;
+      font-size: 0.85rem;
+      border-radius: 0.8rem;
+      padding: 0.3rem 0.5rem;
+      margin: 0 0.35rem 0.5rem 0;
+  
+      &:hover {
+        transition: all 0.3s ease-in;
+      }
+    }
 }
 
 #access-lastmod {
@@ -342,13 +354,39 @@ sup {
 
     @extend %rounded;
 
-    @at-root #post-list & {
+    @at-root #item-list & {
       width: 100%;
     }
   }
 }
 
 .post-preview {
+  @extend %rounded;
+
+  border: 0;
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+
+  &::before {
+    @extend %rounded;
+
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: var(--card-hovor-bg);
+    opacity: 0;
+    transition: opacity 0.35s ease-in-out;
+  }
+
+  &:hover {
+    &::before {
+      opacity: 0.3;
+    }
+  }
+}
+
+.item-preview {
   @extend %rounded;
 
   border: 0;
@@ -399,6 +437,20 @@ main {
 }
 
 .post-meta {
+  @extend %text-sm;
+
+  a {
+    &:not([class]):hover {
+      @extend %link-hover;
+    }
+  }
+
+  em {
+    @extend %normal-font-style;
+  }
+}
+
+.item-meta {
   @extend %text-sm;
 
   a {
@@ -515,6 +567,21 @@ main {
   }
 }
 
+.item-tag {
+  display: inline-block;
+  min-width: 2rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  border: 1px solid var(--btn-border-color);
+  padding: 0 0.4rem;
+  color: var(--text-muted-color);
+  line-height: 1.3rem;
+
+  &:not(:last-child) {
+    margin-right: 0.2rem;
+  }
+}
+
 .rounded-10 {
   border-radius: 10px !important;
 }
@@ -523,7 +590,7 @@ main {
   color: transparent;
   display: inline-flex;
 }
-
+/*
 .shimmer {
   overflow: hidden;
   position: relative;
@@ -559,7 +626,7 @@ main {
     }
   }
 }
-
+*/
 .embed-video {
   width: 100%;
   height: 100%;
