@@ -2,7 +2,7 @@
 title: Bootlace Ferrule
 author: dhivan
 date: 2024-09-12 15:00:00 +/-0000
-categories: [Guides, Connectors]
+categories: [Connectors, Ferrules]
 tags: [bootlace-ferrules]
 description: Guide on Bootlace Ferrules
 ---
