@@ -20,7 +20,7 @@ layout: page
         {% include datetime.html date=post.date class='text-muted small text-nowrap' lang=lang %}
       </li>
     {% endfor %}
-    {% for item in page.items %}
+    {% for item in site.items %}
       <li class="d-flex justify-content-between px-md-3">
         <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
         <span class="dash flex-grow-1"></span>
