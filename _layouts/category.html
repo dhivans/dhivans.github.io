@@ -22,7 +22,7 @@ layout: page
     {% endfor %}
     {% for item in page.items %}
       <li class="d-flex justify-content-between px-md-3">
-        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
         <span class="dash flex-grow-1"></span>
         {% include datetime.html date=post.date class='text-muted small text-nowrap' lang=lang %}
       </li>
