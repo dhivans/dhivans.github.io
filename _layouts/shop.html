@@ -123,10 +123,10 @@ refractor: true
                 </span>
               </li>
 
-              <div id="page-category">
-                {% for item in items %}
-                  {% if item.categories[1] == sub_category %}
-                    <div id="item-list" class="flex-grow-1 px-xl-1">
+              <div id="shop-category">
+                <div id="item-list" class="flex-grow-1 px-xl-1">
+                  {% for item in items %}
+                    {% if item.categories[1] == sub_category %}
                       <article class="card-wrapper card">
                         <a href="{{ item.url | relative_url }}" class="item-preview row g-0 flex-md-row-reverse">
                           {% assign card_body_col = '12' %}
@@ -191,10 +191,10 @@ refractor: true
                           </div>
                         </a>
                       </article>
-                    </div>
-                  {% endif %}
-                {% endfor %}
-            </div> 
+                    {% endif %}
+                  {% endfor %}
+                </div>   
+              </div> 
             {% endfor %}
           </ul>
         </div>
