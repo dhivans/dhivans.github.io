@@ -83,13 +83,22 @@
   }
 } /* #post-list */
 
+#shop-category {
+  display: flex;
+}
+
 
 #item-list {
-  margin-top: 1rem;
-  margin-left: 1rem;
+  display: flex;
+  flex-wrap: wrap;
 
   .card-wrapper {
-    max-width: 40%;
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+    max-width: 45%;
+    flex: auto;
     &:hover {
       text-decoration: none;
     }
@@ -102,8 +111,7 @@
   .card {
     border: 0;
     background: none;
-    flex-direction: row;
-
+    
     .card-body {
       height: 100%;
       padding: 1rem;
@@ -225,11 +233,6 @@
       }
     }
   }
-  #item-list{
-    .card{
-      min-width: 390px;
-    }
-  }
 }
 
 
@@ -247,10 +250,6 @@
 /* Sidebar is visible */
 @media all and (min-width: 831px) {
   #post-list {
-    margin-top: 2.5rem;
-  }
-
-  #item-list {
     margin-top: 2.5rem;
   }
 
