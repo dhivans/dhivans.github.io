@@ -163,9 +163,8 @@ refractor: true
                               <div class="item-meta flex-grow-1 d-flex align-items-end">
                                 <div class="me-auto">
                                   <!-- posted date -->
-                                  <i class="far fa-calendar fa-fw me-1"></i>
-                                  {% include datetime.html date=item.date lang=lang %}
-
+                                  <i class="fa-solid fa-sterling-sign"></i>
+                                  {{ item.price }}
                                   <!-- categories -->
                                   {% if item.categories.size > 0 %}
                                     <i class="far fa-folder-open fa-fw me-1"></i>
