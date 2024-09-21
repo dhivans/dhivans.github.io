@@ -123,77 +123,79 @@ refractor: true
                 </span>
               </li>
 
-              <div id="shop-category">
-                <div id="item-list" class="flex-grow-1 px-xl-1">
-                  {% for item in items %}
-                    {% if item.categories[1] == sub_category %}
-                      <article class="card-wrapper card">
-                        <a href="{{ item.url | relative_url }}" class="item-preview row g-0 flex-md-row-reverse">
-                          {% assign card_body_col = '12' %}
+              <li class="list-group-item">
+                <div id="shop-category">
+                  <div id="item-list" class="flex-grow-1 px-xl-1">
+                    {% for item in items %}
+                      {% if item.categories[1] == sub_category %}
+                        <article class="card-wrapper card">
+                          <a href="{{ item.url | relative_url }}" class="item-preview row g-0 flex-md-row-reverse">
+                            {% assign card_body_col = '12' %}
 
-                          {% if item.image %}
-                            {% assign src = item.image.path | default: item.image %}
-                            {% unless src contains '//' %}
-                              {% assign src = item.media_subpath | append: '/' | append: src | replace: '//', '/' %}
-                            {% endunless %}
+                            {% if item.image %}
+                              {% assign src = item.image.path | default: item.image %}
+                              {% unless src contains '//' %}
+                                {% assign src = item.media_subpath | append: '/' | append: src | replace: '//', '/' %}
+                              {% endunless %}
 
-                            {% assign alt = item.image.alt | xml_escape | default: 'Preview Image' %}
+                              {% assign alt = item.image.alt | xml_escape | default: 'Preview Image' %}
 
-                            {% assign lqip = null %}
+                              {% assign lqip = null %}
 
-                            {% if item.image.lqip %}
-                              {% capture lqip %}lqip="{{ item.image.lqip }}"{% endcapture %}
+                              {% if item.image.lqip %}
+                                {% capture lqip %}lqip="{{ item.image.lqip }}"{% endcapture %}
+                              {% endif %}
+
+                              <div class="col-md-5">
+                                <img src="{{ src }}" alt="{{ alt }}" {{ lqip }}>
+                              </div>
+
+                              {% assign card_body_col = '7' %}
                             {% endif %}
 
-                            <div class="col-md-5">
-                              <img src="{{ src }}" alt="{{ alt }}" {{ lqip }}>
-                            </div>
+                            <div class="col-md-{{ card_body_col }}">
+                              <div class="card-body d-flex flex-column">
+                                <h1 class="card-title my-2 mt-md-0">{{ item.title }}</h1>
 
-                            {% assign card_body_col = '7' %}
-                          {% endif %}
-
-                          <div class="col-md-{{ card_body_col }}">
-                            <div class="card-body d-flex flex-column">
-                              <h1 class="card-title my-2 mt-md-0">{{ item.title }}</h1>
-
-                              <div class="card-text content mt-0 mb-3">
-                                <p>{% include item-description.html %}</p>
-                              </div>
-
-                              <div class="item-meta flex-grow-1 d-flex align-items-end">
-                                <div class="me-auto">
-                                  <!-- posted date -->
-                                  <i class="fa-solid fa-sterling-sign"></i>
-                                  {{ item.price }}
-                                  <!-- categories -->
-                                  {% if item.categories.size > 0 %}
-                                    <i class="far fa-folder-open fa-fw me-1"></i>
-                                    <span class="categories">
-                                      {% for category in item.categories %}
-                                        {{ category }}
-                                        {%- unless forloop.last -%},{%- endunless -%}
-                                      {% endfor %}
-                                    </span>
-                                  {% endif %}
+                                <div class="card-text content mt-0 mb-3">
+                                  <p>{% include item-description.html %}</p>
                                 </div>
 
-                                {% if item.pin %}
-                                  <div class="pin ms-1">
-                                    <i class="fas fa-thumbtack fa-fw"></i>
-                                    <span>{{ site.data.locales[lang].item.pin_prompt }}</span>
+                                <div class="item-meta flex-grow-1 d-flex align-items-end">
+                                  <div class="me-auto">
+                                    <!-- posted date -->
+                                    <i class="fa-solid fa-sterling-sign"></i>
+                                    {{ item.price }}
+                                    <!-- categories -->
+                                    {% if item.categories.size > 0 %}
+                                      <i class="far fa-folder-open fa-fw me-1"></i>
+                                      <span class="categories">
+                                        {% for category in item.categories %}
+                                          {{ category }}
+                                          {%- unless forloop.last -%},{%- endunless -%}
+                                        {% endfor %}
+                                      </span>
+                                    {% endif %}
                                   </div>
-                                {% endif %}
+
+                                  {% if item.pin %}
+                                    <div class="pin ms-1">
+                                      <i class="fas fa-thumbtack fa-fw"></i>
+                                      <span>{{ site.data.locales[lang].item.pin_prompt }}</span>
+                                    </div>
+                                  {% endif %}
+                                </div>
+                                <!-- .item-meta -->
                               </div>
-                              <!-- .item-meta -->
+                              <!-- .card-body -->
                             </div>
-                            <!-- .card-body -->
-                          </div>
-                        </a>
-                      </article>
-                    {% endif %}
-                  {% endfor %}
-                </div>   
-              </div> 
+                          </a>
+                        </article>
+                      {% endif %}
+                    {% endfor %}
+                  </div>   
+                </div> 
+              </li>
             {% endfor %}
           </ul>
         </div>
