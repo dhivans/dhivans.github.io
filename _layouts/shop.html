@@ -6,209 +6,161 @@ refractor: true
 {% include lang.html %}
 
 {% assign items = site.items | where_exp: 'item', 'item.hidden != true' %}
-{% assign sort_categories = site.categories | sort %}
+{% assign item_categories = '' | split: '' %}
 
-{% for category in sort_categories %}
-  {% assign category_name = category | first %}
-  {% assign posts_of_category = category | last %}
-  {% assign first_post = posts_of_category | first %}
-
-  {% if category_name == first_post.categories[0] %}
-    {% assign sub_categories = '' | split: '' %}
-
-    {% for post in posts_of_category %}
-      {% assign second_category = post.categories[1] %}
-      {% if second_category %}
-        {% unless sub_categories contains second_category %}
-          {% assign sub_categories = sub_categories | push: second_category %}
-        {% endunless %}
-      {% endif %}
-    {% endfor %}
-
-    {% assign sub_categories = sub_categories | sort %}
-    {% assign sub_categories_size = sub_categories | size %}
-
-    <div class="card categories">
-      <!-- top-category -->
-      <div
-        id="{{ HEAD_PREFIX }}{{ group_index }}"
-        class="card-header d-flex justify-content-between hide-border-bottom"
-      >
-        <span class="ms-2">
-          <i class="far fa-folder{% if sub_categories_size > 0 %}-open{% endif %} fa-fw"></i>
-
-          {% capture _category_url %}/categories/{{ category_name | slugify | url_encode }}/{% endcapture %}
-          <a href="{{ _category_url | relative_url }}" class="mx-2">{{ category_name }}</a>
-
-          <!-- content count -->
-          {% assign top_posts_size = site.categories[category_name] | size %}
-          <span class="text-muted small font-weight-light">
-            {% if sub_categories_size > 0 %}
-              {{ sub_categories_size }}
-              {% if sub_categories_size > 1 %}
-                {{
-                  site.data.locales[lang].categories.category_measure.plural
-                  | default: site.data.locales[lang].categories.category_measure
-                }}
-              {% else %}
-                {{
-                  site.data.locales[lang].categories.category_measure.singular
-                  | default: site.data.locales[lang].categories.category_measure
-                }}
-              {% endif -%}
-              ,
-            {% endif %}
-
-            {{ top_posts_size }}
-
-            {% if top_posts_size > 1 %}
-              {{
-                site.data.locales[lang].categories.post_measure.plural
-                | default: site.data.locales[lang].categories.post_measure
-              }}
-            {% else %}
-              {{
-                site.data.locales[lang].categories.post_measure.singular
-                | default: site.data.locales[lang].categories.post_measure
-              }}
-            {% endif %}
-          </span>
-        </span>
-
-        <!-- arrow -->
-        {% if sub_categories_size > 0 %}
-          <a
-            href="#{{ LIST_PREFIX }}{{ group_index }}"
-            data-bs-toggle="collapse"
-            aria-expanded="true"
-            aria-label="{{ HEAD_PREFIX }}{{ group_index }}-trigger"
-            class="category-trigger hide-border-bottom"
-          >
-            <i class="fas fa-fw fa-angle-down"></i>
-          </a>
-        {% else %}
-          <span data-bs-toggle="collapse" class="category-trigger hide-border-bottom disabled">
-            <i class="fas fa-fw fa-angle-right"></i>
-          </span>
-        {% endif %}
-      </div>
-      <!-- .card-header -->
-
-      <!-- Sub-categories -->
-      {% if sub_categories_size > 0 %}
-        <div id="{{ LIST_PREFIX }}{{ group_index }}" class="collapse show" aria-expanded="true">
-          <ul class="list-group">
-            {% for sub_category in sub_categories %}
-              <li class="list-group-item">
-                <i class="far fa-folder fa-fw"></i>
-
-                {% capture _sub_ctg_url %}/categories/{{ sub_category | slugify | url_encode }}/{% endcapture %}
-                <a href="{{ _sub_ctg_url | relative_url }}" class="mx-2">{{ sub_category }}</a>
-
-                {% assign posts_size = site.categories[sub_category] | size %}
-                <span class="text-muted small font-weight-light">
-                  {{ posts_size }}
-
-                  {% if posts_size > 1 %}
-                    {{
-                      site.data.locales[lang].categories.post_measure.plural
-                      | default: site.data.locales[lang].categories.post_measure
-                    }}
-                  {% else %}
-                    {{
-                      site.data.locales[lang].categories.post_measure.singular
-                      | default: site.data.locales[lang].categories.post_measure
-                    }}
-                  {% endif %}
-                </span>
-              </li>
-
-              <li>
-                <div id="shop-category">
-                  <div id="item-list" class="flex-grow-1 px-xl-1">
-                    {% for item in items %}
-                      {% if item.categories[1] == sub_category %}
-                        <article class="card-wrapper card">
-                          <a href="{{ item.url | relative_url }}" class="item-preview row g-0 flex-md-row-reverse">
-                            {% assign card_body_col = '12' %}
-
-                            {% if item.image %}
-                              {% assign src = item.image.path | default: item.image %}
-                              {% unless src contains '//' %}
-                                {% assign src = item.media_subpath | append: '/' | append: src | replace: '//', '/' %}
-                              {% endunless %}
-
-                              {% assign alt = item.image.alt | xml_escape | default: 'Preview Image' %}
-
-                              {% assign lqip = null %}
-
-                              {% if item.image.lqip %}
-                                {% capture lqip %}lqip="{{ item.image.lqip }}"{% endcapture %}
-                              {% endif %}
-
-                              <div class="col-md-5">
-                                <img src="{{ src }}" alt="{{ alt }}" {{ lqip }}>
-                              </div>
-
-                              {% assign card_body_col = '7' %}
-                            {% endif %}
-
-                            <div class="col-md-{{ card_body_col }}">
-                              <div class="card-body d-flex flex-column">
-                                <h1 class="card-title my-2 mt-md-0">{{ item.title }}</h1>
-
-                                <div class="card-text content mt-0 mb-3">
-                                  <p>{% include item-description.html %}</p>
-                                </div>
-
-                                <div class="item-meta flex-grow-1 d-flex align-items-end">
-                                  <div class="me-auto">
-                                    <!-- posted date -->
-                                    <i class="fa-solid fa-sterling-sign"></i>
-                                    {{ item.price }}
-                                    <!-- categories -->
-                                    {% if item.categories.size > 0 %}
-                                      <i class="far fa-folder-open fa-fw me-1"></i>
-                                      <span class="categories">
-                                        {% for category in item.categories %}
-                                          {{ category }}
-                                          {%- unless forloop.last -%},{%- endunless -%}
-                                        {% endfor %}
-                                      </span>
-                                    {% endif %}
-                                  </div>
-
-                                  {% if item.pin %}
-                                    <div class="pin ms-1">
-                                      <i class="fas fa-thumbtack fa-fw"></i>
-                                      <span>{{ site.data.locales[lang].item.pin_prompt }}</span>
-                                    </div>
-                                  {% endif %}
-                                </div>
-                                <!-- .item-meta -->
-                              </div>
-                              <!-- .card-body -->
-                            </div>
-                          </a>
-                        </article>
-                      {% endif %}
-                    {% endfor %}
-                  </div>   
-                </div> 
-              </li>
-            {% endfor %}
-          </ul>
-        </div>
-      {% endif %}
-    </div>
-    <!-- .card -->
-
-    {% assign group_index = group_index | plus: 1 %}
-  {% endif %}
+<!-- Collect unique top-level categories from items -->
+{% for item in items %}
+  {% assign first_category = item.categories[0] %}
+  {% unless item_categories contains first_category %}
+    {% assign item_categories = item_categories | push: first_category %}
+  {% endunless %}
 {% endfor %}
 
-<!-- #item-list -->
+<!-- Sort categories -->
+{% assign item_categories = item_categories | sort %}
 
+<!-- Iterate over all unique top-level item categories -->
+{% for category_name in item_categories %}
+  {% assign items_of_category = items | where: "categories", category_name %}
+
+  <div class="card categories">
+    <!-- Category card -->
+    <div
+      id="{{ HEAD_PREFIX }}{{ forloop.index }}"
+      class="card-header d-flex justify-content-between hide-border-bottom"
+    >
+      <span class="ms-2">
+        <i class="far fa-folder fa-fw"></i>
+
+        {% capture _category_url %}/categories/{{ category_name | slugify | url_encode }}/{% endcapture %}
+        <a href="{{ _category_url | relative_url }}" class="mx-2">{{ category_name }}</a>
+
+        <!-- Count subcategories -->
+        {% assign subcategories = '' | split: '' %}
+        {% for item in items_of_category %}
+          {% assign subcategory = item.categories[1] %}
+          {% unless subcategories contains subcategory %}
+            {% assign subcategories = subcategories | push: subcategory %}
+          {% endunless %}
+        {% endfor %}
+        {% assign subcategories_count = subcategories | size %}
+
+        <!-- Content count -->
+        <span class="text-muted small font-weight-light">
+          {% if subcategories_count > 0 %}
+            {{ subcategories_count }} 
+            {% if subcategories_count > 1 %}
+              categories
+            {% else %}
+              category
+            {% endif %}, 
+          {% endif %}
+          {{ items_of_category | size }} 
+          {% if items_of_category.size > 1 %}
+            {{ site.data.locales[lang].categories.item_measure.plural | default: "items" }}
+          {% else %}
+            {{ site.data.locales[lang].categories.item_measure.singular | default: "item" }}
+          {% endif %}
+        </span>
+      </span>
+    </div>
+    <!-- .card-header -->
+
+    <!-- Items in this category -->
+    <div class="collapse show" aria-expanded="true">
+      <ul class="list-group">
+        {% assign subcategories = '' | split: '' %}
+        {% for item in items_of_category %}
+          {% assign subcategory = item.categories[1] %}
+          {% unless subcategories contains subcategory %}
+            {% assign subcategories = subcategories | push: subcategory %}
+            <li class="list-group-item">
+              <i class="far fa-folder fa-fw"></i>
+              <a href="{{ item.url | relative_url }}" class="mx-2">{{ subcategory }}</a>
+            </li>
+            <li>
+              <div id="shop-category">
+                <div id="item-list" class="flex-grow-1 px-xl-1">
+                  {% for item in items %}
+                    {% if item.categories[1] == subcategory %}
+                      <article class="card-wrapper card">
+                        <a href="{{ item.url | relative_url }}" class="item-preview row g-0 flex-md-row-reverse">
+                          {% assign card_body_col = '12' %}
+
+                          {% if item.image %}
+                            {% assign src = item.image.path | default: item.image %}
+                            {% unless src contains '//' %}
+                              {% assign src = item.media_subpath | append: '/' | append: src | replace: '//', '/' %}
+                            {% endunless %}
+
+                            {% assign alt = item.image.alt | xml_escape | default: 'Preview Image' %}
+
+                            {% assign lqip = null %}
+
+                            {% if item.image.lqip %}
+                              {% capture lqip %}lqip="{{ item.image.lqip }}"{% endcapture %}
+                            {% endif %}
+
+                            <div class="col-md-5">
+                              <img src="{{ src }}" alt="{{ alt }}" {{ lqip }}>
+                            </div>
+
+                            {% assign card_body_col = '7' %}
+                          {% endif %}
+
+                          <div class="col-md-{{ card_body_col }}">
+                            <div class="card-body d-flex flex-column">
+                              <h1 class="card-title my-2 mt-md-0">{{ item.title }}</h1>
+
+                              <div class="card-text content mt-0 mb-3">
+                                <p>{% include item-description.html %}</p>
+                              </div>
+
+                              <div class="item-meta flex-grow-1 d-flex align-items-end">
+                                <div class="me-auto">
+                                  <!-- posted date -->
+                                  <i class="fa-solid fa-sterling-sign"></i>
+                                  {{ item.price }}
+                                  <!-- categories -->
+                                  {% if item.categories.size > 0 %}
+                                    <i class="far fa-folder-open fa-fw me-1"></i>
+                                    <span class="categories">
+                                      {% for category in item.categories %}
+                                        {{ category }}
+                                        {%- unless forloop.last -%},{%- endunless -%}
+                                      {% endfor %}
+                                    </span>
+                                  {% endif %}
+                                </div>
+
+                                {% if item.pin %}
+                                  <div class="pin ms-1">
+                                    <i class="fas fa-thumbtack fa-fw"></i>
+                                    <span>{{ site.data.locales[lang].item.pin_prompt }}</span>
+                                  </div>
+                                {% endif %}
+                              </div>
+                              <!-- .item-meta -->
+                            </div>
+                            <!-- .card-body -->
+                          </div>
+                        </a>
+                      </article>
+                    {% endif %}
+                  {% endfor %}
+                </div>   
+              </div> 
+            </li>
+          {% endunless %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <!-- .card -->
+
+{% endfor %}
+
+<!-- Paginator for multiple pages -->
 {% if paginator.total_pages > 1 %}
   {% include item-paginator.html %}
 {% endif %}
