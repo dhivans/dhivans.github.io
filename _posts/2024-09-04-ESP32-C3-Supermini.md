@@ -12,7 +12,8 @@ The ESP32 C3 Supermini is a compact and low-power development board designed for
 
 ### Setup
 1. Connect ESP32 C3 Supermini to computer with USB-C Cable
-2. Launch Arduino IDE
+2. Press and hold the Boot button simultaenously press the  reset button, let go of both.
+3. Launch Arduino IDE
 * Go to File > Preferences
 
 ![image](https://github.com/user-attachments/assets/295c1666-6fe0-4a78-80bb-0ca4104d813e)
