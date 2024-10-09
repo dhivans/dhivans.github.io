@@ -3,7 +3,7 @@ title: Bootlace Ferrule Hexagonal Crimp Tool
 description: a specialised tool designed for securely crimping bootlace ferrules onto electrical wires, providing a reliable and professional connection.
 author: dhivan
 date: 2024-09-21 23:00:00 +/-0000
-categories: [Connectors, Ferrules]
+categories: [Connectors, Crimps]
 price: "30.00"
 image:
     path: https://m.media-amazon.com/images/I/71XWtOqMh5L._AC_SX679_.jpg
