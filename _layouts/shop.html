@@ -95,42 +95,46 @@ refractor: true
               <i class="far fa-folder fa-fw"></i>
               <a href="#subcategory{{ forloop.index }}" class="mx-2">{{ subcategory }}</a>
               <ul class="list-group">
-                {% for item in items %}
-                  {% if item.categories[1] == subcategory %}
-                    <li>
-                      <article class="card-wrapper card">
-                        <a href="{{ item.url | relative_url }}" class="item-preview row g-0 flex-md-row-reverse">
-                          {% assign card_body_col = '12' %}
-                          {% if item.image %}
-                            {% assign src = item.image.path | default: item.image %}
-                            {% unless src contains '//' %}
-                              {% assign src = item.media_subpath | append: '/' | append: src | replace: '//', '/' %}
-                            {% endunless %}
+                <div id="shop-category">
+                  <div id="item-list" class="flex-grow-1 px-xl-1">
+                    {% for item in items %}
+                      {% if item.categories[1] == subcategory %}
+                        <li>
+                          <article class="card-wrapper card">
+                            <a href="{{ item.url | relative_url }}" class="item-preview row g-0 flex-md-row-reverse">
+                              {% assign card_body_col = '12' %}
+                              {% if item.image %}
+                                {% assign src = item.image.path | default: item.image %}
+                                {% unless src contains '//' %}
+                                  {% assign src = item.media_subpath | append: '/' | append: src | replace: '//', '/' %}
+                                {% endunless %}
 
-                            {% assign alt = item.image.alt | xml_escape | default: 'Preview Image' %}
+                                {% assign alt = item.image.alt | xml_escape | default: 'Preview Image' %}
 
-                            <div class="col-md-5">
-                              <img src="{{ src }}" alt="{{ alt }}">
-                            </div>
-                            {% assign card_body_col = '7' %}
-                          {% endif %}
+                                <div class="col-md-5">
+                                  <img src="{{ src }}" alt="{{ alt }}">
+                                </div>
+                                {% assign card_body_col = '7' %}
+                              {% endif %}
 
-                          <div class="col-md-{{ card_body_col }}">
-                            <div class="card-body d-flex flex-column">
-                              <h1 class="card-title my-2 mt-md-0">{{ item.title }}</h1>
-                              <div class="item-meta flex-grow-1 d-flex align-items-end">
-                                <div class="me-auto">
-                                  <i class="fa-solid fa-sterling-sign"></i>
-                                  {{ item.price }}
+                              <div class="col-md-{{ card_body_col }}">
+                                <div class="card-body d-flex flex-column">
+                                  <h1 class="card-title my-2 mt-md-0">{{ item.title }}</h1>
+                                  <div class="item-meta flex-grow-1 d-flex align-items-end">
+                                    <div class="me-auto">
+                                      <i class="fa-solid fa-sterling-sign"></i>
+                                      {{ item.price }}
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </div>
-                        </a>
-                      </article>
-                    </li>
-                  {% endif %}
-                {% endfor %}
+                            </a>
+                          </article>
+                        </li>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
               </ul>
             </li>
           {% endunless %}
