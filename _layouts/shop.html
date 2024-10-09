@@ -63,11 +63,28 @@ refractor: true
           {% endif %}
         </span>
       </span>
-      
+
+      <!-- Dropdown trigger -->
+      {% if subcategories_count > 0 %}
+        <a
+          href="#subcategories{{ forloop.index }}"
+          data-bs-toggle="collapse"
+          aria-expanded="false"
+          aria-controls="subcategories{{ forloop.index }}"
+          class="category-trigger hide-border-bottom"
+        >
+          <i class="fas fa-fw fa-angle-down"></i>
+        </a>
+      {% else %}
+        <span class="category-trigger hide-border-bottom disabled">
+          <i class="fas fa-fw fa-angle-right"></i>
+        </span>
+      {% endif %}
+    </div>
     <!-- .card-header -->
 
     <!-- Items in this category -->
-    <div id="collapse{{ forloop.index }}" class="collapse show" aria-labelledby="heading{{ forloop.index }}" data-bs-parent="#accordionExample">
+    <div id="subcategories{{ forloop.index }}" class="collapse" aria-expanded="false">
       <ul class="list-group">
         {% assign subcategories = '' | split: '' %}
         {% for item in items_of_category %}
@@ -76,17 +93,14 @@ refractor: true
             {% assign subcategories = subcategories | push: subcategory %}
             <li class="list-group-item">
               <i class="far fa-folder fa-fw"></i>
-              <a href="{{ item.url | relative_url }}" class="mx-2">{{ subcategory }}</a>
-            </li>
-            <li>
-              <div id="shop-category">
-                <div id="item-list" class="flex-grow-1 px-xl-1">
-                  {% for item in items %}
-                    {% if item.categories[1] == subcategory %}
+              <a href="#subcategory{{ forloop.index }}" class="mx-2">{{ subcategory }}</a>
+              <ul class="list-group">
+                {% for item in items %}
+                  {% if item.categories[1] == subcategory %}
+                    <li>
                       <article class="card-wrapper card">
                         <a href="{{ item.url | relative_url }}" class="item-preview row g-0 flex-md-row-reverse">
                           {% assign card_body_col = '12' %}
-
                           {% if item.image %}
                             {% assign src = item.image.path | default: item.image %}
                             {% unless src contains '//' %}
@@ -95,61 +109,29 @@ refractor: true
 
                             {% assign alt = item.image.alt | xml_escape | default: 'Preview Image' %}
 
-                            {% assign lqip = null %}
-
-                            {% if item.image.lqip %}
-                              {% capture lqip %}lqip="{{ item.image.lqip }}"{% endcapture %}
-                            {% endif %}
-
                             <div class="col-md-5">
-                              <img src="{{ src }}" alt="{{ alt }}" {{ lqip }}>
+                              <img src="{{ src }}" alt="{{ alt }}">
                             </div>
-
                             {% assign card_body_col = '7' %}
                           {% endif %}
 
                           <div class="col-md-{{ card_body_col }}">
                             <div class="card-body d-flex flex-column">
                               <h1 class="card-title my-2 mt-md-0">{{ item.title }}</h1>
-
-                              <div class="card-text content mt-0 mb-3">
-                                <p>{% include item-description.html %}</p>
-                              </div>
-
                               <div class="item-meta flex-grow-1 d-flex align-items-end">
                                 <div class="me-auto">
-                                  <!-- posted date -->
                                   <i class="fa-solid fa-sterling-sign"></i>
                                   {{ item.price }}
-                                  <!-- categories -->
-                                  {% if item.categories.size > 0 %}
-                                    <i class="far fa-folder-open fa-fw me-1"></i>
-                                    <span class="categories">
-                                      {% for category in item.categories %}
-                                        {{ category }}
-                                        {%- unless forloop.last -%},{%- endunless -%}
-                                      {% endfor %}
-                                    </span>
-                                  {% endif %}
                                 </div>
-
-                                {% if item.pin %}
-                                  <div class="pin ms-1">
-                                    <i class="fas fa-thumbtack fa-fw"></i>
-                                    <span>{{ site.data.locales[lang].item.pin_prompt }}</span>
-                                  </div>
-                                {% endif %}
                               </div>
-                              <!-- .item-meta -->
                             </div>
-                            <!-- .card-body -->
                           </div>
                         </a>
                       </article>
-                    {% endif %}
-                  {% endfor %}
-                </div>   
-              </div> 
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
             </li>
           {% endunless %}
         {% endfor %}
@@ -157,7 +139,6 @@ refractor: true
     </div>
   </div>
   <!-- .card -->
-
 {% endfor %}
 
 <!-- Paginator for multiple pages -->
