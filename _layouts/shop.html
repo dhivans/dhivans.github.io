@@ -91,11 +91,12 @@ refractor: true
           {% assign subcategory = item.categories[1] %}
           {% unless subcategories contains subcategory %}
             {% assign subcategories = subcategories | push: subcategory %}
+            <!-- Create unique subcategory IDs using category name and forloop index -->
             <li class="list-group-item">
               <i class="far fa-folder fa-fw"></i>
-              <a href="#subcategory{{ forloop.index }}" class="mx-2">{{ subcategory }}</a>
+              <a href="#subcategory{{ forloop.index }}-{{ subcategory | slugify }}" class="mx-2">{{ subcategory }}</a>
               <ul class="list-group">
-                <div id="shop-category">
+                <div id="subcategory{{ forloop.index }}-{{ subcategory | slugify }}">
                   <div id="item-list" class="flex-grow-1 px-xl-1">
                     {% for item in items %}
                       {% if item.categories[1] == subcategory %}
