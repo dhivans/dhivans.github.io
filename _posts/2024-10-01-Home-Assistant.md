@@ -1,5 +1,5 @@
 ---
-title: Home Assistant
+title: Home Assistant on Raspberry Pi 3
 author: dhivan
 date: 2024-10-01 18:00:00 +/-0000
 categories: [HomeAssistant, Guides]
@@ -7,8 +7,21 @@ tags: [RaspberryPi3]
 description: Home Assistant issues and solutions
 ---
 
-## Home Assistant
-Home Assistant is an open-source home automation platform that allows you to control and automate various devices in your home. Unlike proprietary systems, it's highly customizable and flexible, enabling you to integrate a wide range of devices and create tailored automation routines. Home Assistant can be installed on various hardware and runs on different operating systems, offering a versatile solution for home automation needs.
+## Home Assistant on the Raspberry Pi 3
+Firstly the documentation and everyone recommends the raspberry pi 4 or greater but it still is possible to run home assistant on the raspberry pi 3. Having said its possible, i still wouldnt recommend it, i have run into a fair few issues, namely ram limitations and crashes. Below is a documenation of my experiences and problems with home assistant on the raspberry pi 3.
+
+### Home Assistant Install
+This was very straight forward, i would refer to the webistes documentation: https://www.home-assistant.io/installation/raspberrypi.
+Using Raspberry Pi Imager was straightforward and the rest fo the steps went pretty well. For my network i requried the raspberry pis mac address and had to use wifi and i didnt have access to the router.
 
 ### Obtaining MAC Address
-to connect the home assistant to my netowrk i require its mac address. to obtain this mac address the command ```network info``` this will display the mac address for the wlan0 (wireless) and eth0 (ethernet) along with ipaddresses
+To connect the home assistant to my netowrk i require its mac address. to obtain this mac address the command ```network info``` this will display the mac address for the wlan0 (wireless) and eth0 (ethernet) along with ipaddresses
+
+### Connecting to Wifi
+I used the command ```login``` and ```nmcli device wifi connect “YOUR_SSID” password “YOUR_WIFI_PASSWORD”``` to connect to my wifi network.
+
+## ESPhome
+With home assistant up and running on my rapsberry pi. I wanted to setup my first device a ESP32 C3 Supermini. I was able to install the ESPhome addon ```Settings>Add-ons>Add-on Store>ESPhome```. This is where most of my problems started, using the esphome addon to create a new device was ultimately too intensive for the pi and would cause crashes. Personally i found a much more reliable method.
+
+### ESPhome Website
+```web.esphome.io``` became my prefered tool to upload to the ESP. 
