@@ -19,9 +19,3 @@ To connect the home assistant to my netowrk i require its mac address. to obtain
 
 ### Connecting to Wifi
 I used the command ```login``` and ```nmcli device wifi connect “YOUR_SSID” password “YOUR_WIFI_PASSWORD”``` to connect to my wifi network.
-
-## ESPhome
-With home assistant up and running on my rapsberry pi. I wanted to setup my first device a ESP32 C3 Supermini. I was able to install the ESPhome addon ```Settings>Add-ons>Add-on Store>ESPhome```. This is where most of my problems started, using the esphome addon to create a new device was ultimately too intensive for the pi and would cause crashes. Personally i found a much more reliable method.
-
-### ESPhome Website
-```web.esphome.io``` became my prefered tool to upload to the ESP. 
