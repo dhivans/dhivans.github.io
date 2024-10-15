@@ -91,14 +91,13 @@
 #item-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: start;
 
   .card-wrapper {
-    margin-top: 1rem;
-    margin-left: 1rem;
-    margin-right: auto;
-    margin-bottom: 1rem;
-    max-width: 45%;
-    flex: auto;
+    flex: 1 1 calc(33.33% - 20px);
+    max-width: 380px;
+    margin: 10px;
+    
     &:hover {
       text-decoration: none;
     }
