@@ -43,7 +43,7 @@ tail_includes:
               <p class="item-desc fw-light mb-4">{{ page.description }}</p>
             {% endif %}
             {% if page.price and page.url %}
-              <a href="{{ page.url | relative_url }}" class="btn btn-primary mt-3" target="_blank">
+              <a href="{{ page.link }}" class="btn btn-primary mt-3">
                 Buy Now for {{ page.price }}
               </a>
             {% endif %}
