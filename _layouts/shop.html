@@ -69,7 +69,7 @@ refractor: true
         <a
           href="#subcategories{{ forloop.index }}"
           data-bs-toggle="collapse"
-          aria-expanded="false"
+          aria-expanded="true"
           aria-controls="subcategories{{ forloop.index }}"
           class="category-trigger hide-border-bottom"
         >
@@ -84,7 +84,7 @@ refractor: true
     <!-- .card-header -->
 
     <!-- Items in this category -->
-    <div id="subcategories{{ forloop.index }}" class="collapse" aria-expanded="false">
+    <div id="subcategories{{ forloop.index }}" class="collapse show" aria-expanded="true">
       <ul class="list-group">
         {% assign subcategories = '' | split: '' %}
         {% for item in items_of_category %}

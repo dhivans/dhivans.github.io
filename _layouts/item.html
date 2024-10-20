@@ -11,18 +11,8 @@ tail_includes:
 
 <article class="px-1">
   <header>
-    <h1 data-toc-skip>{{ page.title }}</h1>
-    {% if page.description %}
-      <p class="item-desc fw-light mb-4">{{ page.description }}</p>
-    {% endif %}
-
+    
     <div class="item-meta text-muted">
-      <!-- published date -->
-      <span>
-        {{ site.data.locales[lang].item.posted }}
-        {% include datetime.html date=page.date tooltip=true lang=lang %}
-      </span>
-
       <!-- lastmod date -->
       {% if page.last_modified_at and page.last_modified_at != page.date %}
         <span>
@@ -32,49 +22,36 @@ tail_includes:
       {% endif %}
 
       {% if page.image %}
-        {% capture src %}src="{{ page.image.path | default: page.image }}"{% endcapture %}
-        {% capture class %}class="preview-img{% if page.image.no_bg %}{{ ' no-bg' }}{% endif %}"{% endcapture %}
-        {% capture alt %}alt="{{ page.image.alt | xml_escape | default: "Preview Image" }}"{% endcapture %}
+        <div class="d-flex align-items-start">
+          <!-- Image Section -->
+          <div class="mt-3 mb-3">
+            {% capture src %}src="{{ page.image.path | default: page.image }}"{% endcapture %}
+            {% capture class %}class="preview-img-item{% if page.image.no_bg %}{{ ' no-bg' }}{% endif %}"{% endcapture %}
+            {% capture alt %}alt="{{ page.image.alt | xml_escape | default: "Preview Image" }}"{% endcapture %}
 
-        {% if page.image.lqip %}
-          {%- capture lqip -%}lqip="{{ page.image.lqip }}"{%- endcapture -%}
-        {% endif %}
+            {% if page.image.lqip %}
+              {%- capture lqip -%}lqip="{{ page.image.lqip }}"{%- endcapture -%}
+            {% endif %}
 
-        <div class="mt-3 mb-3">
-          <img {{ src }} {{ class }} {{ alt }} w="1200" h="630" {{ lqip }}>
-          {%- if page.image.alt -%}
-            <figcaption class="text-center pt-2 pb-2">{{ page.image.alt }}</figcaption>
-          {%- endif -%}
+            <img {{ src }} {{ class }} {{ alt }} w="300" h="300" {{ lqip }}>
+          </div>
+
+          <!-- Text Section (h2 and p) -->
+          <div class="ms-4">
+            <h2>{{ page.title }}</h2>
+            {% if page.description %}
+              <p class="item-desc fw-light mb-4">{{ page.description }}</p>
+            {% endif %}
+            {% if page.price and page.url %}
+              <a href="{{ page.url | relative_url }}" class="btn btn-primary mt-3" target="_blank">
+                Buy Now for {{ page.price }}
+              </a>
+            {% endif %}
+          </div>
         </div>
       {% endif %}
 
       <div class="d-flex justify-content-between">
-        <!-- author(s) -->
-        <span>
-          {% if page.author %}
-            {% assign authors = page.author %}
-          {% elsif page.authors %}
-            {% assign authors = page.authors %}
-          {% endif %}
-
-          {{ site.data.locales[lang].item.written_by }}
-
-          <em>
-            {% if authors %}
-              {% for author in authors %}
-                {% if site.data.authors[author].url -%}
-                  <a href="{{ site.data.authors[author].url }}">{{ site.data.authors[author].name }}</a>
-                {%- else -%}
-                  {{ site.data.authors[author].name }}
-                {%- endif %}
-                {% unless forloop.last %}{{ '</em>, <em>' }}{% endunless %}
-              {% endfor %}
-            {% else %}
-              <a href="{{ site.social.links[0] }}">{{ site.social.name }}</a>
-            {% endif %}
-          </em>
-        </span>
-
         <div>
           <!-- pageviews -->
           {% if site.pageviews.provider and site.analytics[site.pageviews.provider].id %}
@@ -85,9 +62,6 @@ tail_includes:
               {{ site.data.locales[lang].item.pageview_measure }}
             </span>
           {% endif %}
-
-          <!-- read time -->
-          {% include read-time.html content=content prompt=true lang=lang %}
         </div>
       </div>
     </div>

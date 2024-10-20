@@ -53,7 +53,7 @@ body {
 
         main & {
           @if $i == 2 {
-            margin: 2.5rem 0 1.25rem;
+            margin: 1.5rem 0 1.25rem;
           } @else {
             margin: 2rem 0 1rem;
           }
@@ -361,6 +361,29 @@ sup {
   }
 }
 
+.preview-img-item {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+
+  @extend %rounded;
+
+  &:not(.no-bg) {
+    background: var(--img-bg);
+  }
+
+  img {
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+
+    @extend %rounded;
+
+    @at-root #post-list & {
+      width: 100%;
+    }
+  }
+}
+
 .post-preview {
   @extend %rounded;
 
@@ -467,7 +490,7 @@ main {
 
 .content {
   font-size: 1.08rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
   overflow-wrap: break-word;
 
   a {
