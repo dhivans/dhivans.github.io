@@ -5,7 +5,7 @@ date: 2024-09-12 20:00:00 +/-0000
 author: dhivan
 link: "https://www.amazon.co.uk/dp/B0DH3ZHSN6"
 categories: [Connectors, Crimps]
-price: "30.00"
+price: "34.99"
 image:
     path: https://m.media-amazon.com/images/I/71XWtOqMh5L._AC_SX679_.jpg
     alt: Bootlace Ferrule
