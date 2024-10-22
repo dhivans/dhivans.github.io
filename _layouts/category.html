@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 # The Category layout for posts and items
 ---
 
@@ -30,7 +30,7 @@ layout: page
 
   <!-- Display all the items with the current category -->
   {% assign filtered_items = site.items | where_exp: "item", "item.categories contains page.title" %}
-  <h2 class="mt-4">Shop <span class="lead text-muted ps-2">{{ filtered_items.size }}</span></h2>
+  <h2 class="mt-4">Shop <span class="lead text-muted">{{ filtered_items.size }}</span></h2>
   <ul class="content ps-0">
     {% if filtered_items.size > 0 %}
       {% for item in filtered_items %}

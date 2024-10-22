@@ -6,10 +6,14 @@ module Jekyll
       @dir = dir
       @name = 'index.html'
 
+      # Set the layout to 'category.html' and pass the category data
       self.process(@name)
-      self.read_yaml(File.join(base, '_layouts'), 'category-items.html')
+      self.read_yaml(File.join(base, '_layouts'), 'category.html')
       self.data['category'] = category
-      self.data['title'] = "Category: #{category.capitalize}"
+      
+      # Set page title explicitly
+      self.data['title'] = "#{category}"
+      
     end
   end
 

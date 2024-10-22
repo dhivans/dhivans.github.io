@@ -25,7 +25,7 @@ layout: page
     <!-- Add second category as a subcategory under the first -->
     {% if second_category %}
       {% unless category_hierarchy[first_category] %}
-        {% assign category_hierarchy = category_hierarchy | merge: { first_category => '' | split: '' } %}
+        {% assign category_hierarchy = category_hierarchy | merge: { first_category: '' | split: '' } %}
       {% endunless %}
       {% unless category_hierarchy[first_category] contains second_category %}
         {% assign category_hierarchy[first_category] = category_hierarchy[first_category] | push: second_category %}
@@ -104,7 +104,7 @@ layout: page
 
             <!-- Total posts and items count -->
             {{ top_posts_size | plus: top_items_size }} 
-            {% if (top_posts_size | plus: top_items_size) > 1 %}
+            {% if top_posts_size | plus: top_items_size > 1 %}
               {{"items"}}
             {% else %}
               {{"item"}}
