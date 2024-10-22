@@ -1,6 +1,6 @@
 ---
 layout: page
-# The Category layout
+# The Category layout for site items
 ---
 
 {% include lang.html %}
@@ -9,23 +9,20 @@ layout: page
   <h1 class="ps-lg-2">
     <i class="far fa-folder-open fa-fw text-muted"></i>
     {{ page.title }}
-    <span class="lead text-muted ps-2">{{ page.posts | size }}</span>
+    <!-- Count how many items are in this category -->
+    <span class="lead text-muted ps-2"> {{ site.items | where_exp: "item", "item.categories contains page.title" | size }}</span>
   </h1>
 
   <ul class="content ps-0">
-    {% for post in page.posts %}
-      <li class="d-flex justify-content-between px-md-3">
-        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-        <span class="dash flex-grow-1"></span>
-        {% include datetime.html date=post.date class='text-muted small text-nowrap' lang=lang %}
-      </li>
-    {% endfor %}
+    <!-- Loop through items and show only the ones in the current category -->
     {% for item in site.items %}
-      <li class="d-flex justify-content-between px-md-3">
-        <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
-        <span class="dash flex-grow-1"></span>
-        {% include datetime.html date=post.date class='text-muted small text-nowrap' lang=lang %}
-      </li>
+      {% if item.categories contains page.title %}
+        <li class="d-flex justify-content-between px-md-3">
+          <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+          <span class="dash flex-grow-1"></span>
+          {% include datetime.html date=item.date class='text-muted small text-nowrap' lang=lang %}
+        </li>
+      {% endif %}
     {% endfor %}
   </ul>
 </div>

@@ -188,7 +188,7 @@ defaults:
       type: items
     values:
       layout: item
-      comments: true # Enable comments in items.
+      categories: [default_category]
       permalink: /items/:title/
   - scope:
       path: _drafts
