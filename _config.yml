@@ -188,7 +188,6 @@ defaults:
       type: items
     values:
       layout: item
-      categories: [default_category]
       permalink: /items/:title/
   - scope:
       path: _drafts
