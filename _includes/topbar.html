@@ -33,6 +33,12 @@
             <span>
               <a href="{{ '/categories/' | relative_url }}">Categories</a>
             </span>
+
+          {% elsif page.layout == 'item' %}
+            <!-- Add explicit link for 'Categories' -->
+            <span>
+              <a href="{{ '/shop/' | relative_url }}">Shop</a>
+            </span>
             
           {% else %}
             <span>
