@@ -1,0 +1,166 @@
+---
+layout: page
+# Combined Categories of Posts and Items
+---
+
+{% include lang.html %}
+
+<!-- Collect and display post categories and their subcategories -->
+{% assign top_level_categories = '' | split: '' %}
+{% assign category_hierarchy = {} %}
+
+{% for category in site.categories %}
+  {% assign category_name = category | first %}
+  {% assign posts_of_category = category[1] %}
+
+  {% for post in posts_of_category %}
+    {% assign first_category = post.categories[0] %}
+    {% assign second_category = post.categories[1] %}
+
+    <!-- Add the first category as a top-level category -->
+    {% unless top_level_categories contains first_category %}
+      {% assign top_level_categories = top_level_categories | push: first_category %}
+    {% endunless %}
+
+    <!-- Add second category as a subcategory under the first -->
+    {% if second_category %}
+      {% unless category_hierarchy[first_category] %}
+        {% assign category_hierarchy = category_hierarchy | merge: { first_category => '' | split: '' } %}
+      {% endunless %}
+      {% unless category_hierarchy[first_category] contains second_category %}
+        {% assign category_hierarchy[first_category] = category_hierarchy[first_category] | push: second_category %}
+      {% endunless %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+<!-- Combine post and item categories -->
+{% assign items = site.items | where_exp: 'item', 'item.hidden != true' %}
+{% assign item_categories = '' | split: '' %}
+{% for item in items %}
+  {% assign first_category = item.categories[0] %}
+  {% unless item_categories contains first_category %}
+    {% assign item_categories = item_categories | push: first_category %}
+  {% endunless %}
+{% endfor %}
+{% assign combined_categories = top_level_categories | concat: item_categories | uniq | sort %}
+
+
+<!-- Step 4: Iterate over combined categories -->
+{% for category_name in combined_categories %}
+  <!-- Collect posts and items in the current category -->
+  {% assign posts_of_category = site.categories[category_name] %}
+  {% assign items_of_category = items | where: "categories", category_name %}
+
+  <!-- If either posts or items exist in this category -->
+  {% if posts_of_category or items_of_category %}
+    <!-- Collect subcategories from both posts and items -->
+    {% assign sub_categories = '' | split: '' %}
+    
+    <!-- Subcategories from posts -->
+    {% for post in posts_of_category %}
+      {% assign second_category = post.categories[1] %}
+      {% unless sub_categories contains second_category %}
+        {% assign sub_categories = sub_categories | push: second_category %}
+      {% endunless %}
+    {% endfor %}
+    
+    <!-- Subcategories from items -->
+    {% for item in items_of_category %}
+      {% assign second_category = item.categories[1] %}
+      {% unless sub_categories contains second_category %}
+        {% assign sub_categories = sub_categories | push: second_category %}
+      {% endunless %}
+    {% endfor %}
+    
+    <!-- Sort subcategories -->
+    {% assign sub_categories = sub_categories | uniq | sort %}
+    {% assign sub_categories_size = sub_categories | size %}
+    
+    <div class="card categories">
+      <!-- Top-level category -->
+      <div
+        id="{{ HEAD_PREFIX }}{{ group_index }}"
+        class="card-header d-flex justify-content-between hide-border-bottom"
+      >
+        <span class="ms-2">
+          <i class="far fa-folder{% if sub_categories_size > 0 %}-open{% endif %} fa-fw"></i>
+
+          {% capture _category_url %}/categories/{{ category_name | slugify | url_encode }}/{% endcapture %}
+          <a href="{{ _category_url | relative_url }}" class="mx-2">{{ category_name }}</a>
+
+          <!-- Content count -->
+          {% assign top_posts_size = posts_of_category | size %}
+          {% assign top_items_size = items_of_category | size %}
+          <span class="text-muted small font-weight-light">
+            {% if sub_categories_size > 0 %}
+              {{ sub_categories_size }}
+              {% if sub_categories_size > 1 %}
+                {{"categories"}}
+              {% else %}
+                {{"category"}}
+              {% endif %},
+            {% endif %}
+
+            <!-- Total posts and items count -->
+            {{ top_posts_size | plus: top_items_size }} 
+            {% if (top_posts_size | plus: top_items_size) > 1 %}
+              {{"items"}}
+            {% else %}
+              {{"item"}}
+            {% endif %}
+          </span>
+        </span>
+
+        <!-- Dropdown for subcategories -->
+        {% if sub_categories_size > 0 %}
+          <a
+            href="#{{ LIST_PREFIX }}{{ group_index }}"
+            data-bs-toggle="collapse"
+            aria-expanded="true"
+            aria-label="{{ HEAD_PREFIX }}{{ group_index }}-trigger"
+            class="category-trigger hide-border-bottom"
+          >
+            <i class="fas fa-fw fa-angle-down"></i>
+          </a>
+        {% else %}
+          <span class="category-trigger hide-border-bottom disabled">
+            <i class="fas fa-fw fa-angle-right"></i>
+          </span>
+        {% endif %}
+      </div>
+      <!-- .card-header -->
+
+      <!-- Subcategories -->
+      {% if sub_categories_size > 0 %}
+        <div id="{{ LIST_PREFIX }}{{ group_index }}" class="collapse show" aria-expanded="true">
+          <ul class="list-group">
+            {% for sub_category in sub_categories %}
+              <li class="list-group-item">
+                <i class="far fa-folder fa-fw"></i>
+
+                {% capture _sub_ctg_url %}/categories/{{ sub_category | slugify | url_encode }}/{% endcapture %}
+                <a href="{{ _sub_ctg_url | relative_url }}" class="mx-2">{{ sub_category }}</a>
+
+                <!-- Count posts and items in this subcategory -->
+                {% assign posts_in_sub = site.categories[sub_category] %}
+                {% assign items_in_sub = items | where: "categories", sub_category %}
+                <span class="text-muted small font-weight-light">
+                  {{ posts_in_sub.size | plus: items_in_sub.size }}
+                  {% if posts_in_sub.size | plus: items_in_sub.size > 1 %}
+                    {{"items"}}
+                  {% else %}
+                    {{"item"}}
+                  {% endif %}
+                </span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    </div>
+    <!-- .card -->
+
+    {% assign group_index = group_index | plus: 1 %}
+  {% endif %}
+{% endfor %}

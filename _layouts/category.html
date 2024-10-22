@@ -1,6 +1,6 @@
 ---
 layout: page
-# The Category layout for site items
+# The Category layout for posts and items
 ---
 
 {% include lang.html %}
@@ -9,20 +9,39 @@ layout: page
   <h1 class="ps-lg-2">
     <i class="far fa-folder-open fa-fw text-muted"></i>
     {{ page.title }}
-    <!-- Count how many items are in this category -->
-    <span class="lead text-muted ps-2"> {{ site.items | where_exp: "item", "item.categories contains page.title" | size }}</span>
   </h1>
 
+  <!-- Display all the posts with the current category -->
+  {% assign filtered_posts = site.posts | where_exp: "post", "post.categories contains page.title" %}
+  <h2 class="mt-4">Posts <span class="lead text-muted ps-2">{{ filtered_posts.size }}</span></h2>
   <ul class="content ps-0">
-    <!-- Loop through items and show only the ones in the current category -->
-    {% for item in site.items %}
-      {% if item.categories contains page.title %}
+    {% if filtered_posts.size > 0 %}
+      {% for post in filtered_posts %}
+        <li class="d-flex justify-content-between px-md-3">
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <span class="dash flex-grow-1"></span>
+          {% include datetime.html date=post.date class='text-muted small text-nowrap' lang=lang %}
+        </li>
+      {% endfor %}
+    {% else %}
+      <p>No posts found in this category.</p>
+    {% endif %}
+  </ul>
+
+  <!-- Display all the items with the current category -->
+  {% assign filtered_items = site.items | where_exp: "item", "item.categories contains page.title" %}
+  <h2 class="mt-4">Shop <span class="lead text-muted ps-2">{{ filtered_items.size }}</span></h2>
+  <ul class="content ps-0">
+    {% if filtered_items.size > 0 %}
+      {% for item in filtered_items %}
         <li class="d-flex justify-content-between px-md-3">
           <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
           <span class="dash flex-grow-1"></span>
           {% include datetime.html date=item.date class='text-muted small text-nowrap' lang=lang %}
         </li>
-      {% endif %}
-    {% endfor %}
+      {% endfor %}
+    {% else %}
+      <p>No shop items found in this category.</p>
+    {% endif %}
   </ul>
 </div>
