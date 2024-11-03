@@ -4,7 +4,7 @@ description: Ensure precise belt tension for your 3D printer with this durable a
 date: 2024-10-21 20:00:00 +/-0000
 author: dhivan
 link: "https://www.amazon.co.uk/dp/B0DBGPNMBL"
-categories: [3D Printer, Tools]
+categories: [3D-Printer, Tools]
 price: "15.99"
 image:
     path: https://m.media-amazon.com/images/I/61uBmbi2izL._SX425_.jpg
