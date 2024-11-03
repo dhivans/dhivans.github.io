@@ -5,7 +5,7 @@ date: 2024-11-02 13:00:00 +/-0000
 author: dhivan
 link: "https://www.amazon.co.uk/dp/B0CW3JCDRH?th=1"
 categories: [Cables, Magnetic]
-price: ""
+price: "15.99"
 image:
     path: https://m.media-amazon.com/images/I/81vjLGIyDFL._SX342_.jpg
     alt: DST Magnetic Charging Cable

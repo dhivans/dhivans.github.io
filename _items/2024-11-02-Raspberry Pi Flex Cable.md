@@ -5,7 +5,7 @@ date: 2024-11-02 13:00:00 +/-0000
 author: dhivan
 link: "https://www.amazon.co.uk/dp/B0DH3XQ5TJ"
 categories: [Cables, Flex-Cable]
-price: "4.9900000000000002"
+price: "4.99"
 image:
     path: https://m.media-amazon.com/images/I/41riKZB9G1L._SY445_SX342_QL70_ML2_.jpg
     alt: Raspberry Pi Flex Cable

@@ -5,7 +5,7 @@ date: 2024-11-02 13:00:00 +/-0000
 author: dhivan
 link: "https://www.amazon.co.uk/dp/B0DBGPFZ4F?th=1"
 categories: [Switches, Microswitch]
-price: ""
+price: "3.00"
 image:
     path: https://m.media-amazon.com/images/I/31JB4jBGnQL._SX342_.jpg
     alt: Microswitch D2F-5L

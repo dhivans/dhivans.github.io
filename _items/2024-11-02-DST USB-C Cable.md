@@ -5,7 +5,7 @@ date: 2024-11-02 13:00:00 +/-0000
 author: dhivan
 link: "https://www.amazon.co.uk/dp/B0DH8DDWFH?th=1"
 categories: [Cables, USB-C]
-price: "5.4900000000000002"
+price: "5.49"
 image:
     path: https://m.media-amazon.com/images/I/31a2vBbwzHL._SX522_.jpg
     alt: DST USB-C Cable
