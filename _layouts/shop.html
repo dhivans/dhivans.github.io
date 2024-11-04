@@ -99,7 +99,7 @@ refractor: true
                 <div id="subcategory{{ forloop.index }}-{{ subcategory | slugify }}">
                   <div id="item-list" class="flex-grow-1 px-xl-1">
                     {% for item in items %}
-                      {% if item.categories[1] == subcategory %}
+                      {% if item.categories[0] == category_name and item.categories[1] == subcategory %}
                         <li>
                           <article class="card-wrapper card">
                             <a href="{{ item.url | relative_url }}" class="item-preview row g-0 flex-md-row-reverse">
