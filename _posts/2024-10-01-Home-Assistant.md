@@ -15,7 +15,7 @@ This was very straight forward, i would refer to the webistes documentation: htt
 Using Raspberry Pi Imager was straightforward and the rest fo the steps went pretty well. For my network i requried the raspberry pis mac address and had to use wifi and i didnt have access to the router.
 
 ### Obtaining MAC Address
-To connect the home assistant to my netowrk i require its mac address. to obtain this mac address the command ```network info``` this will display the mac address for the wlan0 (wireless) and eth0 (ethernet) along with ipaddresses
+To connect the home assistant to my netowrk i require its mac address. To obtain this mac address the command ```network info``` will display the mac address for the wlan0 (wireless) and eth0 (ethernet) along with ipaddresses
 
 ### Connecting to Wifi
 I used the command ```login``` and ```nmcli device wifi connect “YOUR_SSID” password “YOUR_WIFI_PASSWORD”``` to connect to my wifi network.
