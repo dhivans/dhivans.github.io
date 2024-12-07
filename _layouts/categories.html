@@ -25,7 +25,9 @@ layout: page
     <!-- Add second category as a subcategory under the first -->
     {% if second_category %}
       {% unless category_hierarchy[first_category] %}
-        {% assign category_hierarchy = category_hierarchy | merge: { first_category: '' | split: '' } %}
+        {% assign empty_list = '' | split: '' %}
+        {% assign category_hierarchy = category_hierarchy | merge: category_hierarchy | merge: empty_list %}
+
       {% endunless %}
       {% unless category_hierarchy[first_category] contains second_category %}
         {% assign category_hierarchy[first_category] = category_hierarchy[first_category] | push: second_category %}
