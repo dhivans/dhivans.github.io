@@ -199,12 +199,6 @@ defaults:
     values:
       layout: page
       permalink: /:title/
-  - scope:
-      path: ""
-      type: tabs
-      title: shop
-      values:
-        layout: shop
 
 sass:
   style: compressed

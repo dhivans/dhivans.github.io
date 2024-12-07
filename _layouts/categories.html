@@ -7,7 +7,7 @@ layout: page
 
 <!-- Collect and display post categories and their subcategories -->
 {% assign top_level_categories = '' | split: '' %}
-{% assign category_hierarchy = {} %}
+{% assign category_hierarchy = '' | split: '' %}
 
 {% for category in site.categories %}
   {% assign category_name = category | first %}
@@ -105,8 +105,8 @@ layout: page
             {% endif %}
 
             <!-- Total posts and items count -->
-            {{ top_posts_size | plus: top_items_size }} 
-            {% if top_posts_size | plus: top_items_size > 1 %}
+            {{ total_size }}
+            {% if total_size > 1 %} <!-- Fix: Compare the total size variable instead -->
               {{"items"}}
             {% else %}
               {{"item"}}
@@ -147,9 +147,10 @@ layout: page
                 <!-- Count posts and items in this subcategory -->
                 {% assign posts_in_sub = site.categories[sub_category] %}
                 {% assign items_in_sub = items | where: "categories", sub_category %}
+                {% assign total_sub_size = posts_in_sub.size | plus: items_in_sub.size %} <!-- Fix: Assign the result of plus to a variable -->
                 <span class="text-muted small font-weight-light">
-                  {{ posts_in_sub.size | plus: items_in_sub.size }}
-                  {% if posts_in_sub.size | plus: items_in_sub.size > 1 %}
+                  {{ total_sub_size }}
+                  {% if total_sub_size > 1 %}
                     {{"items"}}
                   {% else %}
                     {{"item"}}
