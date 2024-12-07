@@ -201,6 +201,7 @@ defaults:
       permalink: /:title/
   - scope:
       path: ""
+      type: tabs
       title: shop
       values:
         layout: shop
