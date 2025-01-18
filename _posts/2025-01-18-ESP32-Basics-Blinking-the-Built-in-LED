@@ -1,0 +1,82 @@
+---
+title: ESP32 Basics - Blinking the Built-in LED
+author: Your Name
+date: 2025-01-18 12:00:00 +0000
+categories: [IoT, Tutorial]
+tags: [ESP32, LED, Blink, Arduino]
+render_with_liquid: false
+---
+
+This tutorial will guide you through the process of flashing the built-in LED on an ESP32 development board. This is a great way to verify that your board is working correctly and to get started with programming microcontrollers.
+
+## Requirements
+
+Before proceeding, ensure you have the following components:
+
+- ESP32 development board
+- USB cable for programming
+- Computer with **Arduino IDE** installed
+
+## Understanding the Built-in LED
+
+Most ESP32 development boards include a built-in LED, typically connected to **GPIO 2**. In this example, we will toggle this LED on and off in a simple blinking pattern.
+
+## Installing the ESP32 Board in Arduino IDE
+
+If you haven't already set up the **ESP32** in the Arduino IDE, follow these steps:
+
+1. Open the **Arduino IDE**.
+2. Go to **File** > **Preferences**.
+3. In the **Additional Board Manager URLs** field, enter: https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+4. Click **OK**.
+5. Go to **Tools** > **Board** > **Boards Manager**.
+6. Search for **ESP32** and install the package by **Espressif Systems**.
+
+## Writing the Code
+
+Create a new Arduino sketch and copy the following code:
+
+```cpp
+#define LED_BUILTIN 2
+
+// the setup function runs once when you press reset or power the board
+void setup() {
+// initialize digital pin LED_BUILTIN as an output.
+pinMode(LED_BUILTIN, OUTPUT);
+}
+
+// the loop function runs over and over again forever
+void loop() {
+digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
+delay(1000);                      // wait for a second
+digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
+delay(1000);                      // wait for a second
+}
+
+## Uploading and Running the Code
+
+1. Connect your ESP32 to your computer using a USB cable.
+2. Open the **Arduino IDE** and select **Tools** > **Board** > **ESP32 Dev Module**.
+3. Select the appropriate **Port** under **Tools** > **Port**.
+4. Click **Upload** to flash the code onto the ESP32.
+5. Open the **Serial Monitor** (set baud rate to **115200**) to observe any debug messages.
+
+## Expected Behavior
+
+Once uploaded successfully, the **built-in LED** (connected to **GPIO 2**) will blink on and off every second.
+
+## Troubleshooting
+
+If the LED does not blink:
+
+- Ensure that the correct **board** and **port** are selected.
+- Try changing the `LED_BUILTIN` value to another GPIO pin (e.g., **4** or **5**) if your board uses a different built-in LED pin.
+- Press the **boot button** on the ESP32 while uploading to resolve certain flashing issues.
+
+## Further Enhancements
+
+- Modify the delay time to blink at different speeds.
+- Add a button input to control the LED.
+- Use PWM to fade the LED brightness gradually.
+
+For more information, visit the [ESP32 Arduino documentation](https://docs.espressif.com/projects/arduino-esp32/en/latest/).
