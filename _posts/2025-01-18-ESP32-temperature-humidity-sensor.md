@@ -39,8 +39,7 @@ To interface with the BMP280, install the following libraries in the Arduino IDE
 
 1. Open the **Arduino IDE** and go to **Sketch** > **Include Library** > **Manage Libraries**.
 2. Search for `Adafruit BMP280` and install the library.
-3. Search for `Adafruit Unified Sensor` and install it as well.
-4. Install the `Wire` library if it's not already installed.
+3. Install the `Wire` library if it's not already installed.
 
 ## Writing the Code
 
@@ -48,27 +47,49 @@ Create a new Arduino sketch and copy the following code:
 
 ```cpp
 #include <Wire.h>
-#include <Adafruit_Sensor.h>
 #include <Adafruit_BMP280.h>
 
-Adafruit_BMP280 bmp; // I2C
+#define SDA_PIN 21  // ESP32 I2C SDA
+#define SCL_PIN 22  // ESP32 I2C SCL
+
+Adafruit_BMP280 bmp; // I2C instance
 
 void setup() {
-    Serial.begin(115200);
-    if (!bmp.begin(0x76)) {
-        Serial.println("Could not find a valid BMP280 sensor, check wiring!");
-        while (1);
-    }
+  Serial.begin(115200);
+  delay(2000);
+  Serial.println("BMP280 Sensor Test");
+
+  // Start I2C with custom pins
+  Wire.begin(SDA_PIN, SCL_PIN);
+
+  // Try to initialize BMP280 sensor
+  if (!bmp.begin(0x76)) { // Use 0x77 if needed
+    Serial.println("Could not find a valid BMP280 sensor, check wiring!");
+    while (1);
+  }
+
+  // Set sensor to normal mode
+  bmp.setSampling(Adafruit_BMP280::MODE_NORMAL,
+                  Adafruit_BMP280::SAMPLING_X2,  // Temperature oversampling
+                  Adafruit_BMP280::SAMPLING_X16, // Pressure oversampling
+                  Adafruit_BMP280::FILTER_X16,   // Filtering
+                  Adafruit_BMP280::STANDBY_MS_500); // Standby time
 }
 
 void loop() {
-    Serial.print("Temperature = ");
-    Serial.print(bmp.readTemperature());
-    Serial.println(" *C");
+  Serial.print("Temperature = ");
+  Serial.print(bmp.readTemperature());
+  Serial.println(" °C");
 
-    Serial.print("Pressure = ");
-    Serial.print(bmp.readPressure() / 100.0F);
-    Serial.println(" hPa");
+  Serial.print("Pressure = ");
+  Serial.print(bmp.readPressure() / 100.0F); // Convert Pa to hPa
+  Serial.println(" hPa");
 
-    delay(2000);
+  Serial.print("Approx. Altitude = ");
+  Serial.print(bmp.readAltitude(1013.25)); // Adjust for sea level pressure
+  Serial.println(" m");
+
+  Serial.println();
+  delay(2000);
 }
+
