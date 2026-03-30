@@ -1,0 +1,31 @@
+title: DhivanSTech
+tagline: "Engineering-grade components & tools for makers"
+description: >-
+  DhivanSTech (DST) is an electronics brand supplying tested DIY maker components
+  and test equipment via Amazon. We also document real builds, experiments, and
+  engineering projects.
+baseurl: ""
+url: "https://dhivans.github.io"
+author: DhivanSTech
+
+# Navigation
+header_pages:
+  - about.md
+  - shop.md
+
+# Build settings
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Minima theme settings
+minima:
+  skin: dark
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - .gitignore

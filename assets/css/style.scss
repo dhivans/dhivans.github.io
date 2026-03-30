@@ -1,0 +1,204 @@
+---
+---
+
+@import "minima";
+
+// ============================================================
+// DST Dark Theme Overrides
+// ============================================================
+
+// Base
+body {
+  background-color: #0d1117;
+  color: #e2eaf4;
+}
+
+a {
+  color: #00e5ff;
+
+  &:visited {
+    color: #00b8cc;
+  }
+
+  &:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+}
+
+// Site header
+.site-header {
+  background-color: #0d1117;
+  border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+}
+
+.site-title,
+.site-title:visited {
+  color: #00e5ff;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+
+  &:hover {
+    color: #ffffff;
+    text-decoration: none;
+  }
+}
+
+.site-nav {
+  background-color: #0d1117;
+
+  .page-link {
+    color: #e2eaf4;
+
+    &:hover {
+      color: #00e5ff;
+    }
+  }
+}
+
+// Hamburger menu (mobile)
+.site-nav .menu-icon > svg path {
+  fill: #e2eaf4;
+}
+
+// Site footer
+.site-footer {
+  background-color: #0a0d13;
+  border-top: 1px solid rgba(0, 229, 255, 0.2);
+  color: #8b949e;
+
+  a {
+    color: #8b949e;
+
+    &:hover {
+      color: #00e5ff;
+    }
+  }
+}
+
+// Headings — monospace touch
+h1, h2, h3, h4, h5, h6 {
+  color: #e2eaf4;
+  font-family: "Courier New", Courier, monospace;
+}
+
+// Horizontal rule
+hr {
+  border-color: #30363d;
+}
+
+// Code
+pre,
+code {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  color: #00e5ff;
+}
+
+pre {
+  border-radius: 4px;
+}
+
+// Blockquote
+blockquote {
+  border-left: 4px solid #00e5ff;
+  color: #8b949e;
+  background-color: #161b22;
+  padding: 0.5rem 1rem;
+}
+
+// Post list (home page)
+.post-list {
+  li {
+    border-bottom: 1px solid #21262d;
+    padding-bottom: 0.5rem;
+  }
+
+  .post-link {
+    color: #e2eaf4;
+
+    &:hover {
+      color: #00e5ff;
+    }
+  }
+
+  .post-meta {
+    color: #8b949e;
+  }
+}
+
+// Post header
+.post-header .post-title {
+  color: #00e5ff;
+}
+
+// ============================================================
+// Product Card Grid (Shop page)
+// ============================================================
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.product-card {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 1.5rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    border-color: #00e5ff;
+    box-shadow: 0 0 12px rgba(0, 229, 255, 0.1);
+  }
+
+  h3 {
+    margin-top: 0;
+    color: #00e5ff;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1rem;
+  }
+
+  p {
+    color: #8b949e;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+
+  .price {
+    font-size: 1.15rem;
+    font-weight: bold;
+    color: #e2eaf4;
+    margin-bottom: 1rem;
+    font-family: "Courier New", Courier, monospace;
+  }
+}
+
+.btn-amazon {
+  display: inline-block;
+  background-color: #00e5ff;
+  color: #0d1117 !important;
+  padding: 0.45rem 1.1rem;
+  border-radius: 4px;
+  text-decoration: none !important;
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #ffffff;
+    color: #0d1117 !important;
+  }
+}
+
+// Shop intro
+.shop-intro {
+  color: #8b949e;
+  margin-bottom: 0.5rem;
+}
