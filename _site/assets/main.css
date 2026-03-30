@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap");
 /** Reset some basic elements */
 body, h1, h2, h3, h4, h5, h6, p, blockquote, pre, hr, dl, dd, ol, ul, figure { margin: 0; padding: 0; }
 
@@ -195,6 +196,7 @@ table td { border: 1px solid #e8e8e8; }
 .highlight .vi { color: #008080; }
 .highlight .il { color: #099; }
 
+@font-face { font-family: "HemiHeadRG"; src: url("/assets/fonts/HemiHeadRG.ttf") format("truetype"); font-weight: normal; font-style: normal; font-display: swap; }
 body { background-color: #0d1117; color: #e2eaf4; }
 
 a { color: #00e5ff; }
@@ -203,7 +205,7 @@ a:hover { color: #ffffff; text-decoration: underline; }
 
 .site-header { background-color: #0d1117; border-bottom: 1px solid rgba(0, 229, 255, 0.2); }
 
-.site-title, .site-title:visited { color: #00e5ff; font-family: "Courier New", Courier, monospace; font-weight: 700; letter-spacing: 0.04em; }
+.site-title, .site-title:visited { color: #00e5ff; font-family: "HemiHeadRG", "Courier New", Courier, monospace; font-weight: normal; letter-spacing: 0.04em; }
 .site-title:hover, .site-title:visited:hover { color: #ffffff; text-decoration: none; }
 
 .site-nav { background-color: #0d1117; }
@@ -216,7 +218,7 @@ a:hover { color: #ffffff; text-decoration: underline; }
 .site-footer a { color: #8b949e; }
 .site-footer a:hover { color: #00e5ff; }
 
-h1, h2, h3, h4, h5, h6 { color: #e2eaf4; font-family: "Courier New", Courier, monospace; }
+h1, h2, h3, h4, h5, h6 { color: #e2eaf4; font-family: "Rajdhani", "Courier New", Courier, monospace; font-weight: 600; }
 
 hr { border-color: #30363d; }
 
@@ -237,9 +239,9 @@ blockquote { border-left: 4px solid #00e5ff; color: #8b949e; background-color: #
 
 .product-card { background-color: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 1.5rem; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
 .product-card:hover { border-color: #00e5ff; box-shadow: 0 0 12px rgba(0, 229, 255, 0.1); }
-.product-card h3 { margin-top: 0; color: #00e5ff; font-family: "Courier New", Courier, monospace; font-size: 1rem; }
+.product-card h3 { margin-top: 0; color: #00e5ff; font-family: "Rajdhani", "Courier New", Courier, monospace; font-size: 1.1rem; font-weight: 700; }
 .product-card p { color: #8b949e; font-size: 0.95rem; margin-bottom: 1rem; }
-.product-card .price { font-size: 1.15rem; font-weight: bold; color: #e2eaf4; margin-bottom: 1rem; font-family: "Courier New", Courier, monospace; }
+.product-card .price { font-size: 1.15rem; font-weight: 700; color: #e2eaf4; margin-bottom: 1rem; font-family: "Rajdhani", "Courier New", Courier, monospace; }
 
 .btn-amazon { display: inline-block; background-color: #00e5ff; color: #0d1117 !important; padding: 0.45rem 1.1rem; border-radius: 4px; text-decoration: none !important; font-weight: bold; font-family: "Courier New", Courier, monospace; font-size: 0.85rem; letter-spacing: 0.03em; transition: background-color 0.2s ease; }
 .btn-amazon:hover { background-color: #ffffff; color: #0d1117 !important; }
