@@ -99,13 +99,10 @@
 <div class="page-wrapper" id="page-wrapper">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          <article class="post">
+          <div class="page-layout-split">
 
-  <header class="post-header">
-    <h1 class="post-title">About</h1>
-  </header>
-
-  <div class="post-content">
+  <div class="split-main">
+    <h1 class="page-title">About</h1>
     <h2 id="what-is-dhivanstech">What is DhivanSTech?</h2>
 
 <p>DhivanSTech (DST) is an electronics brand focused on two things: supplying quality maker components and test equipment, and documenting how to use them properly.</p>
@@ -135,7 +132,30 @@
 
   </div>
 
-</article>
+  <div class="split-sidebar">
+    
+    <aside class="widget">
+  <h3 class="widget-heading">// Recent Projects</h3>
+  <div class="widget-tiles">
+    
+    <div class="widget-tile">
+      
+
+        <a href="/projects/2026-03-30-bench-power-supply-build/" class="widget-tile-link-block">
+          <div class="widget-tile-name">Bench Power Supply Build — LM317 Adjustable Regulator</div>
+          <div class="widget-tile-meta">2026-03-30</div>
+          <div class="widget-tile-desc">Building a simple adjustable bench power supply from scratch using an LM317 r...</div>
+        </a>
+
+      
+    </div>
+    
+  </div>
+</aside>
+
+  </div>
+
+</div>
 
         </div>
       </main><footer class="site-footer h-card">
@@ -166,9 +186,9 @@
 
     <script>
       (function () {
-        var sidebar  = document.getElementById('sidebar');
+        var sidebar   = document.getElementById('sidebar');
         var hamburger = document.getElementById('hamburger');
-        var overlay  = document.getElementById('sidebar-overlay');
+        var overlay   = document.getElementById('sidebar-overlay');
 
         // --- Mobile toggle ---
         hamburger.addEventListener('click', function () {
@@ -181,40 +201,49 @@
           overlay.classList.remove('active');
         });
 
-        // --- Search ---
-        var input = document.getElementById('sidebar-search');
-        if (!input) return;
-
+        // --- Shared product card filter ---
         function filterCards(query) {
           var cards = document.querySelectorAll('.product-card');
           if (cards.length === 0) return;
-          query = query.toLowerCase();
+          query = (query || '').toLowerCase();
           cards.forEach(function (card) {
             var text = card.textContent.toLowerCase();
             card.style.display = (query === '' || text.indexOf(query) !== -1) ? '' : 'none';
           });
         }
 
-        // Real-time filter on shop page
-        input.addEventListener('input', function () {
-          filterCards(this.value);
-        });
+        // --- Sidebar search ---
+        var sidebarSearch = document.getElementById('sidebar-search');
+        if (sidebarSearch) {
+          sidebarSearch.addEventListener('input', function () {
+            filterCards(this.value);
+            var shopBar = document.getElementById('shop-search-bar');
+            if (shopBar) shopBar.value = this.value;
+          });
 
-        // Enter on non-shop pages → redirect to shop with query
-        input.addEventListener('keydown', function (e) {
-          if (e.key === 'Enter' && this.value.trim()) {
-            var onShop = document.querySelectorAll('.product-card').length > 0;
-            if (!onShop) {
-              window.location.href = '/shop/?q=' + encodeURIComponent(this.value.trim());
+          sidebarSearch.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' && this.value.trim()) {
+              if (document.querySelectorAll('.product-card').length === 0) {
+                window.location.href = '/shop/?q=' + encodeURIComponent(this.value.trim());
+              }
             }
-          }
-        });
+          });
+        }
 
-        // On shop page load, apply ?q= param if present
-        var params = new URLSearchParams(window.location.search);
-        var q = params.get('q');
+        // --- Shop page search bar ---
+        var shopBar = document.getElementById('shop-search-bar');
+        if (shopBar) {
+          shopBar.addEventListener('input', function () {
+            filterCards(this.value);
+            if (sidebarSearch) sidebarSearch.value = this.value;
+          });
+        }
+
+        // --- Apply ?q= URL param on shop page load ---
+        var q = new URLSearchParams(window.location.search).get('q');
         if (q) {
-          input.value = q;
+          if (sidebarSearch) sidebarSearch.value = q;
+          if (shopBar) shopBar.value = q;
           filterCards(q);
         }
       })();

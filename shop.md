@@ -2,10 +2,14 @@
 layout: page
 title: Shop
 permalink: /shop/
+body_class: page-shop
 ---
 
-Tested components and bench tools — sourced and verified by DST, available on Amazon.
-Prices are approximate and may vary. Amazon links are affiliate links.
+<p class="shop-intro">Tested components and bench tools — sourced and verified by DST, available on Amazon.
+Prices are approximate and may vary. Amazon links are affiliate links.</p>
+
+<input type="text" id="shop-search-bar" class="shop-search"
+       placeholder="Filter products by name or description…" autocomplete="off">
 
 <div class="product-grid">
   {% for product in site.products %}

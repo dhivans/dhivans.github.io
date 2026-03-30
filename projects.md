@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page-projects
 title: Projects
 permalink: /projects/
 ---
@@ -10,11 +10,11 @@ Written in a direct engineering tone — what was built, why, what worked, what 
 <div class="project-list">
   {% assign sorted_projects = site.projects | sort: 'date' | reverse %}
   {% for project in sorted_projects %}
-  <div class="project-card">
-    <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
+  <a href="{{ project.url | relative_url }}" class="project-card">
+    <h3>{{ project.title }}</h3>
     <div class="project-meta">{{ project.date | date: "%Y-%m-%d" }}{% if project.tags and project.tags.size > 0 %} &mdash; {{ project.tags | join: ", " }}{% endif %}</div>
     <p>{{ project.description }}</p>
-    <a href="{{ project.url | relative_url }}" class="read-more">Read more &rarr;</a>
-  </div>
+    <span class="read-more">Read more &rarr;</span>
+  </a>
   {% endfor %}
 </div>

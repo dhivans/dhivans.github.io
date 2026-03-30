@@ -1,0 +1,26 @@
+<aside class="widget">
+  <h3 class="widget-heading">{{ include.title }}</h3>
+  <div class="widget-tiles">
+    {% for item in include.items %}
+    <div class="widget-tile">
+      {% if include.type == "products" %}
+
+        <div class="widget-tile-name">{{ item.title }}</div>
+        <div class="widget-tile-desc">{{ item.description | truncate: 80 }}</div>
+        <div class="widget-tile-price">{{ item.price }}</div>
+        <a href="{{ item.amazon_url }}" class="widget-tile-link"
+           target="_blank" rel="noopener noreferrer">View on Amazon &rarr;</a>
+
+      {% elsif include.type == "projects" %}
+
+        <a href="{{ item.url | relative_url }}" class="widget-tile-link-block">
+          <div class="widget-tile-name">{{ item.title }}</div>
+          <div class="widget-tile-meta">{{ item.date | date: "%Y-%m-%d" }}</div>
+          <div class="widget-tile-desc">{{ item.description | truncate: 80 }}</div>
+        </a>
+
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</aside>

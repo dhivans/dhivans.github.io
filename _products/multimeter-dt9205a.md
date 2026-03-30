@@ -7,4 +7,5 @@ description: >-
 price: "From ₹850"
 amazon_url: "#"
 category: test-equipment
+hot: true
 ---

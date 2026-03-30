@@ -1,0 +1,17 @@
+---
+layout: default
+---
+
+<div class="page-layout-split">
+
+  <div class="split-main">
+    <h1 class="page-title">{{ page.title }}</h1>
+    {{ content }}
+  </div>
+
+  <div class="split-sidebar">
+    {% assign recent_projects = site.projects | sort: "date" | reverse | limit: 4 %}
+    {% include sidebar-widget.html title="// Recent Projects" items=recent_projects type="projects" %}
+  </div>
+
+</div>

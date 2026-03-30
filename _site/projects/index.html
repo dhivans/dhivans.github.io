@@ -99,31 +99,76 @@
 <div class="page-wrapper" id="page-wrapper">
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
-          <article class="post">
+          <div class="page-layout-split">
 
-  <header class="post-header">
-    <h1 class="post-title">Projects</h1>
-  </header>
-
-  <div class="post-content">
+  <div class="split-main">
+    <h1 class="page-title">Projects</h1>
     <p>Build logs, experiments, and teardowns using DST-sourced gear.
 Written in a direct engineering tone — what was built, why, what worked, what didn’t.</p>
 
 <div class="project-list">
   
   
-  <div class="project-card">
-    <h3><a href="/projects/2026-03-30-bench-power-supply-build/">Bench Power Supply Build — LM317 Adjustable Regulator</a></h3>
+  <a href="/projects/2026-03-30-bench-power-supply-build/" class="project-card">
+    <h3>Bench Power Supply Build — LM317 Adjustable Regulator</h3>
     <div class="project-meta">2026-03-30 &mdash; power-supply, LM317, build-log</div>
     <p>Building a simple adjustable bench power supply from scratch using an LM317 regulator. Covers schematic, PCB layout considerations, and measured output performance.</p>
-    <a href="/projects/2026-03-30-bench-power-supply-build/" class="read-more">Read more &rarr;</a>
-  </div>
+    <span class="read-more">Read more &rarr;</span>
+  </a>
   
 </div>
 
   </div>
 
-</article>
+  <div class="split-sidebar">
+    
+    
+    <aside class="widget">
+  <h3 class="widget-heading">// Hot Products</h3>
+  <div class="widget-tiles">
+    
+    <div class="widget-tile">
+      
+
+        <div class="widget-tile-name">Breadboard + Jumper Wire Kit</div>
+        <div class="widget-tile-desc">830-point solderless breadboard paired with a 140-piece male-to-male jumper w...</div>
+        <div class="widget-tile-price">From ₹299</div>
+        <a href="#" class="widget-tile-link"
+           target="_blank" rel="noopener noreferrer">View on Amazon &rarr;</a>
+
+      
+    </div>
+    
+    <div class="widget-tile">
+      
+
+        <div class="widget-tile-name">Digital Multimeter — DT9205A</div>
+        <div class="widget-tile-desc">Auto-ranging digital multimeter covering AC/DC voltage, current, resistance, ...</div>
+        <div class="widget-tile-price">From ₹850</div>
+        <a href="#" class="widget-tile-link"
+           target="_blank" rel="noopener noreferrer">View on Amazon &rarr;</a>
+
+      
+    </div>
+    
+    <div class="widget-tile">
+      
+
+        <div class="widget-tile-name">Pocket Oscilloscope — DSO138</div>
+        <div class="widget-tile-desc">Single-channel pocket oscilloscope with 200kHz analogue bandwidth. Available ...</div>
+        <div class="widget-tile-price">From ₹1,200</div>
+        <a href="#" class="widget-tile-link"
+           target="_blank" rel="noopener noreferrer">View on Amazon &rarr;</a>
+
+      
+    </div>
+    
+  </div>
+</aside>
+
+  </div>
+
+</div>
 
         </div>
       </main><footer class="site-footer h-card">
@@ -154,9 +199,9 @@ Written in a direct engineering tone — what was built, why, what worked, what 
 
     <script>
       (function () {
-        var sidebar  = document.getElementById('sidebar');
+        var sidebar   = document.getElementById('sidebar');
         var hamburger = document.getElementById('hamburger');
-        var overlay  = document.getElementById('sidebar-overlay');
+        var overlay   = document.getElementById('sidebar-overlay');
 
         // --- Mobile toggle ---
         hamburger.addEventListener('click', function () {
@@ -169,40 +214,49 @@ Written in a direct engineering tone — what was built, why, what worked, what 
           overlay.classList.remove('active');
         });
 
-        // --- Search ---
-        var input = document.getElementById('sidebar-search');
-        if (!input) return;
-
+        // --- Shared product card filter ---
         function filterCards(query) {
           var cards = document.querySelectorAll('.product-card');
           if (cards.length === 0) return;
-          query = query.toLowerCase();
+          query = (query || '').toLowerCase();
           cards.forEach(function (card) {
             var text = card.textContent.toLowerCase();
             card.style.display = (query === '' || text.indexOf(query) !== -1) ? '' : 'none';
           });
         }
 
-        // Real-time filter on shop page
-        input.addEventListener('input', function () {
-          filterCards(this.value);
-        });
+        // --- Sidebar search ---
+        var sidebarSearch = document.getElementById('sidebar-search');
+        if (sidebarSearch) {
+          sidebarSearch.addEventListener('input', function () {
+            filterCards(this.value);
+            var shopBar = document.getElementById('shop-search-bar');
+            if (shopBar) shopBar.value = this.value;
+          });
 
-        // Enter on non-shop pages → redirect to shop with query
-        input.addEventListener('keydown', function (e) {
-          if (e.key === 'Enter' && this.value.trim()) {
-            var onShop = document.querySelectorAll('.product-card').length > 0;
-            if (!onShop) {
-              window.location.href = '/shop/?q=' + encodeURIComponent(this.value.trim());
+          sidebarSearch.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' && this.value.trim()) {
+              if (document.querySelectorAll('.product-card').length === 0) {
+                window.location.href = '/shop/?q=' + encodeURIComponent(this.value.trim());
+              }
             }
-          }
-        });
+          });
+        }
 
-        // On shop page load, apply ?q= param if present
-        var params = new URLSearchParams(window.location.search);
-        var q = params.get('q');
+        // --- Shop page search bar ---
+        var shopBar = document.getElementById('shop-search-bar');
+        if (shopBar) {
+          shopBar.addEventListener('input', function () {
+            filterCards(this.value);
+            if (sidebarSearch) sidebarSearch.value = this.value;
+          });
+        }
+
+        // --- Apply ?q= URL param on shop page load ---
+        var q = new URLSearchParams(window.location.search).get('q');
         if (q) {
-          input.value = q;
+          if (sidebarSearch) sidebarSearch.value = q;
+          if (shopBar) shopBar.value = q;
           filterCards(q);
         }
       })();

@@ -1,0 +1,20 @@
+---
+layout: default
+---
+
+<div class="page-layout-split">
+
+  <div class="split-main">
+    <h1 class="page-title">{{ page.title }}</h1>
+    {{ content }}
+  </div>
+
+  <div class="split-sidebar">
+    {% assign hot_products = site.products | where: "hot", true %}
+    {% if hot_products.size < 3 %}
+      {% assign hot_products = site.products | limit: 3 %}
+    {% endif %}
+    {% include sidebar-widget.html title="// Hot Products" items=hot_products type="products" %}
+  </div>
+
+</div>

@@ -221,9 +221,9 @@
 
     <script>
       (function () {
-        var sidebar  = document.getElementById('sidebar');
+        var sidebar   = document.getElementById('sidebar');
         var hamburger = document.getElementById('hamburger');
-        var overlay  = document.getElementById('sidebar-overlay');
+        var overlay   = document.getElementById('sidebar-overlay');
 
         // --- Mobile toggle ---
         hamburger.addEventListener('click', function () {
@@ -236,40 +236,49 @@
           overlay.classList.remove('active');
         });
 
-        // --- Search ---
-        var input = document.getElementById('sidebar-search');
-        if (!input) return;
-
+        // --- Shared product card filter ---
         function filterCards(query) {
           var cards = document.querySelectorAll('.product-card');
           if (cards.length === 0) return;
-          query = query.toLowerCase();
+          query = (query || '').toLowerCase();
           cards.forEach(function (card) {
             var text = card.textContent.toLowerCase();
             card.style.display = (query === '' || text.indexOf(query) !== -1) ? '' : 'none';
           });
         }
 
-        // Real-time filter on shop page
-        input.addEventListener('input', function () {
-          filterCards(this.value);
-        });
+        // --- Sidebar search ---
+        var sidebarSearch = document.getElementById('sidebar-search');
+        if (sidebarSearch) {
+          sidebarSearch.addEventListener('input', function () {
+            filterCards(this.value);
+            var shopBar = document.getElementById('shop-search-bar');
+            if (shopBar) shopBar.value = this.value;
+          });
 
-        // Enter on non-shop pages → redirect to shop with query
-        input.addEventListener('keydown', function (e) {
-          if (e.key === 'Enter' && this.value.trim()) {
-            var onShop = document.querySelectorAll('.product-card').length > 0;
-            if (!onShop) {
-              window.location.href = '/shop/?q=' + encodeURIComponent(this.value.trim());
+          sidebarSearch.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' && this.value.trim()) {
+              if (document.querySelectorAll('.product-card').length === 0) {
+                window.location.href = '/shop/?q=' + encodeURIComponent(this.value.trim());
+              }
             }
-          }
-        });
+          });
+        }
 
-        // On shop page load, apply ?q= param if present
-        var params = new URLSearchParams(window.location.search);
-        var q = params.get('q');
+        // --- Shop page search bar ---
+        var shopBar = document.getElementById('shop-search-bar');
+        if (shopBar) {
+          shopBar.addEventListener('input', function () {
+            filterCards(this.value);
+            if (sidebarSearch) sidebarSearch.value = this.value;
+          });
+        }
+
+        // --- Apply ?q= URL param on shop page load ---
+        var q = new URLSearchParams(window.location.search).get('q');
         if (q) {
-          input.value = q;
+          if (sidebarSearch) sidebarSearch.value = q;
+          if (shopBar) shopBar.value = q;
           filterCards(q);
         }
       })();
