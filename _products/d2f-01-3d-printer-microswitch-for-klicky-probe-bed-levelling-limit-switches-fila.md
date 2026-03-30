@@ -1,0 +1,27 @@
+---
+layout: product
+title: "D2F-01, 3D Printer Microswitch for Klicky Probe, Bed Levelling, Limit Switches, Filament Sensors, Mouse Repairs"
+description: "Microswitches are indispensable components in 3D printing, ensuring precise and reliable operation. These compact switches are utilised for various functions, such as klicky probe bed levelling, limit switches, and filament sensors. Their high sensitivity and durability make them ideal for detecting minute movements and positions within the intricate mechanisms of a 3D printer."
+category: "diy-components"
+price: "From £3"
+image: "/assets/images/products/d2f-01-3d-printer-microswitch-for-klicky-probe-bed-levelling-limit-switches-fila.jpg" # Add image file here
+featured: false
+hot: false
+badge: ""
+tags: ['microswitch']
+variants:
+  - label: "1"
+    asin: "B0DFJ7DT9D"
+    price: "£3"
+    url: "https://www.amazon.co.uk/dp/B0DFJ7DT9D"
+  - label: "3"
+    asin: "B0DFKGHT16"
+    price: "£8"
+    url: "https://www.amazon.co.uk/dp/B0DFKGHT16"
+  - label: "5"
+    asin: "B0DFKRRBFJ"
+    price: "£10"
+    url: "https://www.amazon.co.uk/dp/B0DFKRRBFJ"
+---
+
+Microswitches are indispensable components in 3D printing, ensuring precise and reliable operation. These compact switches are utilised for various functions, such as klicky probe bed levelling, limit switches, and filament sensors. Their high sensitivity and durability make them ideal for detecting minute movements and positions within the intricate mechanisms of a 3D printer. Beyond their application in additive manufacturing, microswitches also find use in mouse repairs, enabling seamless clicking and scrolling experiences. Offering a long service life and consistent performance, these versatile switches contribute to the smooth functioning of both cutting-edge technology and everyday devices. Whether you're a 3D printing enthusiast or a repair technician, having a reliable supply of microswitches on hand is essential for maintaining optimal equipment operation.

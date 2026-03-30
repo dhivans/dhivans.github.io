@@ -1,0 +1,42 @@
+---
+layout: default
+---
+
+<article class="product-page">
+
+  <header class="product-page-header">
+    {% if page.category %}
+    <span class="product-category-tag">{{ page.category | replace: '-', ' ' }}</span>
+    {% endif %}
+    <h1 class="product-page-title">{{ page.title }}</h1>
+    {% if page.price %}
+    <div class="product-page-price">{{ page.price }}</div>
+    {% endif %}
+  </header>
+
+  {% if page.variants %}
+  <section class="product-variants">
+    <h3>Choose a variant</h3>
+    <div class="variant-grid">
+      {% for v in page.variants %}
+      <a href="{{ v.url }}" class="variant-card" target="_blank" rel="noopener noreferrer">
+        <span class="variant-label">{{ v.label }}</span>
+        <span class="variant-price">{{ v.price }}</span>
+        <span class="variant-cta">Buy on Amazon →</span>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% elsif page.amazon_url %}
+  <div class="product-page-buy">
+    <a href="{{ page.amazon_url }}" class="btn-amazon" target="_blank" rel="noopener noreferrer">
+      View on Amazon →
+    </a>
+  </div>
+  {% endif %}
+
+  <div class="product-page-body">
+    {{ content }}
+  </div>
+
+</article>

@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(for f:*)",
+      "Bash(do echo:*)",
+      "Read(//c/Users/dhiva/OneDrive/Documents/02 - DST/Website/Github/DST/dhivans.github.io/**)",
+      "Bash(done)"
+    ]
+  }
+}
