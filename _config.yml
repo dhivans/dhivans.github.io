@@ -19,10 +19,6 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
-# Minima theme settings
-minima:
-  skin: dark
-
 # Exclude from build
 exclude:
   - Gemfile
