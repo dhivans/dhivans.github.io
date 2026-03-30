@@ -8,4 +8,6 @@ price: "From ₹850"
 amazon_url: "#"
 category: test-equipment
 hot: true
+# image: /assets/images/products/multimeter-dt9205a.jpg
+# Drop your product photo at: assets/images/products/multimeter-dt9205a.jpg
 ---

@@ -8,4 +8,6 @@ price: "From ₹1,200"
 amazon_url: "#"
 category: test-equipment
 hot: true
+# image: /assets/images/products/oscilloscope-dso138.jpg
+# Drop your product photo at: assets/images/products/oscilloscope-dso138.jpg
 ---

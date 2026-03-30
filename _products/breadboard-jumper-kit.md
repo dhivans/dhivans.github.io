@@ -7,4 +7,6 @@ description: >-
 price: "From ₹299"
 amazon_url: "#"
 category: diy-components
+# image: /assets/images/products/breadboard-jumper-kit.jpg
+# Drop your product photo at: assets/images/products/breadboard-jumper-kit.jpg
 ---
