@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {%- include head.html -%}
+
+  <body>
+
+    <!-- Mobile hamburger toggle -->
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Mobile overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    {%- include sidebar.html -%}
+
+    <div class="page-wrapper" id="page-wrapper">
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          {{ content }}
+        </div>
+      </main>
+      {%- include footer.html -%}
+    </div>
+
+    <script>
+      (function () {
+        var sidebar  = document.getElementById('sidebar');
+        var hamburger = document.getElementById('hamburger');
+        var overlay  = document.getElementById('sidebar-overlay');
+
+        // --- Mobile toggle ---
+        hamburger.addEventListener('click', function () {
+          sidebar.classList.toggle('mobile-open');
+          overlay.classList.toggle('active');
+        });
+
+        overlay.addEventListener('click', function () {
+          sidebar.classList.remove('mobile-open');
+          overlay.classList.remove('active');
+        });
+
+        // --- Search ---
+        var input = document.getElementById('sidebar-search');
+        if (!input) return;
+
+        function filterCards(query) {
+          var cards = document.querySelectorAll('.product-card');
+          if (cards.length === 0) return;
+          query = query.toLowerCase();
+          cards.forEach(function (card) {
+            var text = card.textContent.toLowerCase();
+            card.style.display = (query === '' || text.indexOf(query) !== -1) ? '' : 'none';
+          });
+        }
+
+        // Real-time filter on shop page
+        input.addEventListener('input', function () {
+          filterCards(this.value);
+        });
+
+        // Enter on non-shop pages → redirect to shop with query
+        input.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' && this.value.trim()) {
+            var onShop = document.querySelectorAll('.product-card').length > 0;
+            if (!onShop) {
+              window.location.href = '/shop/?q=' + encodeURIComponent(this.value.trim());
+            }
+          }
+        });
+
+        // On shop page load, apply ?q= param if present
+        var params = new URLSearchParams(window.location.search);
+        var q = params.get('q');
+        if (q) {
+          input.value = q;
+          filterCards(q);
+        }
+      })();
+    </script>
+
+  </body>
+
+</html>

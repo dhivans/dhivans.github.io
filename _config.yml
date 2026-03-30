@@ -8,10 +8,21 @@ baseurl: ""
 url: "https://dhivans.github.io"
 author: DhivanSTech
 
-# Navigation
-header_pages:
-  - about.md
-  - shop.md
+# Collections
+collections:
+  products:
+    output: false
+  projects:
+    output: true
+    permalink: /projects/:name/
+
+# Default layouts per collection
+defaults:
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: post
 
 # Build settings
 theme: minima
@@ -25,3 +36,4 @@ exclude:
   - Gemfile.lock
   - README.md
   - .gitignore
+  - _site/

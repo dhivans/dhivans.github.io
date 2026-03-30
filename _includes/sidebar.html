@@ -1,0 +1,66 @@
+<nav class="sidebar" id="sidebar" aria-label="Site navigation">
+
+  <!-- Logo -->
+  <div class="sidebar-logo">
+    <a href="/" class="sidebar-logo-link" title="DhivanSTech home">
+      <span class="logo-short">DST</span>
+      <span class="logo-full">DhivanSTech</span>
+    </a>
+  </div>
+
+  <hr class="sidebar-divider">
+
+  <!-- Search -->
+  <div class="sidebar-item sidebar-search-wrap">
+    <span class="sidebar-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+    </span>
+    <input type="text" id="sidebar-search" class="sidebar-search-input"
+           placeholder="Search shop…" autocomplete="off" aria-label="Search products">
+  </div>
+
+  <!-- Shop -->
+  <a href="/shop/" class="sidebar-item{% if page.url contains 'shop' %} active{% endif %}">
+    <span class="sidebar-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+    </span>
+    <span class="sidebar-label">Shop</span>
+  </a>
+
+  <!-- Projects -->
+  <a href="/projects/" class="sidebar-item{% if page.url contains 'project' %} active{% endif %}">
+    <span class="sidebar-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+      </svg>
+    </span>
+    <span class="sidebar-label">Projects</span>
+  </a>
+
+  <!-- About -->
+  <a href="/about/" class="sidebar-item{% if page.url contains 'about' %} active{% endif %}">
+    <span class="sidebar-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+    </span>
+    <span class="sidebar-label">About</span>
+  </a>
+
+</nav>

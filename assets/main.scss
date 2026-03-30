@@ -98,6 +98,13 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
 }
 
+// Layout — wider desktop view
+.wrapper {
+  max-width: 1100px;
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
+
 // Horizontal rule
 hr {
   border-color: #30363d;
@@ -217,4 +224,329 @@ blockquote {
 .shop-intro {
   color: #8b949e;
   margin-bottom: 0.5rem;
+}
+
+// ============================================================
+// Sidebar Layout
+// ============================================================
+
+$sidebar-collapsed: 60px;
+$sidebar-expanded: 220px;
+$sidebar-speed: 0.25s ease;
+
+// Hide minima's original header — sidebar replaces it entirely
+.site-header {
+  display: none !important;
+}
+
+// Page wrapper — sits to the right of the sidebar
+.page-wrapper {
+  margin-left: $sidebar-collapsed;
+  transition: margin-left $sidebar-speed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-wrapper .page-content {
+  flex: 1;
+}
+
+// Pure CSS expand: sidebar hover shifts the sibling page-wrapper
+.sidebar:hover ~ .page-wrapper {
+  margin-left: $sidebar-expanded;
+}
+
+// Sidebar base
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: $sidebar-collapsed;
+  background-color: #0a0d13;
+  border-right: 1px solid rgba(0, 229, 255, 0.15);
+  z-index: 1000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: width $sidebar-speed;
+}
+
+.sidebar:hover {
+  width: $sidebar-expanded;
+}
+
+// Logo
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  min-height: 62px;
+  padding: 0 1.1rem;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.sidebar-logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.logo-short {
+  font-family: "HemiHeadRG", monospace;
+  color: #00e5ff;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.logo-full {
+  font-family: "HemiHeadRG", monospace;
+  color: #00e5ff;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 0;
+  opacity: 0;
+  margin-left: 0.5rem;
+  transition: max-width $sidebar-speed, opacity $sidebar-speed;
+}
+
+.sidebar:hover .logo-full {
+  max-width: 160px;
+  opacity: 1;
+}
+
+// Divider
+.sidebar-divider {
+  border: none;
+  border-top: 1px solid rgba(0, 229, 255, 0.15);
+  margin: 0 0.75rem 0.4rem;
+  flex-shrink: 0;
+}
+
+// Nav items
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1.1rem;
+  color: #8b949e;
+  text-decoration: none !important;
+  white-space: nowrap;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: color 0.2s ease, background-color 0.2s ease;
+
+  &:hover {
+    color: #e2eaf4;
+    background-color: rgba(255, 255, 255, 0.04);
+    text-decoration: none !important;
+  }
+
+  &.active {
+    color: #00e5ff;
+    box-shadow: inset 2px 0 0 #00e5ff;
+  }
+}
+
+.sidebar-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg { display: block; }
+}
+
+.sidebar-label {
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 0;
+  opacity: 0;
+  margin-left: 0.85rem;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: max-width $sidebar-speed, opacity $sidebar-speed;
+}
+
+.sidebar:hover .sidebar-label {
+  max-width: 140px;
+  opacity: 1;
+}
+
+// Search
+.sidebar-search-wrap {
+  cursor: text;
+}
+
+.sidebar-search-input {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin-left: 0.85rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(0, 229, 255, 0.3);
+  color: #e2eaf4;
+  font-size: 0.85rem;
+  font-family: "Rajdhani", sans-serif;
+  outline: none;
+  padding: 0 0 2px;
+  transition: max-width $sidebar-speed, opacity $sidebar-speed;
+
+  &::placeholder { color: #404854; }
+}
+
+.sidebar:hover .sidebar-search-input {
+  max-width: 130px;
+  opacity: 1;
+}
+
+// Hamburger (mobile only, hidden on desktop)
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 0.9rem;
+  left: 0.9rem;
+  z-index: 1100;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 4px;
+  padding: 0.4rem 0.45rem;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+
+  span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background-color: #e2eaf4;
+    border-radius: 1px;
+  }
+}
+
+// Overlay dim (mobile)
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 999;
+
+  &.active { display: block; }
+}
+
+// ============================================================
+// Mobile (≤ 768px)
+// ============================================================
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  // Sidebar hides off-screen; JS adds .mobile-open to slide it in
+  .sidebar {
+    width: $sidebar-expanded;
+    transform: translateX(-100%);
+    transition: transform $sidebar-speed;
+
+    // Disable hover expand on mobile — open/close via JS only
+    &:hover {
+      width: $sidebar-expanded;
+    }
+
+    &.mobile-open {
+      transform: translateX(0);
+
+      .logo-full {
+        max-width: 160px;
+        opacity: 1;
+      }
+
+      .sidebar-label {
+        max-width: 140px;
+        opacity: 1;
+      }
+
+      .sidebar-search-input {
+        max-width: 130px;
+        opacity: 1;
+      }
+    }
+  }
+
+  // Content fills full width; no margin shift needed
+  .page-wrapper,
+  .sidebar:hover ~ .page-wrapper {
+    margin-left: 0 !important;
+    padding-top: 3.5rem; // clear the hamburger button
+  }
+}
+
+// ============================================================
+// Projects listing cards
+// ============================================================
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.project-card {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: #00e5ff;
+  }
+
+  h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1.1rem;
+    color: #e2eaf4;
+
+    a {
+      color: #e2eaf4;
+      text-decoration: none;
+      &:hover { color: #00e5ff; }
+    }
+  }
+
+  .project-meta {
+    font-size: 0.8rem;
+    color: #8b949e;
+    margin-bottom: 0.6rem;
+    font-family: "Courier New", monospace;
+  }
+
+  p {
+    color: #8b949e;
+    font-size: 0.95rem;
+    margin: 0 0 0.75rem;
+  }
+
+  .read-more {
+    font-size: 0.85rem;
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 600;
+    color: #00e5ff;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    &:hover { color: #ffffff; }
+  }
 }
