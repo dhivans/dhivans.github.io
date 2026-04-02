@@ -2,41 +2,121 @@
 layout: default
 ---
 
-<article class="product-page">
+<article class="product-detail">
 
-  <header class="product-page-header">
-    {% if page.category %}
-    <span class="product-category-tag">{{ page.category | replace: '-', ' ' }}</span>
-    {% endif %}
-    <h1 class="product-page-title">{{ page.title }}</h1>
-    {% if page.price %}
-    <div class="product-page-price">{{ page.price }}</div>
-    {% endif %}
-  </header>
+  <div class="product-detail-columns">
 
-  {% if page.variants %}
-  <section class="product-variants">
-    <h3>Choose a variant</h3>
-    <div class="variant-grid">
-      {% for v in page.variants %}
-      <a href="{{ v.url }}" class="variant-card" target="_blank" rel="noopener noreferrer">
-        <span class="variant-label">{{ v.label }}</span>
-        <span class="variant-price">{{ v.price }}</span>
-        <span class="variant-cta">Buy on Amazon →</span>
-      </a>
-      {% endfor %}
+    <!-- ── Left column: images ── -->
+    <div class="product-detail-left">
+      <div class="product-main-image-wrap">
+        <img
+          id="product-main-image"
+          src="{% if page.image %}{{ page.image }}{% else %}/assets/images/products/placeholder.svg{% endif %}"
+          alt="{{ page.title }}"
+          onerror="this.src='/assets/images/products/placeholder.svg'">
+      </div>
+
+      {% if page.images and page.images.size > 0 %}
+      <div class="product-thumbnails">
+        {% if page.image %}
+        <button class="product-thumb active" data-src="{{ page.image }}" type="button" aria-label="Main image">
+          <img src="{{ page.image }}" alt="{{ page.title }}" onerror="this.src='/assets/images/products/placeholder.svg'">
+        </button>
+        {% endif %}
+        {% for img in page.images %}
+        <button class="product-thumb" data-src="{{ img }}" type="button" aria-label="Image {{ forloop.index }}">
+          <img src="{{ img }}" alt="{{ page.title }}" onerror="this.src='/assets/images/products/placeholder.svg'">
+        </button>
+        {% endfor %}
+      </div>
+      {% endif %}
     </div>
-  </section>
-  {% elsif page.amazon_url %}
-  <div class="product-page-buy">
-    <a href="{{ page.amazon_url }}" class="btn-amazon" target="_blank" rel="noopener noreferrer">
-      View on Amazon →
-    </a>
-  </div>
-  {% endif %}
 
-  <div class="product-page-body">
+    <!-- ── Right column: details ── -->
+    <div class="product-detail-right">
+
+      {% if page.category %}
+      <span class="product-category-tag">{{ page.category | replace: '-', ' ' }}</span>
+      {% endif %}
+
+      <h1 class="product-detail-title">{{ page.title }}</h1>
+
+      {% if page.rating %}
+      {% assign rating_full = page.rating | floor %}
+      {% assign rating_frac = page.rating | minus: rating_full %}
+      {% assign rating_next = rating_full | plus: 1 %}
+      <div class="product-star-rating" title="{{ page.rating }} out of 5">
+        {% for i in (1..5) %}{% if forloop.index <= rating_full %}<span class="star star-full">★</span>{% elsif forloop.index == rating_next and rating_frac >= 0.5 %}<span class="star star-half">★</span>{% else %}<span class="star star-empty">☆</span>{% endif %}{% endfor %}
+        {% if page.reviews %}<span class="review-count">({{ page.reviews }} reviews)</span>{% endif %}
+      </div>
+      {% endif %}
+
+      <div class="product-detail-price" id="product-price">{% if page.price %}{{ page.price }}{% endif %}</div>
+
+      {% if page.description %}
+      <p class="product-detail-desc">{{ page.description }}</p>
+      {% endif %}
+
+      {% if page.variants %}
+      <div class="product-variants-select">
+        <p class="product-variants-label">Choose variant</p>
+        <div class="product-variant-buttons" id="variant-buttons">
+          {% for v in page.variants %}
+          <button
+            class="variant-btn{% if forloop.first %} selected{% endif %}"
+            data-price="{{ v.price }}"
+            data-url="{{ v.amazon_url | default: v.url }}"
+            onclick="selectVariant(this)"
+            type="button">{{ v.name | default: v.label }}</button>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      <a
+        id="amazon-btn"
+        href="{% if page.variants %}{{ page.variants[0].amazon_url | default: page.variants[0].url }}{% elsif page.amazon_url %}{{ page.amazon_url }}{% else %}#{% endif %}"
+        class="btn-amazon-full"
+        target="_blank"
+        rel="noopener noreferrer">View on Amazon &rarr;</a>
+
+      <p class="product-amazon-note">You will be taken to Amazon to complete your purchase.</p>
+
+      <a href="/shop/" class="product-back-link">&larr; Back to Shop</a>
+
+    </div>
+  </div>
+
+  <div class="product-body-content">
     {{ content }}
   </div>
 
 </article>
+
+<script>
+(function () {
+  function swapImage(thumb) {
+    var main = document.getElementById('product-main-image');
+    if (!main) return;
+    main.src = thumb.dataset.src;
+    document.querySelectorAll('.product-thumb').forEach(function (t) {
+      t.classList.remove('active');
+    });
+    thumb.classList.add('active');
+  }
+
+  function selectVariant(btn) {
+    document.querySelectorAll('.variant-btn').forEach(function (b) {
+      b.classList.remove('selected');
+    });
+    btn.classList.add('selected');
+    var priceEl = document.getElementById('product-price');
+    if (priceEl && btn.dataset.price) priceEl.textContent = btn.dataset.price;
+    var amazonBtn = document.getElementById('amazon-btn');
+    if (amazonBtn && btn.dataset.url) amazonBtn.href = btn.dataset.url;
+  }
+
+  window.swapImage = swapImage;
+  window.selectVariant = selectVariant;
+})();
+</script>

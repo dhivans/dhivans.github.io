@@ -221,7 +221,7 @@ blockquote {
   background-color: #161b22;
   border: 1px solid #30363d;
   border-radius: 6px;
-  padding: 1.5rem;
+  padding: 0;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
   &:hover {
@@ -240,14 +240,14 @@ blockquote {
   p {
     color: #8b949e;
     font-size: 0.95rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0rem;
   }
 
   .price {
     font-size: 1.15rem;
     font-weight: 700;
     color: #e2eaf4;
-    margin-bottom: 1rem;
+    margin-bottom: 0rem;
     font-family: "Rajdhani", "Courier New", Courier, monospace;
   }
 }
@@ -499,6 +499,12 @@ $sidebar-speed: 0.25s ease;
     background-color: #e2eaf4;
     border-radius: 1px;
   }
+}
+
+.hamburger--hidden {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
 }
 
 // Overlay dim (mobile)
@@ -815,6 +821,10 @@ $sidebar-speed: 0.25s ease;
     display: flex;
     flex-direction: column;
 
+    @media (min-width: 641px) {
+      flex-direction: row;
+    }
+
     p { flex: 1; }
 
     .btn-amazon { align-self: flex-start; }
@@ -851,7 +861,7 @@ $sidebar-speed: 0.25s ease;
   gap: 1rem;
   margin: 0 0 2rem;
 
-  @media (min-width: 1400px) {
+  @media (min-width: 1050px) {
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -859,11 +869,11 @@ $sidebar-speed: 0.25s ease;
 .product-card-h {
   display: flex;
   flex-direction: row;
+  align-items: stretch;
   background-color: #0d1520;
   border: 1px solid rgba(0, 229, 255, 0.15);
   border-radius: 8px;
   overflow: hidden;
-  min-height: 150px;
   transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 
   &:hover {
@@ -874,9 +884,11 @@ $sidebar-speed: 0.25s ease;
 }
 
 .product-card-image {
-  flex: 0 0 180px;
+  flex: 0 0 28%;
+  align-self: stretch;
   background-color: #080c10;
   overflow: hidden;
+  border-radius: 8px 0 0 8px;
 
   img {
     width: 100%;
@@ -890,8 +902,7 @@ $sidebar-speed: 0.25s ease;
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 1rem 1.25rem;
+  padding: 0.5rem 0.5rem;
   min-width: 0;
 }
 
@@ -907,7 +918,7 @@ $sidebar-speed: 0.25s ease;
   color: rgba(0, 229, 255, 0.9);
   letter-spacing: 0.1em;
   display: inline-block;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.25rem;
   background: rgba(0, 229, 255, 0.12);
   border: 1px solid rgba(0, 229, 255, 0.35);
   border-radius: 4px;
@@ -916,10 +927,10 @@ $sidebar-speed: 0.25s ease;
 
 .product-card-title {
   font-family: "Rajdhani", sans-serif;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #e2eaf4;
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.3rem;
 }
 
 .product-card-desc {
@@ -936,12 +947,22 @@ $sidebar-speed: 0.25s ease;
 .product-card-bottom {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-top: 0.75rem;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
   flex-wrap: wrap;
 }
 
-@media (max-width: 768px) {
+.product-card-bottom-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+// Mobile — vertical stack, 16:9 landscape image
+@media (max-width: 640px) {
   .product-card-h {
     flex-direction: column;
   }
@@ -949,112 +970,324 @@ $sidebar-speed: 0.25s ease;
   .product-card-image {
     flex: 0 0 auto;
     width: 100%;
-    height: 180px;
+    aspect-ratio: 16 / 9;
+    align-self: auto;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .product-card-content {
+    padding: 0.75rem;
   }
 }
 
 // ============================================================
-// Product detail page
+// Product card — clickable link wrapper
 // ============================================================
 
-.product-page-header {
-  margin-bottom: 1.5rem;
-}
-
-.product-page-title {
-  margin-top: 0.5rem;
-  margin-bottom: 0.4rem;
-}
-
-.product-page-price {
+.product-view-details {
   font-family: "Rajdhani", sans-serif;
-  font-size: 1.3rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #00e5ff;
+  letter-spacing: 0.03em;
+  text-decoration: none !important;
+  transition: color 0.15s ease;
+
+  &:hover {
+    color: #ffffff;
+  }
+}
+
+.btn-buy-now {
+  display: inline-block;
+  background-color: #00e5ff;
+  color: #0d1117 !important;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.3rem 0.75rem;
+  border-radius: 4px;
+  text-decoration: none !important;
+  transition: background-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    background-color: #ffffff;
+    color: #0d1117 !important;
+  }
+}
+
+// ============================================================
+// Product detail page — two-column layout
+// ============================================================
+
+.product-detail {
+  max-width: 1100px;
+}
+
+.product-detail-columns {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+}
+
+.product-detail-left {
+  flex: 0 0 45%;
+  min-width: 0;
+}
+
+.product-detail-right {
+  flex: 1 1 0%;
+  min-width: 0;
+}
+
+.product-main-image-wrap {
+  background: #080c10;
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+}
+
+.product-thumbnails {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.product-thumb {
+  width: 64px;
+  height: 64px;
+  background: #080c10;
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  transition: border-color 0.15s ease;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  &.active {
+    border-color: #00e5ff;
+    box-shadow: 0 0 6px rgba(0, 229, 255, 0.3);
+  }
+
+  &:hover {
+    border-color: rgba(0, 229, 255, 0.6);
+  }
+}
+
+.product-detail-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0.5rem 0 0.75rem;
+  border-left: none !important;
+  padding-left: 0 !important;
+}
+
+.product-star-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  margin-bottom: 0.75rem;
+
+  .star {
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  .star-full  { color: #f5a623; }
+  .star-half  { color: #f5a623; opacity: 0.65; }
+  .star-empty { color: #404854; }
+
+  .review-count {
+    font-size: 0.8rem;
+    color: #8b949e;
+    margin-left: 0.35rem;
+    font-family: "Courier New", monospace;
+  }
+}
+
+.product-detail-price {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.8rem;
   font-weight: 700;
   color: #e2eaf4;
+  margin-bottom: 1rem;
+}
+
+.product-detail-desc {
+  color: #8b949e;
+  font-size: 0.95rem;
+  line-height: 1.65;
   margin-bottom: 1.25rem;
 }
 
-.product-page-buy {
-  margin-bottom: 2rem;
+.product-variants-select {
+  margin-bottom: 1.25rem;
 }
 
-.product-page-body {
-  color: #8b949e;
-  font-size: 0.95rem;
-  line-height: 1.7;
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid #21262d;
+.product-variants-label {
+  font-family: "Courier New", monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(0, 229, 255, 0.7);
+  margin: 0 0 0.6rem;
 }
 
-// Variant grid
-.product-variants {
-  margin-bottom: 2rem;
-
-  h3 {
-    font-size: 0.8rem;
-    font-family: "Courier New", monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: rgba(0, 229, 255, 0.7);
-    margin-top: 0;
-    margin-bottom: 0.85rem;
-  }
-}
-
-.variant-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 0.65rem;
-}
-
-.variant-card {
+.product-variant-buttons {
   display: flex;
-  flex-direction: column;
-  background-color: #111820;
-  border: 1px solid #30363d;
-  border-radius: 6px;
-  padding: 0.75rem 0.9rem;
-  text-decoration: none !important;
-  transition: border-color 0.15s ease, background-color 0.15s ease;
-  gap: 0.25rem;
-
-  &:hover {
-    border-color: rgba(0, 229, 255, 0.5);
-    background-color: #161b22;
-  }
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
-.variant-label {
+.variant-btn {
+  background: #111820;
+  border: 1px solid #30363d;
+  border-radius: 4px;
+  color: #e2eaf4;
   font-family: "Rajdhani", sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #e2eaf4;
-  line-height: 1.3;
+  padding: 0.4rem 0.85rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    border-color: rgba(0, 229, 255, 0.5);
+    background: #161b22;
+  }
+
+  &.selected {
+    border-color: #00e5ff;
+    background: rgba(0, 229, 255, 0.12);
+    color: #00e5ff;
+  }
 }
 
-.variant-price {
-  font-family: "Courier New", monospace;
-  font-size: 0.78rem;
-  color: #00e5ff;
-}
-
-.variant-cta {
+.btn-amazon-full {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #ff9900;
+  color: #000000 !important;
+  padding: 0.85rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none !important;
+  font-weight: 700;
   font-family: "Rajdhani", sans-serif;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: rgba(0, 229, 255, 0.55);
-  margin-top: auto;
-  padding-top: 0.35rem;
-  letter-spacing: 0.03em;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  text-align: center;
+  transition: background-color 0.2s ease;
+  margin-bottom: 0.5rem;
+
+  &:hover {
+    background-color: #ffaa22;
+    color: #000000 !important;
+    text-decoration: none !important;
+  }
 }
 
-.variant-card:hover .variant-cta {
+.product-amazon-note {
+  font-size: 0.78rem;
+  color: #8b949e;
+  text-align: center;
+  margin: 0 0 1.5rem;
+}
+
+.product-back-link {
+  font-size: 0.85rem;
   color: #00e5ff;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-decoration: none !important;
+  display: inline-block;
+  margin-top: 0.5rem;
+
+  &:hover {
+    color: #ffffff;
+    text-decoration: none !important;
+  }
 }
 
-@media (max-width: 768px) {
-  .variant-grid {
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+.product-body-content {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid #21262d;
+  color: #c9d1d9;
+  line-height: 1.75;
+
+  p { margin-bottom: 1rem; }
+
+  ul, ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    color: #8b949e;
+  }
+
+  li { margin-bottom: 0.3rem; }
+
+  strong { color: #e2eaf4; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+
+    th {
+      background: #161b22;
+      color: #00e5ff;
+      font-family: "Courier New", monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.6rem 0.9rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+    }
+
+    td {
+      padding: 0.6rem 0.9rem;
+      border-bottom: 1px solid #21262d;
+      color: #8b949e;
+    }
+
+    tr:last-child td { border-bottom: none; }
+  }
+}
+
+@media (max-width: 900px) {
+  .product-detail-columns {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .product-detail-left,
+  .product-detail-right {
+    flex: none;
+    width: 100%;
   }
 }

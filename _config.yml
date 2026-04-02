@@ -11,7 +11,8 @@ author: DhivanSTech
 # Collections
 collections:
   products:
-    output: false
+    output: true
+    permalink: /shop/:name/
   projects:
     output: true
     permalink: /projects/:name/

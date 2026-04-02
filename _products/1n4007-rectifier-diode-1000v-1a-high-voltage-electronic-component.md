@@ -2,9 +2,11 @@
 layout: product
 title: "1N4007 Rectifier Diode, 1000V 1A, High-Voltage Electronic Component"
 description: "The 1N4007 diode stands as a versatile rectifier diode engineered for demanding high-voltage applications. With its impressive capability to manage up to 1,000V reverse voltage and 1A forward current, this component excels in AC-to-DC power conversion tasks. Its robust construction and reliable performance make it an ideal choice for various electronic applications, from power supplies to voltage protection circuits."
-category: "tools"
+category: "Electronic Components"
 price: "From £5"
-image: "/assets/images/products/1n4007-rectifier-diode-1000v-1a-high-voltage-electronic-component.jpg" # Add image file here
+image: "https://m.media-amazon.com/images/I/31z-CzlhsWL._SX522_.jpg"
+rating: 4.5
+reviews: 42
 featured: false
 hot: false
 badge: ""

@@ -4,7 +4,14 @@
       "Bash(for f:*)",
       "Bash(do echo:*)",
       "Read(//c/Users/dhiva/OneDrive/Documents/02 - DST/Website/Github/DST/dhivans.github.io/**)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(bundle.bat exec:*)",
+      "Bash(where bundle:*)",
+      "Bash(where jekyll:*)",
+      "Bash(where ruby:*)",
+      "Bash(cmd /c \"where bundle & where jekyll & where ruby\")",
+      "Bash(cmd /c \"ruby -v 2>&1 & bundle -v 2>&1 & jekyll -v 2>&1\")",
+      "Bash(cmd /c \"findstr /n \"\"output\"\" \"\"c:\\\\Users\\\\dhiva\\\\OneDrive\\\\Documents\\\\02 - DST\\\\Website\\\\Github\\\\DST\\\\dhivans.github.io\\\\_config.yml\"\"\")"
     ]
   }
 }

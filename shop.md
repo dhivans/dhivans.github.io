@@ -13,7 +13,7 @@ Prices are approximate and may vary. Amazon links are affiliate links.</p>
 
 <div class="product-list-h">
   {% for product in site.products %}
-  <div class="product-card-h">
+  <div class="product-card-h product-card">
     <div class="product-card-image">
       <img
         src="{% if product.image %}{{ product.image }}{% else %}/assets/images/products/placeholder.svg{% endif %}"
@@ -29,10 +29,13 @@ Prices are approximate and may vary. Amazon links are affiliate links.</p>
         <p class="product-card-desc">{{ product.description }}</p>
       </div>
       <div class="product-card-bottom">
-        <span class="price">{{ product.price }}</span>
-        <a href="{{ product.amazon_url }}" class="btn-amazon" target="_blank" rel="noopener noreferrer">
-          View on Amazon &rarr;
-        </a>
+        <div class="product-card-bottom-left">
+          <span class="price">{{ product.price }}</span>
+          {% if product.variants and product.variants.size > 0 %}
+          <a href="{{ product.variants[0].url }}" class="btn-buy-now" target="_blank" rel="noopener noreferrer">Buy now &rarr;</a>
+          {% endif %}
+        </div>
+        <a href="{{ product.url }}" class="product-view-details">View details &rarr;</a>
       </div>
     </div>
   </div>
