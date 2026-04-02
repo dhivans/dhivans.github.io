@@ -4,12 +4,12 @@ title: "Metal Blue LED Push Button Switch, 12V/24V, SPDT ON/OFF, Waterproof IP65
 description: "" # TODO: add description
 category: "electrical-components"
 price: "£5.00"
-stock: 0
+stock: 1
 amazon_url: "https://www.amazon.co.uk/dp/B0DRW44SDH"
 asin: "B0DRW44SDH"
 image: "https://m.media-amazon.com/images/I/41gCVLkwYfL.jpg"
 featured: false
-hot: false
+sales_30d: 0
 badge: ""
 tags: []
 ---

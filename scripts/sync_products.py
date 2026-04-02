@@ -37,8 +37,10 @@ Run locally:
 import os
 import re
 import sys
+import time
 import logging
 import unicodedata
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 import requests
@@ -205,6 +207,79 @@ def fetch_fba_inventory(token: str) -> dict[str, int]:
 
     log.info("FBA inventory fetched: %d ASINs with stock data.", len(inventory))
     return inventory
+
+
+def fetch_order_sales(token: str, days: int = 30) -> dict[str, int]:
+    """
+    Fetches all orders in the last `days` days and returns units sold per ASIN.
+
+    Adaptive rate limiting: starts at 1.0 s/request (SP-API burst=30, restore=0.5 req/s).
+    On every 429 the delay grows by 0.1 s so it self-corrects without manual tuning.
+    Falls back to an empty dict on any non-recoverable error so the rest of the
+    sync continues normally.
+    """
+    created_after = (datetime.now(timezone.utc) - timedelta(days=days)).strftime(
+        "%Y-%m-%dT%H:%M:%SZ"
+    )
+    log.info("Fetching orders since %s for sales data …", created_after)
+
+    orders = []
+    next_token = None
+
+    while True:
+        params: dict = {
+            "MarketplaceIds": MARKETPLACE_ID,
+            "CreatedAfter":   created_after,
+            "OrderStatuses":  "Shipped,Unshipped,PartiallyShipped,Pending",
+        }
+        if next_token:
+            params["NextToken"] = next_token
+        try:
+            data = spapi_get(token, "/orders/v0/orders", params)
+        except requests.HTTPError as exc:
+            log.warning("Orders API unavailable (%s) — sales_30d will not be updated.", exc)
+            return {}
+        payload    = data.get("payload", {})
+        orders.extend(payload.get("Orders", []))
+        next_token = payload.get("NextToken")
+        if not next_token:
+            break
+
+    log.info("Fetched %d orders — counting units per ASIN …", len(orders))
+
+    asin_units: dict[str, int] = {}
+    delay = 1.0  # seconds between requests; grows by 0.1 s on every 429
+
+    for i, order in enumerate(orders):
+        order_id = order.get("AmazonOrderId", "")
+        if not order_id:
+            continue
+
+        for _attempt in range(10):
+            try:
+                data  = spapi_get(token, f"/orders/v0/orders/{order_id}/orderItems")
+                time.sleep(delay)
+                for item in data.get("payload", {}).get("OrderItems", []):
+                    asin = item.get("ASIN", "")
+                    qty  = int(item.get("QuantityOrdered", 0))
+                    if asin:
+                        asin_units[asin] = asin_units.get(asin, 0) + qty
+                break
+            except requests.HTTPError as exc:
+                if exc.response is not None and exc.response.status_code == 429:
+                    delay = round(delay + 0.1, 1)
+                    log.debug("Rate limited — delay now %.1fs, retrying %s …", delay, order_id)
+                    time.sleep(delay)
+                else:
+                    log.warning("Failed to fetch items for order %s: %s", order_id, exc)
+                    break
+
+        if (i + 1) % 20 == 0:
+            log.info("  Sales data: %d/%d orders processed (delay=%.1fs) …",
+                     i + 1, len(orders), delay)
+
+    log.info("Sales data complete: %d ASINs with units sold in last %d days.", len(asin_units), days)
+    return asin_units
 
 
 def fetch_active_listings(token: str) -> tuple[list[dict], set[str]]:
@@ -522,6 +597,22 @@ def update_stock_in_fm(fm_raw: str, stock: int, variant_index: int | None) -> st
         return fm_raw[: bm.start()] + new_block + fm_raw[bm.end():]
 
 
+def update_sales_in_fm(fm_raw: str, sales: int) -> str:
+    """Updates (or inserts) the top-level sales_30d field."""
+    if re.search(r'^sales_30d:', fm_raw, re.MULTILINE):
+        return re.sub(
+            r'^(sales_30d:\s*)\d*',
+            f'sales_30d: {sales}',
+            fm_raw, count=1, flags=re.MULTILINE,
+        )
+    # Insert after hot: if present, else after featured:
+    for anchor in (r'^(hot:.*)', r'^(featured:.*)'):
+        if re.search(anchor, fm_raw, re.MULTILINE):
+            return re.sub(anchor, rf'\1\nsales_30d: {sales}',
+                          fm_raw, count=1, flags=re.MULTILINE)
+    return fm_raw + f'\nsales_30d: {sales}'
+
+
 def update_url_in_fm(fm_raw: str, asin: str, variant_index: int | None) -> str:
     """Ensures the Amazon product URL uses the clean https://www.amazon.co.uk/dp/{ASIN} format."""
     url = f"https://www.amazon.co.uk/dp/{asin}"
@@ -814,7 +905,7 @@ amazon_url: "{amazon_url}"
 asin: "{asin}"
 image: "{image_url}"{images_yaml}
 featured: false
-hot: false
+sales_30d: 0
 badge: ""
 tags: []
 ---
@@ -831,6 +922,7 @@ def main():
     token                  = get_access_token()
     listings, parent_asins = fetch_active_listings(token)
     fba_inventory          = fetch_fba_inventory(token)
+    asin_sales             = fetch_order_sales(token)
     asin_index             = load_product_files()
 
     # Auto-delete any .md files that exist for parent ASINs.
@@ -952,6 +1044,28 @@ def main():
                     asin, title, new_slug,
                 )
                 skipped += 1
+
+    # ----------------------------------------------------------------
+    # Update sales_30d on every product file (totalled across variants)
+    # ----------------------------------------------------------------
+    if asin_sales:
+        # Sum sales for all ASINs that map to the same file
+        file_sales: dict[Path, int] = {}
+        for asin, entry in asin_index.items():
+            file_sales[entry["path"]] = (
+                file_sales.get(entry["path"], 0) + asin_sales.get(asin, 0)
+            )
+        sales_updated = 0
+        for md_path, total_sales in sorted(file_sales.items()):
+            text = md_path.read_text(encoding="utf-8")
+            _, fm_raw, body = parse_front_matter(text)
+            if not fm_raw:
+                continue
+            new_fm = update_sales_in_fm(fm_raw, total_sales)
+            if new_fm != fm_raw:
+                write_updated_file(md_path, new_fm, body)
+                sales_updated += 1
+        log.info("Updated sales_30d on %d product files.", sales_updated)
 
     # ----------------------------------------------------------------
     # Summary

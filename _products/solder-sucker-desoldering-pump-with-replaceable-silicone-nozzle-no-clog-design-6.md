@@ -4,7 +4,7 @@ title: "Solder Sucker Desoldering Pump with Replaceable Silicone Nozzle, No Clog
 description: "The Solder Sucker No Clog Desoldering Pump is an essential tool for efficient and hassle-free solder removal. Its unique no-clog design prevents the nozzle tip from clogging, allowing you to quickly extract molten solder without interruption. This streamlined solder removal tool leaves a clean working area, making it ideal for electronics repair and soldering projects."
 category: "tools"
 price: "£12.99"
-stock: 0
+stock: 1
 amazon_url: "https://www.amazon.co.uk/dp/B0DMTZFP52"
 asin: "B0DMTZFP52"
 image: "https://m.media-amazon.com/images/I/21k3e4luLxL.jpg"
@@ -14,7 +14,7 @@ images:
   - "https://m.media-amazon.com/images/I/51PTf7-TTIL.jpg"
   - "https://m.media-amazon.com/images/I/51ePRqv9kLL.jpg"
 featured: false
-hot: false
+sales_30d: 0
 badge: ""
 tags: ['solder', 'nozzle']
 ---

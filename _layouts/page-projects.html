@@ -10,11 +10,12 @@ layout: default
   </div>
 
   <div class="split-sidebar">
-    {% assign hot_products = site.products | where: "hot", true %}
-    {% if hot_products.size < 3 %}
-      {% assign hot_products = site.products | limit: 3 %}
+    {% assign hot_products = site.products | sort: "sales_30d" | reverse | slice: 0, 3 %}
+    {% assign has_sales = false %}
+    {% for p in hot_products %}{% if p.sales_30d > 0 %}{% assign has_sales = true %}{% endif %}{% endfor %}
+    {% if has_sales %}
+      {% include sidebar-widget.html title="// Hot Products" items=hot_products type="products" %}
     {% endif %}
-    {% include sidebar-widget.html title="// Hot Products" items=hot_products type="products" %}
   </div>
 
 </div>

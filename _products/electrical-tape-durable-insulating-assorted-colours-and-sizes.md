@@ -6,7 +6,7 @@ category: "electrical-components"
 price: "From £4"
 image: "https://m.media-amazon.com/images/I/317OWpCl3hL.jpg"
 featured: false
-hot: false
+sales_30d: 0
 badge: ""
 tags: ['tape']
 variants:
@@ -15,19 +15,19 @@ variants:
     price: "£4.00"
     url: "https://www.amazon.co.uk/dp/B0DNNLMV1G"
     image: "https://m.media-amazon.com/images/I/31rYEMWahVL.jpg"
-    stock: 0
+    stock: 1
   - label: "Blue, 30M"
     asin: "B0DNNMN9BV"
     price: "£4.00"
     url: "https://www.amazon.co.uk/dp/B0DNNMN9BV"
     image: "https://m.media-amazon.com/images/I/31rYEMWahVL.jpg"
-    stock: 2
+    stock: 1
   - label: "Green, 30M"
     asin: "B0DNNLN8QH"
     price: "£4.00"
     url: "https://www.amazon.co.uk/dp/B0DNNLN8QH"
     image: "https://m.media-amazon.com/images/I/31rYEMWahVL.jpg"
-    stock: 0
+    stock: 1
   - label: "Red, 30M"
     asin: "B0DNNJNFB2"
     price: "£4.00"
@@ -45,13 +45,13 @@ variants:
     price: "£4.00"
     url: "https://www.amazon.co.uk/dp/B0DNNM2PGH"
     image: "https://m.media-amazon.com/images/I/31rYEMWahVL.jpg"
-    stock: 0
+    stock: 1
   - label: "Black, 100M"
     asin: "B0DNNMC7GC"
     price: "£5.00"
     url: "https://www.amazon.co.uk/dp/B0DNNMC7GC"
     image: "https://m.media-amazon.com/images/I/317OWpCl3hL.jpg"
-    stock: 0
+    stock: 1
   - label: "Blue, 100M"
     asin: "B0DNNMZXGS"
     price: "£5.00"
@@ -81,6 +81,6 @@ variants:
     price: "£5.00"
     url: "https://www.amazon.co.uk/dp/B0DNNNRX1X"
     image: "https://m.media-amazon.com/images/I/317OWpCl3hL.jpg"
-    stock: 0
+    stock: 1
 ---
 Discover the versatility and durability of our electrical tape, designed for secure insulation and reliable performance in every application. Ideal for wiring, repairs, and bundling, this high-quality tape ensures safety and longevity. Available in various colours and sizes to match your specific needs, it's the perfect choice for electricians, DIY enthusiasts, and professionals alike. With dimensions of 16mm wide and 30M/100M long, and a thickness of 0.17mm, this tape delivers exceptional performance while providing a secure grip. Enhance your projects with our electrical tape and experience the confidence of a job well done.

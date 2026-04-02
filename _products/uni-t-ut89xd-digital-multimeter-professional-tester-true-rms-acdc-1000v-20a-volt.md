@@ -4,12 +4,12 @@ title: "UNI-T UT89XD Digital Multimeter Professional tester True RMS AC/DC 1000V
 description: "The UNI-T UT89XD is a professional-grade True RMS digital multimeter capable of measuring AC/DC voltage up to 1000V, AC/DC current up to 20A, temperature, and conductance. Its True RMS measurement ensures accurate readings on non-sinusoidal waveforms, making it suitable for both bench and field use."
 category: "test-equipment"
 price: "£50.00"
-stock: 0
+stock: 1
 amazon_url: "https://www.amazon.co.uk/dp/B08P55R959"
 asin: "B08P55R959"
 image: "https://m.media-amazon.com/images/I/41mc-EcnsaL.jpg"
 featured: false
-hot: false
+sales_30d: 0
 badge: ""
 tags: ['multimeter']
 ---
