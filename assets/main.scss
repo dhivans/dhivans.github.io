@@ -110,7 +110,7 @@ h1 {
   color: #ffffff;
   border-left: 3px solid #00e5ff;
   padding-left: 0.65rem;
-  margin-top: 2.5rem;
+  margin-top: 0rem;
   margin-bottom: 1.1rem;
 }
 
@@ -203,7 +203,8 @@ blockquote {
 
 // Post header
 .post-header .post-title {
-  color: #00e5ff;
+  color: #ffffff;
+  font-size: 1.6rem;
 }
 
 // ============================================================
@@ -580,9 +581,9 @@ $sidebar-speed: 0.25s ease;
 // ============================================================
 
 .page-title {
-  font-size: 1.6rem;
+  font-size: 2.2rem;
   margin: 0 0 0.5rem;
-  color: #e2eaf4;
+  color: #ffffff;
 }
 
 .project-list {
