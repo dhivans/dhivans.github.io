@@ -1,3 +1,6 @@
+# Claude Code local config
+.claude/
+
 # Environment / secrets — never commit these
 scripts/set_env.ps1
 .env
