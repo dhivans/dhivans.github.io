@@ -14,7 +14,8 @@
       "Bash(cmd /c \"findstr /n \"\"output\"\" \"\"c:\\\\Users\\\\dhiva\\\\OneDrive\\\\Documents\\\\02 - DST\\\\Website\\\\Github\\\\DST\\\\dhivans.github.io\\\\_config.yml\"\"\")",
       "Bash(mkdir -p \"c:/Users/dhiva/OneDrive/Documents/02 - DST/Website/Github/DST/dhivans.github.io/scripts\")",
       "Bash(mkdir -p \"c:/Users/dhiva/OneDrive/Documents/02 - DST/Website/Github/DST/dhivans.github.io/.github/workflows\")",
-      "Bash(python scripts/sync_products.py)"
+      "Bash(python scripts/sync_products.py)",
+      "Bash(find 'c:/Users/dhiva/OneDrive/Documents/02 - DST/Website/Github/DST/dhivans.github.io' -name *.scss -o -name *.css)"
     ]
   }
 }

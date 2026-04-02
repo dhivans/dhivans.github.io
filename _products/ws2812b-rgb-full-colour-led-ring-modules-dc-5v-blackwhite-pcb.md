@@ -5,6 +5,8 @@ description: "Introducing the WS2812B LED Pixel Ring Modules, a versatile and ey
 category: "diy-components"
 price: "From £3.99"
 image: "https://m.media-amazon.com/images/I/41lNKsuEddL.jpg"
+images:
+  - "https://m.media-amazon.com/images/I/51gBBJ+TiNL.jpg"
 featured: false
 hot: false
 badge: ""
@@ -38,7 +40,7 @@ variants:
     asin: "B0DNNQ6Y13"
     price: "£8.99"
     url: "https://www.amazon.co.uk/dp/B0DNNQ6Y13"
-    image: ""
+    image: "https://m.media-amazon.com/images/I/21-5UKe5DeL.jpg"
     stock: 0
   - label: "Black, 24"
     asin: "B0DNNQMVW9"
@@ -50,7 +52,7 @@ variants:
     asin: "B0DNNR4C7Q"
     price: "£9.99"
     url: "https://www.amazon.co.uk/dp/B0DNNR4C7Q"
-    image: ""
+    image: "https://m.media-amazon.com/images/I/41VHeD59MnL.jpg"
     stock: 0
   - label: "Black, 35"
     asin: "B0DNNP3DP6"

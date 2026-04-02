@@ -8,6 +8,11 @@ stock: 0
 amazon_url: "https://www.amazon.co.uk/dp/B0DMTZFP52"
 asin: "B0DMTZFP52"
 image: "https://m.media-amazon.com/images/I/21k3e4luLxL.jpg"
+images:
+  - "https://m.media-amazon.com/images/I/51BrxARLtvL.jpg"
+  - "https://m.media-amazon.com/images/I/51QX1yO8kkL.jpg"
+  - "https://m.media-amazon.com/images/I/51PTf7-TTIL.jpg"
+  - "https://m.media-amazon.com/images/I/51ePRqv9kLL.jpg"
 featured: false
 hot: false
 badge: ""

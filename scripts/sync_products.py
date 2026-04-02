@@ -143,6 +143,63 @@ def spapi_get(token: str, path: str, params: dict = None) -> dict:
 # Step 1 — Fetch all active listings (title + price in one call)
 # ===========================================================================
 
+def fetch_fba_inventory(token: str) -> dict[str, int]:
+    """
+    Pages through all FBA inventory summaries and returns a dict of
+    ASIN -> fulfillable quantity.
+
+    Uses fulfillableQuantity (inventory actually available to ship) rather
+    than totalQuantity (which includes inbound/researching stock).
+
+    Falls back to an empty dict if the API is unavailable, in which case
+    main() will use stock=1 for all active listings as a safe fallback.
+    """
+    log.info("Fetching FBA inventory …")
+    inventory: dict[str, int] = {}
+    next_token = None
+
+    while True:
+        params: dict = {
+            "granularityType": "Marketplace",
+            "granularityId":   MARKETPLACE_ID,
+            "marketplaceIds":  MARKETPLACE_ID,
+            "details":         "true",
+        }
+        if next_token:
+            params["nextToken"] = next_token
+
+        try:
+            resp = requests.get(
+                SPAPI_BASE + "/fba/inventory/v1/summaries",
+                headers={
+                    "x-amz-access-token": token,
+                    "Content-Type": "application/json",
+                },
+                params=params,
+                timeout=20,
+            )
+            resp.raise_for_status()
+        except requests.HTTPError as exc:
+            log.warning("FBA Inventory API unavailable (%s) — stock will default to 1 for active listings.", exc)
+            return {}
+
+        payload = resp.json().get("payload", {})
+        for s in payload.get("inventorySummaries", []):
+            asin = s.get("asin", "")
+            if not asin:
+                continue
+            qty = (s.get("inventoryDetails") or {}).get("fulfillableQuantity") or 0
+            # Sum in case the same ASIN appears across multiple SKUs
+            inventory[asin] = inventory.get(asin, 0) + int(qty)
+
+        next_token = (resp.json().get("pagination") or {}).get("nextToken")
+        if not next_token:
+            break
+
+    log.info("FBA inventory fetched: %d ASINs with stock data.", len(inventory))
+    return inventory
+
+
 def fetch_active_listings(token: str) -> tuple[list[dict], set[str]]:
     """
     Pages through all ACTIVE listings for this seller.
@@ -160,7 +217,7 @@ def fetch_active_listings(token: str) -> tuple[list[dict], set[str]]:
     while True:
         params: dict = {
             "marketplaceIds": MARKETPLACE_ID,
-            "includedData":   "summaries,offers,fulfillmentAvailability",
+            "includedData":   "summaries,offers,fulfillmentAvailability,attributes",
             "status":         "ACTIVE",
             "pageSize":       20,
         }
@@ -197,21 +254,35 @@ def fetch_active_listings(token: str) -> tuple[list[dict], set[str]]:
             # mainImage — Amazon CDN URL for the product image
             image_url = summary.get("mainImage", {}).get("link", "")
 
-            # fulfillmentAvailability — sum quantities across all channels
-            # (DEFAULT = merchant-fulfilled, AMAZON = FBA)
-            stock = sum(
-                a.get("quantity", 0)
-                for a in item.get("fulfillmentAvailability", [])
-                if a.get("quantity") is not None
-            )
+            # attributes — extra images and product description
+            attrs = item.get("attributes", {})
+
+            # Collect up to 4 additional images (other_product_image_locator_1..4)
+            extra_images: list[str] = []
+            for i in range(1, 5):
+                locators = attrs.get(f"other_product_image_locator_{i}", [])
+                if locators:
+                    url = locators[0].get("media_location", "")
+                    if url:
+                        extra_images.append(url)
+
+            # Long-form product description from attributes
+            desc_entries = attrs.get("product_description", [])
+            description = desc_entries[0].get("value", "") if desc_entries else ""
+
+            # Stock is resolved in main() from the FBA inventory dict.
+            # Placeholder 0 here; main() overwrites it.
+            stock = 0
 
             listings.append({
-                "asin":  asin,
-                "sku":   sku,
-                "title": title,
-                "price": price_str,   # may be None if listing has no active offer
-                "image": image_url,   # may be "" if no image in API response
-                "stock": stock,       # total units available (0 = out of stock)
+                "asin":        asin,
+                "sku":         sku,
+                "title":       title,
+                "price":       price_str,    # may be None if listing has no active offer
+                "image":       image_url,    # may be "" if no image in API response
+                "images":      extra_images, # additional gallery images
+                "description": description,  # long-form product description
+                "stock":       stock,        # total units available (0 = out of stock)
             })
 
         page_token = data.get("pagination", {}).get("nextToken")
@@ -509,6 +580,35 @@ def update_image_in_fm(fm_raw: str, image_url: str, variant_index: int | None) -
         return fm_raw[: bm.start()] + new_block + fm_raw[bm.end():]
 
 
+def update_images_list_in_fm(fm_raw: str, image_urls: list[str]) -> str:
+    """
+    Updates (or inserts) the top-level images: list in front matter.
+    This is a page-level field used by the product image carousel —
+    it is not per-variant.
+    """
+    if not image_urls:
+        return fm_raw
+    yaml_lines = "images:\n" + "".join(f'  - "{u}"\n' for u in image_urls)
+    yaml_block = yaml_lines.rstrip("\n")
+
+    # Replace existing multi-line images: block
+    existing = re.search(r"^images:(?:\n  - [^\n]+)+", fm_raw, re.MULTILINE)
+    if existing:
+        return fm_raw[: existing.start()] + yaml_block + fm_raw[existing.end():]
+
+    # Replace simple  images: []  or  images: ""  on one line
+    existing_simple = re.search(r"^images:.*$", fm_raw, re.MULTILINE)
+    if existing_simple:
+        return fm_raw[: existing_simple.start()] + yaml_block + fm_raw[existing_simple.end():]
+
+    # Insert after the top-level image: line
+    return re.sub(
+        r"^(image:.*)",
+        rf"\1\n{yaml_block}",
+        fm_raw, count=1, flags=re.MULTILINE,
+    )
+
+
 def write_updated_file(md_path: Path, fm_raw: str, body: str) -> None:
     """Writes the reconstructed markdown file back to disk."""
     md_path.write_text(f"---\n{fm_raw}\n---\n{body}", encoding="utf-8")
@@ -523,7 +623,7 @@ def _yaml_str(value: str) -> str:
     return '"' + value.replace('"', '\\"') + '"'
 
 
-def create_product_file(asin: str, title: str, price: str | None, image_url: str = "", stock: int = 0) -> Path | None:
+def create_product_file(asin: str, title: str, price: str | None, image_url: str = "", extra_images: list | None = None, description: str = "", stock: int = 0) -> Path | None:
     """
     Generates a new _products/{slug}.md from the standard template.
     Title, price, and image URL come directly from the listings API response.
@@ -548,6 +648,13 @@ def create_product_file(asin: str, title: str, price: str | None, image_url: str
     price_str  = price or ""
     amazon_url = f"https://www.amazon.co.uk/dp/{asin}"
 
+    images_yaml = ""
+    if extra_images:
+        lines = "\n".join(f'  - "{u}"' for u in extra_images)
+        images_yaml = f"\nimages:\n{lines}"
+
+    body = description.strip() + "\n" if description else "\n"
+
     content = f"""\
 ---
 layout: product
@@ -558,14 +665,13 @@ price: "{price_str}"
 stock: {stock}
 amazon_url: "{amazon_url}"
 asin: "{asin}"
-image: "{image_url}"
+image: "{image_url}"{images_yaml}
 featured: false
 hot: false
 badge: ""
 tags: []
 ---
-
-"""
+{body}"""
     md_path.write_text(content, encoding="utf-8")
     return md_path
 
@@ -577,6 +683,7 @@ tags: []
 def main():
     token                  = get_access_token()
     listings, parent_asins = fetch_active_listings(token)
+    fba_inventory          = fetch_fba_inventory(token)
     asin_index             = load_product_files()
 
     # Auto-delete any .md files that exist for parent ASINs.
@@ -600,11 +707,16 @@ def main():
     skipped  = 0
 
     for listing in listings:
-        asin      = listing["asin"]
-        price     = listing["price"]
-        title     = listing["title"]
-        image_url = listing["image"]
-        stock     = listing["stock"]
+        asin        = listing["asin"]
+        price       = listing["price"]
+        title       = listing["title"]
+        image_url   = listing["image"]
+        extra_imgs  = listing["images"]
+        description = listing["description"]
+        # Use real FBA fulfillable quantity; fall back to 1 if the inventory
+        # API returned nothing (e.g. role not yet propagated) so active
+        # listings still appear on the shop.
+        stock = fba_inventory.get(asin, 1) if fba_inventory else 1
 
         if asin in seen:
             continue
@@ -631,7 +743,8 @@ def main():
                 skipped += 1
                 continue
 
-            modified_fm = fm_raw
+            modified_fm   = fm_raw
+            modified_body = body
             if price:
                 modified_fm = update_price_in_fm(modified_fm, price, v_idx)
             if image_url:
@@ -639,11 +752,20 @@ def main():
             modified_fm = update_url_in_fm(modified_fm, asin, v_idx)
             modified_fm = update_stock_in_fm(modified_fm, stock, v_idx)
 
-            if modified_fm == fm_raw:
+            # Images list and body description are page-level (not per-variant).
+            # For variant files only update on the first variant (index 0) to
+            # avoid overwriting with a different variant's content.
+            if v_idx is None or v_idx == 0:
+                if extra_imgs:
+                    modified_fm = update_images_list_in_fm(modified_fm, extra_imgs)
+                if description:
+                    modified_body = description.strip() + "\n"
+
+            if modified_fm == fm_raw and modified_body == body:
                 log.info("No change: %s  (ASIN %s)", md_path.name, asin)
                 continue
 
-            write_updated_file(md_path, modified_fm, body)
+            write_updated_file(md_path, modified_fm, modified_body)
             log.info("Updated  %s  (ASIN %s)  price=%s", md_path.name, asin, price)
             updated += 1
 
@@ -651,7 +773,7 @@ def main():
         # Case B — no matching .md file: create it from listing data
         # ----------------------------------------------------------------
         else:
-            new_file = create_product_file(asin, title, price, image_url, stock)
+            new_file = create_product_file(asin, title, price, image_url, extra_imgs, description, stock)
             if new_file:
                 log.info("Created  %s  (ASIN %s)  price=%s", new_file.name, asin, price or "—")
                 created += 1

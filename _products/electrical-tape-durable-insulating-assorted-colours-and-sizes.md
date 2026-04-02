@@ -21,7 +21,7 @@ variants:
     price: "£4.00"
     url: "https://www.amazon.co.uk/dp/B0DNNMN9BV"
     image: "https://m.media-amazon.com/images/I/31rYEMWahVL.jpg"
-    stock: 0
+    stock: 2
   - label: "Green, 30M"
     asin: "B0DNNLN8QH"
     price: "£4.00"
@@ -33,13 +33,13 @@ variants:
     price: "£4.00"
     url: "https://www.amazon.co.uk/dp/B0DNNJNFB2"
     image: "https://m.media-amazon.com/images/I/41ujDYvpgAL.jpg"
-    stock: 0
+    stock: 1
   - label: "White, 30M"
     asin: "B0DNNMSHRJ"
     price: "£4.00"
     url: "https://www.amazon.co.uk/dp/B0DNNMSHRJ"
     image: "https://m.media-amazon.com/images/I/31bMm+enNSL.jpg"
-    stock: 0
+    stock: 1
   - label: "Yellow, 30M"
     asin: "B0DNNM2PGH"
     price: "£4.00"
@@ -57,25 +57,25 @@ variants:
     price: "£5.00"
     url: "https://www.amazon.co.uk/dp/B0DNNMZXGS"
     image: "https://m.media-amazon.com/images/I/317OWpCl3hL.jpg"
-    stock: 0
+    stock: 1
   - label: "Green, 100M"
     asin: "B0DNNLY9S3"
     price: "£5.00"
     url: "https://www.amazon.co.uk/dp/B0DNNLY9S3"
     image: "https://m.media-amazon.com/images/I/31MntqJhsXL.jpg"
-    stock: 0
+    stock: 1
   - label: "Red, 100M"
     asin: "B0DNNM482Y"
     price: "£5.00"
     url: "https://www.amazon.co.uk/dp/B0DNNM482Y"
     image: "https://m.media-amazon.com/images/I/41AkZh9aO0L.jpg"
-    stock: 0
+    stock: 1
   - label: "White, 100M"
     asin: "B0DNNLP5VL"
     price: "£5.00"
     url: "https://www.amazon.co.uk/dp/B0DNNLP5VL"
     image: "https://m.media-amazon.com/images/I/21R-dt-L6BL.jpg"
-    stock: 0
+    stock: 1
   - label: "Yellow, 100M"
     asin: "B0DNNNRX1X"
     price: "£5.00"

@@ -1,13 +1,17 @@
 ---
 layout: product
-title: "TP4056 5V 1A 18650 Lithium Battery Charger Module, Type-C USB, Dual Function (3)"
+title: "TP4056 5V 1A 18650 Lithium Battery Charger Module, Type-C USB, Dual Function"
 description: "" # TODO: add description
 category: "diy-components"
-price: "£5.99"
-stock: 1
-amazon_url: "https://www.amazon.co.uk/dp/B0DFKNT4RG"
-asin: "B0DFKNT4RG"
+price: "£3.00"
+stock: 0
+amazon_url: "https://www.amazon.co.uk/dp/B0DFKDM1NN"
+asin: "B0DFKDM1NN"
 image: "https://m.media-amazon.com/images/I/41E3x3NUjpL.jpg"
+images:
+  - "https://m.media-amazon.com/images/I/61poqfadgPL.jpg"
+  - "https://m.media-amazon.com/images/I/512bZZmiykL.jpg"
+  - "https://m.media-amazon.com/images/I/51MJzW4siFL.jpg"
 featured: false
 hot: false
 badge: ""

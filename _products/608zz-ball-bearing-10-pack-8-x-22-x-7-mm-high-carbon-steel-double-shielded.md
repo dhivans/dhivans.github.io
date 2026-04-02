@@ -8,6 +8,8 @@ stock: 0
 amazon_url: "https://www.amazon.co.uk/dp/B0DPLJN167"
 asin: "B0DPLJN167"
 image: "https://m.media-amazon.com/images/I/41NoU7OFL8L.jpg"
+images:
+  - "https://m.media-amazon.com/images/I/51En5GDVeQL.jpg"
 featured: false
 hot: false
 badge: ""

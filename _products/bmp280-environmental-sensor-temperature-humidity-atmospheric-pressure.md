@@ -5,6 +5,8 @@ description: "The BMP280-5V is a versatile digital sensor module that combines t
 category: "diy-components"
 price: "From £7.99"
 image: "/assets/images/products/bmp280-environmental-sensor-temperature-humidity-atmospheric-pressure.jpg" # Add image file here
+images:
+  - "https://m.media-amazon.com/images/I/61H+n9iE+PL.jpg"
 featured: false
 hot: false
 badge: ""

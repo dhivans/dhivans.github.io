@@ -8,6 +8,10 @@ stock: 0
 amazon_url: "https://www.amazon.co.uk/dp/B0DFJXCM96"
 asin: "B0DFJXCM96"
 image: "https://m.media-amazon.com/images/I/41W97e3YAkL.jpg"
+images:
+  - "https://m.media-amazon.com/images/I/51Xz6fqaLHL.jpg"
+  - "https://m.media-amazon.com/images/I/51DIJ+EderL.jpg"
+  - "https://m.media-amazon.com/images/I/41r5ymvrDJL.jpg"
 featured: false
 hot: false
 badge: ""

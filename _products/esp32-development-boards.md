@@ -5,6 +5,11 @@ description: "The ESP32 range of development boards combines Wi-Fi, Bluetooth, a
 category: "diy-components"
 price: "From £9.89"
 image: "https://m.media-amazon.com/images/I/41edbf6EvFL.jpg"
+images:
+  - "https://m.media-amazon.com/images/I/51PnDDJHYzL.jpg"
+  - "https://m.media-amazon.com/images/I/61GIBHXfNgL.jpg"
+  - "https://m.media-amazon.com/images/I/615GSwQnqcL.jpg"
+  - "https://m.media-amazon.com/images/I/61AGm5wCn1L.jpg"
 featured: false
 hot: false
 badge: ""
@@ -15,7 +20,7 @@ variants:
     price: "£9.89"
     url: "https://www.amazon.co.uk/dp/B0DJPZHZ1X"
     image: "https://m.media-amazon.com/images/I/41edbf6EvFL.jpg"
-    stock: 0
+    stock: 118
   - label: "ESP32-C3 Super Mini"
     asin: "B0DDL7WNZX"
     price: "£12.99"

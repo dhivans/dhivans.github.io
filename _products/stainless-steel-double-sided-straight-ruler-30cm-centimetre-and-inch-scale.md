@@ -8,6 +8,9 @@ stock: 0
 amazon_url: "https://www.amazon.co.uk/dp/B0DFKC13LR"
 asin: "B0DFKC13LR"
 image: "https://m.media-amazon.com/images/I/31aRj0bEaRL.jpg"
+images:
+  - "https://m.media-amazon.com/images/I/512QZASoPDL.jpg"
+  - "https://m.media-amazon.com/images/I/61Ae-QEPuNL.jpg"
 featured: false
 hot: false
 badge: ""

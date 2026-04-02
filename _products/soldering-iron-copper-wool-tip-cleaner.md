@@ -8,6 +8,11 @@ stock: 0
 amazon_url: "https://www.amazon.co.uk/dp/B0DFMNSTR3"
 asin: "B0DFMNSTR3"
 image: "https://m.media-amazon.com/images/I/41cfyHZnYrL.jpg"
+images:
+  - "https://m.media-amazon.com/images/I/612mOgAySWL.jpg"
+  - "https://m.media-amazon.com/images/I/61ObLqiOC7L.jpg"
+  - "https://m.media-amazon.com/images/I/61zyHrB8YuL.jpg"
+  - "https://m.media-amazon.com/images/I/61HTm-CirHL.jpg"
 featured: false
 hot: false
 badge: ""

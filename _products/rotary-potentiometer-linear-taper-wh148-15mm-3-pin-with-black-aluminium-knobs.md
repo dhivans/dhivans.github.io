@@ -5,6 +5,8 @@ description: "Upgrade your electronics projects with this comprehensive WH148 li
 category: "diy-components"
 price: "From £3"
 image: "/assets/images/products/rotary-potentiometer-linear-taper-wh148-15mm-3-pin-with-black-aluminium-knobs.jpg" # Add image file here
+images:
+  - "https://m.media-amazon.com/images/I/51k2M4lBgQL.jpg"
 featured: false
 hot: false
 badge: ""
@@ -87,7 +89,7 @@ variants:
     price: "£3.00"
     url: "https://www.amazon.co.uk/dp/B0DRW4XDNF"
     image: "https://m.media-amazon.com/images/I/51YBLCsi2UL.jpg"
-    stock: 0
+    stock: 88
   - label: "10kOhm, 3"
     asin: "B0DRW2JCRV"
     price: "£4.00"
