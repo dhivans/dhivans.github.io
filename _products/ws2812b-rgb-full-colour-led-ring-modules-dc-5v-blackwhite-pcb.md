@@ -2,7 +2,7 @@
 layout: product
 title: "WS2812B RGB Full Colour LED Ring Modules, DC 5V, Black/White PCB"
 description: "Introducing the WS2812B LED Pixel Ring Modules, a versatile and eye-catching illumination solution perfect for DIY projects, decorative lighting, and more. These addressable LED modules feature the advanced WS2812B integrated circuit, allowing for precise control over each individual LED's colour and brightness. Available in various sizes ranging from 8 to 45 LEDs, these rings are designed to fit a wide range of applications."
-category: "diy-components"
+category: "electrical-components"
 price: "From £3.99"
 image: "https://m.media-amazon.com/images/I/41lNKsuEddL.jpg"
 images:

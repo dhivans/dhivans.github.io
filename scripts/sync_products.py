@@ -81,14 +81,21 @@ PRODUCTS_DIR = Path(__file__).resolve().parent.parent / "_products"
 # ---------------------------------------------------------------------------
 CATEGORY_RULES: list[tuple[str, list[str]]] = [
     ("test-equipment", [
-        "multimeter", "oscilloscope", "power supply", "signal",
-        "probe", "meter", "tester",
+        "multimeter", "oscilloscope", "power supply", "signal generator",
+        "meter", "tester", "caliper", "gauge",
     ]),
-    ("kits", [
-        "kit", "starter", "bundle", "set", "pack",
+    ("tools", [
+        "crimping tool", "crimper", "soldering iron", "solder sucker",
+        "desoldering", "tweezers", "wrench", "allen key", "hex key",
+        "screwdriver", "pliers", "wire stripper", "ruler", "brush",
+    ]),
+    ("mechanical-components", [
+        "bearing", "belt", "pulley", "shaft", "bushing", "coupling",
+        "spring", "screw", "bolt", "nut", "washer", "bracket",
+        "cable tie", "zip tie", "hinge", "rail", "rod",
     ]),
 ]
-DEFAULT_CATEGORY = "diy-components"
+DEFAULT_CATEGORY = "electrical-components"
 
 
 # ===========================================================================
@@ -545,6 +552,27 @@ def update_url_in_fm(fm_raw: str, asin: str, variant_index: int | None) -> str:
         return fm_raw[: bm.start()] + new_block + fm_raw[bm.end():]
 
 
+def fix_main_image_if_local(fm_raw: str, image_url: str) -> str:
+    """
+    For variant product files: if the top-level image: field is a local path
+    (not an http URL), replace it with image_url pulled from a variant.
+    Safe to call on every variant pass — once the field is an http URL it won't
+    be touched again.
+    """
+    m = re.search(r'^image:\s*["\']?(.*?)["\']?\s*(?:#[^\n]*)?$', fm_raw, re.MULTILINE)
+    if m:
+        current = m.group(1).strip()
+        if current.startswith("http"):
+            return fm_raw  # already a live URL — leave it alone
+    return re.sub(
+        r'^(image:\s*)["\']?[^"\'#\n]*["\']?(\s*#[^\n]*)?',
+        f'image: "{image_url}"',
+        fm_raw,
+        count=1,
+        flags=re.MULTILINE,
+    )
+
+
 def update_image_in_fm(fm_raw: str, image_url: str, variant_index: int | None) -> str:
     """Updates (or inserts) the image field in the raw front matter string."""
     if variant_index is None:
@@ -623,6 +651,121 @@ def _yaml_str(value: str) -> str:
     return '"' + value.replace('"', '\\"') + '"'
 
 
+def _extract_variant_label(title: str) -> str:
+    """
+    Extracts a short variant label from an Amazon title.
+    Amazon typically appends the variant info in trailing parentheses,
+    e.g. "(2M)", "(3)", "(0.5mm Diameter, 30g)".
+    Falls back to the first 40 characters of the title.
+    """
+    m = re.search(r'\(([^)]+)\)\s*$', title)
+    if m:
+        return m.group(1)
+    return title[:40].strip()
+
+
+def _find_likely_parent(new_slug: str, asin_index: dict) -> Path | None:
+    """
+    Returns the path of an existing variant (or single) file whose slug shares
+    at least 30 characters of common prefix with new_slug.
+    Checks variant files first, then single-product files.
+    """
+    MIN_COMMON = 30
+    variant_paths = {e["path"] for e in asin_index.values() if e["type"] == "variant"}
+    single_paths  = {e["path"] for e in asin_index.values() if e["type"] == "single"}
+
+    for md_path in sorted(variant_paths | single_paths):
+        common = len(os.path.commonprefix([new_slug, md_path.stem]))
+        if common >= MIN_COMMON:
+            return md_path
+    return None
+
+
+def auto_add_variant(md_path: Path, asin: str, title: str,
+                     price: str | None, image_url: str, stock: int) -> bool:
+    """
+    Appends a new variant to an existing product file.
+
+    - If the file already has a variants: block, the new entry is appended.
+    - If it is a single-product file, it is converted to variant format:
+        the existing top-level asin/amazon_url/stock fields are moved into
+        a variants: block as the first entry, and the new ASIN becomes the
+        second entry.
+
+    Returns True on success, False if the file could not be parsed.
+    """
+    text = md_path.read_text(encoding="utf-8")
+    _, fm_raw, body = parse_front_matter(text)
+    if not fm_raw:
+        return False
+
+    url       = f"https://www.amazon.co.uk/dp/{asin}"
+    label     = _extract_variant_label(title)
+    price_val = price or ""
+
+    new_entry = (
+        f'  - label: "{label}"\n'
+        f'    asin: "{asin}"\n'
+        f'    price: "{price_val}"\n'
+        f'    url: "{url}"\n'
+        f'    image: "{image_url}"\n'
+        f'    stock: {stock}'
+    )
+
+    # ── Case 1: variants: block already exists — just append ──────────────
+    if re.search(r'^variants:', fm_raw, re.MULTILINE):
+        new_fm = fm_raw + '\n' + new_entry
+        write_updated_file(md_path, new_fm, body)
+        return True
+
+    # ── Case 2: single-product file — convert to variant format ───────────
+    def _get(pattern):
+        m = re.search(pattern, fm_raw, re.MULTILINE)
+        return m.group(1).strip() if m else ""
+
+    existing_title  = _get(r'^title:\s*["\']?(.*?)["\']?\s*(?:#[^\n]*)?$')
+    existing_asin   = _get(r'^asin:\s*["\']?([A-Z0-9]{10})["\']?')
+    existing_price  = _get(r'^price:\s*["\']?([^"\'#\n]*)["\']?')
+    existing_image  = _get(r'^image:\s*["\']?([^"\'#\n]*)["\']?')
+    existing_url    = _get(r'^amazon_url:\s*["\']?([^"\'#\n]*)["\']?') \
+                      or f"https://www.amazon.co.uk/dp/{existing_asin}"
+    existing_stock_m = re.search(r'^stock:\s*(\d+)', fm_raw, re.MULTILINE)
+    existing_stock  = int(existing_stock_m.group(1)) if existing_stock_m else 0
+    existing_label  = _extract_variant_label(existing_title)
+
+    first_entry = (
+        f'  - label: "{existing_label}"\n'
+        f'    asin: "{existing_asin}"\n'
+        f'    price: "{existing_price}"\n'
+        f'    url: "{existing_url}"\n'
+        f'    image: "{existing_image}"\n'
+        f'    stock: {existing_stock}'
+    )
+
+    # Remove single-product-only top-level fields
+    new_fm = re.sub(r'^asin:.*\n',       '', fm_raw,  flags=re.MULTILINE)
+    new_fm = re.sub(r'^amazon_url:.*\n', '', new_fm,  flags=re.MULTILINE)
+    new_fm = re.sub(r'^stock:.*\n',      '', new_fm,  flags=re.MULTILINE)
+
+    # Update top-level price to "From £X.XX"
+    try:
+        ep = float(re.sub(r'[^\d.]', '', existing_price))
+        np = float(re.sub(r'[^\d.]', '', price_val))
+        sym = '£' if '£' in existing_price else ''
+        from_price = f'From {sym}{min(ep, np):.2f}'
+    except (ValueError, TypeError):
+        from_price = existing_price
+    new_fm = re.sub(
+        r'^(price:\s*)["\']?[^"\'#\n]*["\']?',
+        f'price: "{from_price}"',
+        new_fm, count=1, flags=re.MULTILINE,
+    )
+
+    new_fm = new_fm.rstrip() + f'\nvariants:\n{first_entry}\n{new_entry}'
+    write_updated_file(md_path, new_fm, body)
+    return True
+
+
 def create_product_file(asin: str, title: str, price: str | None, image_url: str = "", extra_images: list | None = None, description: str = "", stock: int = 0) -> Path | None:
     """
     Generates a new _products/{slug}.md from the standard template.
@@ -641,7 +784,11 @@ def create_product_file(asin: str, title: str, price: str | None, image_url: str
 
     md_path = PRODUCTS_DIR / f"{slug}.md"
     if md_path.exists():
-        log.warning("File already exists, skipping creation: %s", md_path.name)
+        log.warning(
+            "File %s already exists and was not matched as a variant parent — "
+            "ASIN %s (%r) was not added. Check manually.",
+            md_path.name, asin, title,
+        )
         return None
 
     category   = assign_category(title)
@@ -749,6 +896,8 @@ def main():
                 modified_fm = update_price_in_fm(modified_fm, price, v_idx)
             if image_url:
                 modified_fm = update_image_in_fm(modified_fm, image_url, v_idx)
+                if v_idx is not None:
+                    modified_fm = fix_main_image_if_local(modified_fm, image_url)
             modified_fm = update_url_in_fm(modified_fm, asin, v_idx)
             modified_fm = update_stock_in_fm(modified_fm, stock, v_idx)
 
@@ -770,14 +919,38 @@ def main():
             updated += 1
 
         # ----------------------------------------------------------------
-        # Case B — no matching .md file: create it from listing data
+        # Case B — no matching .md file: auto-add variant or create new
         # ----------------------------------------------------------------
         else:
+            new_slug     = make_slug(title)
+            exact_path   = PRODUCTS_DIR / f"{new_slug}.md"
+            parent_path  = exact_path if exact_path.exists() else _find_likely_parent(new_slug, asin_index)
+
+            if parent_path:
+                label = _extract_variant_label(title)
+                if auto_add_variant(parent_path, asin, title, price or "", image_url, stock):
+                    log.info(
+                        "Auto-added variant %r to %s  (ASIN %s  price=%s)",
+                        label, parent_path.name, asin, price or "—",
+                    )
+                    updated += 1
+                else:
+                    log.warning(
+                        "Could not auto-add ASIN %s to %s — front matter unparseable",
+                        asin, parent_path.name,
+                    )
+                    skipped += 1
+                continue
+
             new_file = create_product_file(asin, title, price, image_url, extra_imgs, description, stock)
             if new_file:
                 log.info("Created  %s  (ASIN %s)  price=%s", new_file.name, asin, price or "—")
                 created += 1
             else:
+                log.warning(
+                    "Skipped ASIN %s (%r) — slug %r already exists but could not be matched",
+                    asin, title, new_slug,
+                )
                 skipped += 1
 
     # ----------------------------------------------------------------

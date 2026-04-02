@@ -2,7 +2,7 @@
 layout: product
 title: "Magnetic Charging Cable, Tangle Free, 1M, Fast Charging, Braided"
 description: "Ultra-durable magnetic charging cable with tangle-free nylon braided design. The powerful magnetic connector snaps effortlessly into your device for a secure, frustration-free charge every time. Available in multiple connector types to suit any device — USB-A to Lightning, USB-A to USB-C, USB-C to Lightning, and USB-C to USB-C — in black or white."
-category: "diy-components"
+category: "electrical-components"
 price: "From £9.99"
 image: "https://m.media-amazon.com/images/I/51-7yXw+f0L.jpg"
 images:

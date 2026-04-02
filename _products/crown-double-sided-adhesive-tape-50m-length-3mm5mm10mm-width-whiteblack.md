@@ -2,14 +2,20 @@
 layout: product
 title: "DST CROWN Double Sided Adhesive Tape, 50m Length, 3mm/5mm/10mm Width, White/Black"
 description: "Upgrade your crafting and DIY projects with the versatile CROWN double-sided adhesive tape. This strong and sticky tape is available in various widths of 3mm, 5mm, and 10mm and lengths of 50m, making it suitable for a wide range of applications. Crafted from high-quality materials, the CROWN 613 tape comes in classic white or sleek black colours, allowing you to choose the perfect option for your needs."
-category: "diy-components"
+category: "electrical-components"
 price: "From £14.99"
-image: "/assets/images/products/dst-crown-double-sided-adhesive-tape-50m-length-3mm5mm10mm-width-whiteblack.jpg" # Add image file here
+image: "https://m.media-amazon.com/images/I/51uAiUa065L.jpg"
 featured: false
 hot: false
 badge: ""
 tags: ['tape']
 variants:
+  - label: "3mm"
+    asin: "B0DH417TH9"
+    price: "£9.99"
+    url: "https://www.amazon.co.uk/dp/B0DH417TH9"
+    image: "https://m.media-amazon.com/images/I/51uAiUa065L.jpg"
+    stock: 0
   - label: "5mm"
     asin: "B0DH426PYW"
     price: "£14.99"

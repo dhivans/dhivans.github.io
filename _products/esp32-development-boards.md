@@ -2,7 +2,7 @@
 layout: product
 title: "ESP32 Development Boards, Wi-Fi, Bluetooth"
 description: "The ESP32 range of development boards combines Wi-Fi, Bluetooth, and Bluetooth Low Energy (BLE) capabilities, making them suitable for a wide range of applications. From low-power sensor networks to demanding tasks like voice encoding, music streaming, and MP3 decoding, these powerful boards offer a comprehensive solution for developers seeking to create innovative projects."
-category: "diy-components"
+category: "electrical-components"
 price: "From £9.89"
 image: "https://m.media-amazon.com/images/I/41edbf6EvFL.jpg"
 images:
@@ -20,7 +20,7 @@ variants:
     price: "£9.89"
     url: "https://www.amazon.co.uk/dp/B0DJPZHZ1X"
     image: "https://m.media-amazon.com/images/I/41edbf6EvFL.jpg"
-    stock: 118
+    stock: 116
   - label: "ESP32-C3 Super Mini"
     asin: "B0DDL7WNZX"
     price: "£12.99"

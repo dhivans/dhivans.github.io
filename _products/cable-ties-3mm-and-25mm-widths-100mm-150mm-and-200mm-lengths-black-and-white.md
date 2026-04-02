@@ -2,9 +2,9 @@
 layout: product
 title: "Cable Ties, 3mm and 2.5mm Widths, 100mm, 150mm, and 200mm Lengths, Black and White"
 description: "Organise and secure your cables with these versatile cable ties. Available in classic black and white colours, these ties come in two different widths - 3mm and 2.5mm - and three lengths - 100mm, 150mm, and 200mm. Whether you need to bundle cables for your home office setup, organise wires in your car, or secure items during a move, these cable ties offer a reliable solution."
-category: "diy-components"
+category: "mechanical-components"
 price: "From £4.99"
-image: "/assets/images/products/cable-ties-3mm-and-25mm-widths-100mm-150mm-and-200mm-lengths-black-and-white.jpg" # Add image file here
+image: "https://m.media-amazon.com/images/I/21uwtCoOE9L.jpg"
 featured: false
 hot: false
 badge: ""

@@ -2,9 +2,9 @@
 layout: product
 title: "DST SK6812 RGBW Addressable LED Strip, 30/60/144 LEDs/m, 4-in-1 RGB+W, 5V DC"
 description: "Elevate your lighting projects with the SK6812 RGBW (Similar to WS2812B) 4 In 1 Individual Addressable LED Strip. This versatile strip features individually addressable LEDs that can display a wide range of colours, including red, green, blue, and white. With options for 30, 60, or 144 LEDs/Pixels per metre, you can choose the density that best suits your needs."
-category: "diy-components"
+category: "electrical-components"
 price: "From £10.99"
-image: "/assets/images/products/dst-sk6812-rgbw-addressable-led-strip-3060144-ledsm-4-in-1-rgbw-5v-dc.jpg" # Add image file here
+image: "https://m.media-amazon.com/images/I/41O6k5Fd+dL.jpg"
 featured: false
 hot: false
 badge: ""

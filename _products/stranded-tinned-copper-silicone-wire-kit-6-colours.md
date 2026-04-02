@@ -2,9 +2,9 @@
 layout: product
 title: "Stranded Tinned Copper Silicone Wire Kit, 6 Colours,"
 description: "Unleash your creativity with this versatile electric wire kit! Featuring 6 vibrant colours of stranded tinned copper wire in various gauges (16/18/20/22/24/26 AWG), this set offers flexibility and durability for all your electrical DIY projects or car wiring needs. The silicone insulation provides excellent heat resistance and protection, ensuring reliable performance."
-category: "diy-components"
+category: "electrical-components"
 price: "From £10.99"
-image: "/assets/images/products/stranded-tinned-copper-silicone-wire-kit-6-colours.jpg" # Add image file here
+image: "https://m.media-amazon.com/images/I/41HJd5B9YvL.jpg"
 featured: false
 hot: false
 badge: ""

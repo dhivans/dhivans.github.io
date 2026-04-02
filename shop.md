@@ -43,7 +43,7 @@ Prices are approximate and may vary. Amazon links are affiliate links.</p>
   {% elsif product.stock > 0 %}
     {% assign in_stock = true %}
   {% endif %}
-  <div class="product-card-h product-card" data-in-stock="{% if in_stock %}1{% else %}0{% endif %}">
+  <div class="product-card-h product-card" data-in-stock="{% if in_stock %}1{% else %}0{% endif %}" data-href="{{ product.url }}">
     <div class="product-card-image">
       <img
         src="{% if product.image %}{{ product.image }}{% else %}/assets/images/products/placeholder.svg{% endif %}"
@@ -59,13 +59,15 @@ Prices are approximate and may vary. Amazon links are affiliate links.</p>
         <p class="product-card-desc">{{ product.description }}</p>
       </div>
       <div class="product-card-bottom">
-        <div class="product-card-bottom-left">
-          <span class="price">{{ product.price }}</span>
-          {% if product.variants and product.variants.size > 0 %}
-          <a href="{{ product.variants[0].url }}" class="btn-buy-now" target="_blank" rel="noopener noreferrer">Buy now &rarr;</a>
-          {% endif %}
-        </div>
-        <a href="{{ product.url }}" class="product-view-details">View details &rarr;</a>
+        <span class="price">{{ product.price }}</span>
+        {% if product.variants and product.variants.size > 0 %}
+          {% assign buy_url = product.variants[0].url %}
+        {% elsif product.amazon_url %}
+          {% assign buy_url = product.amazon_url %}
+        {% endif %}
+        {% if buy_url %}
+        <a href="{{ buy_url }}" class="btn-buy-now" target="_blank" rel="noopener noreferrer">Buy Now</a>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -73,6 +75,9 @@ Prices are approximate and may vary. Amazon links are affiliate links.</p>
 </div>
 
 <style>
+.product-card-h[data-href] {
+  cursor: pointer;
+}
 .shop-toolbar {
   display: flex;
   align-items: center;
@@ -165,6 +170,14 @@ Prices are approximate and may vary. Amazon links are affiliate links.</p>
   var toggle  = document.getElementById('toggle-out-of-stock');
 
   var showOutOfStock = false;
+
+  // Clickable cards — navigate to detail page unless click is on a link
+  document.querySelectorAll('.product-card-h[data-href]').forEach(function (card) {
+    card.addEventListener('click', function (e) {
+      if (e.target.closest('a')) return;
+      window.location.href = card.dataset.href;
+    });
+  });
 
   // Override the global filterCards defined in default.html so that both
   // the sidebar search and the shop search bar respect the stock toggle.

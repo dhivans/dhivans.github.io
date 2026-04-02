@@ -2,9 +2,9 @@
 layout: product
 title: "Round Rocker Switch, SPST 2-Pin, 12V DC, 10A, Black, 20mm Mini Toggle with Terminal Wires"
 description: "Upgrade your vehicle's control panel with these reliable round rocker switches. These compact 20mm switches are designed for seamless integration into cars, RVs, and automotive applications, operating at 12V DC with a robust 10A current rating. The sleek black design features a simple ON/OFF functionality with a 2-pin SPST configuration, making installation straightforward."
-category: "diy-components"
+category: "electrical-components"
 price: "From £5.99"
-image: "/assets/images/products/round-rocker-switch-spst-2-pin-12v-dc-10a-black-20mm-mini-toggle-with-terminal-w.jpg" # Add image file here
+image: "https://m.media-amazon.com/images/I/51WTqUMxNYL.jpg"
 featured: false
 hot: false
 badge: ""

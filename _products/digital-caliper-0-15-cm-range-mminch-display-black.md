@@ -4,7 +4,7 @@ title: "Digital Caliper, 0-15 cm Range, mm/inch Display, Black"
 description: "These digital callipers are an indispensable tool for precise measurement in workshops, laboratories, and construction sites. With a sleek design and large LCD display, you can easily read measurements in both millimetres and inches. The stainless steel body ensures durability, while the smooth sliding action allows for accurate readings every time."
 category: "test-equipment"
 price: "From £5.5"
-image: "/assets/images/products/digital-caliper-0-15-cm-range-mminch-display-black.jpg" # Add image file here
+image: "https://m.media-amazon.com/images/I/41EfW24TLDL.jpg"
 featured: false
 hot: false
 badge: ""

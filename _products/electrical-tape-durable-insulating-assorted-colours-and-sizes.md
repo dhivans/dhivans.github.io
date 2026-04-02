@@ -2,9 +2,9 @@
 layout: product
 title: "DST Electrical Tape, Durable, Insulating, Assorted Colours and Sizes"
 description: "Discover the versatility and durability of our electrical tape, designed for secure insulation and reliable performance in every application. Ideal for wiring, repairs, and bundling, this high-quality tape ensures safety and longevity. Available in various colours and sizes to match your specific needs, it's the perfect choice for electricians, DIY enthusiasts, and professionals alike."
-category: "diy-components"
+category: "electrical-components"
 price: "From £4"
-image: "/assets/images/products/dst-electrical-tape-durable-insulating-assorted-colours-and-sizes.jpg" # Add image file here
+image: "https://m.media-amazon.com/images/I/317OWpCl3hL.jpg"
 featured: false
 hot: false
 badge: ""

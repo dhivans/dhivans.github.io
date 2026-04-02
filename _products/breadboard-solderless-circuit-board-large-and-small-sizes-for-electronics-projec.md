@@ -2,9 +2,9 @@
 layout: product
 title: "Breadboard, Solderless Circuit Board, Large and Small Sizes, for Electronics Projects"
 description: "A breadboard is an essential tool for prototyping and testing electronic circuits. It features a grid of holes connected by internal metal strips, allowing you to quickly and easily construct temporary circuits by inserting components and interconnecting them with jumper wires."
-category: "kits"
+category: "electrical-components"
 price: "From £4.99"
-image: "/assets/images/products/breadboard-solderless-circuit-board-large-and-small-sizes-for-electronics-projec.jpg" # Add image file here
+image: "https://m.media-amazon.com/images/I/3158P4rLkFL.jpg"
 featured: false
 hot: false
 badge: ""

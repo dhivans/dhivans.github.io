@@ -2,9 +2,9 @@
 layout: product
 title: "D2F-01, 3D Printer Microswitch for Klicky Probe, Bed Levelling, Limit Switches, Filament Sensors, Mouse Repairs"
 description: "Microswitches are indispensable components in 3D printing, ensuring precise and reliable operation. These compact switches are utilised for various functions, such as klicky probe bed levelling, limit switches, and filament sensors. Their high sensitivity and durability make them ideal for detecting minute movements and positions within the intricate mechanisms of a 3D printer."
-category: "diy-components"
+category: "electrical-components"
 price: "From £3"
-image: "/assets/images/products/d2f-01-3d-printer-microswitch-for-klicky-probe-bed-levelling-limit-switches-fila.jpg" # Add image file here
+image: "https://m.media-amazon.com/images/I/410nbFPsAFL.jpg"
 images:
   - "https://m.media-amazon.com/images/I/41QPJ9n+BSL.jpg"
 featured: false

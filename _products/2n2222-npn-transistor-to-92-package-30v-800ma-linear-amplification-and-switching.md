@@ -2,9 +2,9 @@
 layout: product
 title: "2N2222 NPN Transistor, TO-92 Package, 30V 800mA, Linear Amplification and Switching"
 description: "The 2N2222 transistor is a versatile NPN bipolar transistor housed in a compact TO-92 package, perfect for electronic enthusiasts and professionals alike. This robust component operates at voltages up to 30V with a current capacity of 800mA, making it ideal for a wide range of electronic applications. Whether you need linear amplification or reliable switching capabilities, the 2N2222 delivers consistent performance."
-category: "diy-components"
+category: "electrical-components"
 price: "From £5"
-image: "/assets/images/products/2n2222-npn-transistor-to-92-package-30v-800ma-linear-amplification-and-switching.jpg" # Add image file here
+image: "https://m.media-amazon.com/images/I/41SR0KdtgIL.jpg"
 featured: false
 hot: false
 badge: ""

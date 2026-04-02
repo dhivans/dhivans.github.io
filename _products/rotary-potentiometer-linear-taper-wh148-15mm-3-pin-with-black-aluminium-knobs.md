@@ -2,9 +2,9 @@
 layout: product
 title: "Rotary Potentiometer Linear Taper, WH148, 15mm, 3-Pin, with Black Aluminium Knobs"
 description: "Upgrade your electronics projects with this comprehensive WH148 linear taper rotary potentiometer kit. Each potentiometer features a precise 15mm design with 3-pin configuration, offering multiple resistance options from 1K to 1M ohms. The set includes resistance values of 1K, 2K, 5K, 10K, 20K, 50K, 100K, 250K, and 1M, making it versatile for various applications."
-category: "diy-components"
+category: "electrical-components"
 price: "From £3"
-image: "/assets/images/products/rotary-potentiometer-linear-taper-wh148-15mm-3-pin-with-black-aluminium-knobs.jpg" # Add image file here
+image: "https://m.media-amazon.com/images/I/51YBLCsi2UL.jpg"
 images:
   - "https://m.media-amazon.com/images/I/51k2M4lBgQL.jpg"
 featured: false

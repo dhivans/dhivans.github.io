@@ -2,7 +2,7 @@
 layout: product
 title: "TTP223 1 Channel Touch Switch Module, TTP223B Capacitive Touch Sensor Button for Arduino DIY KIT"
 description: "Introducing the TTP223 Touch Switch Module, a versatile and user-friendly capacitive touch sensor button designed for Arduino and DIY projects. This compact module utilises the TTP223B 1-channel jog digital capacitive touch sensor, allowing you to add touch-based interactions to your creations with ease. Whether you're building interactive installations, smart home devices, or experimenting with innovative concepts, this module provides a seamless and intuitive touch experience."
-category: "diy-components"
+category: "electrical-components"
 price: "£2.99"
 stock: 0
 amazon_url: "https://www.amazon.co.uk/dp/B0DKR6PHKG"

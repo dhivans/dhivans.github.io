@@ -2,7 +2,7 @@
 layout: product
 title: "Cat5e UTP Ethernet Patch Cable, RJ45 to RJ45, 0.3m, Black"
 description: "Connect your network devices with reliability using this high-quality Cat5e UTP Ethernet patch cable. Measuring 0.3 metres in length, this black patch cable features RJ45 connectors on both ends, making it perfect for short-distance connections between your router, switch, patch panel, or other networking equipment. The cable comes with moulded strain relief boots that protect the connectors from damage and ensure durability during daily use."
-category: "diy-components"
+category: "electrical-components"
 price: "£4.99"
 stock: 102
 amazon_url: "https://www.amazon.co.uk/dp/B0FRZDCQRP"

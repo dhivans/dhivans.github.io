@@ -2,9 +2,9 @@
 layout: product
 title: "DST USB-C Cable, Android Charging, Fast Charger, Durable"
 description: "Upgrade your device connectivity with these sleek and durable USB cables. The 1 metre USB-A to USB-C cable in a crisp white colour allows you to seamlessly connect your USB-C devices to traditional USB-A ports. Simultaneously, the 1 metre USB-C to USB-C cable in a sophisticated black shade enables high-speed data transfer and charging between USB-C compatible devices."
-category: "diy-components"
+category: "electrical-components"
 price: "From £4"
-image: "/assets/images/products/dst-usb-c-cable-android-charging-fast-charger-durable.jpg" # Add image file here
+image: "https://m.media-amazon.com/images/I/31NxmjwC4IL.jpg"
 featured: false
 hot: false
 badge: ""

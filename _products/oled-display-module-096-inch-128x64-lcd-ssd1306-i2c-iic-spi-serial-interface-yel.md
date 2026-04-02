@@ -2,9 +2,9 @@
 layout: product
 title: "OLED Display Module, 0.96 Inch, 128x64 LCD, SSD1306 I2C IIC SPI Serial Interface, Yellow-Blue/White-Blue, 4-Pin with Pre-soldered Headers"
 description: "This versatile 0.96-inch OLED display module features a crisp 128x64 pixel resolution, perfect for Arduino projects and electronic applications. The module utilises the reliable SSD1306 driver and supports both I2C and SPI serial interfaces, offering flexible connectivity options through its 4-pin configuration. Available in striking white or blue colour variants, this display delivers excellent visibility and contrast."
-category: "diy-components"
+category: "electrical-components"
 price: "From £4.99"
-image: "/assets/images/products/oled-display-module-096-inch-128x64-lcd-ssd1306-i2c-iic-spi-serial-interface-yel.jpg" # Add image file here
+image: "https://m.media-amazon.com/images/I/51ZP2U5wPBL.jpg"
 featured: false
 hot: false
 badge: ""
