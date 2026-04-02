@@ -1,9 +1,23 @@
 #!/usr/bin/env python3
 """
-sync_products.py — Pulls live price + image data from Amazon SP-API
-and updates Jekyll product markdown files in _products/.
+sync_products.py — Pulls live data from Amazon SP-API and keeps
+Jekyll product markdown files in _products/ in sync.
 
-Requires environment variables (never hardcoded):
+What it does:
+  1. Fetches all ACTIVE listings for your seller account (includes price).
+  2. Indexes every existing _products/*.md file by ASIN.
+  3. For each listing that already has a matching .md file:
+       - Updates the price from the listings data (no separate pricing call).
+       - Updates the main image URL from the Catalog API.
+       - Skips writing the file if nothing changed.
+  4. For each listing with NO matching .md file:
+       - Calls the Catalog API to fetch title, description, and image.
+       - Generates a slug and assigns a category from title keywords.
+       - Creates a new _products/{slug}.md from the standard template.
+       - Never overwrites an existing file.
+  5. Prints a summary: checked / updated / created / unmatched.
+
+Required environment variables (never hardcoded):
   AMAZON_CLIENT_ID       — SP-API app client ID (LWA)
   AMAZON_CLIENT_SECRET   — SP-API app client secret (LWA)
   AMAZON_REFRESH_TOKEN   — LWA refresh token for your seller account
@@ -11,15 +25,15 @@ Requires environment variables (never hardcoded):
   AMAZON_SELLER_ID       — your Seller Central merchant ID
 
 Run locally:
-  export AMAZON_CLIENT_ID=...
+  export AMAZON_CLIENT_ID=...  (set all five)
   python scripts/sync_products.py
 """
 
 import os
 import re
 import sys
-import json
 import logging
+import unicodedata
 from pathlib import Path
 
 import requests
@@ -50,19 +64,35 @@ REFRESH_TOKEN  = _require_env("AMAZON_REFRESH_TOKEN")
 MARKETPLACE_ID = _require_env("AMAZON_MARKETPLACE_ID")
 SELLER_ID      = _require_env("AMAZON_SELLER_ID")
 
-# SP-API base URL — UK endpoint (eu-west-1 region)
+# SP-API base URL — UK / EU endpoint (eu-west-1 region)
 SPAPI_BASE = "https://sellingpartnerapi-eu.amazon.com"
 
-# _products/ directory (relative to this script's repo root)
+# _products/ directory (two levels up from this script)
 PRODUCTS_DIR = Path(__file__).resolve().parent.parent / "_products"
 
+# ---------------------------------------------------------------------------
+# Category keyword mapping
+# Checked in order — first match wins; falls back to "diy-components".
+# ---------------------------------------------------------------------------
+CATEGORY_RULES: list[tuple[str, list[str]]] = [
+    ("test-equipment", [
+        "multimeter", "oscilloscope", "power supply", "signal",
+        "probe", "meter", "tester",
+    ]),
+    ("kits", [
+        "kit", "starter", "bundle", "set", "pack",
+    ]),
+]
+DEFAULT_CATEGORY = "diy-components"
 
-# ---------------------------------------------------------------------------
-# Step 1 — Get a fresh LWA access token
-# ---------------------------------------------------------------------------
+
+# ===========================================================================
+# Authentication
+# ===========================================================================
+
 def get_access_token() -> str:
     """
-    Exchange the long-lived refresh token for a short-lived access token.
+    Exchange the long-lived LWA refresh token for a short-lived access token.
     POST https://api.amazon.co.uk/auth/o2/token
     """
     log.info("Fetching LWA access token …")
@@ -82,21 +112,21 @@ def get_access_token() -> str:
     return token
 
 
-# ---------------------------------------------------------------------------
-# Helpers — authenticated SP-API request
-# ---------------------------------------------------------------------------
+# ===========================================================================
+# SP-API helper
+# ===========================================================================
+
 def spapi_get(token: str, path: str, params: dict = None) -> dict:
     """
-    GET request to the SP-API with the required auth headers.
+    Authenticated GET against the SP-API.
     Raises requests.HTTPError on non-2xx responses.
     """
-    headers = {
-        "x-amz-access-token": token,
-        "Content-Type": "application/json",
-    }
     resp = requests.get(
         SPAPI_BASE + path,
-        headers=headers,
+        headers={
+            "x-amz-access-token": token,
+            "Content-Type": "application/json",
+        },
         params=params or {},
         timeout=20,
     )
@@ -104,27 +134,30 @@ def spapi_get(token: str, path: str, params: dict = None) -> dict:
     return resp.json()
 
 
-# ---------------------------------------------------------------------------
-# Step 2 — Fetch all active listings (ASINs + SKUs)
-# ---------------------------------------------------------------------------
+# ===========================================================================
+# Step 1 — Fetch all active listings (includes price, no separate pricing call)
+# ===========================================================================
+
 def fetch_active_listings(token: str) -> list[dict]:
     """
-    Uses the Listings Items endpoint to page through all ACTIVE listings
-    for this seller and marketplace.
+    Pages through all ACTIVE listings for this seller using the Listings Items
+    endpoint.  We request both 'summaries' (asin, title) and 'prices'
+    (listingPrice) so we never need to call the competitive pricing endpoint.
 
-    Returns a list of dicts: [{"asin": ..., "sku": ..., "title": ...}, ...]
+    GET /listings/2021-08-01/items/{sellerId}
+      ?marketplaceIds=...&includedData=summaries,prices&status=ACTIVE
 
-    SP-API docs:
-      GET /listings/2021-08-01/items/{sellerId}
+    Returns a list of dicts:
+      [{"asin": ..., "sku": ..., "title": ..., "price": "£9.99"}, ...]
     """
-    log.info("Fetching active listings …")
-    listings = []
+    log.info("Fetching active listings (summaries + prices) …")
+    listings: list[dict] = []
     page_token = None
 
     while True:
-        params = {
+        params: dict = {
             "marketplaceIds": MARKETPLACE_ID,
-            "includedData":   "summaries",
+            "includedData":   "summaries,prices",
             "status":         "ACTIVE",
             "pageSize":       20,
         }
@@ -132,23 +165,31 @@ def fetch_active_listings(token: str) -> list[dict]:
             params["pageToken"] = page_token
 
         try:
-            data = spapi_get(
-                token,
-                f"/listings/2021-08-01/items/{SELLER_ID}",
-                params,
-            )
+            data = spapi_get(token, f"/listings/2021-08-01/items/{SELLER_ID}", params)
         except requests.HTTPError as exc:
             log.error("Failed to fetch listings page: %s", exc)
             break
 
         for item in data.get("items", []):
             sku = item.get("sku", "")
+
+            # summaries — asin + title
             summaries = item.get("summaries", [{}])
-            summary = summaries[0] if summaries else {}
-            asin = summary.get("asin", "")
+            summary   = summaries[0] if summaries else {}
+            asin  = summary.get("asin", "")
             title = summary.get("itemName", "")
-            if asin:
-                listings.append({"asin": asin, "sku": sku, "title": title})
+            if not asin:
+                continue
+
+            # prices — our own listing price (avoids pricing API permission issues)
+            price_str = _extract_price(item.get("prices", []))
+
+            listings.append({
+                "asin":  asin,
+                "sku":   sku,
+                "title": title,
+                "price": price_str,   # may be None if not returned
+            })
 
         page_token = data.get("pagination", {}).get("nextToken")
         if not page_token:
@@ -158,114 +199,168 @@ def fetch_active_listings(token: str) -> list[dict]:
     return listings
 
 
-# ---------------------------------------------------------------------------
-# Step 3 — Fetch live price for a single ASIN
-# ---------------------------------------------------------------------------
-def fetch_price(token: str, asin: str) -> str | None:
+def _extract_price(prices_list: list) -> str | None:
     """
-    Uses the Product Pricing endpoint to get the lowest listed price for
-    a given ASIN.
+    Parses the 'prices' array from a Listings Items response item and returns
+    a formatted price string like "£9.99", or None if unavailable.
 
-    GET /products/pricing/2022-05-01/items/{asin}/offers
-    Returns a formatted price string like "£9.99", or None on failure.
+    The prices array contains objects with a 'listingPrice' sub-object:
+      {"listingPrice": {"amount": 9.99, "currencyCode": "GBP"}, ...}
     """
-    try:
-        data = spapi_get(
-            token,
-            f"/products/pricing/2022-05-01/items/{asin}/offers",
-            {
-                "marketplaceId": MARKETPLACE_ID,
-                "itemCondition": "New",
-            },
-        )
-        offers = (
-            data.get("payload", {})
-                .get("Offers", [])
-        )
-        if not offers:
-            return None
-
-        # Pick the lowest listing price across all offers
-        prices = []
-        for offer in offers:
-            lp = offer.get("ListingPrice", {})
-            amount = lp.get("Amount")
-            currency = lp.get("CurrencyCode", "GBP")
-            if amount is not None:
-                prices.append((float(amount), currency))
-
-        if not prices:
-            return None
-
-        amount, currency = min(prices, key=lambda x: x[0])
-        symbol = "£" if currency == "GBP" else currency + " "
-        return f"{symbol}{amount:.2f}"
-
-    except requests.HTTPError as exc:
-        log.warning("Price fetch failed for ASIN %s: %s", asin, exc)
-        return None
+    for price_obj in prices_list:
+        lp = price_obj.get("listingPrice", {})
+        amount   = lp.get("amount")
+        currency = lp.get("currencyCode", "GBP")
+        if amount is not None:
+            symbol = "£" if currency == "GBP" else f"{currency} "
+            return f"{symbol}{float(amount):.2f}"
+    return None
 
 
-# ---------------------------------------------------------------------------
-# Step 4 — Fetch main product image for a single ASIN
-# ---------------------------------------------------------------------------
-def fetch_image(token: str, asin: str) -> str | None:
+# ===========================================================================
+# Step 2 — Catalog Items API (image + description + title for new files)
+# ===========================================================================
+
+def fetch_catalog_data(token: str, asin: str) -> dict:
     """
-    Uses the Catalog Items API (2022-04-01) to retrieve the primary
-    product image URL.
+    Calls the Catalog Items API to get the main image, product description,
+    and title for a given ASIN.
 
     GET /catalog/2022-04-01/items/{asin}
-    Returns an https://m.media-amazon.com/... URL, or None on failure.
+      ?marketplaceIds=...&includedData=images,attributes,summaries
+
+    Returns a dict:
+      {
+        "image":       "https://m.media-amazon.com/..." | None,
+        "title":       "Product Title"                  | None,
+        "description": "First 2-3 sentences."           | "",
+      }
     """
+    result = {"image": None, "title": None, "description": ""}
     try:
         data = spapi_get(
             token,
             f"/catalog/2022-04-01/items/{asin}",
             {
                 "marketplaceIds": MARKETPLACE_ID,
-                "includedData":   "images",
+                "includedData":   "images,attributes,summaries",
             },
         )
-        images = data.get("images", [])
-        for image_set in images:
-            for img in image_set.get("images", []):
-                if img.get("variant") == "MAIN":
-                    return img.get("link")
-        return None
-
     except requests.HTTPError as exc:
-        log.warning("Image fetch failed for ASIN %s: %s", asin, exc)
-        return None
+        log.warning("Catalog fetch failed for ASIN %s: %s", asin, exc)
+        return result
+
+    # -- Image --
+    for image_set in data.get("images", []):
+        for img in image_set.get("images", []):
+            if img.get("variant") == "MAIN":
+                result["image"] = img.get("link")
+                break
+        if result["image"]:
+            break
+
+    # -- Title (from summaries) --
+    summaries = data.get("summaries", [{}])
+    if summaries:
+        result["title"] = summaries[0].get("itemName") or summaries[0].get("itemClassificationName")
+
+    # -- Description (from attributes) --
+    attrs = data.get("attributes", {})
+
+    # Try product_description first, then bullet_points as fallback
+    desc_list   = attrs.get("product_description", [])
+    bullet_list = attrs.get("bullet_point", [])
+
+    raw_desc = ""
+    if desc_list:
+        raw_desc = desc_list[0].get("value", "") if isinstance(desc_list[0], dict) else str(desc_list[0])
+    elif bullet_list:
+        # Join up to 3 bullet points into a short description
+        bullets = []
+        for bp in bullet_list[:3]:
+            val = bp.get("value", "") if isinstance(bp, dict) else str(bp)
+            if val:
+                bullets.append(val.rstrip(".") + ".")
+        raw_desc = " ".join(bullets)
+
+    result["description"] = _trim_to_sentences(raw_desc, max_sentences=3)
+    return result
 
 
-# ---------------------------------------------------------------------------
-# Step 5 — Parse and index existing markdown files
-# ---------------------------------------------------------------------------
-def parse_front_matter(text: str) -> tuple[dict, str, str]:
+def _trim_to_sentences(text: str, max_sentences: int = 3) -> str:
+    """Trims a long description string to at most max_sentences sentences."""
+    if not text:
+        return ""
+    # Split on sentence-ending punctuation followed by whitespace or end-of-string
+    sentences = re.split(r"(?<=[.!?])\s+", text.strip())
+    trimmed = " ".join(sentences[:max_sentences])
+    return trimmed
+
+
+# ===========================================================================
+# Step 3 — Slug and category helpers
+# ===========================================================================
+
+def make_slug(title: str) -> str:
     """
-    Splits a markdown file into (front_matter_text, body).
-    Returns (raw_fm_str, body_str) — keeps the raw front matter as a string
-    so we can do targeted in-place edits without a full YAML round-trip
-    (which would destroy comments and formatting).
+    Converts a product title into a URL-safe file slug.
+    e.g. "ESP32 WROOM-32 Dev Board (Wi-Fi)" → "esp32-wroom-32-dev-board-wi-fi"
     """
-    match = re.match(r"^---\s*\n(.*?)\n---\s*\n(.*)$", text, re.DOTALL)
-    if not match:
+    # Normalise unicode characters to ASCII equivalents
+    title = unicodedata.normalize("NFKD", title)
+    title = title.encode("ascii", "ignore").decode("ascii")
+    title = title.lower()
+    # Replace any non-alphanumeric character (except hyphens) with a hyphen
+    title = re.sub(r"[^a-z0-9]+", "-", title)
+    # Collapse multiple hyphens and strip leading/trailing hyphens
+    title = re.sub(r"-{2,}", "-", title).strip("-")
+    # Truncate to 80 characters at a word boundary
+    if len(title) > 80:
+        title = title[:80].rsplit("-", 1)[0]
+    return title
+
+
+def assign_category(title: str) -> str:
+    """
+    Returns a category string based on keyword matches in the product title.
+    Falls back to DEFAULT_CATEGORY if no keywords match.
+    """
+    lower = title.lower()
+    for category, keywords in CATEGORY_RULES:
+        if any(kw in lower for kw in keywords):
+            return category
+    return DEFAULT_CATEGORY
+
+
+# ===========================================================================
+# Step 4 — Parse and index existing .md files
+# ===========================================================================
+
+def parse_front_matter(text: str) -> tuple[str, str, str]:
+    """
+    Splits a Jekyll markdown file into (full_match, front_matter_raw, body).
+    Returns ("", "", text) if no front matter delimiters are found.
+    Keeping the raw FM string avoids a full YAML round-trip that would strip
+    comments and reorder keys.
+    """
+    m = re.match(r"^---\s*\n(.*?)\n---\s*\n(.*)$", text, re.DOTALL)
+    if not m:
         return "", "", text
-    return match.group(0), match.group(1), match.group(2)
+    return m.group(0), m.group(1), m.group(2)
 
 
 def load_product_files() -> dict[str, dict]:
     """
-    Reads every .md in _products/ and builds a lookup:
+    Reads every .md in _products/ and builds an ASIN → file lookup:
       {
-        asin_string: {
-            "path":     Path object,
-            "type":     "single" | "variant",
-            "variant_index": int | None,   # for variant files
+        "B0DJPZHZ1X": {
+            "path":          Path("_products/esp32-wroom-32.md"),
+            "type":          "single" | "variant",
+            "variant_index": None | int,
         },
         ...
       }
-    Multiple ASINs from the same file each get their own entry.
+    Files with multiple variants each register an entry per ASIN.
     """
     index: dict[str, dict] = {}
 
@@ -275,42 +370,46 @@ def load_product_files() -> dict[str, dict]:
         if not fm_raw:
             continue
 
-        # Single top-level asin:
+        # Single top-level  asin: B0XXXXXXXX
         single = re.search(r"^asin:\s*[\"']?([A-Z0-9]{10})[\"']?", fm_raw, re.MULTILINE)
         if single:
             index[single.group(1)] = {"path": md_path, "type": "single", "variant_index": None}
             continue
 
-        # Variant ASINs (list items with `asin:` indented)
-        variant_asins = re.findall(r"^\s+-\s+.*?asin:\s*[\"']?([A-Z0-9]{10})[\"']?", fm_raw, re.MULTILINE)
+        # Variant list items:  - asin: B0XXXXXXXX  (indented)
+        variant_asins = re.findall(
+            r"^\s+-\s+.*?asin:\s*[\"']?([A-Z0-9]{10})[\"']?",
+            fm_raw,
+            re.MULTILINE,
+        )
         for i, asin in enumerate(variant_asins):
             index[asin] = {"path": md_path, "type": "variant", "variant_index": i}
 
-    log.info("Indexed %d ASINs across %d product files.", len(index), len({v["path"] for v in index.values()}))
+    log.info(
+        "Indexed %d ASINs across %d product files.",
+        len(index),
+        len({v["path"] for v in index.values()}),
+    )
     return index
 
 
-# ---------------------------------------------------------------------------
-# Step 6 — Update a markdown file's front matter in-place (string surgery)
-# ---------------------------------------------------------------------------
+# ===========================================================================
+# Step 5 — In-place front matter surgery (update existing files)
+# ===========================================================================
+
 def update_price_in_fm(fm_raw: str, new_price: str, variant_index: int | None) -> str:
-    """
-    Replaces the price value in the raw front matter string.
-    - For single-ASIN files: updates the top-level `price:` field.
-    - For variant files: updates the price within the Nth variant block.
-    """
+    """Updates the price field in the raw front matter string."""
     if variant_index is None:
-        # Replace top-level price: "..." line
+        # Top-level price: "..."
         return re.sub(
-            r'^(price:\s*)["\']?.*?["\']?\s*$',
-            lambda m: f'price: "{new_price}"',
+            r'^(price:\s*)["\']?[^"\'#\n]*["\']?',
+            f'price: "{new_price}"',
             fm_raw,
             count=1,
             flags=re.MULTILINE,
         )
     else:
-        # Find and replace the price inside the Nth variant
-        # Variants start with "  - label:" or "  - asin:"
+        # Price inside the Nth variant block (indented 4 spaces)
         variant_blocks = list(re.finditer(
             r"(  - (?:label|asin):.*?)(?=\n  - (?:label|asin):|\Z)",
             fm_raw,
@@ -318,29 +417,28 @@ def update_price_in_fm(fm_raw: str, new_price: str, variant_index: int | None) -
         ))
         if variant_index >= len(variant_blocks):
             return fm_raw
-        block_match = variant_blocks[variant_index]
-        old_block = block_match.group(0)
+        bm = variant_blocks[variant_index]
         new_block = re.sub(
-            r'(    price:\s*)["\']?.*?["\']?(\s*)$',
-            lambda m: f'    price: "{new_price}"',
-            old_block,
+            r'(    price:\s*)["\']?[^"\'#\n]*["\']?',
+            f'    price: "{new_price}"',
+            bm.group(0),
             count=1,
             flags=re.MULTILINE,
         )
-        return fm_raw[: block_match.start()] + new_block + fm_raw[block_match.end():]
+        return fm_raw[: bm.start()] + new_block + fm_raw[bm.end():]
 
 
 def update_image_in_fm(fm_raw: str, new_image: str) -> str:
     """
-    Replaces the top-level `image:` field (always at top level, not per-variant).
-    If the line has a trailing comment (e.g. # Add image file here), it is preserved.
+    Updates the top-level image: field.
+    Preserves any trailing comment (e.g. # Add image file here).
     """
     def replacer(m):
-        comment = m.group(2) or ""
+        comment = m.group(1) or ""
         return f'image: "{new_image}"{comment}'
 
     return re.sub(
-        r'^(image:\s*)["\']?.*?["\']?(\s*#.*?)?\s*$',
+        r'^image:\s*["\']?[^"\'#\n]*["\']?(\s*#.*)?$',
         replacer,
         fm_raw,
         count=1,
@@ -348,89 +446,174 @@ def update_image_in_fm(fm_raw: str, new_image: str) -> str:
     )
 
 
-def write_updated_file(md_path: Path, fm_raw: str, body: str, full_text: str) -> None:
-    """Reconstructs and writes the markdown file."""
-    new_text = f"---\n{fm_raw}\n---\n{body}"
-    md_path.write_text(new_text, encoding="utf-8")
+def write_updated_file(md_path: Path, fm_raw: str, body: str) -> None:
+    """Writes the reconstructed markdown file back to disk."""
+    md_path.write_text(f"---\n{fm_raw}\n---\n{body}", encoding="utf-8")
 
 
-# ---------------------------------------------------------------------------
+# ===========================================================================
+# Step 6 — Create a new product file for an unmatched ASIN
+# ===========================================================================
+
+def _yaml_str(value: str) -> str:
+    """Wraps a value in double quotes, escaping any embedded double quotes."""
+    return '"' + value.replace('"', '\\"') + '"'
+
+
+def create_product_file(
+    asin: str,
+    price: str | None,
+    catalog: dict,
+) -> Path | None:
+    """
+    Generates a new _products/{slug}.md from the standard template.
+    Returns the Path of the created file, or None if the file already exists
+    (safety guard) or the slug could not be determined.
+    """
+    title = catalog.get("title") or ""
+    if not title:
+        # Fall back to the ASIN as a placeholder title
+        title = f"Product {asin}"
+
+    slug = make_slug(title)
+    if not slug:
+        log.warning("Could not generate slug for ASIN %s (title: %r)", asin, title)
+        return None
+
+    md_path = PRODUCTS_DIR / f"{slug}.md"
+    if md_path.exists():
+        # Never overwrite — this ASIN just wasn't indexed (e.g. missing asin: field)
+        log.warning("File already exists, skipping creation: %s", md_path.name)
+        return None
+
+    description = catalog.get("description") or ""
+    image       = catalog.get("image")   or ""
+    category    = assign_category(title)
+    price_str   = price or ""
+    amazon_url  = f"https://www.amazon.co.uk/dp/{asin}"
+
+    # Build the description line — add a TODO comment if empty
+    if description:
+        desc_line = f"description: {_yaml_str(description)}"
+    else:
+        desc_line = 'description: "" # TODO: add description'
+
+    content = f"""\
+---
+layout: product
+title: {_yaml_str(title)}
+{desc_line}
+category: "{category}"
+price: "{price_str}"
+amazon_url: "{amazon_url}"
+asin: "{asin}"
+image: "{image}"
+featured: false
+hot: false
+badge: ""
+tags: []
+---
+
+{description}
+"""
+
+    md_path.write_text(content, encoding="utf-8")
+    return md_path
+
+
+# ===========================================================================
 # Main
-# ---------------------------------------------------------------------------
+# ===========================================================================
+
 def main():
-    token   = get_access_token()
+    token    = get_access_token()
     listings = fetch_active_listings(token)
     asin_index = load_product_files()
 
-    checked  = 0
-    updated  = 0
-    unmatched: list[str] = []
+    checked   = 0
+    updated   = 0
+    created   = 0
+    no_price  = 0
+    unmatched_no_catalog: list[str] = []
 
-    # Track which files we've already fetched an image for (one fetch per file,
-    # using the first variant's ASIN as the representative)
+    # Cache: md_path → image URL (one Catalog API call per file, not per ASIN)
     image_cache: dict[Path, str | None] = {}
 
     for listing in listings:
-        asin = listing["asin"]
+        asin  = listing["asin"]
+        price = listing["price"]   # extracted from listings data — no pricing API call
         checked += 1
 
-        if asin not in asin_index:
-            log.debug("No markdown file for ASIN %s (%s)", asin, listing.get("title", ""))
-            unmatched.append(asin)
-            continue
+        # ----------------------------------------------------------------
+        # Case A — existing .md file found: update price + image
+        # ----------------------------------------------------------------
+        if asin in asin_index:
+            entry   = asin_index[asin]
+            md_path = entry["path"]
+            v_idx   = entry["variant_index"]
 
-        entry   = asin_index[asin]
-        md_path = entry["path"]
-        v_idx   = entry["variant_index"]
+            if price is None:
+                log.warning("No price in listings data for %s — skipping update.", asin)
+                no_price += 1
+                continue
 
-        # -- Fetch live price --
-        new_price = fetch_price(token, asin)
-        if new_price is None:
-            log.warning("Could not get price for %s — skipping.", asin)
-            continue
+            # Fetch image via Catalog API (cached per file)
+            if md_path not in image_cache:
+                cat = fetch_catalog_data(token, asin)
+                image_cache[md_path] = cat["image"]
+            new_image = image_cache[md_path]
 
-        # -- Fetch image (cached per file) --
-        if md_path not in image_cache:
-            image_cache[md_path] = fetch_image(token, asin)
-        new_image = image_cache[md_path]
+            original = md_path.read_text(encoding="utf-8")
+            _, fm_raw, body = parse_front_matter(original)
+            if not fm_raw:
+                log.warning("Could not parse front matter in %s", md_path.name)
+                continue
 
-        # -- Read current file --
-        original = md_path.read_text(encoding="utf-8")
-        _, fm_raw, body = parse_front_matter(original)
-        if not fm_raw:
-            log.warning("Could not parse front matter in %s", md_path.name)
-            continue
+            modified_fm = update_price_in_fm(fm_raw, price, v_idx)
+            if new_image and new_image.startswith("https://"):
+                modified_fm = update_image_in_fm(modified_fm, new_image)
 
-        modified_fm = fm_raw
+            if modified_fm == fm_raw:
+                log.info("No change: %s  (ASIN %s)", md_path.name, asin)
+                continue
 
-        # -- Update price --
-        modified_fm = update_price_in_fm(modified_fm, new_price, v_idx)
+            write_updated_file(md_path, modified_fm, body)
+            log.info("Updated  %s  (ASIN %s)  price=%s", md_path.name, asin, price)
+            updated += 1
 
-        # -- Update image (only if we got one and it's an Amazon URL) --
-        if new_image and new_image.startswith("https://"):
-            modified_fm = update_image_in_fm(modified_fm, new_image)
+        # ----------------------------------------------------------------
+        # Case B — no matching .md file: create it
+        # ----------------------------------------------------------------
+        else:
+            log.info("Creating new file for ASIN %s …", asin)
+            catalog = fetch_catalog_data(token, asin)
 
-        # -- Only write if something actually changed --
-        if modified_fm == fm_raw:
-            log.info("No change for %s (ASIN %s)", md_path.name, asin)
-            continue
+            if not catalog["title"] and not catalog["image"]:
+                log.warning("Catalog returned no data for ASIN %s — skipping.", asin)
+                unmatched_no_catalog.append(asin)
+                continue
 
-        write_updated_file(md_path, modified_fm, body, original)
-        log.info("Updated  %s  (ASIN %s)  price=%s", md_path.name, asin, new_price)
-        updated += 1
+            new_file = create_product_file(asin, price, catalog)
+            if new_file:
+                log.info("Created  %s  (ASIN %s)", new_file.name, asin)
+                created += 1
+            else:
+                unmatched_no_catalog.append(asin)
 
-    # ---------------------------------------------------------------------------
+    # ----------------------------------------------------------------
     # Summary
-    # ---------------------------------------------------------------------------
-    print("\n" + "=" * 60)
-    print(f"  Products checked : {checked}")
-    print(f"  Files updated    : {updated}")
-    print(f"  Unmatched ASINs  : {len(unmatched)}")
-    if unmatched:
-        print("\n  ASINs with no matching markdown file:")
-        for a in unmatched:
+    # ----------------------------------------------------------------
+    print("\n" + "=" * 62)
+    print(f"  Products checked          : {checked}")
+    print(f"  Existing files updated    : {updated}")
+    print(f"  New files created         : {created}")
+    print(f"  Skipped (no price data)   : {no_price}")
+    print(f"  Skipped (no catalog data) : {len(unmatched_no_catalog)}")
+    if unmatched_no_catalog:
+        print("\n  ASINs with no catalog data (may need manual files):")
+        for a in unmatched_no_catalog:
             print(f"    {a}")
-    print("=" * 60)
+    print("=" * 62)
 
 
 if __name__ == "__main__":
