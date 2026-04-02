@@ -141,23 +141,27 @@ def spapi_get(token: str, path: str, params: dict = None) -> dict:
 def fetch_active_listings(token: str) -> list[dict]:
     """
     Pages through all ACTIVE listings for this seller using the Listings Items
-    endpoint.  We request both 'summaries' (asin, title) and 'prices'
+    endpoint.  We request both 'summaries' (asin, title) and 'offers'
     (listingPrice) so we never need to call the competitive pricing endpoint.
 
+    Valid includedData values for 2021-08-01:
+      summaries, attributes, offers, issues, fulfillmentAvailability, procurement
+    Note: 'prices' is NOT a valid value here — it causes a 400 error.
+
     GET /listings/2021-08-01/items/{sellerId}
-      ?marketplaceIds=...&includedData=summaries,prices&status=ACTIVE
+      ?marketplaceIds=...&includedData=summaries,offers&status=ACTIVE
 
     Returns a list of dicts:
       [{"asin": ..., "sku": ..., "title": ..., "price": "£9.99"}, ...]
     """
-    log.info("Fetching active listings (summaries + prices) …")
+    log.info("Fetching active listings (summaries + offers) …")
     listings: list[dict] = []
     page_token = None
 
     while True:
         params: dict = {
             "marketplaceIds": MARKETPLACE_ID,
-            "includedData":   "summaries,prices",
+            "includedData":   "summaries,offers",
             "status":         "ACTIVE",
             "pageSize":       20,
         }
@@ -181,8 +185,8 @@ def fetch_active_listings(token: str) -> list[dict]:
             if not asin:
                 continue
 
-            # prices — our own listing price (avoids pricing API permission issues)
-            price_str = _extract_price(item.get("prices", []))
+            # offers — our own listing price (avoids pricing API permission issues)
+            price_str = _extract_price(item.get("offers", []))
 
             listings.append({
                 "asin":  asin,
@@ -199,22 +203,40 @@ def fetch_active_listings(token: str) -> list[dict]:
     return listings
 
 
-def _extract_price(prices_list: list) -> str | None:
+def _extract_price(offers_list: list) -> str | None:
     """
-    Parses the 'prices' array from a Listings Items response item and returns
-    a formatted price string like "£9.99", or None if unavailable.
+    Parses the 'offers' array from a Listings Items 2021-08-01 response and
+    returns a formatted price string like "£9.99", or None if unavailable.
 
-    The prices array contains objects with a 'listingPrice' sub-object:
-      {"listingPrice": {"amount": 9.99, "currencyCode": "GBP"}, ...}
+    The offers array structure:
+      [{"marketplaceId": "...", "offerType": "B2C",
+        "price": {"listingPrice": {"amount": 9.99, "currencyCode": "GBP"}}}]
+
+    We prefer the B2C offer; fall back to the first offer if no B2C entry.
     """
-    for price_obj in prices_list:
-        lp = price_obj.get("listingPrice", {})
+    b2c_offer = None
+    first_offer = None
+
+    for offer in offers_list:
+        price_block = offer.get("price", {})
+        lp = price_block.get("listingPrice", {})
         amount   = lp.get("amount")
         currency = lp.get("currencyCode", "GBP")
-        if amount is not None:
-            symbol = "£" if currency == "GBP" else f"{currency} "
-            return f"{symbol}{float(amount):.2f}"
-    return None
+        if amount is None:
+            continue
+        entry = (float(amount), currency)
+        if first_offer is None:
+            first_offer = entry
+        if offer.get("offerType") == "B2C":
+            b2c_offer = entry
+            break  # found preferred offer
+
+    chosen = b2c_offer or first_offer
+    if chosen is None:
+        return None
+    amount, currency = chosen
+    symbol = "£" if currency == "GBP" else f"{currency} "
+    return f"{symbol}{amount:.2f}"
 
 
 # ===========================================================================
