@@ -14,26 +14,37 @@ variants:
     asin: "B0F2ZGGHVG"
     price: "£4.99"
     url: "https://www.amazon.co.uk/dp/B0F2ZGGHVG"
+    image: "https://m.media-amazon.com/images/I/51ZP2U5wPBL.jpg"
+    stock: 0
   - label: "1, White, 0.96'"
     asin: "B0F2ZFMPR6"
     price: "£4.99"
     url: "https://www.amazon.co.uk/dp/B0F2ZFMPR6"
+    image: "https://m.media-amazon.com/images/I/517HwwWGkOL.jpg"
+    stock: 0
   - label: "1, Yellow, 0.96'"
     asin: "B0F2ZFZWVW"
     price: "£4.99"
     url: "https://www.amazon.co.uk/dp/B0F2ZFZWVW"
+    image: "https://m.media-amazon.com/images/I/51ZP2U5wPBL.jpg"
+    stock: 0
   - label: "3, Blue, 0.96'"
     asin: "B0F2ZDJ672"
     price: "£12.99"
     url: "https://www.amazon.co.uk/dp/B0F2ZDJ672"
+    image: "https://m.media-amazon.com/images/I/51ZP2U5wPBL.jpg"
+    stock: 0
   - label: "3, White, 0.96'"
     asin: "B0F2ZD243Y"
     price: "£12.99"
     url: "https://www.amazon.co.uk/dp/B0F2ZD243Y"
+    image: "https://m.media-amazon.com/images/I/517HwwWGkOL.jpg"
+    stock: 0
   - label: "3, Yellow, 0.96'"
     asin: "B0F2ZF916M"
     price: "£12.99"
     url: "https://www.amazon.co.uk/dp/B0F2ZF916M"
+    image: "https://m.media-amazon.com/images/I/51ZP2U5wPBL.jpg"
+    stock: 0
 ---
-
 This versatile 0.96-inch OLED display module features a crisp 128x64 pixel resolution, perfect for Arduino projects and electronic applications. The module utilises the reliable SSD1306 driver and supports both I2C and SPI serial interfaces, offering flexible connectivity options through its 4-pin configuration. Available in striking white or blue colour variants, this display delivers excellent visibility and contrast. The pre-soldered pin headers save time and effort during installation, allowing you to start your project straight away. The compact dimensions and straightforward interface make it ideal for creating user interfaces, displaying sensor data, or adding visual feedback to your electronics projects. Compatible with various microcontrollers and development boards, this OLED module serves as an essential component for hobbyists, makers, and electronics enthusiasts looking to add a clear, readable display to their creations.

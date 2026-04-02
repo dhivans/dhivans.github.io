@@ -143,30 +143,24 @@ def spapi_get(token: str, path: str, params: dict = None) -> dict:
 # Step 1 — Fetch all active listings (title + price in one call)
 # ===========================================================================
 
-def fetch_active_listings(token: str) -> list[dict]:
+def fetch_active_listings(token: str) -> tuple[list[dict], set[str]]:
     """
     Pages through all ACTIVE listings for this seller.
 
-    We request 'summaries' (asin, title) and 'offers' (our listing price).
-
-    Valid includedData values for /listings/2021-08-01/items/{sellerId}:
-      summaries | attributes | offers | issues | fulfillmentAvailability | procurement
-    Note: 'prices' is NOT valid here — it causes a 400 error.
-
-    GET /listings/2021-08-01/items/{sellerId}
-      ?marketplaceIds=...&includedData=summaries,offers&status=ACTIVE
-
-    Returns a list of dicts:
-      [{"asin": ..., "sku": ..., "title": ..., "price": "£9.99"}, ...]
+    Returns (listings, parent_asins) where:
+      listings     — purchasable child ASINs with price/image data
+      parent_asins — ASINs with no offers (variation-family parents).
+                     Any .md file found for these should be deleted.
     """
     log.info("Fetching active listings (summaries + offers) …")
     listings: list[dict] = []
+    parent_asins: set[str] = set()
     page_token = None
 
     while True:
         params: dict = {
             "marketplaceIds": MARKETPLACE_ID,
-            "includedData":   "summaries,offers",
+            "includedData":   "summaries,offers,fulfillmentAvailability",
             "status":         "ACTIVE",
             "pageSize":       20,
         }
@@ -190,22 +184,43 @@ def fetch_active_listings(token: str) -> list[dict]:
             if not asin:
                 continue
 
+            offers = item.get("offers", [])
+            if not offers:
+                # Variation-family parent: not purchasable, no SKU we own.
+                # Track it so main() can delete any stale .md file for it.
+                parent_asins.add(asin)
+                continue
+
             # offers — our own listing price (no separate pricing API call needed)
-            price_str = _extract_price(item.get("offers", []))
+            price_str = _extract_price(offers)
+
+            # mainImage — Amazon CDN URL for the product image
+            image_url = summary.get("mainImage", {}).get("link", "")
+
+            # fulfillmentAvailability — sum quantities across all channels
+            # (DEFAULT = merchant-fulfilled, AMAZON = FBA)
+            stock = sum(
+                a.get("quantity", 0)
+                for a in item.get("fulfillmentAvailability", [])
+                if a.get("quantity") is not None
+            )
 
             listings.append({
                 "asin":  asin,
                 "sku":   sku,
                 "title": title,
                 "price": price_str,   # may be None if listing has no active offer
+                "image": image_url,   # may be "" if no image in API response
+                "stock": stock,       # total units available (0 = out of stock)
             })
 
         page_token = data.get("pagination", {}).get("nextToken")
         if not page_token:
             break
 
-    log.info("Found %d active listings.", len(listings))
-    return listings
+    log.info("Found %d purchasable listings, %d parent ASINs skipped.",
+             len(listings), len(parent_asins))
+    return listings, parent_asins
 
 
 def _extract_price(offers_list: list) -> str | None:
@@ -224,7 +239,7 @@ def _extract_price(offers_list: list) -> str | None:
     fallback: tuple | None = None
 
     for offer in offers_list:
-        lp = offer.get("price", {}).get("listingPrice", {})
+        lp = offer.get("price", {})
         amount   = lp.get("amount")
         currency = lp.get("currencyCode", "GBP")
         if amount is None:
@@ -303,9 +318,16 @@ def load_product_files() -> dict[str, dict]:
         },
         ...
       }
-    Files with multiple variants each register an entry per ASIN.
+
+    Two-pass approach:
+      Pass 1 — index all consolidated variant files (variants: block with
+               indented  asin:  entries).
+      Pass 2 — index single-asin files, but delete any whose ASIN is already
+               covered by a consolidated variant file (they are duplicates
+               created by a previous script run).
     """
     index: dict[str, dict] = {}
+    single_files: list[tuple[Path, str]] = []
 
     for md_path in sorted(PRODUCTS_DIR.glob("*.md")):
         text = md_path.read_text(encoding="utf-8")
@@ -313,20 +335,37 @@ def load_product_files() -> dict[str, dict]:
         if not fm_raw:
             continue
 
-        # Single top-level  asin: B0XXXXXXXX
+        # Single top-level  asin: B0XXXXXXXX  (no leading spaces)
         single = re.search(r"^asin:\s*[\"']?([A-Z0-9]{10})[\"']?", fm_raw, re.MULTILINE)
         if single:
-            index[single.group(1)] = {"path": md_path, "type": "single", "variant_index": None}
+            single_files.append((md_path, single.group(1)))
             continue
 
-        # Variant list items:  - asin: B0XXXXXXXX  (indented)
+        # Variant files: asin: appears indented under a variants: block.
+        # Supports both  "- label: ...\n    asin: ..."  and  "- asin: ..."  formats.
         variant_asins = re.findall(
-            r"^\s+-\s+.*?asin:\s*[\"']?([A-Z0-9]{10})[\"']?",
+            r"^\s{2,}asin:\s*[\"']?([A-Z0-9]{10})[\"']?",
             fm_raw,
             re.MULTILINE,
         )
         for i, asin in enumerate(variant_asins):
             index[asin] = {"path": md_path, "type": "variant", "variant_index": i}
+
+    # Pass 2: index single files; delete duplicates already covered by a variant file.
+    deleted = 0
+    for md_path, asin in single_files:
+        if asin in index:
+            md_path.unlink()
+            log.info(
+                "Deleted duplicate file %s (ASIN %s is a variant in %s)",
+                md_path.name, asin, index[asin]["path"].name,
+            )
+            deleted += 1
+        else:
+            index[asin] = {"path": md_path, "type": "single", "variant_index": None}
+
+    if deleted:
+        log.info("Cleaned up %d duplicate single-product files.", deleted)
 
     log.info(
         "Indexed %d ASINs across %d product files.",
@@ -370,6 +409,106 @@ def update_price_in_fm(fm_raw: str, new_price: str, variant_index: int | None) -
         return fm_raw[: bm.start()] + new_block + fm_raw[bm.end():]
 
 
+def update_stock_in_fm(fm_raw: str, stock: int, variant_index: int | None) -> str:
+    """Updates (or inserts) the stock field in the raw front matter string."""
+    if variant_index is None:
+        if re.search(r'^stock:', fm_raw, re.MULTILINE):
+            return re.sub(
+                r'^(stock:\s*)\d*',
+                f'stock: {stock}',
+                fm_raw, count=1, flags=re.MULTILINE,
+            )
+        # Insert after price: line
+        return re.sub(
+            r'^(price:.*)',
+            rf'\1\nstock: {stock}',
+            fm_raw, count=1, flags=re.MULTILINE,
+        )
+    else:
+        variant_blocks = list(re.finditer(
+            r"(  - (?:label|asin):.*?)(?=\n  - (?:label|asin):|\Z)",
+            fm_raw, re.DOTALL,
+        ))
+        if variant_index >= len(variant_blocks):
+            return fm_raw
+        bm = variant_blocks[variant_index]
+        block = bm.group(0)
+        if re.search(r'^\s{4}stock:', block, re.MULTILINE):
+            new_block = re.sub(
+                r'(    stock:\s*)\d*',
+                f'    stock: {stock}',
+                block, count=1, flags=re.MULTILINE,
+            )
+        else:
+            new_block = block.rstrip() + f'\n    stock: {stock}'
+        return fm_raw[: bm.start()] + new_block + fm_raw[bm.end():]
+
+
+def update_url_in_fm(fm_raw: str, asin: str, variant_index: int | None) -> str:
+    """Ensures the Amazon product URL uses the clean https://www.amazon.co.uk/dp/{ASIN} format."""
+    url = f"https://www.amazon.co.uk/dp/{asin}"
+    if variant_index is None:
+        return re.sub(
+            r'^(amazon_url:\s*)["\']?[^\'"#\n]*["\']?',
+            f'amazon_url: "{url}"',
+            fm_raw,
+            count=1,
+            flags=re.MULTILINE,
+        )
+    else:
+        variant_blocks = list(re.finditer(
+            r"(  - (?:label|asin):.*?)(?=\n  - (?:label|asin):|\Z)",
+            fm_raw,
+            re.DOTALL,
+        ))
+        if variant_index >= len(variant_blocks):
+            return fm_raw
+        bm = variant_blocks[variant_index]
+        new_block = re.sub(
+            r'(    url:\s*)["\']?[^\'"#\n]*["\']?',
+            f'    url: "{url}"',
+            bm.group(0),
+            count=1,
+            flags=re.MULTILINE,
+        )
+        return fm_raw[: bm.start()] + new_block + fm_raw[bm.end():]
+
+
+def update_image_in_fm(fm_raw: str, image_url: str, variant_index: int | None) -> str:
+    """Updates (or inserts) the image field in the raw front matter string."""
+    if variant_index is None:
+        # Single product: replace top-level image: value, preserving any trailing comment
+        return re.sub(
+            r'^(image:\s*)["\']?[^"\'#\n]*["\']?(\s*#[^\n]*)?',
+            f'image: "{image_url}"',
+            fm_raw,
+            count=1,
+            flags=re.MULTILINE,
+        )
+    else:
+        # Variant: add or update image: in the Nth variant block
+        variant_blocks = list(re.finditer(
+            r"(  - (?:label|asin):.*?)(?=\n  - (?:label|asin):|\Z)",
+            fm_raw,
+            re.DOTALL,
+        ))
+        if variant_index >= len(variant_blocks):
+            return fm_raw
+        bm = variant_blocks[variant_index]
+        block = bm.group(0)
+        if re.search(r'^\s{4}image:', block, re.MULTILINE):
+            new_block = re.sub(
+                r'(    image:\s*)["\']?[^"\'#\n]*["\']?(\s*#[^\n]*)?',
+                f'    image: "{image_url}"',
+                block,
+                count=1,
+                flags=re.MULTILINE,
+            )
+        else:
+            new_block = block.rstrip() + f'\n    image: "{image_url}"'
+        return fm_raw[: bm.start()] + new_block + fm_raw[bm.end():]
+
+
 def write_updated_file(md_path: Path, fm_raw: str, body: str) -> None:
     """Writes the reconstructed markdown file back to disk."""
     md_path.write_text(f"---\n{fm_raw}\n---\n{body}", encoding="utf-8")
@@ -384,12 +523,10 @@ def _yaml_str(value: str) -> str:
     return '"' + value.replace('"', '\\"') + '"'
 
 
-def create_product_file(asin: str, title: str, price: str | None) -> Path | None:
+def create_product_file(asin: str, title: str, price: str | None, image_url: str = "", stock: int = 0) -> Path | None:
     """
     Generates a new _products/{slug}.md from the standard template.
-    Title and price come directly from the listings API response.
-    Image and description are left as TODO placeholders — they can be filled
-    in manually or by a future run once the Catalog Items API role is granted.
+    Title, price, and image URL come directly from the listings API response.
 
     Returns the Path of the created file, or None if the slug is empty or
     a file with that name already exists (safety guard).
@@ -418,9 +555,10 @@ title: {_yaml_str(title)}
 description: "" # TODO: add description
 category: "{category}"
 price: "{price_str}"
+stock: {stock}
 amazon_url: "{amazon_url}"
 asin: "{asin}"
-image: "" # TODO: add image
+image: "{image_url}"
 featured: false
 hot: false
 badge: ""
@@ -437,9 +575,19 @@ tags: []
 # ===========================================================================
 
 def main():
-    token      = get_access_token()
-    listings   = fetch_active_listings(token)
-    asin_index = load_product_files()
+    token                  = get_access_token()
+    listings, parent_asins = fetch_active_listings(token)
+    asin_index             = load_product_files()
+
+    # Auto-delete any .md files that exist for parent ASINs.
+    # Parents are variation-family roots: not purchasable, no offers.
+    # Their children (the real variants) handle the product pages.
+    for asin in parent_asins:
+        if asin in asin_index and asin_index[asin]["type"] == "single":
+            path = asin_index[asin]["path"]
+            path.unlink()
+            log.info("Deleted parent-ASIN file %s  (ASIN %s)", path.name, asin)
+            del asin_index[asin]
 
     # De-duplicate: if the same ASIN appears more than once in listings (can
     # happen when the same product has multiple SKUs), process it only once.
@@ -452,9 +600,11 @@ def main():
     skipped  = 0
 
     for listing in listings:
-        asin  = listing["asin"]
-        price = listing["price"]
-        title = listing["title"]
+        asin      = listing["asin"]
+        price     = listing["price"]
+        title     = listing["title"]
+        image_url = listing["image"]
+        stock     = listing["stock"]
 
         if asin in seen:
             continue
@@ -462,11 +612,11 @@ def main():
         checked += 1
 
         # ----------------------------------------------------------------
-        # Case A — existing .md file found: update price only
+        # Case A — existing .md file found: update price and image
         # ----------------------------------------------------------------
         if asin in asin_index:
-            if price is None:
-                log.debug("No price in listings data for %s — skipping update.", asin)
+            if price is None and not image_url:
+                log.debug("No price or image for %s — skipping update.", asin)
                 no_price += 1
                 continue
 
@@ -481,7 +631,13 @@ def main():
                 skipped += 1
                 continue
 
-            modified_fm = update_price_in_fm(fm_raw, price, v_idx)
+            modified_fm = fm_raw
+            if price:
+                modified_fm = update_price_in_fm(modified_fm, price, v_idx)
+            if image_url:
+                modified_fm = update_image_in_fm(modified_fm, image_url, v_idx)
+            modified_fm = update_url_in_fm(modified_fm, asin, v_idx)
+            modified_fm = update_stock_in_fm(modified_fm, stock, v_idx)
 
             if modified_fm == fm_raw:
                 log.info("No change: %s  (ASIN %s)", md_path.name, asin)
@@ -495,7 +651,7 @@ def main():
         # Case B — no matching .md file: create it from listing data
         # ----------------------------------------------------------------
         else:
-            new_file = create_product_file(asin, title, price)
+            new_file = create_product_file(asin, title, price, image_url, stock)
             if new_file:
                 log.info("Created  %s  (ASIN %s)  price=%s", new_file.name, asin, price or "—")
                 created += 1

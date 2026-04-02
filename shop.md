@@ -13,6 +13,18 @@ Prices are approximate and may vary. Amazon links are affiliate links.</p>
 
 <div class="product-list-h">
   {% for product in site.products %}
+  {% comment %}Show only products that have at least 1 unit in stock.
+  For variant products, check if any individual variant has stock > 0.
+  For single products, check the top-level stock field.{% endcomment %}
+  {% assign in_stock = false %}
+  {% if product.variants %}
+    {% for v in product.variants %}
+      {% if v.stock > 0 %}{% assign in_stock = true %}{% endif %}
+    {% endfor %}
+  {% elsif product.stock > 0 %}
+    {% assign in_stock = true %}
+  {% endif %}
+  {% unless in_stock %}{% continue %}{% endunless %}
   <div class="product-card-h product-card">
     <div class="product-card-image">
       <img

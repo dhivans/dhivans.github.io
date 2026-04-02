@@ -1,0 +1,20 @@
+# Environment / secrets — never commit these
+scripts/set_env.ps1
+.env
+*.env
+
+# Jekyll build output
+_site/
+
+# Jekyll cache
+.jekyll-cache/
+.jekyll-metadata
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# OS
+.DS_Store
+Thumbs.db
