@@ -1,0 +1,56 @@
+name: Sync Amazon Product Data
+
+on:
+  # Runs every night at 02:00 UTC
+  schedule:
+    - cron: '0 2 * * *'
+
+  # Can also be triggered manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # needed to commit and push updated markdown files
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          # Fetch full history so git push works without issues
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run product sync
+        env:
+          AMAZON_CLIENT_ID:      ${{ secrets.AMAZON_CLIENT_ID }}
+          AMAZON_CLIENT_SECRET:  ${{ secrets.AMAZON_CLIENT_SECRET }}
+          AMAZON_REFRESH_TOKEN:  ${{ secrets.AMAZON_REFRESH_TOKEN }}
+          AMAZON_MARKETPLACE_ID: ${{ secrets.AMAZON_MARKETPLACE_ID }}
+          AMAZON_SELLER_ID:      ${{ secrets.AMAZON_SELLER_ID }}
+        run: python scripts/sync_products.py
+
+      - name: Commit updated product files (if any changed)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Stage only the _products/ folder
+          git add _products/
+
+          # Check if there is anything to commit
+          if git diff --cached --quiet; then
+            echo "No product files changed — nothing to commit."
+          else
+            git commit -m "Auto-sync: update product prices and images [skip ci]"
+            git push
+            echo "Changes committed and pushed."
+          fi
