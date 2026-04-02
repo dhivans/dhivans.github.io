@@ -43,7 +43,7 @@ Prices are approximate and may vary. Amazon links are affiliate links.</p>
   {% elsif product.stock > 0 %}
     {% assign in_stock = true %}
   {% endif %}
-  <div class="product-card-h product-card" data-in-stock="{% if in_stock %}1{% else %}0{% endif %}" data-href="{{ product.url }}">
+  <div class="product-card-h product-card" data-in-stock="{% if in_stock %}1{% else %}0{% endif %}" data-href="{{ product.url }}" data-category="{{ product.category }}">
     <div class="product-card-image">
       <img
         src="{% if product.image %}{{ product.image }}{% else %}/assets/images/products/placeholder.svg{% endif %}"
@@ -53,7 +53,7 @@ Prices are approximate and may vary. Amazon links are affiliate links.</p>
     <div class="product-card-content">
       <div class="product-card-top">
         {% if product.category %}
-        <span class="product-category-tag">{{ product.category | replace: '-', ' ' }}</span>
+        <a href="/shop/?category={{ product.category }}" class="product-category-tag">{{ product.category | replace: '-', ' ' }}</a>
         {% endif %}
         <h3 class="product-card-title">{{ product.title }}</h3>
         <p class="product-card-desc">{{ product.description }}</p>
@@ -77,6 +77,14 @@ Prices are approximate and may vary. Amazon links are affiliate links.</p>
 <style>
 .product-card-h[data-href] {
   cursor: pointer;
+}
+.product-category-tag {
+  text-decoration: none;
+}
+.product-category-tag:hover {
+  background: rgba(0,229,255,0.2);
+  border-color: #00e5ff;
+  color: #00e5ff;
 }
 .shop-toolbar {
   display: flex;
@@ -171,6 +179,19 @@ Prices are approximate and may vary. Amazon links are affiliate links.</p>
 
   var showOutOfStock = false;
 
+  // Read category filter from URL ?category=
+  var urlParams      = new URLSearchParams(window.location.search);
+  var activeCategory = urlParams.get('category') || '';
+
+  // Update page title and show a clear-filter link if a category is active
+  if (activeCategory) {
+    var label = activeCategory.replace(/-/g, ' ');
+    var h1 = document.querySelector('.page-title');
+    if (h1) {
+      h1.innerHTML = '<a href="/shop/" class="shop-title-link">Shop</a> &mdash; ' + label.replace(/\b\w/g, function(c){ return c.toUpperCase(); });
+    }
+  }
+
   // Clickable cards — navigate to detail page unless click is on a link
   document.querySelectorAll('.product-card-h[data-href]').forEach(function (card) {
     card.addEventListener('click', function (e) {
@@ -185,10 +206,11 @@ Prices are approximate and may vary. Amazon links are affiliate links.</p>
     var cards = document.querySelectorAll('.product-card');
     query = (query || '').toLowerCase();
     cards.forEach(function (card) {
-      var inStock     = card.dataset.inStock !== '0';  // undefined = single product, treat as in-stock
-      var matchSearch = query === '' || card.textContent.toLowerCase().indexOf(query) !== -1;
-      var matchStock  = inStock || showOutOfStock;
-      card.style.display = (matchSearch && matchStock) ? '' : 'none';
+      var inStock       = card.dataset.inStock !== '0';
+      var matchSearch   = query === '' || card.textContent.toLowerCase().indexOf(query) !== -1;
+      var matchStock    = inStock || showOutOfStock;
+      var matchCategory = activeCategory === '' || card.dataset.category === activeCategory;
+      card.style.display = (matchSearch && matchStock && matchCategory) ? '' : 'none';
     });
   };
 

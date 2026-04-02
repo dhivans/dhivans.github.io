@@ -25,18 +25,28 @@
   </div>
 
   <!-- Shop -->
-  <a href="/shop/" class="sidebar-item{% if page.url contains 'shop' %} active{% endif %}">
-    <span class="sidebar-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-           fill="none" stroke="currentColor" stroke-width="2"
-           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-        <line x1="3" y1="6" x2="21" y2="6"/>
-        <path d="M16 10a4 4 0 0 1-8 0"/>
-      </svg>
-    </span>
-    <span class="sidebar-label">Shop</span>
-  </a>
+  <div class="sidebar-item-group">
+    <a href="/shop/" class="sidebar-item{% if page.url contains 'shop' %} active{% endif %}">
+      <span class="sidebar-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+      </span>
+      <span class="sidebar-label">Shop</span>
+    </a>
+    <div class="sidebar-submenu">
+      <div>
+        <a href="/shop/?category=electrical-components" class="sidebar-submenu-item">Electrical Components</a>
+        <a href="/shop/?category=mechanical-components" class="sidebar-submenu-item">Mechanical Components</a>
+        <a href="/shop/?category=tools" class="sidebar-submenu-item">Tools</a>
+        <a href="/shop/?category=test-equipment" class="sidebar-submenu-item">Test Equipment</a>
+      </div>
+    </div>
+  </div>
 
   <!-- Projects -->
   <a href="/projects/" class="sidebar-item{% if page.url contains 'project' %} active{% endif %}">
