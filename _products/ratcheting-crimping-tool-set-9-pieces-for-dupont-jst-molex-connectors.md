@@ -4,7 +4,7 @@ title: "Ratcheting Crimping Tool Set, 9 Pieces, for Dupont JST MOLEX Connectors"
 description: "Effortlessly crimp and connect wires with this ratcheting crimping tool set from Yefym. The ergonomic handles and ratcheting mechanism allow for smooth and controlled crimping, reducing hand fatigue. This versatile set includes nine interchangeable crimping dies to accommodate various terminal types, including open barrel, non-insulated, and butt connectors."
 category: "tools"
 price: "£29.99"
-stock: 1
+stock: 0
 amazon_url: "https://www.amazon.co.uk/dp/B0DH3YX6QY"
 asin: "B0DH3YX6QY"
 image: "https://m.media-amazon.com/images/I/51RBQOuxyKL.jpg"

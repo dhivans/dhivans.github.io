@@ -20,12 +20,12 @@ variants:
     price: "£9.99"
     url: "https://www.amazon.co.uk/dp/B0F2ZF7LS6"
     image: "https://m.media-amazon.com/images/I/41Qb6A7NVWL.jpg"
-    stock: 1
+    stock: 2
   - label: "9 Piece"
     asin: "B0DZQ3V5TV"
     price: "£11.49"
     url: "https://www.amazon.co.uk/dp/B0DZQ3V5TV"
     image: "https://m.media-amazon.com/images/I/41La44eo5GL.jpg"
-    stock: 1
+    stock: 50
 ---
 This versatile 9-piece hex key set is an essential addition to any toolbox, particularly for bicycle maintenance and repairs. The set includes precisely sized Allen wrenches ranging from 1.5mm to 10mm, covering the most commonly used sizes for various applications. Each wrench is crafted to fit snugly into hexagonal socket screws, allowing for efficient tightening and loosening with optimal torque transfer. The compact organisation makes it easy to locate the right size quickly, whilst the durable construction ensures these tools maintain their shape even under frequent use. Perfect for both professional mechanics and DIY enthusiasts, this comprehensive set enables you to tackle a wide range of assembly and adjustment tasks. Whether you're adjusting bike components, assembling furniture, or working on machinery, these hex keys provide the reliable functionality needed for precise mechanical work.

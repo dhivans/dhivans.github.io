@@ -4,7 +4,7 @@ title: "NE8FDY-C6 EtherCON Cat 6 Panel-Mount Connector, Metal Housing, Professio
 description: "The NE8FDY-C6 etherCON Cat 6 panel-mount connector represents the pinnacle of professional-grade Ethernet connectivity. This robust connector features a rugged metal housing that provides superior protection against mechanical stress and daily wear, making it ideal for demanding professional audio-video installations and industrial environments. The connector incorporates a secure latching system that prevents accidental disconnections whilst maintaining compatibility with standard RJ45 cables."
 category: "electrical-components"
 price: "£8.99"
-stock: 1
+stock: 38
 amazon_url: "https://www.amazon.co.uk/dp/B0FRZCTG8X"
 asin: "B0FRZCTG8X"
 image: "https://m.media-amazon.com/images/I/314Mm13+ieL.jpg"

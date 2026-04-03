@@ -15,18 +15,18 @@ variants:
     price: "£3.99"
     url: "https://www.amazon.co.uk/dp/B0DJPZDR6B"
     image: "https://m.media-amazon.com/images/I/31S7Z9NSCbL.jpg"
-    stock: 1
+    stock: 0
   - label: "ESP-01S"
     asin: "B0DJPYB7D1"
     price: "£3.99"
     url: "https://www.amazon.co.uk/dp/B0DJPYB7D1"
     image: "https://m.media-amazon.com/images/I/31RN2SINo6L.jpg"
-    stock: 1
+    stock: 0
   - label: "USB to ESP Adaptor"
     asin: "B0DJPYKVP2"
     price: "£3.99"
     url: "https://www.amazon.co.uk/dp/B0DJPYKVP2"
     image: "https://m.media-amazon.com/images/I/31vKIhlSASL.jpg"
-    stock: 1
+    stock: 0
 ---
 The ESP-01 is a compact and economical development board that offers Wi-Fi connectivity for your microcontroller projects. Powered by the ESP8266 chip, a powerful and versatile microcontroller with an integrated Wi-Fi radio, this board is an excellent choice for projects requiring internet connectivity, such as home automation, IoT devices, and robotics. With its small size and affordable price, the ESP-01 is an ideal solution for adding wireless capabilities to your next project.

@@ -17,7 +17,7 @@ variants:
     price: "£5.00"
     url: "https://www.amazon.co.uk/dp/B0DBGPD14M"
     image: "https://m.media-amazon.com/images/I/31JB4jBGnQL.jpg"
-    stock: 1
+    stock: 21
   - label: "3 Pack"
     asin: "B0DBGNPKVC"
     price: "£8.00"
@@ -29,12 +29,12 @@ variants:
     price: "£10.00"
     url: "https://www.amazon.co.uk/dp/B0DBGPT1XR"
     image: "https://m.media-amazon.com/images/I/31JB4jBGnQL.jpg"
-    stock: 1
+    stock: 0
   - label: "10 Pack"
     asin: "B0DBGPFZ4F"
     price: "£15.00"
     url: "https://www.amazon.co.uk/dp/B0DBGPFZ4F"
     image: "https://m.media-amazon.com/images/I/31JB4jBGnQL.jpg"
-    stock: 1
+    stock: 0
 ---
 Microswitches are indispensable components in 3D printing, ensuring precise and reliable operation. These compact switches are utilised for various functions, such as klicky probe bed levelling, limit switches, and filament sensors. Their high sensitivity and durability make them ideal for detecting minute movements and positions within the intricate mechanisms of a 3D printer. Beyond their application in additive manufacturing, microswitches also find use in mouse repairs, enabling seamless clicking and scrolling experiences. Offering a long service life and consistent performance, these versatile switches contribute to the smooth functioning of both cutting-edge technology and everyday devices. Whether you're a 3D printing enthusiast or a repair technician, having a reliable supply of microswitches on hand is essential for maintaining optimal equipment operation.
