@@ -21,7 +21,7 @@ variants:
     price: "£4.99"
     url: "https://www.amazon.co.uk/dp/B0F2ZFMPR6"
     image: "https://m.media-amazon.com/images/I/517HwwWGkOL.jpg"
-    stock: 23
+    stock: 24
   - label: "1, Yellow, 0.96'"
     asin: "B0F2ZFZWVW"
     price: "£4.99"
