@@ -8,7 +8,7 @@ image: "https://m.media-amazon.com/images/I/51YBLCsi2UL.jpg"
 images:
   - "https://m.media-amazon.com/images/I/51k2M4lBgQL.jpg"
 featured: false
-sales_30d: 10
+sales_30d: 11
 badge: ""
 tags: ['potentiometer']
 variants:
@@ -89,7 +89,7 @@ variants:
     price: "£3.00"
     url: "https://www.amazon.co.uk/dp/B0DRW4XDNF"
     image: "https://m.media-amazon.com/images/I/51YBLCsi2UL.jpg"
-    stock: 88
+    stock: 87
   - label: "10kOhm, 3"
     asin: "B0DRW2JCRV"
     price: "£4.00"

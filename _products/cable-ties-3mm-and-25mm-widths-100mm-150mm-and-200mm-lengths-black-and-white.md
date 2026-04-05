@@ -6,7 +6,7 @@ category: "mechanical-components"
 price: "From £4.99"
 image: "https://m.media-amazon.com/images/I/21uwtCoOE9L.jpg"
 featured: false
-sales_30d: 3
+sales_30d: 0
 badge: ""
 tags: ['cable']
 variants:
