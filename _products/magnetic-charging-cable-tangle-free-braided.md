@@ -10,7 +10,7 @@ images:
   - "https://m.media-amazon.com/images/I/61zPsTe2j2L.jpg"
   - "https://m.media-amazon.com/images/I/71TeQhDphyL.jpg"
 featured: false
-sales_30d: 23
+sales_30d: 21
 badge: ""
 tags: ['cable', 'usb', 'charging']
 variants:
@@ -19,7 +19,7 @@ variants:
     price: "£9.99"
     url: "https://www.amazon.co.uk/dp/B0D1VWBFRC"
     image: "https://m.media-amazon.com/images/I/51-7yXw+f0L.jpg"
-    stock: 8
+    stock: 6
   - label: "USB-A to Lightning, White"
     asin: "B0D1VWFBJB"
     price: "£9.99"
@@ -31,19 +31,19 @@ variants:
     price: "£9.99"
     url: "https://www.amazon.co.uk/dp/B0D1VWBT25"
     image: "https://m.media-amazon.com/images/I/51-7yXw+f0L.jpg"
-    stock: 20
+    stock: 17
   - label: "USB-A to USB-C, White"
     asin: "B0D1VVTHKN"
     price: "£9.99"
     url: "https://www.amazon.co.uk/dp/B0D1VVTHKN"
     image: "https://m.media-amazon.com/images/I/41MKsEzRHwL.jpg"
-    stock: 23
+    stock: 21
   - label: "USB-C to Lightning, Black"
     asin: "B0D1VW5D94"
     price: "£9.99"
     url: "https://www.amazon.co.uk/dp/B0D1VW5D94"
     image: "https://m.media-amazon.com/images/I/51-7yXw+f0L.jpg"
-    stock: 13
+    stock: 15
   - label: "USB-C to Lightning, White"
     asin: "B0D1VX8RHV"
     price: "£9.99"
@@ -55,7 +55,7 @@ variants:
     price: "£9.99"
     url: "https://www.amazon.co.uk/dp/B0CW3JCDRH"
     image: "https://m.media-amazon.com/images/I/51-7yXw+f0L.jpg"
-    stock: 8
+    stock: 9
   - label: "USB-C to USB-C, White"
     asin: "B0D1VW8W52"
     price: "£9.99"
