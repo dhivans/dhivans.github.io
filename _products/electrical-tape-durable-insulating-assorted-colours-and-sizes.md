@@ -38,8 +38,8 @@ variants:
     asin: "B0DNNMSHRJ"
     price: "£4.00"
     url: "https://www.amazon.co.uk/dp/B0DNNMSHRJ"
-    image: "https://m.media-amazon.com/images/I/31bMm+enNSL.jpg"
-    stock: 1
+    image: "https://m.media-amazon.com/images/I/31rYEMWahVL.jpg"
+    stock: 0
   - label: "Yellow, 30M"
     asin: "B0DNNM2PGH"
     price: "£4.00"
