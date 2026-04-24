@@ -19,7 +19,7 @@ variants:
     price: "£3.00"
     url: "https://www.amazon.co.uk/dp/B0DFKDM1NN"
     image: "https://m.media-amazon.com/images/I/41E3x3NUjpL.jpg"
-    stock: 1
+    stock: 0
   - label: "3 Pack"
     asin: "B0DFKNT4RG"
     price: "£5.99"

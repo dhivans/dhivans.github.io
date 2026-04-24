@@ -8,7 +8,7 @@ image: "https://m.media-amazon.com/images/I/41lNKsuEddL.jpg"
 images:
   - "https://m.media-amazon.com/images/I/51gBBJ+TiNL.jpg"
 featured: false
-sales_30d: 1
+sales_30d: 0
 badge: ""
 tags: ['ws2812b', 'led']
 variants:
