@@ -4,7 +4,7 @@ title: "Soldering Iron Copper Wool Tip Cleaner"
 description: "This soldering iron copper wool tip cleaner is an essential tool for maintaining the efficiency of your soldering iron. This compact, handheld device features a metal handle with a pad of fine copper wool attached to the end. By gently rubbing the copper wool against the hot tip of your soldering iron, you can effectively remove excess solder, oxidation, and residue."
 category: "tools"
 price: "£7.99"
-stock: 1
+stock: 0
 amazon_url: "https://www.amazon.co.uk/dp/B0DFMNSTR3"
 asin: "B0DFMNSTR3"
 image: "https://m.media-amazon.com/images/I/41cfyHZnYrL.jpg"
