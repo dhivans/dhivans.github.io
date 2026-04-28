@@ -8,7 +8,7 @@ image: "https://m.media-amazon.com/images/I/410nbFPsAFL.jpg"
 images:
   - "https://m.media-amazon.com/images/I/41QPJ9n+BSL.jpg"
 featured: false
-sales_30d: 5
+sales_30d: 3
 badge: ""
 tags: ['microswitch']
 variants:
@@ -17,7 +17,7 @@ variants:
     price: "£3.00"
     url: "https://www.amazon.co.uk/dp/B0DFJ7DT9D"
     image: "https://m.media-amazon.com/images/I/410nbFPsAFL.jpg"
-    stock: 5
+    stock: 6
   - label: "3"
     asin: "B0DFKGHT16"
     price: "£8.00"
