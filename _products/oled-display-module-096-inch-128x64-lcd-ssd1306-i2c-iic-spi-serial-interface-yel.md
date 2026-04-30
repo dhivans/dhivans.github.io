@@ -6,7 +6,7 @@ category: "electrical-components"
 price: "From £4.99"
 image: "https://m.media-amazon.com/images/I/51ZP2U5wPBL.jpg"
 featured: false
-sales_30d: 33
+sales_30d: 36
 badge: ""
 tags: ['oled']
 variants:
@@ -15,13 +15,13 @@ variants:
     price: "£4.99"
     url: "https://www.amazon.co.uk/dp/B0F2ZGGHVG"
     image: "https://m.media-amazon.com/images/I/51ZP2U5wPBL.jpg"
-    stock: 31
+    stock: 29
   - label: "1, White, 0.96'"
     asin: "B0F2ZFMPR6"
     price: "£4.99"
     url: "https://www.amazon.co.uk/dp/B0F2ZFMPR6"
-    image: "https://m.media-amazon.com/images/I/517HwwWGkOL.jpg"
-    stock: 2
+    image: "https://m.media-amazon.com/images/I/51ZP2U5wPBL.jpg"
+    stock: 0
   - label: "1, Yellow, 0.96'"
     asin: "B0F2ZFZWVW"
     price: "£4.99"
@@ -38,7 +38,7 @@ variants:
     asin: "B0F2ZD243Y"
     price: "£12.99"
     url: "https://www.amazon.co.uk/dp/B0F2ZD243Y"
-    image: "https://m.media-amazon.com/images/I/517HwwWGkOL.jpg"
+    image: "https://m.media-amazon.com/images/I/51ZP2U5wPBL.jpg"
     stock: 0
   - label: "3, Yellow, 0.96'"
     asin: "B0F2ZF916M"
