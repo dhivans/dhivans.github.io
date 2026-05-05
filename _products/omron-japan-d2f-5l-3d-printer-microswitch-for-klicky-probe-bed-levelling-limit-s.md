@@ -8,7 +8,7 @@ image: "https://m.media-amazon.com/images/I/31JB4jBGnQL.jpg"
 images:
   - "https://m.media-amazon.com/images/I/31Kn8BYdz6L.jpg"
 featured: false
-sales_30d: 2
+sales_30d: 1
 badge: ""
 tags: []
 variants:
