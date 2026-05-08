@@ -43,7 +43,7 @@ variants:
     price: "£9.99"
     url: "https://www.amazon.co.uk/dp/B0D1VW5D94"
     image: "https://m.media-amazon.com/images/I/51-7yXw+f0L.jpg"
-    stock: 13
+    stock: 12
   - label: "USB-C to Lightning, White"
     asin: "B0D1VX8RHV"
     price: "£9.99"
