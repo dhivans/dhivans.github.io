@@ -11,7 +11,7 @@ images:
   - "https://m.media-amazon.com/images/I/615GSwQnqcL.jpg"
   - "https://m.media-amazon.com/images/I/61AGm5wCn1L.jpg"
 featured: false
-sales_30d: 92
+sales_30d: 86
 badge: ""
 tags: ['esp32', 'microcontroller']
 variants:

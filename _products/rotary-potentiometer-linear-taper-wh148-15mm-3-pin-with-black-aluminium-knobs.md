@@ -8,7 +8,7 @@ image: "https://m.media-amazon.com/images/I/51YBLCsi2UL.jpg"
 images:
   - "https://m.media-amazon.com/images/I/51k2M4lBgQL.jpg"
 featured: false
-sales_30d: 33
+sales_30d: 32
 badge: ""
 tags: ['potentiometer']
 variants:
