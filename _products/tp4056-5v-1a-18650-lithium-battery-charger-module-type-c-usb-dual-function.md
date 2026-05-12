@@ -10,7 +10,7 @@ images:
   - "https://m.media-amazon.com/images/I/512bZZmiykL.jpg"
   - "https://m.media-amazon.com/images/I/51MJzW4siFL.jpg"
 featured: false
-sales_30d: 1
+sales_30d: 0
 badge: ""
 tags: []
 variants:
