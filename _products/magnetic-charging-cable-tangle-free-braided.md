@@ -10,7 +10,7 @@ images:
   - "https://m.media-amazon.com/images/I/61zPsTe2j2L.jpg"
   - "https://m.media-amazon.com/images/I/71TeQhDphyL.jpg"
 featured: false
-sales_30d: 26
+sales_30d: 27
 badge: ""
 tags: ['cable', 'usb', 'charging']
 variants:
@@ -43,7 +43,7 @@ variants:
     price: "£9.99"
     url: "https://www.amazon.co.uk/dp/B0D1VW5D94"
     image: "https://m.media-amazon.com/images/I/51-7yXw+f0L.jpg"
-    stock: 7
+    stock: 6
   - label: "USB-C to Lightning, White"
     asin: "B0D1VX8RHV"
     price: "£9.99"
