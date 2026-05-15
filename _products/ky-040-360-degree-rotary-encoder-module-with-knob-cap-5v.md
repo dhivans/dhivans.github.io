@@ -12,7 +12,7 @@ images:
   - "https://m.media-amazon.com/images/I/51myFdtTQfL.jpg"
   - "https://m.media-amazon.com/images/I/61V3cQHNiXL.jpg"
 featured: false
-sales_30d: 8
+sales_30d: 7
 badge: ""
 tags: ['encoder']
 ---
