@@ -21,7 +21,7 @@ variants:
     price: "£6.99"
     url: "https://www.amazon.co.uk/dp/B0DRW5HVGY"
     image: "https://m.media-amazon.com/images/I/51WTqUMxNYL.jpg"
-    stock: 105
+    stock: 104
   - label: "5"
     asin: "B0DRW2CXKT"
     price: "£7.99"
