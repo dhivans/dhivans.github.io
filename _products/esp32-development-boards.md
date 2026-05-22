@@ -20,7 +20,7 @@ variants:
     price: "£8.90"
     url: "https://www.amazon.co.uk/dp/B0DJPZHZ1X"
     image: "https://m.media-amazon.com/images/I/41edbf6EvFL.jpg"
-    stock: 248
+    stock: 239
   - label: "ESP32-C3 Super Mini"
     asin: "B0DDL7WNZX"
     price: "£12.99"
