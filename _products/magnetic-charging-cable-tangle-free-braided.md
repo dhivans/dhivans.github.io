@@ -19,7 +19,7 @@ variants:
     price: "£9.99"
     url: "https://www.amazon.co.uk/dp/B0D1VWBFRC"
     image: "https://m.media-amazon.com/images/I/51-7yXw+f0L.jpg"
-    stock: 3
+    stock: 1
   - label: "USB-A to Lightning, White"
     asin: "B0D1VWFBJB"
     price: "£9.99"
