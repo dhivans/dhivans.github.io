@@ -11,7 +11,7 @@ images:
   - "https://m.media-amazon.com/images/I/615GSwQnqcL.jpg"
   - "https://m.media-amazon.com/images/I/61AGm5wCn1L.jpg"
 featured: false
-sales_30d: 73
+sales_30d: 76
 badge: ""
 tags: ['esp32', 'microcontroller']
 variants:
@@ -20,7 +20,7 @@ variants:
     price: "£8.90"
     url: "https://www.amazon.co.uk/dp/B0DJPZHZ1X"
     image: "https://m.media-amazon.com/images/I/41edbf6EvFL.jpg"
-    stock: 224
+    stock: 215
   - label: "ESP32-C3 Super Mini"
     asin: "B0DDL7WNZX"
     price: "£12.99"
