@@ -6,7 +6,7 @@ category: "electrical-components"
 price: "From £5.99"
 image: "https://m.media-amazon.com/images/I/51WTqUMxNYL.jpg"
 featured: false
-sales_30d: 17
+sales_30d: 16
 badge: ""
 tags: []
 variants:

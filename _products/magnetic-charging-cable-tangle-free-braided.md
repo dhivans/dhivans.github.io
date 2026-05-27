@@ -10,7 +10,7 @@ images:
   - "https://m.media-amazon.com/images/I/61zPsTe2j2L.jpg"
   - "https://m.media-amazon.com/images/I/71TeQhDphyL.jpg"
 featured: false
-sales_30d: 25
+sales_30d: 26
 badge: ""
 tags: ['cable', 'usb', 'charging']
 variants:
@@ -19,7 +19,7 @@ variants:
     price: "£9.99"
     url: "https://www.amazon.co.uk/dp/B0D1VWBFRC"
     image: "https://m.media-amazon.com/images/I/51-7yXw+f0L.jpg"
-    stock: 1
+    stock: 0
   - label: "USB-A to Lightning, White"
     asin: "B0D1VWFBJB"
     price: "£9.99"

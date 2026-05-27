@@ -21,7 +21,7 @@ variants:
     price: "£5.99"
     url: "https://www.amazon.co.uk/dp/B0DLYXPZ17"
     image: "https://m.media-amazon.com/images/I/3158P4rLkFL.jpg"
-    stock: 484
+    stock: 485
   - label: "Half-size, 3"
     asin: "B0DSGJZ1XN"
     price: "£12.99"
