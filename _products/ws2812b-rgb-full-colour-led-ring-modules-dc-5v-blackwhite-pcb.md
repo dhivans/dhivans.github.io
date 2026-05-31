@@ -29,7 +29,7 @@ variants:
     price: "£7.99"
     url: "https://www.amazon.co.uk/dp/B0DNNPTVDR"
     image: "https://m.media-amazon.com/images/I/21BM+KdMqrL.jpg"
-    stock: 0
+    stock: 1
   - label: "Black, 16"
     asin: "B0DNNQQGND"
     price: "£8.99"
