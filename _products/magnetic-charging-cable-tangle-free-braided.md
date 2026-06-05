@@ -10,7 +10,7 @@ images:
   - "https://m.media-amazon.com/images/I/61zPsTe2j2L.jpg"
   - "https://m.media-amazon.com/images/I/71TeQhDphyL.jpg"
 featured: false
-sales_30d: 24
+sales_30d: 22
 badge: ""
 tags: ['cable', 'usb', 'charging']
 variants:
