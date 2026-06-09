@@ -12,7 +12,7 @@ images:
   - "https://m.media-amazon.com/images/I/51IljjjEtqL.jpg"
   - "https://m.media-amazon.com/images/I/31ryzJ7KtPL.jpg"
 featured: false
-sales_30d: 3
+sales_30d: 2
 badge: ""
 tags: ['usb']
 ---
