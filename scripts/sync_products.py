@@ -39,11 +39,14 @@ import re
 import sys
 import time
 import logging
+import subprocess
 import unicodedata
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 import requests
+
+import yaml
 
 # ---------------------------------------------------------------------------
 # Logging
@@ -76,28 +79,35 @@ SPAPI_BASE = "https://sellingpartnerapi-eu.amazon.com"
 
 # _products/ directory (two levels up from this script)
 PRODUCTS_DIR = Path(__file__).resolve().parent.parent / "_products"
+ROOT_DIR = PRODUCTS_DIR.parent
+DATA_DIR = ROOT_DIR / "_data"
 
 # ---------------------------------------------------------------------------
 # Category keyword mapping
 # Checked in order — first match wins; falls back to "diy-components".
 # ---------------------------------------------------------------------------
-CATEGORY_RULES: list[tuple[str, list[str]]] = [
-    ("test-equipment", [
-        "multimeter", "oscilloscope", "power supply", "signal generator",
-        "meter", "tester", "caliper", "gauge",
-    ]),
-    ("tools", [
-        "crimping tool", "crimper", "soldering iron", "solder sucker",
-        "desoldering", "tweezers", "wrench", "allen key", "hex key",
-        "screwdriver", "pliers", "wire stripper", "ruler", "brush",
-    ]),
-    ("mechanical-components", [
-        "bearing", "belt", "pulley", "shaft", "bushing", "coupling",
-        "spring", "screw", "bolt", "nut", "washer", "bracket",
-        "cable tie", "zip tie", "hinge", "rail", "rod",
-    ]),
-]
-DEFAULT_CATEGORY = "electrical-components"
+def load_category_config() -> tuple[list[tuple[str, list[str]]], str]:
+    config_path = DATA_DIR / "categories.yml"
+    fallback = "electrical-components"
+    if not config_path.exists():
+        return [], fallback
+
+    categories = yaml.safe_load(config_path.read_text(encoding="utf-8")) or []
+    rules: list[tuple[str, list[str]]] = []
+    default_category = fallback
+    for category in categories:
+        category_id = str(category.get("id", "")).strip()
+        if not category_id:
+            continue
+        if category.get("default"):
+            default_category = category_id
+        keywords = [str(keyword).lower() for keyword in category.get("keywords", [])]
+        if keywords:
+            rules.append((category_id, keywords))
+    return rules, default_category
+
+
+CATEGORY_RULES, DEFAULT_CATEGORY = load_category_config()
 
 
 # ===========================================================================
@@ -733,6 +743,17 @@ def write_updated_file(md_path: Path, fm_raw: str, body: str) -> None:
     md_path.write_text(f"---\n{fm_raw}\n---\n{body}", encoding="utf-8")
 
 
+def run_foundation_data_steps() -> None:
+    """Regenerate public data files and fail the sync if validation fails."""
+    steps = [
+        ("validation", [sys.executable, "scripts/validate_products.py"]),
+        ("catalog", [sys.executable, "scripts/build_catalog.py", "--append-history"]),
+    ]
+    for label, command in steps:
+        log.info("Running %s data step ...", label)
+        subprocess.run(command, cwd=ROOT_DIR, check=True)
+
+
 # ===========================================================================
 # Step 5 — Create a new product file for an unmatched ASIN
 # ===========================================================================
@@ -1066,6 +1087,8 @@ def main():
                 write_updated_file(md_path, new_fm, body)
                 sales_updated += 1
         log.info("Updated sales_30d on %d product files.", sales_updated)
+
+    run_foundation_data_steps()
 
     # ----------------------------------------------------------------
     # Summary

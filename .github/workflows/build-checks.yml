@@ -1,0 +1,37 @@
+name: Build Checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Validate product data
+        run: python scripts/validate_products.py
+
+      - name: Generate catalog data
+        run: python scripts/build_catalog.py
+
+      - name: Build Jekyll site
+        run: bundle exec jekyll build

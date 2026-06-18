@@ -1,0 +1,36 @@
+{% assign product_refs = include.products | default: page.products %}
+{% if product_refs and site.data.catalog %}
+<section class="parts-used">
+  <h2>Parts Used</h2>
+  <div class="parts-used-list">
+    {% for ref in product_refs %}
+      {% assign ref_asin = ref.asin | default: ref %}
+      {% assign ref_qty = ref.qty | default: 1 %}
+      {% assign part = nil %}
+      {% for item in site.data.catalog %}
+        {% if item.asin == ref_asin %}
+          {% assign part = item %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+      {% if part %}
+      {% assign part_page_url = part.page_url | default: part.url %}
+      {% assign part_buy_url = part.amazon_url | default: part.url %}
+      <div class="parts-used-row">
+        <div>
+          <a href="{{ part_page_url | relative_url }}">{{ part.title }}</a>
+          {% assign part_variant = part.variant | default: part.variant_label %}
+          {% if part_variant %}<span>{{ part_variant }}</span>{% endif %}
+        </div>
+        <div class="parts-used-meta">
+          <span>Qty {{ ref_qty }}</span>
+          <span>{{ part.price }}</span>
+          {% if part.in_stock %}<span>In stock</span>{% else %}<span>Out of stock</span>{% endif %}
+        </div>
+        <a href="{{ part_buy_url }}" class="parts-used-buy" target="_blank" rel="noopener noreferrer">Amazon</a>
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

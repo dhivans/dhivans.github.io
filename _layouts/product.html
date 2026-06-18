@@ -2,6 +2,15 @@
 layout: default
 ---
 
+{% assign catalog_product = nil %}
+{% for item in site.data.catalog %}
+  {% if item.slug == page.slug %}
+    {% assign catalog_product = item %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+{% assign low_stock_threshold = site.data.site.shop.low_stock_threshold | default: 3 %}
+
 <article class="product-detail">
 
   <div class="product-detail-columns">
@@ -53,8 +62,31 @@ layout: default
 
       <div class="product-detail-price" id="product-price">{% if page.price %}{{ page.price }}{% endif %}</div>
 
+      {% if catalog_product %}
+      <p class="product-stock-note">
+        {% if catalog_product.in_stock %}
+          {% if catalog_product.stock_qty <= low_stock_threshold %}Low stock{% else %}In stock{% endif %}{% if catalog_product.stock_qty %}: {{ catalog_product.stock_qty }} available{% endif %}
+        {% else %}
+          Currently out of stock
+        {% endif %}
+        {% if catalog_product.updated_at %}<span>Updated {{ catalog_product.updated_at | date: "%Y-%m-%d" }}</span>{% endif %}
+      </p>
+      {% endif %}
+
       {% if page.description %}
       <p class="product-detail-desc">{{ page.description }}</p>
+      {% endif %}
+
+      {% if catalog_product.sparkline_points %}
+      <div class="product-price-history" aria-label="Price history">
+        <div class="product-price-history-top">
+          <span>Price trend</span>
+          {% if catalog_product.lowest_90d %}<span>90-day low: {{ catalog_product.currency }} {{ catalog_product.lowest_90d }}</span>{% endif %}
+        </div>
+        <svg viewBox="0 0 100 40" preserveAspectRatio="none" role="img" aria-label="Recent price trend">
+          <polyline points="{{ catalog_product.sparkline_points }}" fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke"></polyline>
+        </svg>
+      </div>
       {% endif %}
 
       {% if page.variants %}
@@ -91,7 +123,75 @@ layout: default
     {{ content }}
   </div>
 
+  {% assign featured_count = 0 %}
+  {% assign page_asins = "|" %}
+  {% if page.asin %}
+    {% assign page_asins = page_asins | append: page.asin | append: "|" %}
+  {% endif %}
+  {% if page.variants %}
+    {% for variant in page.variants %}
+      {% assign page_asins = page_asins | append: variant.asin | append: "|" %}
+    {% endfor %}
+  {% endif %}
+  {% capture featured_links %}
+    {% for post in site.posts %}
+      {% for ref in post.products %}
+        {% assign ref_asin = ref.asin | default: ref %}
+        {% assign ref_token = "|" | append: ref_asin | append: "|" %}
+        {% if page_asins contains ref_token %}
+          {% assign featured_count = featured_count | plus: 1 %}
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          {% break %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+    {% for project in site.projects %}
+      {% for ref in project.products %}
+        {% assign ref_asin = ref.asin | default: ref %}
+        {% assign ref_token = "|" | append: ref_asin | append: "|" %}
+        {% if page_asins contains ref_token %}
+          {% assign featured_count = featured_count | plus: 1 %}
+          <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
+          {% break %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  {% endcapture %}
+  {% if featured_count > 0 %}
+  <section class="featured-in">
+    <h2>Featured In</h2>
+    <div class="featured-in-list">{{ featured_links }}</div>
+  </section>
+  {% endif %}
+
 </article>
+
+{% assign product_url = page.amazon_url %}
+{% if page.variants and page.variants.size > 0 %}
+  {% assign product_url = page.variants[0].url | default: page.variants[0].amazon_url %}
+{% endif %}
+{% assign structured_price = catalog_product.price_value | default: catalog_product.price_amount %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ page.title | jsonify }},
+  "description": {{ page.description | default: content | strip_html | strip_newlines | truncate: 300 | jsonify }},
+  "brand": {
+    "@type": "Brand",
+    "name": "DST"
+  },
+  {% if catalog_product and catalog_product.asin %}"sku": {{ catalog_product.asin | jsonify }},{% elsif page.asin %}"sku": {{ page.asin | jsonify }},{% endif %}
+  {% if page.image %}"image": {{ page.image | jsonify }},{% endif %}
+  "offers": {
+    "@type": "Offer",
+    "url": {{ product_url | jsonify }},
+    "priceCurrency": {{ catalog_product.currency | default: "GBP" | jsonify }},
+    {% if structured_price %}"price": {{ structured_price | jsonify }},{% endif %}
+    "availability": "https://schema.org/{% if catalog_product and catalog_product.in_stock %}InStock{% else %}OutOfStock{% endif %}"
+  }
+}
+</script>
 
 <script>
 (function () {

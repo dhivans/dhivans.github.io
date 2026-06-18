@@ -1,0 +1,52 @@
+- id: test-equipment
+  label: Test Equipment
+  keywords:
+    - multimeter
+    - oscilloscope
+    - power supply
+    - signal generator
+    - meter
+    - tester
+    - caliper
+    - gauge
+- id: tools
+  label: Tools
+  keywords:
+    - crimping tool
+    - crimper
+    - soldering iron
+    - solder sucker
+    - desoldering
+    - tweezers
+    - wrench
+    - allen key
+    - hex key
+    - screwdriver
+    - pliers
+    - wire stripper
+    - ruler
+    - brush
+- id: mechanical-components
+  label: Mechanical Components
+  keywords:
+    - bearing
+    - belt
+    - pulley
+    - shaft
+    - bushing
+    - coupling
+    - spring
+    - screw
+    - bolt
+    - nut
+    - washer
+    - bracket
+    - cable tie
+    - zip tie
+    - hinge
+    - rail
+    - rod
+- id: electrical-components
+  label: Electrical Components
+  default: true
+  keywords: []

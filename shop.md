@@ -30,20 +30,11 @@ Prices are approximate and may vary. Amazon links are affiliate links.</p>
 </div>
 
 <div class="product-list-h">
-  {% for product in site.products %}
-  {% comment %}
-    Stock data is set on each card via data attributes so JS can
-    filter dynamically without a page reload.
-  {% endcomment %}
-  {% assign in_stock = false %}
-  {% if product.variants %}
-    {% for v in product.variants %}
-      {% if v.stock > 0 %}{% assign in_stock = true %}{% endif %}
-    {% endfor %}
-  {% elsif product.stock > 0 %}
-    {% assign in_stock = true %}
-  {% endif %}
-  <div class="product-card-h product-card" data-in-stock="{% if in_stock %}1{% else %}0{% endif %}" data-href="{{ product.url }}" data-category="{{ product.category }}">
+  {% assign low_stock_threshold = site.data.site.shop.low_stock_threshold | default: 3 %}
+  {% for product in site.data.catalog %}
+  {% assign product_page_url = product.page_url | default: product.url %}
+  {% assign product_buy_url = product.amazon_url | default: product.url %}
+  <div class="product-card-h product-card{% unless product.in_stock %} product-card-oos{% endunless %}" data-in-stock="{% if product.in_stock %}1{% else %}0{% endif %}" data-href="{{ product_page_url | relative_url }}" data-category="{{ product.category }}">
     <div class="product-card-image">
       <img
         src="{% if product.image %}{{ product.image }}{% else %}/assets/images/products/placeholder.svg{% endif %}"
@@ -58,13 +49,23 @@ Prices are approximate and may vary. Amazon links are affiliate links.</p>
         <h3 class="product-card-title">{{ product.title }}</h3>
         <p class="product-card-desc">{{ product.description }}</p>
       </div>
+      <div class="product-card-badges">
+        {% if product.in_stock %}
+          {% if product.stock_qty < low_stock_threshold %}
+          <span class="stock-badge stock-badge-low">Low stock</span>
+          {% else %}
+          <span class="stock-badge stock-badge-in">In stock</span>
+          {% endif %}
+        {% else %}
+        <span class="stock-badge stock-badge-out">Out of stock</span>
+        {% endif %}
+        {% if product.price_dropped %}
+        <span class="stock-badge price-drop-badge">Price dropped</span>
+        {% endif %}
+      </div>
       <div class="product-card-bottom">
         <span class="price">{{ product.price }}</span>
-        {% if product.variants and product.variants.size > 0 %}
-          {% assign buy_url = product.variants[0].url %}
-        {% elsif product.amazon_url %}
-          {% assign buy_url = product.amazon_url %}
-        {% endif %}
+        {% assign buy_url = product_buy_url %}
         {% if buy_url %}
         <a href="{{ buy_url }}" class="btn-buy-now" target="_blank" rel="noopener noreferrer">Buy Now</a>
         {% endif %}
@@ -85,6 +86,37 @@ Prices are approximate and may vary. Amazon links are affiliate links.</p>
   background: rgba(0,229,255,0.2);
   border-color: #00e5ff;
   color: #00e5ff;
+}
+.product-card-badges {
+  display: flex;
+  gap: 0.4rem;
+  margin: 0.35rem 0 0.65rem;
+}
+.stock-badge {
+  border: 1px solid #30363d;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  line-height: 1;
+  padding: 0.28rem 0.4rem;
+}
+.stock-badge-in {
+  color: #7ee787;
+  border-color: rgba(126,231,135,0.35);
+}
+.stock-badge-low {
+  color: #f2cc60;
+  border-color: rgba(242,204,96,0.4);
+}
+.stock-badge-out {
+  color: #ff7b72;
+  border-color: rgba(255,123,114,0.35);
+}
+.price-drop-badge {
+  color: #00e5ff;
+  border-color: rgba(0,229,255,0.4);
+}
+.product-card-oos {
+  opacity: 0.62;
 }
 .shop-toolbar {
   display: flex;

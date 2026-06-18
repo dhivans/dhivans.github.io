@@ -5,6 +5,9 @@ description: >-
   Building a simple adjustable bench power supply from scratch using an LM317
   regulator. Covers schematic, PCB layout considerations, and measured output performance.
 tags: [power-supply, LM317, build-log]
+products:
+  - asin: B0DRW6JJSY
+    qty: 1
 ---
 
 <!--

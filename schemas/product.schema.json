@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DST product front matter",
+  "type": "object",
+  "required": ["layout", "title", "price", "category"],
+  "oneOf": [
+    { "required": ["asin", "amazon_url", "stock"] },
+    { "required": ["variants"] }
+  ],
+  "properties": {
+    "layout": { "const": "product" },
+    "title": { "type": "string", "minLength": 1 },
+    "description": { "type": ["string", "null"] },
+    "category": { "type": "string", "minLength": 1 },
+    "subcategory": { "type": ["string", "null"] },
+    "price": { "type": ["string", "number"] },
+    "stock": { "type": "integer", "minimum": 0 },
+    "amazon_url": { "type": "string", "minLength": 1 },
+    "asin": { "type": "string", "pattern": "^[A-Z0-9]{10}$" },
+    "image": { "type": ["string", "null"] },
+    "images": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "featured": { "type": ["boolean", "null"] },
+    "hot": { "type": ["boolean", "null"] },
+    "sales_30d": { "type": ["integer", "null"], "minimum": 0 },
+    "bsr": { "type": ["integer", "null"], "minimum": 1 },
+    "badge": { "type": ["string", "null"] },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "specs": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "variants": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["asin", "price", "url"],
+        "properties": {
+          "label": { "type": ["string", "null"] },
+          "name": { "type": ["string", "null"] },
+          "asin": { "type": "string", "pattern": "^[A-Z0-9]{10}$" },
+          "price": { "type": ["string", "number"] },
+          "url": { "type": "string", "minLength": 1 },
+          "amazon_url": { "type": ["string", "null"] },
+          "image": { "type": ["string", "null"] },
+          "stock": { "type": "integer", "minimum": 0 },
+          "specs": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

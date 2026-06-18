@@ -1,0 +1,31 @@
+electrical-components:
+  - key: voltage
+    label: Voltage
+    type: text
+  - key: interface
+    label: Interface
+    type: text
+  - key: count
+    label: Count
+    type: number
+
+test-equipment:
+  - key: channels
+    label: Channels
+    type: number
+  - key: voltage_range
+    label: Voltage Range
+    type: text
+  - key: true_rms
+    label: True RMS
+    type: boolean
+
+tools:
+  - key: size
+    label: Size
+    type: text
+
+mechanical-components:
+  - key: dimensions
+    label: Dimensions
+    type: text

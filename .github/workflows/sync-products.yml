@@ -27,7 +27,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install requests
+        run: pip install -r requirements.txt
 
       - name: Run product sync
         env:
@@ -43,14 +43,14 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Stage only the _products/ folder
-          git add _products/
+          # Stage only generated product/catalogue data
+          git add _products/ _data/catalog.json _data/history/ _data/price_changes.json
 
           # Check if there is anything to commit
           if git diff --cached --quiet; then
             echo "No product files changed — nothing to commit."
           else
-            git commit -m "Auto-sync: update product prices and images [skip ci]"
+            git commit -m "Auto-sync: update product catalogue data [skip ci]"
             git push
             echo "Changes committed and pushed."
           fi

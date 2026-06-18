@@ -1,0 +1,7 @@
+brand:
+  name: DhivanSTech
+  short_name: DST
+  amazon_fulfilment_note: "Orders, fulfilment, and returns are handled by Amazon."
+
+shop:
+  low_stock_threshold: 3
