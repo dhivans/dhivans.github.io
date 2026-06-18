@@ -201,6 +201,30 @@ layout: default
   </section>
   {% endif %}
 
+  {% if page.related and page.related.size > 0 %}
+  <section class="related-products">
+    <h2>Pairs Well With</h2>
+    <div class="related-products-list">
+      {% for related_asin in page.related limit: 4 %}
+        {% assign related_product = nil %}
+        {% for item in site.data.catalog %}
+          {% if item.asin == related_asin %}
+            {% assign related_product = item %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+        {% if related_product %}
+        <article class="related-product">
+          <a href="{{ related_product.page_url | relative_url }}">{{ related_product.title }}</a>
+          <span>{{ related_product.price }} · {% if related_product.in_stock %}In stock{% else %}Out of stock{% endif %}</span>
+          <a href="{{ related_product.amazon_url }}" target="_blank" rel="noopener noreferrer">Amazon</a>
+        </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
 </article>
 
 {% assign product_url = page.amazon_url %}

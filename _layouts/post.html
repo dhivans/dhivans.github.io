@@ -14,11 +14,15 @@ layout: default
     {% endif %}
   </header>
 
+  {% include tag-chips.html %}
+  {% include series-nav.html %}
   {% include parts-used.html %}
 
   <div class="post-content e-content" itemprop="articleBody">
     {{ content }}
   </div>
+
+  {% include newsletter.html %}
 </article>
 
 <script type="application/ld+json">

@@ -61,6 +61,35 @@
     <span class="sidebar-label">Deals</span>
   </a>
 
+  <!-- Compare -->
+  <a href="/compare/" class="sidebar-item{% if page.url contains 'compare' %} active{% endif %}">
+    <span class="sidebar-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M10 3H5a2 2 0 0 0-2 2v14"/>
+        <path d="M21 21V5a2 2 0 0 0-2-2h-5"/>
+        <path d="M7 21h10"/>
+        <path d="M12 3v18"/>
+      </svg>
+    </span>
+    <span class="sidebar-label">Compare</span>
+  </a>
+
+  <!-- Bundles -->
+  <a href="/bundles/beginner-breadboarding-kit/" class="sidebar-item{% if page.url contains 'bundles' %} active{% endif %}">
+    <span class="sidebar-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+        <path d="M3.3 7L12 12l8.7-5"/>
+        <path d="M12 22V12"/>
+      </svg>
+    </span>
+    <span class="sidebar-label">Bundles</span>
+  </a>
+
   <!-- Projects -->
   <a href="/projects/" class="sidebar-item{% if page.url contains 'project' %} active{% endif %}">
     <span class="sidebar-icon">
@@ -71,6 +100,18 @@
       </svg>
     </span>
     <span class="sidebar-label">Projects</span>
+  </a>
+
+  <!-- Built with DST -->
+  <a href="/built-with-dst/" class="sidebar-item{% if page.url contains 'built-with-dst' %} active{% endif %}">
+    <span class="sidebar-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.1-3.1a6 6 0 0 1-7.9 7.9l-6 6a2 2 0 0 1-2.8-2.8l6-6a6 6 0 0 1 7.9-7.9l-3.3 2.9z"/>
+      </svg>
+    </span>
+    <span class="sidebar-label">Built</span>
   </a>
 
   <!-- About -->

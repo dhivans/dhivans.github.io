@@ -1,0 +1,8 @@
+{% assign tags = include.tags | default: page.tags %}
+{% if tags and tags.size > 0 %}
+<div class="tag-chips">
+  {% for tag in tags %}
+  <a href="/tags/?tag={{ tag | slugify }}">{{ tag }}</a>
+  {% endfor %}
+</div>
+{% endif %}

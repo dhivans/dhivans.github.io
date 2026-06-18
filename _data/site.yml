@@ -5,3 +5,10 @@ brand:
 
 shop:
   low_stock_threshold: 3
+
+newsletter:
+  enabled: false
+  action_url: ""
+  email_field: "email"
+  title: "Bench notes by email"
+  description: "Short updates when a build log, buying guide, or tested product note ships."

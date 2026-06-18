@@ -24,8 +24,15 @@ Category rules and stock thresholds live in `_data/categories.yml` and `_data/si
 - Product pages always render a "Tested by DST" panel. Add measured checks with `verified_specs` in product front matter; optional `test_notes` and `datasheet_url` are also supported.
 - The test methodology page lives at `/how-we-test/`.
 - `/deals/` renders price drops and 90-day lows from generated data.
+- `/compare/` reads `_data/catalog.json` and supports deep links such as `/compare/?asins=B0...,B0...`.
+- `shop.md` supports category/spec facets from `_data/facets.yml`, stock filtering, and compare buttons.
+- `_bundles/` pages render curated kits from ASIN references with live price and stock data.
 - Use `{% include bom.html %}` in posts/projects to render a live-priced bill of materials from the page `products:` front matter, or pass comma-separated ASINs with `{% include bom.html asins="B0...,B0..." %}`.
+- Posts/projects can use `series:` for series navigation and `tags:` for `/tags/` topic browsing.
+- Product pages can use `related: [ASIN, ...]` to show "Pairs well with" recommendations.
 - The nightly sync generates a low-stock report and opens or updates a single GitHub issue when any item is at or below `_data/site.yml`'s `low_stock_threshold`.
+- Pagefind search is generated during the GitHub Pages workflow and appears on `/shop/` and `/search/`.
+- A monthly workflow drafts a catalogue digest PR from price and stock data.
 
 ## Local Build
 

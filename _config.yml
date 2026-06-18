@@ -16,6 +16,9 @@ collections:
   projects:
     output: true
     permalink: /projects/:name/
+  bundles:
+    output: true
+    permalink: /bundles/:name/
 
 # Default layouts per collection
 defaults:
@@ -24,6 +27,16 @@ defaults:
       type: projects
     values:
       layout: post
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: bundles
+    values:
+      layout: bundle
 
 # Build settings
 theme: minima

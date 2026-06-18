@@ -1,0 +1,11 @@
+{% assign newsletter = site.data.site.newsletter %}
+{% if newsletter and newsletter.enabled and newsletter.action_url %}
+<section class="newsletter-box">
+  <h2>{{ newsletter.title | default: "DST updates" }}</h2>
+  <p>{{ newsletter.description }}</p>
+  <form action="{{ newsletter.action_url }}" method="post" target="_blank">
+    <input type="email" name="{{ newsletter.email_field | default: 'email' }}" placeholder="Email address" autocomplete="email" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+{% endif %}

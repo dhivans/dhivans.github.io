@@ -1,0 +1,36 @@
+name: Draft Monthly Digest
+
+on:
+  schedule:
+    - cron: '0 8 1 * *'
+  workflow_dispatch:
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - run: python scripts/build_catalog.py
+
+      - run: python scripts/draft_monthly_digest.py
+
+      - name: Open digest PR
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: automation/monthly-digest
+          title: "Draft monthly catalogue digest"
+          commit-message: "Draft monthly catalogue digest"
+          body: "Automated draft generated from catalogue price and stock data."
+          draft: true

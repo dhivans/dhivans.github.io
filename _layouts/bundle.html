@@ -1,0 +1,51 @@
+---
+layout: default
+---
+
+<article class="bundle-page">
+  <header>
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}<p class="shop-intro">{{ page.description }}</p>{% endif %}
+  </header>
+
+  {% assign total = 0 %}
+  <div class="bundle-items">
+    {% for ref in page.products %}
+      {% assign ref_asin = ref.asin | default: ref %}
+      {% assign ref_qty = ref.qty | default: 1 %}
+      {% assign product = nil %}
+      {% for item in site.data.catalog %}
+        {% if item.asin == ref_asin %}
+          {% assign product = item %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+      {% if product %}
+        {% assign line_total = product.price_amount | times: ref_qty %}
+        {% assign total = total | plus: line_total %}
+        <article class="bundle-item">
+          <img src="{{ product.image | default: '/assets/images/products/placeholder.svg' }}" alt="{{ product.title }}" onerror="this.src='/assets/images/products/placeholder.svg'">
+          <div>
+            <h2><a href="{{ product.page_url | relative_url }}">{{ product.title }}</a></h2>
+            {% if product.variant %}<p>{{ product.variant }}</p>{% endif %}
+            <p>{{ product.description | truncate: 150 }}</p>
+          </div>
+          <div class="bundle-item-buy">
+            <strong>{{ ref_qty }} x {{ product.price }}</strong>
+            <span>{% if product.in_stock %}In stock{% else %}Out of stock{% endif %}</span>
+            <a href="{{ product.amazon_url }}" class="btn-buy-now" target="_blank" rel="noopener noreferrer">Amazon</a>
+          </div>
+        </article>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <aside class="bundle-total">
+    <span>Approximate total</span>
+    <strong>GBP {{ total | round: 2 }}</strong>
+  </aside>
+
+  <div class="product-body-content">
+    {{ content }}
+  </div>
+</article>

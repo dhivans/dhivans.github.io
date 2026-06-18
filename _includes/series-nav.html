@@ -1,0 +1,27 @@
+{% if page.series %}
+  {% assign series_count = 0 %}
+  {% capture series_links %}
+    {% for post in site.posts reversed %}
+      {% if post.series == page.series %}
+        {% assign series_count = series_count | plus: 1 %}
+        <li{% if post.url == page.url %} class="active"{% endif %}>
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+    {% for project in site.projects %}
+      {% if project.series == page.series %}
+        {% assign series_count = series_count | plus: 1 %}
+        <li{% if project.url == page.url %} class="active"{% endif %}>
+          <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  {% endcapture %}
+  {% if series_count > 1 %}
+  <nav class="series-nav" aria-label="Series navigation">
+    <h2>{{ page.series }}</h2>
+    <ol>{{ series_links }}</ol>
+  </nav>
+  {% endif %}
+{% endif %}

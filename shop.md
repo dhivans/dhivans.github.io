@@ -29,12 +29,42 @@ Prices are approximate and may vary. Amazon links are affiliate links.</p>
   </div>
 </div>
 
+<div id="pagefind-search" class="pagefind-search-wrap"></div>
+
+<div class="facet-panel" id="facet-panel">
+  <div class="facet-panel-top">
+    <span>Filters</span>
+    <a href="/shop/">Clear</a>
+  </div>
+  <div class="facet-grid">
+    <label>
+      Category
+      <select id="facet-category">
+        <option value="">All categories</option>
+        {% for category in site.data.categories %}
+        <option value="{{ category.id }}">{{ category.label }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    {% for facet_group in site.data.facets %}
+      {% assign category_id = facet_group[0] %}
+      {% assign facets = facet_group[1] %}
+      {% for facet in facets %}
+      <label class="spec-filter" data-facet-category="{{ category_id }}">
+        {{ facet.label }}
+        <input type="text" data-spec-key="{{ facet.key }}" data-spec-type="{{ facet.type }}" placeholder="{% if facet.type == 'number' %}Minimum{% elsif facet.type == 'boolean' %}true / false{% else %}Contains{% endif %}">
+      </label>
+      {% endfor %}
+    {% endfor %}
+  </div>
+</div>
+
 <div class="product-list-h">
   {% assign low_stock_threshold = site.data.site.shop.low_stock_threshold | default: 3 %}
   {% for product in site.data.catalog %}
   {% assign product_page_url = product.page_url | default: product.url %}
   {% assign product_buy_url = product.amazon_url | default: product.url %}
-  <div class="product-card-h product-card{% unless product.in_stock %} product-card-oos{% endunless %}" data-in-stock="{% if product.in_stock %}1{% else %}0{% endif %}" data-href="{{ product_page_url | relative_url }}" data-category="{{ product.category }}">
+  <div class="product-card-h product-card{% unless product.in_stock %} product-card-oos{% endunless %}" data-in-stock="{% if product.in_stock %}1{% else %}0{% endif %}" data-href="{{ product_page_url | relative_url }}" data-category="{{ product.category }}" data-asin="{{ product.asin }}" data-specs="{{ product.specs | jsonify | escape }}">
     <div class="product-card-image">
       <img
         src="{% if product.image %}{{ product.image }}{% else %}/assets/images/products/placeholder.svg{% endif %}"
@@ -65,10 +95,13 @@ Prices are approximate and may vary. Amazon links are affiliate links.</p>
       </div>
       <div class="product-card-bottom">
         <span class="price">{{ product.price }}</span>
-        {% assign buy_url = product_buy_url %}
-        {% if buy_url %}
-        <a href="{{ buy_url }}" class="btn-buy-now" target="_blank" rel="noopener noreferrer">Buy Now</a>
-        {% endif %}
+        <div class="product-card-actions">
+          <button class="btn-compare" type="button" data-compare-asin="{{ product.asin }}">Compare</button>
+          {% assign buy_url = product_buy_url %}
+          {% if buy_url %}
+          <a href="{{ buy_url }}" class="btn-buy-now" target="_blank" rel="noopener noreferrer">Buy Now</a>
+          {% endif %}
+        </div>
       </div>
     </div>
   </div>
@@ -117,6 +150,59 @@ Prices are approximate and may vary. Amazon links are affiliate links.</p>
 }
 .product-card-oos {
   opacity: 0.62;
+}
+.product-card-actions {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.btn-compare {
+  background: transparent;
+  border: 1px solid rgba(0,229,255,0.35);
+  border-radius: 4px;
+  color: #00e5ff;
+  cursor: pointer;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.3rem 0.6rem;
+}
+.facet-panel {
+  background: #111820;
+  border: 1px solid rgba(0,229,255,0.16);
+  border-radius: 6px;
+  margin: 0 0 1rem;
+  padding: 0.85rem;
+}
+.facet-panel-top {
+  display: flex;
+  justify-content: space-between;
+  color: #00e5ff;
+  font-family: "Courier New", monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+.facet-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+.facet-grid label {
+  color: #8b949e;
+  display: grid;
+  font-size: 0.82rem;
+  gap: 0.25rem;
+}
+.facet-grid input,
+.facet-grid select {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 4px;
+  color: #e2eaf4;
+  padding: 0.45rem 0.55rem;
 }
 .shop-toolbar {
   display: flex;
@@ -208,12 +294,29 @@ Prices are approximate and may vary. Amazon links are affiliate links.</p>
   var btn     = document.getElementById('shop-settings-btn');
   var popover = document.getElementById('shop-settings-popover');
   var toggle  = document.getElementById('toggle-out-of-stock');
+  var categorySelect = document.getElementById('facet-category');
+  var specInputs = Array.prototype.slice.call(document.querySelectorAll('[data-spec-key]'));
 
   var showOutOfStock = false;
+  var compareAsins = [];
 
   // Read category filter from URL ?category=
   var urlParams      = new URLSearchParams(window.location.search);
   var activeCategory = urlParams.get('category') || '';
+  if (categorySelect) categorySelect.value = activeCategory;
+
+  specInputs.forEach(function (input) {
+    var value = urlParams.get(input.dataset.specKey);
+    if (value) input.value = value;
+  });
+
+  function updateSpecVisibility() {
+    document.querySelectorAll('.spec-filter').forEach(function (label) {
+      var cat = label.dataset.facetCategory;
+      label.style.display = (!activeCategory || cat === activeCategory) ? '' : 'none';
+    });
+  }
+  updateSpecVisibility();
 
   // Update page title and show a clear-filter link if a category is active
   if (activeCategory) {
@@ -242,9 +345,31 @@ Prices are approximate and may vary. Amazon links are affiliate links.</p>
       var matchSearch   = query === '' || card.textContent.toLowerCase().indexOf(query) !== -1;
       var matchStock    = inStock || showOutOfStock;
       var matchCategory = activeCategory === '' || card.dataset.category === activeCategory;
-      card.style.display = (matchSearch && matchStock && matchCategory) ? '' : 'none';
+      var specs = {};
+      try { specs = JSON.parse(card.dataset.specs || '{}'); } catch (e) { specs = {}; }
+      var matchSpecs = specInputs.every(function (input) {
+        var wanted = (input.value || '').trim().toLowerCase();
+        if (!wanted || input.closest('.spec-filter').style.display === 'none') return true;
+        var actual = specs[input.dataset.specKey];
+        if (actual === undefined || actual === null || actual === '') return false;
+        if (input.dataset.specType === 'number') return Number(actual) >= Number(wanted);
+        if (input.dataset.specType === 'boolean') return String(actual).toLowerCase() === wanted;
+        return String(actual).toLowerCase().indexOf(wanted) !== -1;
+      });
+      card.style.display = (matchSearch && matchStock && matchCategory && matchSpecs) ? '' : 'none';
     });
   };
+
+  function syncFilterUrl() {
+    var url = new URL(window.location.href);
+    if (activeCategory) url.searchParams.set('category', activeCategory);
+    else url.searchParams.delete('category');
+    specInputs.forEach(function (input) {
+      if (input.value.trim()) url.searchParams.set(input.dataset.specKey, input.value.trim());
+      else url.searchParams.delete(input.dataset.specKey);
+    });
+    history.replaceState(null, '', url);
+  }
 
   // Gear button — open/close popover
   btn.addEventListener('click', function (e) {
@@ -275,6 +400,35 @@ Prices are approximate and may vary. Amazon links are affiliate links.</p>
   });
 
   // Initial render — hide out-of-stock by default
+  if (categorySelect) {
+    categorySelect.addEventListener('change', function () {
+      activeCategory = categorySelect.value;
+      updateSpecVisibility();
+      syncFilterUrl();
+      window.filterCards((document.getElementById('shop-search-bar') || {}).value || '');
+    });
+  }
+
+  specInputs.forEach(function (input) {
+    input.addEventListener('input', function () {
+      syncFilterUrl();
+      window.filterCards((document.getElementById('shop-search-bar') || {}).value || '');
+    });
+  });
+
+  document.querySelectorAll('[data-compare-asin]').forEach(function (button) {
+    button.addEventListener('click', function (event) {
+      event.stopPropagation();
+      var asin = button.dataset.compareAsin;
+      if (compareAsins.indexOf(asin) === -1) compareAsins.push(asin);
+      compareAsins = compareAsins.slice(-3);
+      window.location.href = '/compare/?asins=' + encodeURIComponent(compareAsins.join(','));
+    });
+  });
+
   window.filterCards('');
 }());
 </script>
+
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js" onload="new PagefindUI({ element: '#pagefind-search', showSubResults: true });" onerror="document.getElementById('pagefind-search').hidden = true;"></script>
