@@ -1,0 +1,48 @@
+{% assign refs = include.products | default: page.products %}
+{% assign asin_list = include.asins | default: "" | split: "," %}
+{% if refs == nil or refs.size == 0 %}
+  {% assign refs = asin_list %}
+{% endif %}
+
+{% if refs and refs.size > 0 %}
+<section class="bom-box">
+  <h2>Bill of Materials</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Qty</th>
+        <th>Part</th>
+        <th>Stock</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ref in refs %}
+        {% assign ref_asin = ref.asin | default: ref | strip %}
+        {% assign ref_qty = ref.qty | default: 1 %}
+        {% assign part = nil %}
+        {% for item in site.data.catalog %}
+          {% if item.asin == ref_asin %}
+            {% assign part = item %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+        {% if part %}
+        <tr>
+          <td>{{ ref_qty }}</td>
+          <td>
+            <a href="{{ part.page_url | relative_url }}">{{ part.title }}</a>
+            {% assign part_variant = part.variant | default: part.variant_label %}
+            {% if part_variant %}<span>{{ part_variant }}</span>{% endif %}
+          </td>
+          <td>{% if part.in_stock %}In stock{% else %}Out of stock{% endif %}</td>
+          <td>{{ part.price }}</td>
+          <td><a href="{{ part.amazon_url }}" target="_blank" rel="noopener noreferrer">Amazon</a></td>
+        </tr>
+        {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endif %}

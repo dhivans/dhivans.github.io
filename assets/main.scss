@@ -1234,6 +1234,67 @@ $sidebar-speed: 0.25s ease;
   width: 100%;
 }
 
+.verified-specs-panel {
+  background: #111820;
+  border: 1px solid rgba(0, 229, 255, 0.18);
+  border-radius: 6px;
+  margin-bottom: 1.25rem;
+  padding: 0.85rem;
+
+  table {
+    margin: 0.7rem 0;
+    width: 100%;
+  }
+
+  th,
+  td {
+    border-bottom: 1px solid #21262d;
+    color: #8b949e;
+    font-size: 0.82rem;
+    padding: 0.45rem 0.35rem;
+    text-align: left;
+  }
+
+  th {
+    color: #00e5ff;
+    font-family: "Courier New", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  p {
+    color: #8b949e;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin: 0.65rem 0 0;
+  }
+}
+
+.verified-specs-heading {
+  align-items: center;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: space-between;
+}
+
+.tested-badge {
+  border: 1px solid rgba(126, 231, 135, 0.35);
+  border-radius: 4px;
+  color: #7ee787;
+  display: inline-block;
+  font-family: "Courier New", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  padding: 0.22rem 0.45rem;
+  text-transform: uppercase;
+}
+
+.verified-specs-note,
+.datasheet-link {
+  font-size: 0.82rem;
+}
+
 .product-variants-select {
   margin-bottom: 1.25rem;
 }
@@ -1372,7 +1433,8 @@ $sidebar-speed: 0.25s ease;
 }
 
 .parts-used,
-.featured-in {
+.featured-in,
+.bom-box {
   border: 1px solid rgba(0, 229, 255, 0.18);
   border-radius: 6px;
   margin: 1.5rem 0;
@@ -1392,7 +1454,8 @@ $sidebar-speed: 0.25s ease;
 }
 
 .parts-used-list,
-.featured-in-list {
+.featured-in-list,
+.deals-list {
   display: grid;
   gap: 0.6rem;
 }
@@ -1442,13 +1505,46 @@ $sidebar-speed: 0.25s ease;
   text-decoration: none !important;
 }
 
+.deal-row {
+  align-items: center;
+  background: #111820;
+  border: 1px solid rgba(0, 229, 255, 0.16);
+  border-radius: 6px;
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 1fr auto auto;
+  padding: 0.8rem;
+
+  span {
+    color: #8b949e;
+    display: block;
+    font-size: 0.82rem;
+  }
+}
+
+.deal-prices {
+  color: #8b949e;
+  font-family: "Courier New", monospace;
+  font-size: 0.78rem;
+  text-align: right;
+
+  strong {
+    color: #00e5ff;
+    display: block;
+    font-weight: 700;
+  }
+}
+
 @media (max-width: 640px) {
-  .parts-used-row {
+  .parts-used-row,
+  .deal-row {
     grid-template-columns: 1fr;
   }
 
-  .parts-used-meta {
+  .parts-used-meta,
+  .deal-prices {
     justify-content: flex-start;
+    text-align: left;
   }
 }
 

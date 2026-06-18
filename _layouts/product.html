@@ -77,6 +77,43 @@ layout: default
       <p class="product-detail-desc">{{ page.description }}</p>
       {% endif %}
 
+      <div class="verified-specs-panel">
+        <div class="verified-specs-heading">
+          <span class="tested-badge">Tested by DST</span>
+          <a href="/how-we-test/">How we test</a>
+        </div>
+        {% if page.verified_specs and page.verified_specs.size > 0 %}
+        <table>
+          <thead>
+            <tr>
+              <th>Spec</th>
+              <th>Claimed</th>
+              <th>Checked</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for spec in page.verified_specs %}
+            <tr>
+              <td>{{ spec.name | default: spec[0] }}</td>
+              <td>{{ spec.claimed | default: "Listed" }}</td>
+              <td>{{ spec.measured | default: spec.value | default: spec[1] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        <p>Listing data is checked for ASIN, price, stock state, product URL, and catalogue placement during sync. Bench measurements are added here as products are tested.</p>
+        {% endif %}
+        {% if page.test_notes %}
+        <p class="verified-specs-note">{{ page.test_notes }}</p>
+        {% else %}
+        <p class="verified-specs-note">Spec accuracy statement: DST prioritises known-spec parts and flags measured values separately from marketplace listing claims.</p>
+        {% endif %}
+        {% if page.datasheet_url %}
+        <a class="datasheet-link" href="{{ page.datasheet_url }}" target="_blank" rel="noopener noreferrer">Datasheet</a>
+        {% endif %}
+      </div>
+
       {% if catalog_product.sparkline_points %}
       <div class="product-price-history" aria-label="Price history">
         <div class="product-price-history-top">

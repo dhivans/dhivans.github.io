@@ -29,6 +29,8 @@ products:
 
 A bench power supply is the first thing worth building properly. Variable voltage, current limiting, clean regulation — a good one saves every project after it.
 
+{% include bom.html %}
+
 ## The spec
 
 Target output: 1.25V to 25V adjustable, up to 1.5A continuous. Source: a salvaged 24V transformer from a dead printer. Regulation via LM317T in TO-220 package mounted to a small aluminium heatsink.
