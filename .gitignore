@@ -13,6 +13,10 @@ _site/
 .jekyll-cache/
 .jekyll-metadata
 
+# Bundler local gem install (used by CI's bundler-cache)
+.bundle/
+vendor/
+
 # Python
 __pycache__/
 *.pyc
