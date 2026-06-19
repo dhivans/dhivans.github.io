@@ -14,6 +14,7 @@ jobs:
     permissions:
       contents: write   # needed to commit and push updated markdown files
       issues: write     # needed to open/update low-stock alerts
+      actions: write    # needed to dispatch the Pages rebuild below
 
     steps:
       - name: Check out repository
@@ -66,6 +67,7 @@ jobs:
             }
 
       - name: Commit updated product files (if any changed)
+        id: commit
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -76,8 +78,28 @@ jobs:
           # Check if there is anything to commit
           if git diff --cached --quiet; then
             echo "No product files changed — nothing to commit."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "Auto-sync: update product catalogue data [skip ci]"
             git push
             echo "Changes committed and pushed."
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Trigger site rebuild
+        # The commit above is pushed with the default GITHUB_TOKEN, which
+        # GitHub deliberately excludes from triggering other workflows (to
+        # avoid recursive runs) — and its message carries [skip ci] anyway.
+        # So the live site would otherwise keep serving stale prices until
+        # some unrelated push happened to rebuild it. Dispatch the rebuild
+        # explicitly instead, only when the sync actually changed something.
+        if: steps.commit.outputs.changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'pages.yml',
+              ref: 'main'
+            });
