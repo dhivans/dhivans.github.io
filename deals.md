@@ -19,7 +19,7 @@ permalink: /deals/
       {% break %}
     {% endif %}
   {% endfor %}
-  {% if product %}
+  {% if product and product.in_stock %}
   <article class="deal-row">
     <div>
       <a href="{{ product.page_url | relative_url }}">{{ product.title }}</a>
@@ -38,7 +38,7 @@ permalink: /deals/
 
 <h2>Lowest Seen</h2>
 <div class="deals-list">
-  {% assign low_items = site.data.catalog | sort: "lowest_90d" %}
+  {% assign low_items = site.data.catalog | where: "in_stock", true | sort: "lowest_90d" %}
   {% for product in low_items limit: 24 %}
     {% if product.lowest_90d %}
     <article class="deal-row">
