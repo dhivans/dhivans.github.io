@@ -40,6 +40,10 @@ defaults:
 
 # Build settings
 theme: minima
+# date: front matter here is for display/sorting only, not scheduled
+# publishing — don't let a CI runner's UTC clock silently 404 a page that
+# was authored "today" in a timezone ahead of UTC.
+future: true
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
