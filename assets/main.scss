@@ -432,6 +432,10 @@ $sidebar-speed: 0.25s ease;
   margin-left: 1.7rem;
   transition: color 0.15s, background-color 0.15s;
 
+  &:visited {
+    color: #8b949e;
+  }
+
   &:hover {
     color: #00e5ff;
     background-color: rgba(0,229,255,0.06);
@@ -450,6 +454,12 @@ $sidebar-speed: 0.25s ease;
   overflow: hidden;
   flex-shrink: 0;
   transition: color 0.2s ease, background-color 0.2s ease;
+
+  // Beats the global a:visited rule's specificity so visited links
+  // don't randomly diverge from the intended resting colour.
+  &:visited {
+    color: #8b949e;
+  }
 
   &:hover {
     color: #e2eaf4;
