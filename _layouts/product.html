@@ -64,11 +64,7 @@ layout: default
 
       {% if catalog_product %}
       <p class="product-stock-note">
-        {% if catalog_product.in_stock %}
-          {% if catalog_product.stock_qty <= low_stock_threshold %}Low stock{% else %}In stock{% endif %}{% if catalog_product.stock_qty %}: {{ catalog_product.stock_qty }} available{% endif %}
-        {% else %}
-          Currently out of stock
-        {% endif %}
+        <span id="stock-status-text">{% if catalog_product.in_stock %}{% if catalog_product.stock_qty <= low_stock_threshold %}Low stock{% else %}In stock{% endif %}{% if catalog_product.stock_qty %}: {{ catalog_product.stock_qty }} available{% endif %}{% else %}Currently out of stock{% endif %}</span>
         {% if catalog_product.updated_at %}<span>Updated {{ catalog_product.updated_at | date: "%Y-%m-%d" }}</span>{% endif %}
       </p>
       {% endif %}
@@ -135,6 +131,7 @@ layout: default
             class="variant-btn{% if forloop.first %} selected{% endif %}"
             data-price="{{ v.price }}"
             data-url="{{ v.amazon_url | default: v.url }}"
+            data-stock="{{ v.stock }}"
             onclick="selectVariant(this)"
             type="button">{{ v.name | default: v.label }}</button>
           {% endfor %}
@@ -256,6 +253,8 @@ layout: default
 
 <script>
 (function () {
+  var lowStockThreshold = {{ low_stock_threshold | jsonify }};
+
   function swapImage(thumb) {
     var main = document.getElementById('product-main-image');
     if (!main) return;
@@ -275,6 +274,16 @@ layout: default
     if (priceEl && btn.dataset.price) priceEl.textContent = btn.dataset.price;
     var amazonBtn = document.getElementById('amazon-btn');
     if (amazonBtn && btn.dataset.url) amazonBtn.href = btn.dataset.url;
+
+    var stockText = document.getElementById('stock-status-text');
+    if (stockText && btn.dataset.stock) {
+      var stock = parseInt(btn.dataset.stock, 10);
+      if (stock > 0) {
+        stockText.textContent = (stock <= lowStockThreshold ? 'Low stock' : 'In stock') + ': ' + stock + ' available';
+      } else {
+        stockText.textContent = 'Currently out of stock';
+      }
+    }
   }
 
   window.swapImage = swapImage;
