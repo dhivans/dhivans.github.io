@@ -10,7 +10,7 @@ images:
   - "https://m.media-amazon.com/images/I/61zPsTe2j2L.jpg"
   - "https://m.media-amazon.com/images/I/71TeQhDphyL.jpg"
 featured: false
-sales_30d: 16
+sales_30d: 7
 badge: ""
 tags: ['cable', 'usb', 'charging']
 variants:
@@ -60,8 +60,8 @@ variants:
     asin: "B0D1VW8W52"
     price: "£9.99"
     url: "https://www.amazon.co.uk/dp/B0D1VW8W52"
-    image: "https://m.media-amazon.com/images/I/415MrpO63wL.jpg"
-    stock: 2
+    image: "https://m.media-amazon.com/images/I/41MKsEzRHwL.jpg"
+    stock: 0
 ---
 Ultra-Durable Magnetic Charging Cable (Black & White) - Tangle-Free Nylon Braided for Effortless Charging!
 Never fight with tangled wires again! This premium magnetic charging cable features a powerful magnetic connector that snaps effortlessly into your device for a secure, frustration-free charge every time.

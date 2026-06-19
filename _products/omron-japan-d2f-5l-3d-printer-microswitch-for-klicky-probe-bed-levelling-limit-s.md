@@ -8,13 +8,13 @@ image: "https://m.media-amazon.com/images/I/31JB4jBGnQL.jpg"
 images:
   - "https://m.media-amazon.com/images/I/31Kn8BYdz6L.jpg"
 featured: false
-sales_30d: 12
+sales_30d: 10
 badge: ""
 tags: []
 variants:
   - label: "1 Pack"
     asin: "B0DBGPD14M"
-    price: "£5.00"
+    price: "£5.20"
     url: "https://www.amazon.co.uk/dp/B0DBGPD14M"
     image: "https://m.media-amazon.com/images/I/31JB4jBGnQL.jpg"
     stock: 4
