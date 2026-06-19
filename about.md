@@ -13,7 +13,7 @@ DhivanSTech (DST) is an electronics brand focused on two things: supplying quali
 Everything in the DST catalogue falls into one of two categories:
 
 - **DIY maker components** — breadboards, jumper wires, resistor kits, capacitor assortments, sensor modules, microcontroller boards, and other hands-on electronics parts
-- **Test equipment** — multimeters, oscilloscopes, power supplies, and signal generators suited for bench work and field use
+- **Test equipment** — digital calipers, belt tension gauges, and other precision measuring tools suited for bench work and field use
 
 All products are sold via Amazon. We don't run our own store — Amazon handles fulfilment and returns. Our job is to select and list parts worth buying.
 

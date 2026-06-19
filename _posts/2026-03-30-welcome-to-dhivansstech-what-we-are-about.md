@@ -15,7 +15,7 @@ DST exists to fix that for a specific slice of the catalogue: DIY maker componen
 
 ## What DST does
 
-We select components with known, verifiable specs. We test them where we can — bench multimeters get verified against references, oscilloscopes get checked for bandwidth accuracy, kits get assembled to confirm completeness. Then we list them on Amazon with honest descriptions.
+We select components with known, verifiable specs. We test them where we can — digital calipers get checked against gauge blocks, belt tension meters get verified for accuracy, kits get assembled to confirm completeness. Then we list them on Amazon with honest descriptions.
 
 The project blog you're reading now is the documentation layer. Builds, experiments, and teardowns using DST-sourced gear. Written for people who actually want to understand the circuit, not just copy-paste it.
 
