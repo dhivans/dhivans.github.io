@@ -1282,12 +1282,35 @@ $sidebar-speed: 0.25s ease;
   border: 1px solid rgba(126, 231, 135, 0.35);
   border-radius: 4px;
   color: #7ee787;
+  cursor: help;
   display: inline-block;
   font-family: "Courier New", monospace;
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   padding: 0.22rem 0.45rem;
+  position: relative;
   text-transform: uppercase;
+
+  &:hover::after,
+  &:focus::after {
+    background: #0d1117;
+    border: 1px solid rgba(0, 229, 255, 0.25);
+    border-radius: 6px;
+    color: #c9d1d9;
+    content: attr(data-tooltip);
+    font-family: "Rajdhani", sans-serif;
+    font-size: 0.82rem;
+    left: 0;
+    letter-spacing: normal;
+    line-height: 1.45;
+    padding: 0.65rem 0.75rem;
+    position: absolute;
+    text-transform: none;
+    top: 130%;
+    white-space: normal;
+    width: 260px;
+    z-index: 10;
+  }
 }
 
 .verified-specs-note,

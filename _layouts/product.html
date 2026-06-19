@@ -65,7 +65,7 @@ layout: default
       {% if catalog_product %}
       <p class="product-stock-note">
         <span id="stock-status-text">{% if catalog_product.in_stock %}{% if catalog_product.stock_qty <= low_stock_threshold %}Low stock{% else %}In stock{% endif %}{% if catalog_product.stock_qty %}: {{ catalog_product.stock_qty }} available{% endif %}{% else %}Currently out of stock{% endif %}</span>
-        {% if catalog_product.updated_at %}<span>Updated {{ catalog_product.updated_at | date: "%Y-%m-%d" }}</span>{% endif %}
+        {% if catalog_product.updated_at %}<span id="stock-updated-date">Updated {{ catalog_product.updated_at | date: "%Y-%m-%d" }}</span>{% endif %}
       </p>
       {% endif %}
 
@@ -75,7 +75,10 @@ layout: default
 
       <div class="verified-specs-panel">
         <div class="verified-specs-heading">
-          <span class="tested-badge">Tested by DST</span>
+          <span
+            class="tested-badge"
+            tabindex="0"
+            data-tooltip="Every listing is checked for accurate ASIN, price, stock state, and product URL during catalogue sync. When a unit has been bench-tested, measured specs appear below, flagged separately from marketplace claims.">Tested by DST</span>
           <a href="/how-we-test/">How we test</a>
         </div>
         {% if page.verified_specs and page.verified_specs.size > 0 %}
@@ -97,13 +100,9 @@ layout: default
             {% endfor %}
           </tbody>
         </table>
-        {% else %}
-        <p>Listing data is checked for ASIN, price, stock state, product URL, and catalogue placement during sync. Bench measurements are added here as products are tested.</p>
         {% endif %}
         {% if page.test_notes %}
         <p class="verified-specs-note">{{ page.test_notes }}</p>
-        {% else %}
-        <p class="verified-specs-note">Spec accuracy statement: DST prioritises known-spec parts and flags measured values separately from marketplace listing claims.</p>
         {% endif %}
         {% if page.datasheet_url %}
         <a class="datasheet-link" href="{{ page.datasheet_url }}" target="_blank" rel="noopener noreferrer">Datasheet</a>
@@ -114,10 +113,10 @@ layout: default
       <div class="product-price-history" aria-label="Price history">
         <div class="product-price-history-top">
           <span>Price trend</span>
-          {% if catalog_product.lowest_90d %}<span>90-day low: {{ catalog_product.currency }} {{ catalog_product.lowest_90d }}</span>{% endif %}
+          {% if catalog_product.lowest_90d %}<span id="price-trend-low">90-day low: {{ catalog_product.currency }} {{ catalog_product.lowest_90d }}</span>{% endif %}
         </div>
         <svg viewBox="0 0 100 40" preserveAspectRatio="none" role="img" aria-label="Recent price trend">
-          <polyline points="{{ catalog_product.sparkline_points }}" fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke"></polyline>
+          <polyline id="price-trend-line" points="{{ catalog_product.sparkline_points }}" fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke"></polyline>
         </svg>
       </div>
       {% endif %}
@@ -127,11 +126,23 @@ layout: default
         <p class="product-variants-label">Choose variant</p>
         <div class="product-variant-buttons" id="variant-buttons">
           {% for v in page.variants %}
+          {% assign v_catalog = nil %}
+          {% for item in site.data.catalog %}
+            {% if item.asin == v.asin %}
+              {% assign v_catalog = item %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
           <button
             class="variant-btn{% if forloop.first %} selected{% endif %}"
             data-price="{{ v.price }}"
             data-url="{{ v.amazon_url | default: v.url }}"
             data-stock="{{ v.stock }}"
+            data-image="{{ v.image }}"
+            data-sparkline="{{ v_catalog.sparkline_points }}"
+            data-lowest90d="{{ v_catalog.lowest_90d }}"
+            data-currency="{{ v_catalog.currency }}"
+            data-updated="{{ v_catalog.updated_at | date: "%Y-%m-%d" }}"
             onclick="selectVariant(this)"
             type="button">{{ v.name | default: v.label }}</button>
           {% endfor %}
@@ -283,6 +294,25 @@ layout: default
       } else {
         stockText.textContent = 'Currently out of stock';
       }
+    }
+
+    var updatedEl = document.getElementById('stock-updated-date');
+    if (updatedEl && btn.dataset.updated) updatedEl.textContent = 'Updated ' + btn.dataset.updated;
+
+    var mainImage = document.getElementById('product-main-image');
+    if (mainImage && btn.dataset.image) {
+      mainImage.src = btn.dataset.image;
+      document.querySelectorAll('.product-thumb').forEach(function (t) {
+        t.classList.toggle('active', t.dataset.src === btn.dataset.image);
+      });
+    }
+
+    var sparklineEl = document.getElementById('price-trend-line');
+    if (sparklineEl && btn.dataset.sparkline) sparklineEl.setAttribute('points', btn.dataset.sparkline);
+
+    var lowestEl = document.getElementById('price-trend-low');
+    if (lowestEl && btn.dataset.lowest90d) {
+      lowestEl.textContent = '90-day low: ' + (btn.dataset.currency || '') + ' ' + btn.dataset.lowest90d;
     }
   }
 
