@@ -592,8 +592,18 @@ $sidebar-speed: 0.25s ease;
     &.mobile-open {
       transform: translateX(0);
 
+      .sidebar-logo {
+        justify-content: flex-start;
+        padding: 0 1.1rem;
+      }
+
+      .logo-short {
+        max-width: 0;
+        opacity: 0;
+      }
+
       .logo-full {
-        max-width: 160px;
+        max-width: 220px;
         opacity: 1;
       }
 
