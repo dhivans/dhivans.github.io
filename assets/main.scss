@@ -1477,6 +1477,46 @@ $sidebar-speed: 0.25s ease;
   }
 }
 
+.bom-box {
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.88rem;
+  }
+
+  th,
+  td {
+    padding: 0.5rem 0.7rem;
+    text-align: left;
+    border-bottom: 1px solid #21262d;
+    white-space: nowrap;
+  }
+
+  th {
+    color: #00e5ff;
+    font-family: "Courier New", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  td {
+    color: #8b949e;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+// Lets the BOM table scroll horizontally instead of being clipped by
+// the page's overflow-x: hidden when long part names overflow the
+// viewport on mobile.
+.bom-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .parts-used-list,
 .featured-in-list,
 .related-products-list,

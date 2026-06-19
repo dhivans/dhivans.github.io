@@ -7,6 +7,7 @@
 {% if refs and refs.size > 0 %}
 <section class="bom-box">
   <h2>Bill of Materials</h2>
+  <div class="bom-table-scroll">
   <table>
     <thead>
       <tr>
@@ -44,5 +45,6 @@
       {% endfor %}
     </tbody>
   </table>
+  </div>
 </section>
 {% endif %}
