@@ -28,12 +28,12 @@ layout: default
       {% if page.images and page.images.size > 0 %}
       <div class="product-thumbnails">
         {% if page.image %}
-        <button class="product-thumb active" data-src="{{ page.image }}" type="button" aria-label="Main image">
+        <button class="product-thumb active" data-src="{{ page.image }}" type="button" aria-label="Main image" onclick="swapImage(this)">
           <img src="{{ page.image }}" alt="{{ page.title }}" onerror="this.src='/assets/images/products/placeholder.svg'">
         </button>
         {% endif %}
         {% for img in page.images %}
-        <button class="product-thumb" data-src="{{ img }}" type="button" aria-label="Image {{ forloop.index }}">
+        <button class="product-thumb" data-src="{{ img }}" type="button" aria-label="Image {{ forloop.index }}" onclick="swapImage(this)">
           <img src="{{ img }}" alt="{{ page.title }}" onerror="this.src='/assets/images/products/placeholder.svg'">
         </button>
         {% endfor %}
