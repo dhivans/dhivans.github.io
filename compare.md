@@ -8,10 +8,13 @@ permalink: /compare/
 
 <div id="compare-app" class="compare-app">
   <div class="compare-picker">
-    <label for="compare-select">Add product</label>
-    <select id="compare-select"></select>
-    <button id="compare-add" type="button">Add</button>
+    <label for="compare-search">Add a component</label>
+    <div class="compare-search-wrap">
+      <input type="text" id="compare-search" placeholder="Search by name…" autocomplete="off" aria-autocomplete="list" aria-controls="compare-results" aria-expanded="false">
+      <div id="compare-results" class="compare-results" hidden></div>
+    </div>
   </div>
+  <div id="compare-cards" class="compare-cards"></div>
   <div id="compare-table"></div>
 </div>
 
@@ -21,18 +24,21 @@ permalink: /compare/
   var catalog = JSON.parse(document.getElementById('catalog-json').textContent);
   var selected = new URLSearchParams(window.location.search).get('asins');
   var asins = selected ? selected.split(',').filter(Boolean).slice(0, 3) : [];
-  var select = document.getElementById('compare-select');
-  var table = document.getElementById('compare-table');
+  var MAX_ITEMS = 3;
 
-  catalog.forEach(function (item) {
-    var option = document.createElement('option');
-    option.value = item.asin;
-    option.textContent = item.title;
-    select.appendChild(option);
-  });
+  var search = document.getElementById('compare-search');
+  var results = document.getElementById('compare-results');
+  var cardsEl = document.getElementById('compare-cards');
+  var tableEl = document.getElementById('compare-table');
 
   function itemFor(asin) {
     return catalog.find(function (item) { return item.asin === asin; });
+  }
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
   }
 
   function updateUrl() {
@@ -42,53 +48,138 @@ permalink: /compare/
     history.replaceState(null, '', url);
   }
 
-  function render() {
-    updateUrl();
-    var items = asins.map(itemFor).filter(Boolean);
-    if (!items.length) {
-      table.innerHTML = '<p class="empty-state">Select products to compare.</p>';
+  function addItem(asin) {
+    if (asins.indexOf(asin) === -1 && asins.length < MAX_ITEMS) asins.push(asin);
+    search.value = '';
+    closeResults();
+    render();
+  }
+
+  function removeItem(asin) {
+    asins = asins.filter(function (a) { return a !== asin; });
+    render();
+  }
+
+  function closeResults() {
+    results.hidden = true;
+    results.innerHTML = '';
+    search.setAttribute('aria-expanded', 'false');
+  }
+
+  function renderResults() {
+    var query = search.value.trim().toLowerCase();
+    if (!query || asins.length >= MAX_ITEMS) {
+      closeResults();
       return;
     }
+    var matches = catalog
+      .filter(function (item) { return asins.indexOf(item.asin) === -1; })
+      .filter(function (item) { return item.title.toLowerCase().indexOf(query) !== -1; })
+      .slice(0, 8);
+
+    if (!matches.length) {
+      results.innerHTML = '<div class="compare-results-empty">No matching components.</div>';
+      results.hidden = false;
+      search.setAttribute('aria-expanded', 'true');
+      return;
+    }
+
+    results.innerHTML = matches.map(function (item) {
+      return '<button type="button" class="compare-result" data-asin="' + item.asin + '">' +
+        '<span class="compare-result-title">' + escapeHtml(item.title) + '</span>' +
+        '<span class="compare-result-meta">' + escapeHtml(item.price || '') + (item.in_stock ? '' : ' · Out of stock') + '</span>' +
+        '</button>';
+    }).join('');
+    results.hidden = false;
+    search.setAttribute('aria-expanded', 'true');
+  }
+
+  search.addEventListener('input', renderResults);
+  search.addEventListener('focus', renderResults);
+  search.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeResults();
+    if (e.key === 'Enter') {
+      var first = results.querySelector('.compare-result');
+      if (first) addItem(first.dataset.asin);
+      e.preventDefault();
+    }
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.compare-search-wrap')) closeResults();
+  });
+  results.addEventListener('mousedown', function (e) {
+    var button = e.target.closest('[data-asin]');
+    if (button) addItem(button.dataset.asin);
+  });
+
+  function renderCards(items) {
+    if (!items.length) {
+      cardsEl.innerHTML = '';
+      return;
+    }
+    cardsEl.innerHTML = items.map(function (item) {
+      var image = item.image || '/assets/images/products/placeholder.svg';
+      return '<div class="compare-card">' +
+        '<button type="button" class="compare-card-remove" data-remove="' + item.asin + '" aria-label="Remove ' + escapeHtml(item.title) + '">&times;</button>' +
+        '<div class="compare-card-image"><img src="' + image + '" alt="" loading="lazy" onerror="this.src=\'/assets/images/products/placeholder.svg\'"></div>' +
+        '<a href="' + item.page_url + '" class="compare-card-title">' + escapeHtml(item.title) + '</a>' +
+        '<a href="' + item.amazon_url + '" class="btn-buy-now" target="_blank" rel="noopener noreferrer">Amazon</a>' +
+        '</div>';
+    }).join('');
+    cardsEl.querySelectorAll('[data-remove]').forEach(function (button) {
+      button.addEventListener('click', function () { removeItem(button.dataset.remove); });
+    });
+  }
+
+  function renderTable(items) {
+    if (items.length < 2) {
+      tableEl.innerHTML = '<p class="empty-state">' +
+        (items.length === 0 ? 'Search above and add up to three components to compare.' : 'Add at least one more component to see a side-by-side comparison.') +
+        '</p>';
+      return;
+    }
+
     var specKeys = {};
     items.forEach(function (item) {
       Object.keys(item.specs || {}).forEach(function (key) { specKeys[key] = true; });
     });
+
     var rows = [
-      ['Price'].concat(items.map(function (item) { return item.price || ''; })),
-      ['Stock'].concat(items.map(function (item) { return item.in_stock ? 'In stock (' + item.stock_qty + ')' : 'Out of stock'; })),
-      ['Category'].concat(items.map(function (item) { return item.category || ''; }))
+      ['Category'].concat(items.map(function (item) { return item.category || '—'; })),
+      ['Price'].concat(items.map(function (item) { return item.price || '—'; })),
+      ['Stock'].concat(items.map(function (item) { return item.in_stock ? 'In stock' : 'Out of stock'; }))
     ];
-    Object.keys(specKeys).sort().forEach(function (key) {
-      rows.push([key].concat(items.map(function (item) { return (item.specs || {})[key] || ''; })));
+    var specRowKeys = Object.keys(specKeys).sort();
+    specRowKeys.forEach(function (key) {
+      rows.push([key].concat(items.map(function (item) { return (item.specs || {})[key] || '—'; })));
     });
-    var html = '<table class="compare-table"><thead><tr><th>Spec</th>';
-    items.forEach(function (item) {
-      html += '<th><a href="' + item.page_url + '">' + item.title + '</a><button type="button" data-remove="' + item.asin + '">Remove</button></th>';
-    });
-    html += '</tr></thead><tbody>';
+
+    var html = '<div class="compare-table-scroll"><table class="compare-table"><tbody>';
     rows.forEach(function (row) {
       var values = row.slice(1);
       var diff = Array.from(new Set(values.map(String))).length > 1;
-      html += '<tr' + (diff ? ' class="diff-row"' : '') + '><th>' + row[0] + '</th>';
-      values.forEach(function (value) { html += '<td>' + value + '</td>'; });
+      html += '<tr' + (diff ? ' class="diff-row"' : '') + '><th>' + escapeHtml(row[0]) + '</th>';
+      values.forEach(function (value) { html += '<td>' + escapeHtml(value) + '</td>'; });
       html += '</tr>';
     });
-    html += '<tr><th>Buy</th>' + items.map(function (item) {
-      return '<td><a class="btn-buy-now" href="' + item.amazon_url + '" target="_blank" rel="noopener noreferrer">Amazon</a></td>';
-    }).join('') + '</tr></tbody></table>';
-    table.innerHTML = html;
-    table.querySelectorAll('[data-remove]').forEach(function (button) {
-      button.addEventListener('click', function () {
-        asins = asins.filter(function (asin) { return asin !== button.dataset.remove; });
-        render();
-      });
-    });
+    html += '</tbody></table></div>';
+
+    if (!specRowKeys.length) {
+      html += '<p class="compare-table-note">No verified spec data recorded for these parts yet.</p>';
+    }
+
+    tableEl.innerHTML = html;
   }
 
-  document.getElementById('compare-add').addEventListener('click', function () {
-    if (asins.indexOf(select.value) === -1 && asins.length < 3) asins.push(select.value);
-    render();
-  });
+  function render() {
+    updateUrl();
+    var items = asins.map(itemFor).filter(Boolean);
+    search.disabled = items.length >= MAX_ITEMS;
+    search.placeholder = items.length >= MAX_ITEMS ? 'Remove an item to add another' : 'Search by name…';
+    renderCards(items);
+    renderTable(items);
+  }
+
   render();
 })();
 </script>
