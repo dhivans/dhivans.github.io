@@ -4,7 +4,7 @@ date: 2026-06-20
 description: >-
   A desk mood light built from one knob and one ring: an ESP32 driving an
   8-LED WS2812B ring, with a rotary encoder for colour, brightness, and a
-  chase mode. Every part below is in stock right now.
+  chase mode.
 tags: [esp32, ws2812b, rotary-encoder, build-log]
 products:
   - asin: B0DJPZHZ1X
@@ -19,7 +19,7 @@ products:
     qty: 1
 ---
 
-Picked this one because every part is sitting in stock today, the whole thing is breadboard-only (no soldering), and it actually does something worth having on a desk: a knob that turns colour, brightness, and a chase animation into one twist-and-click interface.
+A knob and a ring of light, wired straight to an ESP32: twist for colour, twist for brightness, click to switch modes. No soldering — just a breadboard, and an evening.
 
 {% include bom.html %}
 
@@ -29,7 +29,7 @@ The ESP32 board has Wi-Fi and Bluetooth sitting unused in this version — delib
 
 ## What you'll also need
 
-Everything above ships from the BOM, but a breadboard build also needs **male-to-male jumper wires** (roughly 10–12) to connect the boards. DST's own wire kit is out of stock as of this build, so use whatever 22–24AWG hookup wire or jumper pack you've already got — it's not a part that needs to be DST-specific.
+Everything above ships from the BOM, but a breadboard build also needs **male-to-male jumper wires** (roughly 10–12) to connect everything together. Any 22–24AWG hookup wire or jumper pack works fine — it doesn't need to be anything specific.
 
 ## Wiring
 
