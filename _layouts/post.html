@@ -16,7 +16,9 @@ layout: default
 
   {% include tag-chips.html %}
   {% include series-nav.html %}
-  {% include parts-used.html %}
+  {% unless page.collection == "projects" %}
+    {% include parts-used.html %}
+  {% endunless %}
 
   <div class="post-content e-content" itemprop="articleBody">
     {{ content }}
