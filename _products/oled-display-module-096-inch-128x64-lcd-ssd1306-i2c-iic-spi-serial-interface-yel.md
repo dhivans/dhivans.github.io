@@ -20,7 +20,7 @@ variants:
     asin: "B0F2ZFMPR6"
     price: "£4.99"
     url: "https://www.amazon.co.uk/dp/B0F2ZFMPR6"
-    image: "https://m.media-amazon.com/images/I/51ZP2U5wPBL.jpg"
+    image: "https://m.media-amazon.com/images/I/517HwwWGkOL.jpg"
     stock: 0
   - label: "1, Yellow, 0.96'"
     asin: "B0F2ZFZWVW"
@@ -38,7 +38,7 @@ variants:
     asin: "B0F2ZD243Y"
     price: "£12.99"
     url: "https://www.amazon.co.uk/dp/B0F2ZD243Y"
-    image: "https://m.media-amazon.com/images/I/51ZP2U5wPBL.jpg"
+    image: "https://m.media-amazon.com/images/I/517HwwWGkOL.jpg"
     stock: 0
   - label: "3, Yellow, 0.96'"
     asin: "B0F2ZF916M"

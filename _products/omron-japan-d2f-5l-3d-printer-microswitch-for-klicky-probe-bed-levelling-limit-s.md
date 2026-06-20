@@ -8,7 +8,7 @@ image: "https://m.media-amazon.com/images/I/31JB4jBGnQL.jpg"
 images:
   - "https://m.media-amazon.com/images/I/31Kn8BYdz6L.jpg"
 featured: false
-sales_30d: 10
+sales_30d: 11
 badge: ""
 tags: []
 variants:
@@ -17,7 +17,7 @@ variants:
     price: "£5.20"
     url: "https://www.amazon.co.uk/dp/B0DBGPD14M"
     image: "https://m.media-amazon.com/images/I/31JB4jBGnQL.jpg"
-    stock: 4
+    stock: 3
   - label: "3 Pack"
     asin: "B0DBGNPKVC"
     price: "£8.00"
