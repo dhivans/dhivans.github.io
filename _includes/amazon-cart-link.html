@@ -1,0 +1,7 @@
+{% assign cart_products = include.products %}
+{% if cart_products and cart_products.size > 0 %}
+  {% assign amazon_domain = site.data.site.amazon.domain | default: "https://www.amazon.co.uk" %}
+  {% assign associate_tag = site.data.site.amazon.associate_tag %}
+  {% capture cart_url %}{{ amazon_domain }}/gp/aws/cart/add.html?{% for ref in cart_products %}{% assign ref_asin = ref.asin | default: ref %}{% assign ref_qty = ref.qty | default: 1 %}ASIN.{{ forloop.index }}={{ ref_asin }}&Quantity.{{ forloop.index }}={{ ref_qty }}{% unless forloop.last %}&{% endunless %}{% endfor %}{% if associate_tag and associate_tag != "" %}&AssociateTag={{ associate_tag }}{% endif %}{% endcapture %}
+<a href="{{ cart_url }}" class="btn-buy-now btn-cart-all" target="_blank" rel="noopener noreferrer">Add all to Amazon basket</a>
+{% endif %}

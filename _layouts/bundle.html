@@ -43,6 +43,7 @@ layout: default
   <aside class="bundle-total">
     <span>Approximate total</span>
     <strong>GBP {{ total | round: 2 }}</strong>
+    {% include amazon-cart-link.html products=page.products %}
   </aside>
 
   <div class="product-body-content">

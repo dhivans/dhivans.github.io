@@ -1983,7 +1983,20 @@ $sidebar-speed: 0.25s ease;
 
 .bundle-total {
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
   justify-content: space-between;
+}
+
+.btn-cart-all {
+  flex: 1 0 100%;
+  text-align: center;
+}
+
+.bom-box .btn-cart-all {
+  display: block;
+  margin-top: 0.85rem;
+  text-align: center;
 }
 
 .deal-row {

@@ -6,6 +6,12 @@ brand:
 shop:
   low_stock_threshold: 3
 
+amazon:
+  domain: "https://www.amazon.co.uk"
+  # Add your Associates tracking ID here (e.g. "dst-21") to have it appended
+  # to "Add all to basket" links automatically. Leave blank to omit it.
+  associate_tag: ""
+
 newsletter:
   enabled: false
   action_url: ""
