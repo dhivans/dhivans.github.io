@@ -6,7 +6,7 @@ category: "electrical-components"
 price: "From £4.99"
 image: "https://m.media-amazon.com/images/I/3158P4rLkFL.jpg"
 featured: false
-sales_30d: 11
+sales_30d: 13
 badge: ""
 tags: ['breadboard']
 variants:
@@ -15,7 +15,7 @@ variants:
     price: "£5.19"
     url: "https://www.amazon.co.uk/dp/B0DLYTCS3J"
     image: "https://m.media-amazon.com/images/I/414gncnd+JL.jpg"
-    stock: 491
+    stock: 490
   - label: "Full-size, 1"
     asin: "B0DLYXPZ17"
     price: "£6.23"
@@ -33,6 +33,6 @@ variants:
     price: "£15.99"
     url: "https://www.amazon.co.uk/dp/B0DSJSNM61"
     image: "https://m.media-amazon.com/images/I/3158P4rLkFL.jpg"
-    stock: 21
+    stock: 20
 ---
 A breadboard is an essential tool for prototyping and testing electronic circuits. It features a grid of holes connected by internal metal strips, allowing you to quickly and easily construct temporary circuits by inserting components and interconnecting them with jumper wires. Breadboards are perfect for learning electronics, experimenting with new designs, or troubleshooting existing circuits without soldering. Their modular nature enables you to build, modify, and disassemble circuits effortlessly, making them invaluable for hobbyists, students, and professionals alike. With a sturdy construction and a compact size, a breadboard is a versatile companion for all your electronics projects.
