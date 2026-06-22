@@ -9,7 +9,7 @@ amazon_url: "https://www.amazon.co.uk/dp/B0FRZCTG8X"
 asin: "B0FRZCTG8X"
 image: "https://m.media-amazon.com/images/I/314Mm13+ieL.jpg"
 featured: false
-sales_30d: 8
+sales_30d: 7
 badge: ""
 tags: []
 ---
