@@ -8,7 +8,7 @@ image: "https://m.media-amazon.com/images/I/410nbFPsAFL.jpg"
 images:
   - "https://m.media-amazon.com/images/I/41QPJ9n+BSL.jpg"
 featured: false
-sales_30d: 4
+sales_30d: 3
 badge: ""
 tags: ['microswitch']
 variants:
