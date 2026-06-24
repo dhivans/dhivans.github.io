@@ -183,12 +183,31 @@ permalink: /compare/
       rows.push([key].concat(items.map(function (item) { return (item.specs || {})[key] || '—'; })));
     });
 
+    function rowSlug(label) {
+      return String(label).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    }
+
+    function prettyValue(label, value) {
+      if (label === 'Category') {
+        return '<span class="compare-chip">' + escapeHtml(String(value).replace(/-/g, ' ')) + '</span>';
+      }
+      if (label === 'Price') {
+        return '<span class="compare-price">' + escapeHtml(value) + '</span>';
+      }
+      if (label === 'Stock') {
+        var isInStock = String(value).toLowerCase() === 'in stock';
+        return '<span class="compare-status compare-status--' + (isInStock ? 'in' : 'out') + '">' + escapeHtml(value) + '</span>';
+      }
+      return escapeHtml(value);
+    }
+
     var html = '<div class="compare-table-scroll"><table class="compare-table"><tbody>';
     rows.forEach(function (row) {
+      var label = row[0];
       var values = row.slice(1);
       var diff = Array.from(new Set(values.map(String))).length > 1;
-      html += '<tr' + (diff ? ' class="diff-row"' : '') + '><th>' + escapeHtml(row[0]) + '</th>';
-      values.forEach(function (value) { html += '<td>' + escapeHtml(value) + '</td>'; });
+      html += '<tr class="compare-row compare-row--' + rowSlug(label) + (diff ? ' diff-row' : '') + '"><th>' + escapeHtml(label) + '</th>';
+      values.forEach(function (value) { html += '<td>' + prettyValue(label, value) + '</td>'; });
       html += '</tr>';
     });
     html += '</tbody></table></div>';
