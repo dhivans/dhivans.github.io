@@ -113,6 +113,7 @@ permalink: /compare/
   });
 
   function renderCards(items) {
+    cardsEl.className = 'compare-cards compare-cards--count-' + items.length;
     if (!items.length) {
       cardsEl.innerHTML = '';
       return;
