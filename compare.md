@@ -6,6 +6,27 @@ permalink: /compare/
 
 <p class="shop-intro">Compare up to three catalogue items by verified specs, stock state, and current Amazon link.</p>
 
+<style>
+  .compare-cards--count-1 {
+    max-width: 720px;
+  }
+
+  .compare-card-image {
+    height: clamp(260px, 42vh, 420px);
+  }
+
+  .compare-cards--count-1 .compare-card-image {
+    height: clamp(220px, 38vh, 360px);
+  }
+
+  .compare-card-image img {
+    display: block;
+    height: 100%;
+    object-fit: contain;
+    width: 100%;
+  }
+</style>
+
 <div id="compare-app" class="compare-app">
   <div class="compare-picker">
     <label for="compare-search">Add a component</label>

@@ -1853,11 +1853,12 @@ $sidebar-speed: 0.25s ease;
   aspect-ratio: 4 / 3;
   background: #080c10;
   border-radius: 4px;
-  max-height: min(420px, 42vh);
+  height: clamp(260px, 42vh, 420px);
   margin-bottom: 0.65rem;
   overflow: hidden;
 
   img {
+    display: block;
     height: 100%;
     object-fit: contain;
     width: 100%;
@@ -1865,7 +1866,7 @@ $sidebar-speed: 0.25s ease;
 }
 
 .compare-cards--count-1 .compare-card-image {
-  max-height: min(360px, 38vh);
+  height: clamp(220px, 38vh, 360px);
 }
 
 .compare-card-title {
