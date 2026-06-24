@@ -12,7 +12,12 @@ permalink: /compare/
   }
 
   .compare-card-image {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: clamp(260px, 42vh, 420px);
+    width: 100%;
   }
 
   .compare-cards--count-1 .compare-card-image {
@@ -22,6 +27,8 @@ permalink: /compare/
   .compare-card-image img {
     display: block;
     height: 100%;
+    max-height: 100%;
+    max-width: 100%;
     object-fit: contain;
     width: 100%;
   }
