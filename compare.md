@@ -201,7 +201,18 @@ permalink: /compare/
       return escapeHtml(value);
     }
 
+    function shortTitle(title) {
+      var value = String(title || '').split(',')[0].trim();
+      if (!value) value = String(title || '').trim();
+      return value.length > 52 ? value.slice(0, 49).trim() + '...' : value;
+    }
+
     var html = '<div class="compare-table-scroll"><table class="compare-table"><tbody>';
+    html += '<tr class="compare-row compare-row--product"><th>Product</th>';
+    items.forEach(function (item) {
+      html += '<td><a class="compare-product-name" href="' + item.page_url + '" title="' + escapeHtml(item.title) + '">' + escapeHtml(shortTitle(item.title)) + '</a></td>';
+    });
+    html += '</tr>';
     rows.forEach(function (row) {
       var label = row[0];
       var values = row.slice(1);

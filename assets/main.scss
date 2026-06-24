@@ -1931,6 +1931,18 @@ $sidebar-speed: 0.25s ease;
     }
   }
 
+  .compare-row--product {
+    th,
+    td {
+      background: rgba(0, 229, 255, 0.065) !important;
+      border-bottom-color: rgba(0, 229, 255, 0.18);
+    }
+
+    th {
+      box-shadow: inset 3px 0 0 #00e5ff;
+    }
+  }
+
   th,
   td {
     border: 0;
@@ -1970,6 +1982,25 @@ $sidebar-speed: 0.25s ease;
     th, td {
       border-bottom: none;
     }
+  }
+}
+
+.compare-product-name {
+  color: #e2eaf4 !important;
+  display: -webkit-box;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  max-width: 260px;
+  overflow: hidden;
+  text-decoration: none !important;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+  &:hover {
+    color: #00e5ff !important;
   }
 }
 
