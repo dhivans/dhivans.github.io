@@ -1,1 +1,72 @@
-[]
+[
+  {
+    "asin": "B0DMV1DTR3",
+    "currency": "GBP",
+    "date": "2026-06-25",
+    "direction": "rise",
+    "new_price": 10.25,
+    "old_price": 9.35,
+    "slug": "anti-static-precision-pointy-tweezers-set-stainless-steel-esd-tweezers-2-pieces",
+    "title": "Anti-Static Precision Pointy Tweezers Set, Stainless Steel ESD Tweezers, 2 Pieces, for Electronics Repair"
+  },
+  {
+    "asin": "B0DLYTCS3J",
+    "currency": "GBP",
+    "date": "2026-06-25",
+    "direction": "rise",
+    "new_price": 11.24,
+    "old_price": 5.19,
+    "slug": "breadboard-solderless-circuit-board-large-and-small-sizes-for-electronics-projec",
+    "title": "Breadboard, Solderless Circuit Board, Large and Small Sizes, for Electronics Projects"
+  },
+  {
+    "asin": "B0DJPZHZ1X",
+    "currency": "GBP",
+    "date": "2026-06-25",
+    "direction": "rise",
+    "new_price": 10.62,
+    "old_price": 10.29,
+    "slug": "esp32-development-boards",
+    "title": "ESP32 Development Boards, Wi-Fi, Bluetooth"
+  },
+  {
+    "asin": "B0DZQ3V5TV",
+    "currency": "GBP",
+    "date": "2026-06-25",
+    "direction": "rise",
+    "new_price": 19.99,
+    "old_price": 11.49,
+    "slug": "hex-key-set-15mm-to-10mm-allen-wrench-kit-hand-tools-for-bicycle-repair",
+    "title": "Hex Key Set, 1.5mm to 10mm Allen Wrench Kit, Hand Tools for Bicycle Repair"
+  },
+  {
+    "asin": "B0FRZCTG8X",
+    "currency": "GBP",
+    "date": "2026-06-25",
+    "direction": "rise",
+    "new_price": 9.75,
+    "old_price": 9.35,
+    "slug": "ne8fdy-c6-ethercon-cat-6-panel-mount-connector-metal-housing-professional-audio",
+    "title": "NE8FDY-C6 EtherCON Cat 6 Panel-Mount Connector, Metal Housing, Professional Audio-Video"
+  },
+  {
+    "asin": "B07WYQHCY5",
+    "currency": "GBP",
+    "date": "2026-06-25",
+    "direction": "rise",
+    "new_price": 66.87,
+    "old_price": 50.0,
+    "slug": "uni-t-ut89x-digital-multimeter-professional-tester-true-rms-ac-dc-1000v-20a",
+    "title": "UNI-T UT89X Digital Multimeter Professional tester True RMS AC/DC 1000V 20A Voltage Current Temperature Conductance Meter (UT89X)"
+  },
+  {
+    "asin": "B0DNNPTVDR",
+    "currency": "GBP",
+    "date": "2026-06-25",
+    "direction": "rise",
+    "new_price": 10.99,
+    "old_price": 7.99,
+    "slug": "ws2812b-rgb-full-colour-led-ring-modules-dc-5v-blackwhite-pcb",
+    "title": "WS2812B RGB Full Colour LED Ring Modules, DC 5V, Black/White PCB"
+  }
+]

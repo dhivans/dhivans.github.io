@@ -15,25 +15,25 @@ variants:
     price: "£12.99"
     url: "https://www.amazon.co.uk/dp/B0DV9S6X3X"
     image: "https://m.media-amazon.com/images/I/41riKZB9G1L.jpg"
-    stock: 0
+    stock: 1
   - label: "30cm"
     asin: "B0DV9PQGDP"
     price: "£5.99"
     url: "https://www.amazon.co.uk/dp/B0DV9PQGDP"
     image: "https://m.media-amazon.com/images/I/41riKZB9G1L.jpg"
-    stock: 0
+    stock: 1
   - label: "Flexcable for Raspberry Pi Model B+, 2M"
     asin: "B0DH3XQ5TJ"
     price: "£4.99"
     url: "https://www.amazon.co.uk/dp/B0DH3XQ5TJ"
     image: "https://m.media-amazon.com/images/I/41riKZB9G1L.jpg"
-    stock: 0
+    stock: 1
   - label: "50cm"
     asin: "B0DV9T8YJS"
     price: "£6.99"
     url: "https://www.amazon.co.uk/dp/B0DV9T8YJS"
     image: "https://m.media-amazon.com/images/I/41riKZB9G1L.jpg"
-    stock: 0
+    stock: 1
   - label: "1M"
     asin: "B0DV9S5PB8"
     price: "£9.99"
