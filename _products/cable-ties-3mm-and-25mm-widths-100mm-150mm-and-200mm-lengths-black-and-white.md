@@ -30,7 +30,7 @@ variants:
     stock: 0
   - label: "White, 100mm x 3mm"
     asin: "B0DJYPHZ27"
-    price: "£4.99"
+    price: "£4.79"
     url: "https://www.amazon.co.uk/dp/B0DJYPHZ27"
     image: "https://m.media-amazon.com/images/I/21kXEmGxEgL.jpg"
     stock: 4
@@ -54,13 +54,13 @@ variants:
     stock: 0
   - label: "White, 150mm x 3mm"
     asin: "B0DJYLMMPJ"
-    price: "£5.99"
+    price: "£5.75"
     url: "https://www.amazon.co.uk/dp/B0DJYLMMPJ"
     image: "https://m.media-amazon.com/images/I/21uwtCoOE9L.jpg"
     stock: 4
   - label: "Black, 200mm x 2.5mm"
     asin: "B0DJYPH322"
-    price: "£6.99"
+    price: "£6.71"
     url: "https://www.amazon.co.uk/dp/B0DJYPH322"
     image: "https://m.media-amazon.com/images/I/31pzUfhRLML.jpg"
     stock: 5
@@ -72,7 +72,7 @@ variants:
     stock: 0
   - label: "White, 200mm x 2.5mm"
     asin: "B0DJYR6FRR"
-    price: "£6.99"
+    price: "£6.71"
     url: "https://www.amazon.co.uk/dp/B0DJYR6FRR"
     image: "https://m.media-amazon.com/images/I/21uwtCoOE9L.jpg"
     stock: 10

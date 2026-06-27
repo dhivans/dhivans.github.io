@@ -17,22 +17,22 @@ variants:
     price: "£5.20"
     url: "https://www.amazon.co.uk/dp/B0DBGPD14M"
     image: "https://m.media-amazon.com/images/I/31JB4jBGnQL.jpg"
-    stock: 15
+    stock: 18
   - label: "3 Pack"
     asin: "B0DBGNPKVC"
-    price: "£8.00"
+    price: "£7.68"
     url: "https://www.amazon.co.uk/dp/B0DBGNPKVC"
     image: "https://m.media-amazon.com/images/I/31JB4jBGnQL.jpg"
     stock: 6
   - label: "5 Pack"
     asin: "B0DBGPT1XR"
-    price: "£10.00"
+    price: "£9.60"
     url: "https://www.amazon.co.uk/dp/B0DBGPT1XR"
     image: "https://m.media-amazon.com/images/I/31JB4jBGnQL.jpg"
-    stock: 0
+    stock: 1
   - label: "10 Pack"
     asin: "B0DBGPFZ4F"
-    price: "£15.00"
+    price: "£14.40"
     url: "https://www.amazon.co.uk/dp/B0DBGPFZ4F"
     image: "https://m.media-amazon.com/images/I/31JB4jBGnQL.jpg"
     stock: 1

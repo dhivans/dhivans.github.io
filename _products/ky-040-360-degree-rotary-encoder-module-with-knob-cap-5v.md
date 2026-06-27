@@ -3,7 +3,7 @@ layout: product
 title: "KY-040 360 Degree Rotary Encoder Module with Knob Cap, 5V"
 description: "Introducing the KY-040 360 Degrees Rotary Encoder Module, a versatile electronic component that allows for precise rotational control in a wide range of applications. This compact module features a rotary encoder with a knob cap, enabling smooth and seamless rotation through 360 degrees. With its 5V operating voltage, it integrates effortlessly into various electronic projects, from robotics and automation systems to user interfaces and control panels."
 category: "electrical-components"
-price: "£3.99"
+price: "£4.15"
 stock: 39
 amazon_url: "https://www.amazon.co.uk/dp/B0DJPYB5N8"
 asin: "B0DJPYB5N8"
@@ -12,7 +12,7 @@ images:
   - "https://m.media-amazon.com/images/I/51myFdtTQfL.jpg"
   - "https://m.media-amazon.com/images/I/61V3cQHNiXL.jpg"
 featured: false
-sales_30d: 20
+sales_30d: 19
 badge: ""
 tags: ['encoder']
 ---

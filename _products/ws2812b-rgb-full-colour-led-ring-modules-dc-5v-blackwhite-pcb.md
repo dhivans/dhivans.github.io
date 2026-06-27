@@ -26,7 +26,7 @@ variants:
     stock: 0
   - label: "White, 8"
     asin: "B0DNNPTVDR"
-    price: "£10.99"
+    price: "£10.55"
     url: "https://www.amazon.co.uk/dp/B0DNNPTVDR"
     image: "https://m.media-amazon.com/images/I/21BM+KdMqrL.jpg"
     stock: 1

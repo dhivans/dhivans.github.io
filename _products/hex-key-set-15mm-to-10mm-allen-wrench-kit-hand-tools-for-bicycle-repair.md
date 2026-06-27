@@ -17,13 +17,13 @@ tags: ['hex key', 'tools']
 variants:
   - label: "7 Piece"
     asin: "B0F2ZF7LS6"
-    price: "£9.99"
+    price: "£9.59"
     url: "https://www.amazon.co.uk/dp/B0F2ZF7LS6"
     image: "https://m.media-amazon.com/images/I/41Qb6A7NVWL.jpg"
     stock: 2
   - label: "9 Piece"
     asin: "B0DZQ3V5TV"
-    price: "£19.99"
+    price: "£21.59"
     url: "https://www.amazon.co.uk/dp/B0DZQ3V5TV"
     image: "https://m.media-amazon.com/images/I/41La44eo5GL.jpg"
     stock: 49

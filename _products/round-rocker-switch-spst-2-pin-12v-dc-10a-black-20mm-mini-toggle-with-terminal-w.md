@@ -6,25 +6,25 @@ category: "electrical-components"
 price: "From £5.99"
 image: "https://m.media-amazon.com/images/I/51WTqUMxNYL.jpg"
 featured: false
-sales_30d: 7
+sales_30d: 8
 badge: ""
 tags: []
 variants:
   - label: "1"
     asin: "B0DRW4GLJM"
-    price: "£5.99"
+    price: "£6.47"
     url: "https://www.amazon.co.uk/dp/B0DRW4GLJM"
     image: "https://m.media-amazon.com/images/I/51WTqUMxNYL.jpg"
     stock: 87
   - label: "3"
     asin: "B0DRW5HVGY"
-    price: "£6.99"
+    price: "£7.55"
     url: "https://www.amazon.co.uk/dp/B0DRW5HVGY"
     image: "https://m.media-amazon.com/images/I/51WTqUMxNYL.jpg"
-    stock: 97
+    stock: 96
   - label: "5"
     asin: "B0DRW2CXKT"
-    price: "£8.99"
+    price: "£9.71"
     url: "https://www.amazon.co.uk/dp/B0DRW2CXKT"
     image: "https://m.media-amazon.com/images/I/51WTqUMxNYL.jpg"
     stock: 63
