@@ -17,13 +17,13 @@ variants:
     price: "£5.20"
     url: "https://www.amazon.co.uk/dp/B0DBGPD14M"
     image: "https://m.media-amazon.com/images/I/31JB4jBGnQL.jpg"
-    stock: 1
+    stock: 18
   - label: "3 Pack"
     asin: "B0DBGNPKVC"
     price: "£7.68"
     url: "https://www.amazon.co.uk/dp/B0DBGNPKVC"
     image: "https://m.media-amazon.com/images/I/31JB4jBGnQL.jpg"
-    stock: 1
+    stock: 6
   - label: "5 Pack"
     asin: "B0DBGPT1XR"
     price: "£9.60"
