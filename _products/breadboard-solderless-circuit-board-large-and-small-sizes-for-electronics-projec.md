@@ -6,7 +6,7 @@ category: "electrical-components"
 price: "From £4.99"
 image: "https://m.media-amazon.com/images/I/3158P4rLkFL.jpg"
 featured: false
-sales_30d: 17
+sales_30d: 16
 badge: ""
 tags: ['breadboard']
 variants:
@@ -18,7 +18,7 @@ variants:
     stock: 487
   - label: "Full-size, 1"
     asin: "B0DLYXPZ17"
-    price: "£6.73"
+    price: "£8.17"
     url: "https://www.amazon.co.uk/dp/B0DLYXPZ17"
     image: "https://m.media-amazon.com/images/I/3158P4rLkFL.jpg"
     stock: 495
