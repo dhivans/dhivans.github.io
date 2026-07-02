@@ -15,7 +15,7 @@ variants:
     price: "£11.69"
     url: "https://www.amazon.co.uk/dp/B0DLYTCS3J"
     image: "https://m.media-amazon.com/images/I/414gncnd+JL.jpg"
-    stock: 487
+    stock: 486
   - label: "Full-size, 1"
     asin: "B0DLYXPZ17"
     price: "£8.50"
