@@ -8,7 +8,7 @@ image: "https://m.media-amazon.com/images/I/51YBLCsi2UL.jpg"
 images:
   - "https://m.media-amazon.com/images/I/51k2M4lBgQL.jpg"
 featured: false
-sales_30d: 26
+sales_30d: 27
 badge: ""
 tags: ['potentiometer']
 variants:
@@ -89,19 +89,19 @@ variants:
     price: "£3.12"
     url: "https://www.amazon.co.uk/dp/B0DRW4XDNF"
     image: "https://m.media-amazon.com/images/I/51YBLCsi2UL.jpg"
-    stock: 12
+    stock: 25
   - label: "10kOhm, 3"
     asin: "B0DRW2JCRV"
     price: "£4.00"
     url: "https://www.amazon.co.uk/dp/B0DRW2JCRV"
     image: "https://m.media-amazon.com/images/I/51hqr24ERFL.jpg"
-    stock: 0
+    stock: 4
   - label: "10kOhm, 5"
     asin: "B0DRW5CDSB"
     price: "£5.00"
     url: "https://www.amazon.co.uk/dp/B0DRW5CDSB"
     image: "https://m.media-amazon.com/images/I/61OjAn3fvVL.jpg"
-    stock: 0
+    stock: 2
   - label: "20kOhm, 1"
     asin: "B0DRW2ZDT2"
     price: "£3.00"
