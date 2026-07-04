@@ -30,7 +30,7 @@ variants:
     stock: 12
   - label: "Full-size, 3"
     asin: "B0DSJSNM61"
-    price: "£17.27"
+    price: "£18.65"
     url: "https://www.amazon.co.uk/dp/B0DSJSNM61"
     image: "https://m.media-amazon.com/images/I/3158P4rLkFL.jpg"
     stock: 20

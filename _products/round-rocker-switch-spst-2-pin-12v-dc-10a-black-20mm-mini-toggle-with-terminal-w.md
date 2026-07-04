@@ -12,19 +12,19 @@ tags: []
 variants:
   - label: "1"
     asin: "B0DRW4GLJM"
-    price: "£6.47"
+    price: "£6.99"
     url: "https://www.amazon.co.uk/dp/B0DRW4GLJM"
     image: "https://m.media-amazon.com/images/I/51WTqUMxNYL.jpg"
     stock: 87
   - label: "3"
     asin: "B0DRW5HVGY"
-    price: "£7.55"
+    price: "£8.15"
     url: "https://www.amazon.co.uk/dp/B0DRW5HVGY"
     image: "https://m.media-amazon.com/images/I/51WTqUMxNYL.jpg"
     stock: 96
   - label: "5"
     asin: "B0DRW2CXKT"
-    price: "£9.71"
+    price: "£10.49"
     url: "https://www.amazon.co.uk/dp/B0DRW2CXKT"
     image: "https://m.media-amazon.com/images/I/51WTqUMxNYL.jpg"
     stock: 63

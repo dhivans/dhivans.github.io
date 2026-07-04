@@ -23,7 +23,7 @@ variants:
     stock: 2
   - label: "9 Piece"
     asin: "B0DZQ3V5TV"
-    price: "£21.59"
+    price: "£23.32"
     url: "https://www.amazon.co.uk/dp/B0DZQ3V5TV"
     image: "https://m.media-amazon.com/images/I/41La44eo5GL.jpg"
     stock: 49
