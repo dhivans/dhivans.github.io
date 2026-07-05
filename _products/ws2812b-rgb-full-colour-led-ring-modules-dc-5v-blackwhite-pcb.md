@@ -32,10 +32,10 @@ variants:
     stock: 1
   - label: "Black, 16"
     asin: "B0DNNQQGND"
-    price: "£8.99"
+    price: "£8.63"
     url: "https://www.amazon.co.uk/dp/B0DNNQQGND"
     image: "https://m.media-amazon.com/images/I/41Tc+GeggyL.jpg"
-    stock: 19
+    stock: 32
   - label: "White, 16"
     asin: "B0DNNQ6Y13"
     price: "£8.99"

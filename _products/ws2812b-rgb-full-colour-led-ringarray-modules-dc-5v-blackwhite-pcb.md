@@ -36,10 +36,10 @@ variants:
     stock: 0
   - label: "5x5 Array"
     asin: "B0DKLP2HPT"
-    price: "£5.99"
+    price: "£6.47"
     url: "https://www.amazon.co.uk/dp/B0DKLP2HPT"
     image: "https://m.media-amazon.com/images/I/41lI7inIDIL.jpg"
-    stock: 5
+    stock: 7
   - label: "8x8 Array"
     asin: "B0DKLQDN4D"
     price: "£6.29"
