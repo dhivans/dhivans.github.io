@@ -8,7 +8,7 @@ image: "https://m.media-amazon.com/images/I/41lNKsuEddL.jpg"
 images:
   - "https://m.media-amazon.com/images/I/51gBBJ+TiNL.jpg"
 featured: false
-sales_30d: 3
+sales_30d: 5
 badge: ""
 tags: ['ws2812b', 'led']
 variants:
@@ -32,10 +32,10 @@ variants:
     stock: 1
   - label: "Black, 16"
     asin: "B0DNNQQGND"
-    price: "£9.45"
+    price: "£10.50"
     url: "https://www.amazon.co.uk/dp/B0DNNQQGND"
     image: "https://m.media-amazon.com/images/I/41Tc+GeggyL.jpg"
-    stock: 34
+    stock: 32
   - label: "White, 16"
     asin: "B0DNNQ6Y13"
     price: "£8.99"
