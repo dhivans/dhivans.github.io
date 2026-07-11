@@ -14,7 +14,7 @@ variants:
     asin: "B0DH8DDWFH"
     price: "£5.27"
     url: "https://www.amazon.co.uk/dp/B0DH8DDWFH"
-    image: "https://m.media-amazon.com/images/I/31NxmjwC4IL.jpg"
+    image: "https://m.media-amazon.com/images/I/31a2vBbwzHL.jpg"
     stock: 3
   - label: "White USB-A to USB-C"
     asin: "B0DH8D9N9F"

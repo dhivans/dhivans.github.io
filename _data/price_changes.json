@@ -1,51 +1,11 @@
 [
   {
-    "asin": "B0F2ZGGHVG",
-    "currency": "GBP",
-    "date": "2026-07-10",
-    "direction": "rise",
-    "new_price": 5.82,
-    "old_price": 5.39,
-    "slug": "oled-display-module-096-inch-128x64-lcd-ssd1306-i2c-iic-spi-serial-interface-yel",
-    "title": "OLED Display Module, 0.96 Inch, 128x64 LCD, SSD1306 I2C IIC SPI Serial Interface, Yellow-Blue/White-Blue, 4-Pin with Pre-soldered Headers"
-  },
-  {
-    "asin": "B0F2ZFMPR6",
-    "currency": "GBP",
-    "date": "2026-07-10",
-    "direction": "rise",
-    "new_price": 6.73,
-    "old_price": 4.79,
-    "slug": "oled-display-module-096-inch-128x64-lcd-ssd1306-i2c-iic-spi-serial-interface-yel",
-    "title": "OLED Display Module, 0.96 Inch, 128x64 LCD, SSD1306 I2C IIC SPI Serial Interface, Yellow-Blue/White-Blue, 4-Pin with Pre-soldered Headers"
-  },
-  {
-    "asin": "B0DBGPD14M",
-    "currency": "GBP",
-    "date": "2026-07-10",
-    "direction": "drop",
-    "new_price": 4.94,
-    "old_price": 5.2,
-    "slug": "omron-japan-d2f-5l-3d-printer-microswitch-for-klicky-probe-bed-levelling-limit-s",
-    "title": "Omron Japan D2F-5L, 3D Printer Microswitch for Klicky Probe, Bed Levelling, Limit Switches, Filament Sensors, Mouse Repairs"
-  },
-  {
-    "asin": "B0DRW2JCRV",
-    "currency": "GBP",
-    "date": "2026-07-10",
-    "direction": "drop",
-    "new_price": 3.61,
-    "old_price": 3.8,
-    "slug": "rotary-potentiometer-linear-taper-wh148-15mm-3-pin-with-black-aluminium-knobs",
-    "title": "Rotary Potentiometer Linear Taper, WH148, 15mm, 3-Pin, with Black Aluminium Knobs"
-  },
-  {
     "asin": "B0DNNQQGND",
     "currency": "GBP",
-    "date": "2026-07-10",
+    "date": "2026-07-11",
     "direction": "rise",
-    "new_price": 10.5,
-    "old_price": 9.45,
+    "new_price": 11.86,
+    "old_price": 10.5,
     "slug": "ws2812b-rgb-full-colour-led-ring-modules-dc-5v-blackwhite-pcb",
     "title": "WS2812B RGB Full Colour LED Ring Modules, DC 5V, Black/White PCB"
   }
