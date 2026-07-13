@@ -1,12 +1,12 @@
 [
   {
-    "asin": "B0DNNQQGND",
+    "asin": "B0F2ZFMPR6",
     "currency": "GBP",
-    "date": "2026-07-12",
+    "date": "2026-07-13",
     "direction": "rise",
-    "new_price": 12.33,
-    "old_price": 11.86,
-    "slug": "ws2812b-rgb-full-colour-led-ring-modules-dc-5v-blackwhite-pcb",
-    "title": "WS2812B RGB Full Colour LED Ring Modules, DC 5V, Black/White PCB"
+    "new_price": 7.0,
+    "old_price": 6.73,
+    "slug": "oled-display-module-096-inch-128x64-lcd-ssd1306-i2c-iic-spi-serial-interface-yel",
+    "title": "OLED Display Module, 0.96 Inch, 128x64 LCD, SSD1306 I2C IIC SPI Serial Interface, Yellow-Blue/White-Blue, 4-Pin with Pre-soldered Headers"
   }
 ]
