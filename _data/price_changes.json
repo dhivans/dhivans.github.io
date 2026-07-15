@@ -1,62 +1,42 @@
 [
   {
-    "asin": "B0DZQ3V5TV",
+    "asin": "B0F2ZGGHVG",
     "currency": "GBP",
-    "date": "2026-07-14",
+    "date": "2026-07-15",
     "direction": "rise",
-    "new_price": 27.21,
-    "old_price": 25.19,
-    "slug": "hex-key-set-15mm-to-10mm-allen-wrench-kit-hand-tools-for-bicycle-repair",
-    "title": "Hex Key Set, 1.5mm to 10mm Allen Wrench Kit, Hand Tools for Bicycle Repair"
+    "new_price": 6.29,
+    "old_price": 5.82,
+    "slug": "oled-display-module-096-inch-128x64-lcd-ssd1306-i2c-iic-spi-serial-interface-yel",
+    "title": "OLED Display Module, 0.96 Inch, 128x64 LCD, SSD1306 I2C IIC SPI Serial Interface, Yellow-Blue/White-Blue, 4-Pin with Pre-soldered Headers"
   },
   {
-    "asin": "B0DRW4GLJM",
+    "asin": "B0F2ZFMPR6",
     "currency": "GBP",
-    "date": "2026-07-14",
+    "date": "2026-07-15",
     "direction": "rise",
-    "new_price": 7.85,
-    "old_price": 7.55,
-    "slug": "round-rocker-switch-spst-2-pin-12v-dc-10a-black-20mm-mini-toggle-with-terminal-w",
-    "title": "Round Rocker Switch, SPST 2-Pin, 12V DC, 10A, Black, 20mm Mini Toggle with Terminal Wires"
+    "new_price": 7.28,
+    "old_price": 7.0,
+    "slug": "oled-display-module-096-inch-128x64-lcd-ssd1306-i2c-iic-spi-serial-interface-yel",
+    "title": "OLED Display Module, 0.96 Inch, 128x64 LCD, SSD1306 I2C IIC SPI Serial Interface, Yellow-Blue/White-Blue, 4-Pin with Pre-soldered Headers"
   },
   {
-    "asin": "B0DRW5HVGY",
+    "asin": "B0DBGPD14M",
     "currency": "GBP",
-    "date": "2026-07-14",
-    "direction": "rise",
-    "new_price": 9.5,
-    "old_price": 8.8,
-    "slug": "round-rocker-switch-spst-2-pin-12v-dc-10a-black-20mm-mini-toggle-with-terminal-w",
-    "title": "Round Rocker Switch, SPST 2-Pin, 12V DC, 10A, Black, 20mm Mini Toggle with Terminal Wires"
+    "date": "2026-07-15",
+    "direction": "drop",
+    "new_price": 4.69,
+    "old_price": 4.94,
+    "slug": "omron-japan-d2f-5l-3d-printer-microswitch-for-klicky-probe-bed-levelling-limit-s",
+    "title": "Omron Japan D2F-5L, 3D Printer Microswitch for Klicky Probe, Bed Levelling, Limit Switches, Filament Sensors, Mouse Repairs"
   },
   {
-    "asin": "B0DRW2CXKT",
+    "asin": "B0DRW2JCRV",
     "currency": "GBP",
-    "date": "2026-07-14",
+    "date": "2026-07-15",
     "direction": "rise",
-    "new_price": 12.24,
-    "old_price": 11.33,
-    "slug": "round-rocker-switch-spst-2-pin-12v-dc-10a-black-20mm-mini-toggle-with-terminal-w",
-    "title": "Round Rocker Switch, SPST 2-Pin, 12V DC, 10A, Black, 20mm Mini Toggle with Terminal Wires"
-  },
-  {
-    "asin": "B0DFKNT4RG",
-    "currency": "GBP",
-    "date": "2026-07-14",
-    "direction": "rise",
-    "new_price": 9.36,
-    "old_price": 5.75,
-    "slug": "tp4056-5v-1a-18650-lithium-battery-charger-module-type-c-usb-dual-function",
-    "title": "TP4056 5V 1A 18650 Lithium Battery Charger Module, Type-C USB, Dual Function"
-  },
-  {
-    "asin": "B0DNNQQGND",
-    "currency": "GBP",
-    "date": "2026-07-14",
-    "direction": "rise",
-    "new_price": 12.82,
-    "old_price": 12.33,
-    "slug": "ws2812b-rgb-full-colour-led-ring-modules-dc-5v-blackwhite-pcb",
-    "title": "WS2812B RGB Full Colour LED Ring Modules, DC 5V, Black/White PCB"
+    "new_price": 3.9,
+    "old_price": 3.61,
+    "slug": "rotary-potentiometer-linear-taper-wh148-15mm-3-pin-with-black-aluminium-knobs",
+    "title": "Rotary Potentiometer Linear Taper, WH148, 15mm, 3-Pin, with Black Aluminium Knobs"
   }
 ]
