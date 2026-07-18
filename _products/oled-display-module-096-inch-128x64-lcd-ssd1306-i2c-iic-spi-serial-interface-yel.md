@@ -6,7 +6,7 @@ category: "electrical-components"
 price: "From £4.99"
 image: "https://m.media-amazon.com/images/I/51ZP2U5wPBL.jpg"
 featured: false
-sales_30d: 32
+sales_30d: 34
 badge: ""
 tags: ['oled']
 variants:
@@ -21,7 +21,7 @@ variants:
     price: "£7.28"
     url: "https://www.amazon.co.uk/dp/B0F2ZFMPR6"
     image: "https://m.media-amazon.com/images/I/517HwwWGkOL.jpg"
-    stock: 63
+    stock: 61
   - label: "1, Yellow, 0.96'"
     asin: "B0F2ZFZWVW"
     price: "£4.99"
