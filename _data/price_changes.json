@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "asin": "B0DJPZHZ1X",
+    "currency": "GBP",
+    "date": "2026-07-21",
+    "direction": "rise",
+    "new_price": 11.5,
+    "old_price": 11.39,
+    "slug": "esp32-development-boards",
+    "title": "ESP32 Development Boards, Wi-Fi, Bluetooth"
+  }
+]
