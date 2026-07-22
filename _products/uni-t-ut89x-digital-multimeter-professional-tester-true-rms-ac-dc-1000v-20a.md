@@ -9,7 +9,7 @@ amazon_url: "https://www.amazon.co.uk/dp/B07WYQHCY5"
 asin: "B07WYQHCY5"
 image: "https://m.media-amazon.com/images/I/51-dWfEV+zL.jpg"
 featured: false
-sales_30d: 6
+sales_30d: 5
 badge: ""
 tags: []
 ---
