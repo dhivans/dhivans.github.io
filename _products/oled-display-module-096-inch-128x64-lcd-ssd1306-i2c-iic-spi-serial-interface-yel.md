@@ -12,16 +12,16 @@ tags: ['oled']
 variants:
   - label: "1, Blue, 0.96'"
     asin: "B0F2ZGGHVG"
-    price: "£6.79"
+    price: "£6.54"
     url: "https://www.amazon.co.uk/dp/B0F2ZGGHVG"
     image: "https://m.media-amazon.com/images/I/51ZP2U5wPBL.jpg"
     stock: 16
   - label: "1, White, 0.96'"
     asin: "B0F2ZFMPR6"
-    price: "£7.28"
+    price: "£7.57"
     url: "https://www.amazon.co.uk/dp/B0F2ZFMPR6"
     image: "https://m.media-amazon.com/images/I/517HwwWGkOL.jpg"
-    stock: 56
+    stock: 55
   - label: "1, Yellow, 0.96'"
     asin: "B0F2ZFZWVW"
     price: "£4.99"
