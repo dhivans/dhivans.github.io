@@ -1,1 +1,102 @@
-[]
+[
+  {
+    "asin": "B0DMV1DTR3",
+    "currency": "GBP",
+    "date": "2026-07-27",
+    "direction": "rise",
+    "new_price": 11.09,
+    "old_price": 10.66,
+    "slug": "anti-static-precision-pointy-tweezers-set-stainless-steel-esd-tweezers-2-pieces",
+    "title": "Anti-Static Precision Pointy Tweezers Set, Stainless Steel ESD Tweezers, 2 Pieces, for Electronics Repair"
+  },
+  {
+    "asin": "B0DJPZHZ1X",
+    "currency": "GBP",
+    "date": "2026-07-27",
+    "direction": "rise",
+    "new_price": 11.96,
+    "old_price": 11.5,
+    "slug": "esp32-development-boards",
+    "title": "ESP32 Development Boards, Wi-Fi, Bluetooth"
+  },
+  {
+    "asin": "B0FRZCTG8X",
+    "currency": "GBP",
+    "date": "2026-07-27",
+    "direction": "rise",
+    "new_price": 11.0,
+    "old_price": 10.58,
+    "slug": "ne8fdy-c6-ethercon-cat-6-panel-mount-connector-metal-housing-professional-audio",
+    "title": "NE8FDY-C6 EtherCON Cat 6 Panel-Mount Connector, Metal Housing, Professional Audio-Video"
+  },
+  {
+    "asin": "B0F2ZGGHVG",
+    "currency": "GBP",
+    "date": "2026-07-27",
+    "direction": "rise",
+    "new_price": 6.8,
+    "old_price": 6.54,
+    "slug": "oled-display-module-096-inch-128x64-lcd-ssd1306-i2c-iic-spi-serial-interface-yel",
+    "title": "OLED Display Module, 0.96 Inch, 128x64 LCD, SSD1306 I2C IIC SPI Serial Interface, Yellow-Blue/White-Blue, 4-Pin with Pre-soldered Headers"
+  },
+  {
+    "asin": "B0F2ZFMPR6",
+    "currency": "GBP",
+    "date": "2026-07-27",
+    "direction": "rise",
+    "new_price": 8.18,
+    "old_price": 7.87,
+    "slug": "oled-display-module-096-inch-128x64-lcd-ssd1306-i2c-iic-spi-serial-interface-yel",
+    "title": "OLED Display Module, 0.96 Inch, 128x64 LCD, SSD1306 I2C IIC SPI Serial Interface, Yellow-Blue/White-Blue, 4-Pin with Pre-soldered Headers"
+  },
+  {
+    "asin": "B0DBGPD14M",
+    "currency": "GBP",
+    "date": "2026-07-27",
+    "direction": "rise",
+    "new_price": 5.08,
+    "old_price": 4.88,
+    "slug": "omron-japan-d2f-5l-3d-printer-microswitch-for-klicky-probe-bed-levelling-limit-s",
+    "title": "Omron Japan D2F-5L, 3D Printer Microswitch for Klicky Probe, Bed Levelling, Limit Switches, Filament Sensors, Mouse Repairs"
+  },
+  {
+    "asin": "B0DRW4GLJM",
+    "currency": "GBP",
+    "date": "2026-07-27",
+    "direction": "rise",
+    "new_price": 10.48,
+    "old_price": 10.08,
+    "slug": "round-rocker-switch-spst-2-pin-12v-dc-10a-black-20mm-mini-toggle-with-terminal-w",
+    "title": "Round Rocker Switch, SPST 2-Pin, 12V DC, 10A, Black, 20mm Mini Toggle with Terminal Wires"
+  },
+  {
+    "asin": "B0DRW5HVGY",
+    "currency": "GBP",
+    "date": "2026-07-27",
+    "direction": "rise",
+    "new_price": 11.54,
+    "old_price": 11.1,
+    "slug": "round-rocker-switch-spst-2-pin-12v-dc-10a-black-20mm-mini-toggle-with-terminal-w",
+    "title": "Round Rocker Switch, SPST 2-Pin, 12V DC, 10A, Black, 20mm Mini Toggle with Terminal Wires"
+  },
+  {
+    "asin": "B0DFKNT4RG",
+    "currency": "GBP",
+    "date": "2026-07-27",
+    "direction": "rise",
+    "new_price": 14.23,
+    "old_price": 13.68,
+    "slug": "tp4056-5v-1a-18650-lithium-battery-charger-module-type-c-usb-dual-function",
+    "title": "TP4056 5V 1A 18650 Lithium Battery Charger Module, Type-C USB, Dual Function"
+  },
+  {
+    "asin": "B0DNNQQGND",
+    "currency": "GBP",
+    "date": "2026-07-27",
+    "direction": "rise",
+    "new_price": 15.58,
+    "old_price": 14.98,
+    "slug": "ws2812b-rgb-full-colour-led-ring-modules-dc-5v-blackwhite-pcb",
+    "title": "WS2812B RGB Full Colour LED Ring Modules, DC 5V, Black/White PCB"
+  }
+]

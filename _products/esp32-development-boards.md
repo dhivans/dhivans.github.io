@@ -11,16 +11,16 @@ images:
   - "https://m.media-amazon.com/images/I/615GSwQnqcL.jpg"
   - "https://m.media-amazon.com/images/I/61AGm5wCn1L.jpg"
 featured: false
-sales_30d: 135
+sales_30d: 130
 badge: ""
 tags: ['esp32', 'microcontroller']
 variants:
   - label: "ESP32 WROOM-32"
     asin: "B0DJPZHZ1X"
-    price: "£11.50"
+    price: "£11.96"
     url: "https://www.amazon.co.uk/dp/B0DJPZHZ1X"
     image: "https://m.media-amazon.com/images/I/41edbf6EvFL.jpg"
-    stock: 333
+    stock: 332
   - label: "ESP32-C3 Super Mini"
     asin: "B0DDL7WNZX"
     price: "£12.99"

@@ -22,7 +22,7 @@ variants:
     stock: 0
   - label: "3 Pack"
     asin: "B0DFKNT4RG"
-    price: "£13.68"
+    price: "£14.23"
     url: "https://www.amazon.co.uk/dp/B0DFKNT4RG"
     image: "https://m.media-amazon.com/images/I/41E3x3NUjpL.jpg"
     stock: 59
