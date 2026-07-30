@@ -12,7 +12,7 @@ tags: []
 variants:
   - label: "1"
     asin: "B0DRW4GLJM"
-    price: "£10.48"
+    price: "£10.27"
     url: "https://www.amazon.co.uk/dp/B0DRW4GLJM"
     image: "https://m.media-amazon.com/images/I/51WTqUMxNYL.jpg"
     stock: 84
