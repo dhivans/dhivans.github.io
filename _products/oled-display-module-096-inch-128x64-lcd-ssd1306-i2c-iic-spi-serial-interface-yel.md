@@ -15,7 +15,7 @@ variants:
     price: "£6.80"
     url: "https://www.amazon.co.uk/dp/B0F2ZGGHVG"
     image: "https://m.media-amazon.com/images/I/51ZP2U5wPBL.jpg"
-    stock: 7
+    stock: 5
   - label: "1, White, 0.96'"
     asin: "B0F2ZFMPR6"
     price: "£8.18"
