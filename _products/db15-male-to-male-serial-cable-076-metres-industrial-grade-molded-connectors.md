@@ -9,7 +9,7 @@ amazon_url: "https://www.amazon.co.uk/dp/B0FTY84GX1"
 asin: "B0FTY84GX1"
 image: "https://m.media-amazon.com/images/I/414YDezspEL.jpg"
 featured: false
-sales_30d: 2
+sales_30d: 1
 badge: ""
 tags: ['cable']
 ---

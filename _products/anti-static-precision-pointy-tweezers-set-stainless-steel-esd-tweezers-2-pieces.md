@@ -3,7 +3,7 @@ layout: product
 title: "Anti-Static Precision Pointy Tweezers Set, Stainless Steel ESD Tweezers, 2 Pieces, for Electronics Repair"
 description: "Introducing the 2pcs/lot Anti-static Precision Tweezers Set - an essential tool for electronics repair and maintenance. This set comprises two high-quality stainless steel tweezers designed with an anti-static coating, ensuring safe handling of sensitive electronic components. The precision tips allow for precise gripping and manipulation of even the smallest parts, making them indispensable for intricate tasks like soldering, component replacement, and circuit board work."
 category: "tools"
-price: "£11.31"
+price: "£11.54"
 stock: 1
 amazon_url: "https://www.amazon.co.uk/dp/B0DMV1DTR3"
 asin: "B0DMV1DTR3"
