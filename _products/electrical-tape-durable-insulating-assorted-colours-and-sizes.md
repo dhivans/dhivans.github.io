@@ -14,7 +14,7 @@ variants:
     asin: "B0DNNLMV1G"
     price: "£4.00"
     url: "https://www.amazon.co.uk/dp/B0DNNLMV1G"
-    image: "https://m.media-amazon.com/images/I/31rYEMWahVL.jpg"
+    image: "https://m.media-amazon.com/images/I/41Y6qK2VIUL.jpg"
     stock: 1
   - label: "Blue, 30M"
     asin: "B0DNNMN9BV"
@@ -26,7 +26,7 @@ variants:
     asin: "B0DNNLN8QH"
     price: "£4.00"
     url: "https://www.amazon.co.uk/dp/B0DNNLN8QH"
-    image: "https://m.media-amazon.com/images/I/31rYEMWahVL.jpg"
+    image: "https://m.media-amazon.com/images/I/41Y6qK2VIUL.jpg"
     stock: 1
   - label: "Red, 30M"
     asin: "B0DNNJNFB2"
@@ -38,13 +38,13 @@ variants:
     asin: "B0DNNMSHRJ"
     price: "£4.00"
     url: "https://www.amazon.co.uk/dp/B0DNNMSHRJ"
-    image: "https://m.media-amazon.com/images/I/31rYEMWahVL.jpg"
+    image: "https://m.media-amazon.com/images/I/41Y6qK2VIUL.jpg"
     stock: 1
   - label: "Yellow, 30M"
     asin: "B0DNNM2PGH"
     price: "£4.00"
     url: "https://www.amazon.co.uk/dp/B0DNNM2PGH"
-    image: "https://m.media-amazon.com/images/I/31rYEMWahVL.jpg"
+    image: "https://m.media-amazon.com/images/I/41Y6qK2VIUL.jpg"
     stock: 1
   - label: "Black, 100M"
     asin: "B0DNNMC7GC"
