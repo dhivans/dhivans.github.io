@@ -1,42 +1,22 @@
 [
   {
-    "asin": "B0DMV1DTR3",
+    "asin": "B0DJPZHZ1X",
     "currency": "GBP",
-    "date": "2026-08-11",
+    "date": "2026-08-12",
     "direction": "rise",
-    "new_price": 11.86,
-    "old_price": 11.54,
-    "slug": "anti-static-precision-pointy-tweezers-set-stainless-steel-esd-tweezers-2-pieces",
-    "title": "Anti-Static Precision Pointy Tweezers Set, Stainless Steel ESD Tweezers, 2 Pieces, for Electronics Repair"
+    "new_price": 11.92,
+    "old_price": 11.6,
+    "slug": "esp32-development-boards",
+    "title": "ESP32 Development Boards, Wi-Fi, Bluetooth"
   },
   {
-    "asin": "B0F2ZFMPR6",
+    "asin": "B0DFKNT4RG",
     "currency": "GBP",
-    "date": "2026-08-11",
+    "date": "2026-08-12",
     "direction": "rise",
-    "new_price": 8.47,
-    "old_price": 8.18,
-    "slug": "oled-display-module-096-inch-128x64-lcd-ssd1306-i2c-iic-spi-serial-interface-yel",
-    "title": "OLED Display Module, 0.96 Inch, 128x64 LCD, SSD1306 I2C IIC SPI Serial Interface, Yellow-Blue/White-Blue, 4-Pin with Pre-soldered Headers"
-  },
-  {
-    "asin": "B0DRW5HVGY",
-    "currency": "GBP",
-    "date": "2026-08-11",
-    "direction": "rise",
-    "new_price": 11.77,
-    "old_price": 11.54,
-    "slug": "round-rocker-switch-spst-2-pin-12v-dc-10a-black-20mm-mini-toggle-with-terminal-w",
-    "title": "Round Rocker Switch, SPST 2-Pin, 12V DC, 10A, Black, 20mm Mini Toggle with Terminal Wires"
-  },
-  {
-    "asin": "B0DNNQQGND",
-    "currency": "GBP",
-    "date": "2026-08-11",
-    "direction": "rise",
-    "new_price": 16.01,
-    "old_price": 15.58,
-    "slug": "ws2812b-rgb-full-colour-led-ring-modules-dc-5v-blackwhite-pcb",
-    "title": "WS2812B RGB Full Colour LED Ring Modules, DC 5V, Black/White PCB"
+    "new_price": 14.51,
+    "old_price": 14.23,
+    "slug": "tp4056-5v-1a-18650-lithium-battery-charger-module-type-c-usb-dual-function",
+    "title": "TP4056 5V 1A 18650 Lithium Battery Charger Module, Type-C USB, Dual Function"
   }
 ]
