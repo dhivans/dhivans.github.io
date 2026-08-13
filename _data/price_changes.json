@@ -2,21 +2,11 @@
   {
     "asin": "B0DJPZHZ1X",
     "currency": "GBP",
-    "date": "2026-08-12",
+    "date": "2026-08-13",
     "direction": "rise",
-    "new_price": 11.92,
-    "old_price": 11.6,
+    "new_price": 12.04,
+    "old_price": 11.92,
     "slug": "esp32-development-boards",
     "title": "ESP32 Development Boards, Wi-Fi, Bluetooth"
-  },
-  {
-    "asin": "B0DFKNT4RG",
-    "currency": "GBP",
-    "date": "2026-08-12",
-    "direction": "rise",
-    "new_price": 14.51,
-    "old_price": 14.23,
-    "slug": "tp4056-5v-1a-18650-lithium-battery-charger-module-type-c-usb-dual-function",
-    "title": "TP4056 5V 1A 18650 Lithium Battery Charger Module, Type-C USB, Dual Function"
   }
 ]
