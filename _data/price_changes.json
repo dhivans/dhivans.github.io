@@ -1,12 +1,22 @@
 [
   {
-    "asin": "B0DJPZHZ1X",
+    "asin": "B0DFKNT4RG",
     "currency": "GBP",
-    "date": "2026-08-13",
+    "date": "2026-08-14",
+    "direction": "drop",
+    "new_price": 14.22,
+    "old_price": 14.51,
+    "slug": "tp4056-5v-1a-18650-lithium-battery-charger-module-type-c-usb-dual-function",
+    "title": "TP4056 5V 1A 18650 Lithium Battery Charger Module, Type-C USB, Dual Function"
+  },
+  {
+    "asin": "B0DKLP2HPT",
+    "currency": "GBP",
+    "date": "2026-08-14",
     "direction": "rise",
-    "new_price": 12.04,
-    "old_price": 11.92,
-    "slug": "esp32-development-boards",
-    "title": "ESP32 Development Boards, Wi-Fi, Bluetooth"
+    "new_price": 7.13,
+    "old_price": 6.99,
+    "slug": "ws2812b-rgb-full-colour-led-ringarray-modules-dc-5v-blackwhite-pcb",
+    "title": "WS2812B RGB Full Colour LED Array Modules, DC 5V, Black/White PCB"
   }
 ]
