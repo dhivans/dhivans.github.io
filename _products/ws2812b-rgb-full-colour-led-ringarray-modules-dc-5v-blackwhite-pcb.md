@@ -6,7 +6,7 @@ category: "electrical-components"
 price: "From £1.99"
 image: "https://m.media-amazon.com/images/I/51m+4R4rPiL.jpg"
 featured: false
-sales_30d: 3
+sales_30d: 2
 badge: ""
 tags: ['ws2812b', 'led']
 variants:
