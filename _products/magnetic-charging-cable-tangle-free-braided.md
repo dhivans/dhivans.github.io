@@ -24,20 +24,20 @@ variants:
     asin: "B0D1VWFBJB"
     price: "£9.99"
     url: "https://www.amazon.co.uk/dp/B0D1VWFBJB"
-    image: "https://m.media-amazon.com/images/I/41s0xf5FV7L.jpg"
+    image: "https://m.media-amazon.com/images/I/41MKsEzRHwL.jpg"
     stock: 0
   - label: "USB-A to USB-C, Black"
     asin: "B0D1VWBT25"
     price: "£9.59"
     url: "https://www.amazon.co.uk/dp/B0D1VWBT25"
     image: "https://m.media-amazon.com/images/I/51-7yXw+f0L.jpg"
-    stock: 0
+    stock: 2
   - label: "USB-A to USB-C, White"
     asin: "B0D1VVTHKN"
     price: "£9.59"
     url: "https://www.amazon.co.uk/dp/B0D1VVTHKN"
     image: "https://m.media-amazon.com/images/I/41MKsEzRHwL.jpg"
-    stock: 0
+    stock: 1
   - label: "USB-C to Lightning, Black"
     asin: "B0D1VW5D94"
     price: "£9.99"
@@ -60,7 +60,7 @@ variants:
     asin: "B0D1VW8W52"
     price: "£9.99"
     url: "https://www.amazon.co.uk/dp/B0D1VW8W52"
-    image: "https://m.media-amazon.com/images/I/415MrpO63wL.jpg"
+    image: "https://m.media-amazon.com/images/I/41MKsEzRHwL.jpg"
     stock: 0
 ---
 Ultra-Durable Magnetic Charging Cable (Black & White) - Tangle-Free Nylon Braided for Effortless Charging!
