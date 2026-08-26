@@ -39,7 +39,7 @@ variants:
     price: "£7.13"
     url: "https://www.amazon.co.uk/dp/B0DKLP2HPT"
     image: "https://m.media-amazon.com/images/I/41lI7inIDIL.jpg"
-    stock: 44
+    stock: 50
   - label: "8x8 Array"
     asin: "B0DKLQDN4D"
     price: "£6.29"
