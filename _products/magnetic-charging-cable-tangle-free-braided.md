@@ -31,7 +31,7 @@ variants:
     price: "£9.59"
     url: "https://www.amazon.co.uk/dp/B0D1VWBT25"
     image: "https://m.media-amazon.com/images/I/51-7yXw+f0L.jpg"
-    stock: 2
+    stock: 1
   - label: "USB-A to USB-C, White"
     asin: "B0D1VVTHKN"
     price: "£9.59"
