@@ -6,7 +6,7 @@ category: "electrical-components"
 price: "From £5.99"
 image: "https://m.media-amazon.com/images/I/41riKZB9G1L.jpg"
 featured: false
-sales_30d: 0
+sales_30d: 1
 badge: ""
 tags: []
 variants:
@@ -21,13 +21,13 @@ variants:
     price: "£5.99"
     url: "https://www.amazon.co.uk/dp/B0DV9PQGDP"
     image: "https://m.media-amazon.com/images/I/41riKZB9G1L.jpg"
-    stock: 0
+    stock: 1
   - label: "Flexcable for Raspberry Pi Model B+, 2M"
     asin: "B0DH3XQ5TJ"
     price: "£4.99"
     url: "https://www.amazon.co.uk/dp/B0DH3XQ5TJ"
     image: "https://m.media-amazon.com/images/I/41riKZB9G1L.jpg"
-    stock: 0
+    stock: 1
   - label: "50cm"
     asin: "B0DV9T8YJS"
     price: "£6.99"
