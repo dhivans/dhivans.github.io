@@ -1,1 +1,42 @@
-[]
+[
+  {
+    "asin": "B0DFKNT4RG",
+    "currency": "GBP",
+    "date": "2026-08-30",
+    "direction": "drop",
+    "new_price": 4.29,
+    "old_price": 4.66,
+    "slug": "tp4056-5v-1a-18650-lithium-battery-charger-module-type-c-usb-dual-function",
+    "title": "TP4056 5V 1A 18650 Lithium Battery Charger Module, Type-C USB, Dual Function"
+  },
+  {
+    "asin": "B07WYQHCY5",
+    "currency": "GBP",
+    "date": "2026-08-30",
+    "direction": "drop",
+    "new_price": 58.29,
+    "old_price": 59.46,
+    "slug": "uni-t-ut89x-digital-multimeter-professional-tester-true-rms-ac-dc-1000v-20a",
+    "title": "UNI-T UT89X Digital Multimeter Professional tester True RMS AC/DC 1000V 20A Voltage Current Temperature Conductance Meter (UT89X)"
+  },
+  {
+    "asin": "B0DNNQQGND",
+    "currency": "GBP",
+    "date": "2026-08-30",
+    "direction": "drop",
+    "new_price": 15.58,
+    "old_price": 16.01,
+    "slug": "ws2812b-rgb-full-colour-led-ring-modules-dc-5v-blackwhite-pcb",
+    "title": "WS2812B RGB Full Colour LED Ring Modules, DC 5V, Black/White PCB"
+  },
+  {
+    "asin": "B0DKLP2HPT",
+    "currency": "GBP",
+    "date": "2026-08-30",
+    "direction": "drop",
+    "new_price": 6.99,
+    "old_price": 7.13,
+    "slug": "ws2812b-rgb-full-colour-led-ringarray-modules-dc-5v-blackwhite-pcb",
+    "title": "WS2812B RGB Full Colour LED Array Modules, DC 5V, Black/White PCB"
+  }
+]
