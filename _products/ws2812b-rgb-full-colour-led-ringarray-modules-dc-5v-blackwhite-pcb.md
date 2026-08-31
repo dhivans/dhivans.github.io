@@ -6,7 +6,7 @@ category: "electrical-components"
 price: "From £1.99"
 image: "https://m.media-amazon.com/images/I/51m+4R4rPiL.jpg"
 featured: false
-sales_30d: 2
+sales_30d: 3
 badge: ""
 tags: ['ws2812b', 'led']
 variants:
@@ -39,7 +39,7 @@ variants:
     price: "£6.99"
     url: "https://www.amazon.co.uk/dp/B0DKLP2HPT"
     image: "https://m.media-amazon.com/images/I/41lI7inIDIL.jpg"
-    stock: 50
+    stock: 49
   - label: "8x8 Array"
     asin: "B0DKLQDN4D"
     price: "£6.29"

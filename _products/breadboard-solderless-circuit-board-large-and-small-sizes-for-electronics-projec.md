@@ -12,25 +12,25 @@ tags: ['breadboard']
 variants:
   - label: "Half-size, 1"
     asin: "B0DLYTCS3J"
-    price: "£11.69"
+    price: "£6.99"
     url: "https://www.amazon.co.uk/dp/B0DLYTCS3J"
     image: "https://m.media-amazon.com/images/I/414gncnd+JL.jpg"
     stock: 487
   - label: "Full-size, 1"
     asin: "B0DLYXPZ17"
-    price: "£8.61"
+    price: "£6.99"
     url: "https://www.amazon.co.uk/dp/B0DLYXPZ17"
     image: "https://m.media-amazon.com/images/I/3158P4rLkFL.jpg"
     stock: 489
   - label: "Half-size, 3"
     asin: "B0DSGJZ1XN"
-    price: "£12.47"
+    price: "£9.99"
     url: "https://www.amazon.co.uk/dp/B0DSGJZ1XN"
     image: "https://m.media-amazon.com/images/I/414gncnd+JL.jpg"
     stock: 0
   - label: "Full-size, 3"
     asin: "B0DSJSNM61"
-    price: "£20.14"
+    price: "£14.99"
     url: "https://www.amazon.co.uk/dp/B0DSJSNM61"
     image: "https://m.media-amazon.com/images/I/3158P4rLkFL.jpg"
     stock: 0
