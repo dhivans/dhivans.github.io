@@ -11,6 +11,8 @@ featured: false
 sales_30d: 3
 badge: ""
 tags: ['microswitch']
+specs:
+  switch_type: "Microswitch (snap-action lever), for klicky probe / endstop"
 variants:
   - label: "1"
     asin: "B0DFJ7DT9D"

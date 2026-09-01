@@ -47,9 +47,21 @@ permalink: /compare/
 </div>
 
 <script type="application/json" id="catalog-json">{{ site.data.catalog | jsonify }}</script>
+<script type="application/json" id="spec-schema-json">{{ site.data.spec_schema | jsonify }}</script>
 <script>
 (function () {
   var catalog = JSON.parse(document.getElementById('catalog-json').textContent);
+  var specSchema = JSON.parse(document.getElementById('spec-schema-json').textContent || '{}');
+  var specLabels = {};
+  Object.keys(specSchema).forEach(function (group) {
+    (specSchema[group].fields || []).forEach(function (field) {
+      specLabels[field.key] = field.label;
+    });
+  });
+
+  function specLabel(key) {
+    return specLabels[key] || String(key).replace(/_/g, ' ').replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+  }
   var selected = new URLSearchParams(window.location.search).get('asins');
   var asins = selected ? selected.split(',').filter(Boolean).slice(0, 3) : [];
   var MAX_ITEMS = 3;
@@ -180,7 +192,7 @@ permalink: /compare/
     ];
     var specRowKeys = Object.keys(specKeys).sort();
     specRowKeys.forEach(function (key) {
-      rows.push([key].concat(items.map(function (item) { return (item.specs || {})[key] || '—'; })));
+      rows.push([specLabel(key)].concat(items.map(function (item) { return (item.specs || {})[key] || '—'; })));
     });
 
     function rowSlug(label) {

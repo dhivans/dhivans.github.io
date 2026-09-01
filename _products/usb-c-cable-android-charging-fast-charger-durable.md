@@ -9,6 +9,9 @@ featured: false
 sales_30d: 0
 badge: ""
 tags: ['usb', 'cable']
+specs:
+  connector_type: "USB-A to USB-C / USB-C to USB-C"
+  length: "1m"
 variants:
   - label: "Black USB-C to USB-C"
     asin: "B0DH8DDWFH"

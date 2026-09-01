@@ -12,5 +12,9 @@ featured: false
 sales_30d: 0
 badge: ""
 tags: ['cable']
+specs:
+  connector_type: "DB15 (DE-15), Male to Male"
+  length: "0.76m"
+  gauge_or_rating: "Industrial grade, moulded connectors"
 ---
 Experience reliable connectivity with this premium DB15 male-to-male serial cable from Amphenol Cables on Demand. Measuring 0.76 metres in length, this industrial-grade cable features precision-moulded connectors on both ends, ensuring secure and stable connections for your critical applications. The robust construction makes it ideal for various settings including industrial environments, commercial installations, and laboratory equipment. The cable's flexible design allows for easy routing while maintaining signal integrity, perfect for connecting devices that utilise standard DB15 (DE-15) interfaces. Its compact yet durable build offers the perfect balance between functionality and space efficiency, making it an essential component for your connectivity needs. Whether you're setting up industrial machinery, laboratory equipment, or commercial systems, this cable delivers consistent performance and reliable signal transmission.

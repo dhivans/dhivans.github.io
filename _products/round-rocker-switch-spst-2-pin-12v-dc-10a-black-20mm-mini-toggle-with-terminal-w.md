@@ -9,6 +9,11 @@ featured: false
 sales_30d: 6
 badge: ""
 tags: []
+specs:
+  switch_type: "SPST rocker, ON/OFF"
+  rated_voltage: "12V DC"
+  rated_current: "10A"
+  mounting_size: "20mm"
 variants:
   - label: "1"
     asin: "B0DRW4GLJM"

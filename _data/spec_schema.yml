@@ -1,0 +1,373 @@
+# Reference schema for the `specs:` map in each _products front matter file.
+#
+# The 4 shop categories (electrical-components, tools, mechanical-components,
+# test-equipment) are too broad to compare meaningfully — electrical-components
+# alone covers diodes, dev boards, LED strips and adhesive tape. This groups the
+# 45 catalogue products by what they actually are, so two items in the same
+# group share the same spec keys and the compare table's diff-highlighting
+# (compare.md) actually lines values up instead of showing "—" for everything.
+#
+# How to use: pick a product's group below, add a `specs:` map to its front
+# matter using exactly these keys, e.g.
+#   specs:
+#     voltage_rating: "1000V"
+#     current_rating: "1A"
+#     package: "DO-41"
+#
+# Groups with only one product today still get a field set defined, so the
+# next similar product added to the catalogue slots in with comparable specs
+# from day one.
+
+discrete-semiconductors:
+  label: Diodes & Transistors
+  products:
+    - 1n4007-rectifier-diode-1000v-1a-high-voltage-electronic-component
+    - 2n2222-npn-transistor-to-92-package-30v-800ma-linear-amplification-and-switching
+  fields:
+    - key: package
+      label: Package
+      type: text
+    - key: voltage_rating
+      label: Voltage Rating
+      type: text
+      unit: V
+    - key: current_rating
+      label: Current Rating
+      type: text
+      unit: A
+    - key: power_rating
+      label: Power Rating
+      type: text
+      unit: W
+
+sensor-modules:
+  label: Sensor Modules
+  products:
+    - bmp280-environmental-sensor-temperature-humidity-atmospheric-pressure
+  fields:
+    - key: interface
+      label: Interface
+      type: text
+    - key: supply_voltage
+      label: Supply Voltage
+      type: text
+      unit: V
+    - key: measurement_range
+      label: Measurement Range
+      type: text
+    - key: accuracy
+      label: Accuracy
+      type: text
+
+dev-boards:
+  label: Development Boards
+  products:
+    - esp32-development-boards
+    - esp8266-wi-fi-development-board-esp-01-esp-01s-usb-to-esp-internet-connectivity
+  fields:
+    - key: connectivity
+      label: Connectivity
+      type: text
+    - key: supply_voltage
+      label: Supply Voltage
+      type: text
+      unit: V
+    - key: flash_memory
+      label: Flash Memory
+      type: text
+    - key: gpio_count
+      label: GPIO Count
+      type: number
+
+displays:
+  label: Display Modules
+  products:
+    - oled-display-module-096-inch-128x64-lcd-ssd1306-i2c-iic-spi-serial-interface-yel
+  fields:
+    - key: resolution
+      label: Resolution
+      type: text
+    - key: interface
+      label: Interface
+      type: text
+    - key: screen_size
+      label: Screen Size
+      type: text
+    - key: supply_voltage
+      label: Supply Voltage
+      type: text
+      unit: V
+
+rotary-controls:
+  label: Rotary Encoders & Potentiometers
+  products:
+    - ky-040-360-degree-rotary-encoder-module-with-knob-cap-5v
+    - rotary-potentiometer-linear-taper-wh148-15mm-3-pin-with-black-aluminium-knobs
+  fields:
+    - key: type
+      label: Type
+      type: text
+    - key: resistance_or_range
+      label: Resistance / Range
+      type: text
+    - key: pin_count
+      label: Pin Count
+      type: number
+    - key: supply_voltage
+      label: Supply Voltage
+      type: text
+      unit: V
+
+switches:
+  label: Switches
+  products:
+    - d2f-01-3d-printer-microswitch-for-klicky-probe-bed-levelling-limit-switches-fila
+    - omron-japan-d2f-5l-3d-printer-microswitch-for-klicky-probe-bed-levelling-limit-s
+    - metal-blue-led-push-button-switch-12v-24v-spdt-on-off-waterproof-ip65-16mm
+    - round-rocker-switch-spst-2-pin-12v-dc-10a-black-20mm-mini-toggle-with-terminal-w
+    - ttp223-1-channel-touch-switch-module-ttp223b-capacitive-touch-sensor-button-for
+  fields:
+    - key: switch_type
+      label: Switch Type
+      type: text
+    - key: rated_voltage
+      label: Rated Voltage
+      type: text
+      unit: V
+    - key: rated_current
+      label: Rated Current
+      type: text
+      unit: A
+    - key: mounting_size
+      label: Mounting Size
+      type: text
+
+led-lighting:
+  label: Addressable LED Lighting
+  products:
+    - sk6812-rgbw-addressable-led-strip-3060144-ledsm-4-in-1-rgbw-5v-dc
+    - ws2812b-rgb-full-colour-led-ring-modules-dc-5v-blackwhite-pcb
+    - ws2812b-rgb-full-colour-led-ringarray-modules-dc-5v-blackwhite-pcb
+  fields:
+    - key: led_count
+      label: LED Count
+      type: text
+    - key: led_density
+      label: LED Density
+      type: text
+    - key: voltage
+      label: Voltage
+      type: text
+      unit: V
+    - key: protocol
+      label: Protocol
+      type: text
+
+power-modules:
+  label: Charging & Power Modules
+  products:
+    - tp4056-5v-1a-18650-lithium-battery-charger-module-type-c-usb-dual-function
+  fields:
+    - key: input
+      label: Input
+      type: text
+    - key: max_charge_current
+      label: Max Charge Current
+      type: text
+      unit: A
+    - key: battery_type
+      label: Battery Type
+      type: text
+    - key: protection_features
+      label: Protection Features
+      type: text
+
+breadboard-prototyping:
+  label: Breadboards
+  products:
+    - breadboard-solderless-circuit-board-large-and-small-sizes-for-electronics-projec
+  fields:
+    - key: tie_points
+      label: Tie Points
+      type: text
+    - key: size
+      label: Size
+      type: text
+    - key: material
+      label: Material
+      type: text
+    - key: piece_count
+      label: Piece Count
+      type: number
+    - key: dimensions
+      label: Dimensions
+      type: text
+    - key: weight
+      label: Weight
+      type: text
+
+wire-and-cable:
+  label: Wire & Cable
+  products:
+    - cat5e-utp-ethernet-patch-cable-rj45-to-rj45-03m-black
+    - db15-male-to-male-serial-cable-076-metres-industrial-grade-molded-connectors
+    - flexcable-for-raspberry-pi-model-b-2m-1m-50cm-30cm-15cm-15-pins-ribbon-flex
+    - magnetic-charging-cable-tangle-free-braided
+    - usb-c-cable-android-charging-fast-charger-durable
+    - micro-hdmi-to-hdmi-adapter-for-raspberry-pi-4-8k-resolution-compact
+    - stranded-tinned-copper-silicone-wire-kit-6-colours
+  fields:
+    - key: connector_type
+      label: Connector Type
+      type: text
+    - key: length
+      label: Length
+      type: text
+    - key: gauge_or_rating
+      label: Gauge / Rating
+      type: text
+    - key: shielding
+      label: Shielding
+      type: text
+
+panel-mount-connectors:
+  label: Panel-Mount Connectors
+  products:
+    - nausb-w-panel-mount-usb-feedthrough-adapter-a-to-b-coupler-d-series-housing
+    - ne8fdy-c6-ethercon-cat-6-panel-mount-connector-metal-housing-professional-audio
+  fields:
+    - key: connector_type
+      label: Connector Type
+      type: text
+    - key: mounting
+      label: Mounting
+      type: text
+    - key: housing_material
+      label: Housing Material
+      type: text
+
+tape-and-adhesives:
+  label: Tape & Adhesives
+  products:
+    - crown-double-sided-adhesive-tape-50m-length-3mm5mm10mm-width-whiteblack
+    - electrical-tape-durable-insulating-assorted-colours-and-sizes
+    - liquid-electrical-tape-100ml-flexible-insulating-sealant-uv-resistant-1380v
+  fields:
+    - key: width
+      label: Width
+      type: text
+    - key: length
+      label: Length
+      type: text
+    - key: voltage_rating
+      label: Voltage Rating
+      type: text
+      unit: V
+    - key: material
+      label: Material
+      type: text
+
+solder-consumables:
+  label: Solder
+  products:
+    - lead-free-solder-sn993cu07-high-purity-with-rosin-flux-core-for-electronics-sold
+  fields:
+    - key: alloy
+      label: Alloy
+      type: text
+    - key: diameter
+      label: Diameter
+      type: text
+    - key: flux_type
+      label: Flux Type
+      type: text
+
+fasteners-and-fixings:
+  label: Fasteners & Fixings
+  products:
+    - cable-ties-3mm-and-25mm-widths-100mm-150mm-and-200mm-lengths-black-and-white
+  fields:
+    - key: width
+      label: Width
+      type: text
+    - key: length
+      label: Length
+      type: text
+    - key: material
+      label: Material
+      type: text
+    - key: colour
+      label: Colour
+      type: text
+
+crimping-tools:
+  label: Crimping Tools
+  products:
+    - ratcheting-crimping-tool-set-9-pieces-for-dupont-jst-molex-connectors
+    - wozobuy-self-adjustable-ratchet-ferrule-crimping-tool-kit-23-10awg-025-6mm-2000
+  fields:
+    - key: wire_gauge_range
+      label: Wire Gauge Range
+      type: text
+    - key: connector_types
+      label: Connector Types
+      type: text
+    - key: piece_count
+      label: Piece Count
+      type: number
+
+hand-tools-misc:
+  label: Hand Tools
+  products:
+    - anti-static-precision-pointy-tweezers-set-stainless-steel-esd-tweezers-2-pieces
+    - brass-3d-printer-nozzle-cleaning-brush
+    - hex-key-set-15mm-to-10mm-allen-wrench-kit-hand-tools-for-bicycle-repair
+    - solder-sucker-desoldering-pump-with-replaceable-silicone-nozzle-no-clog-design-6
+    - soldering-iron-copper-wool-tip-cleaner
+    - stainless-steel-double-sided-straight-ruler-30cm-centimetre-and-inch-scale
+  fields:
+    - key: material
+      label: Material
+      type: text
+    - key: dimensions
+      label: Dimensions
+      type: text
+    - key: piece_count
+      label: Piece Count
+      type: number
+
+measurement-instruments:
+  label: Test & Measurement
+  products:
+    - belt-tension-meter-belt-tension-gauge-for-3d-printer-belts-voron-bambulab-creali
+    - digital-caliper-0-15-cm-range-mminch-display-black
+    - uni-t-ut89x-digital-multimeter-professional-tester-true-rms-ac-dc-1000v-20a
+    - uni-t-ut89xd-digital-multimeter-professional-tester-true-rms-acdc-1000v-20a-volt
+  fields:
+    - key: measurement_range
+      label: Measurement Range
+      type: text
+    - key: resolution_or_accuracy
+      label: Resolution / Accuracy
+      type: text
+    - key: display
+      label: Display
+      type: text
+    - key: extra_features
+      label: Extra Features
+      type: text
+
+bearings-and-mechanical:
+  label: Bearings
+  products:
+    - 608zz-ball-bearing-10-pack-8-x-22-x-7-mm-high-carbon-steel-double-shielded
+  fields:
+    - key: dimensions
+      label: Dimensions
+      type: text
+    - key: material
+      label: Material
+      type: text
+    - key: shielding
+      label: Shielding
+      type: text

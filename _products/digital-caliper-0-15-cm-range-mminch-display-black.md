@@ -9,6 +9,10 @@ featured: false
 sales_30d: 0
 badge: ""
 tags: ['caliper']
+specs:
+  measurement_range: "0-15cm"
+  display: "LCD, mm/inch switchable"
+  extra_features: "Stainless steel body, smooth sliding action"
 variants:
   - label: "Digital"
     asin: "B0DJYKBXVB"

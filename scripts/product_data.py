@@ -115,6 +115,9 @@ def load_catalog_records() -> list[dict[str, Any]]:
                         "url": product_url,
                         "amazon_url": product_url,
                         "image": variant.get("image") or base["image"],
+                        # variant specs override/extend the product-level specs, since
+                        # attributes like size or pack count often differ per variant
+                        "specs": {**base["specs"], **normalize_specs(variant.get("specs"))},
                     }
                 )
         elif fm.get("asin"):
@@ -193,6 +196,7 @@ def product_asin_records(document: dict[str, Any]) -> list[dict[str, Any]]:
                     "stock_qty": int(variant.get("stock") or 0),
                     "amazon_url": amazon_url(asin, variant.get("amazon_url") or variant.get("url")),
                     "image": variant.get("image") or base["image"],
+                    "specs": {**base["specs"], **normalize_specs(variant.get("specs"))},
                 }
             )
     elif fm.get("asin"):

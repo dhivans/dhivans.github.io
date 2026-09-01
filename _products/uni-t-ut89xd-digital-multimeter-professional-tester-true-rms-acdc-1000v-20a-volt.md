@@ -12,5 +12,10 @@ featured: false
 sales_30d: 0
 badge: ""
 tags: ['multimeter']
+specs:
+  measurement_range: "AC/DC 1000V, AC/DC 20A"
+  resolution_or_accuracy: "True RMS; CAT III 1000V / CAT IV 600V"
+  display: "Backlit, auto-ranging, data-hold"
+  extra_features: "Measures voltage, current, resistance, capacitance, frequency, temperature, conductance"
 ---
 The UNI-T UT89XD is a professional-grade True RMS digital multimeter designed for engineers, technicians, and serious hobbyists. It measures AC and DC voltage up to 1000V, AC and DC current up to 20A, resistance, capacitance, frequency, temperature (with thermocouple), and conductance. True RMS measurement ensures accurate readings on non-sinusoidal waveforms encountered in modern switching power supplies and variable-speed drives. The large backlit display, auto-ranging, and data-hold function make it practical for both bench work and field diagnostics. Meets CAT III 1000V and CAT IV 600V safety ratings.

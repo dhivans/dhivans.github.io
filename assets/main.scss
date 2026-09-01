@@ -181,6 +181,45 @@ blockquote {
   padding: 0.5rem 1rem;
 }
 
+// Prose content (posts, about/projects intro) — lede paragraph,
+// cyan list markers, and a closing callout card after the sign-off "---"
+.post-content,
+.split-main {
+  > p:first-of-type {
+    color: #aab6c5;
+    font-size: 1.15rem;
+    line-height: 1.6;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  ul li {
+    margin-bottom: 0.4rem;
+    padding-left: 1.4rem;
+    position: relative;
+
+    &::before {
+      color: #00e5ff;
+      content: "▸";
+      font-weight: 700;
+      left: 0;
+      position: absolute;
+    }
+  }
+
+  > hr + p {
+    background-color: #161b22;
+    border: 1px solid rgba(0, 229, 255, 0.18);
+    border-left: 3px solid #00e5ff;
+    border-radius: 6px;
+    color: #aab6c5;
+    padding: 1rem 1.25rem;
+  }
+}
+
 // Post list (home page)
 .post-list {
   li {
@@ -205,6 +244,419 @@ blockquote {
 .post-header .post-title {
   color: #ffffff;
   font-size: 1.6rem;
+}
+
+// ============================================================
+// Homepage
+// ============================================================
+
+.home-page {
+  display: grid;
+  gap: 1.4rem;
+  max-width: 1400px;
+}
+
+.home-hero {
+  align-items: stretch;
+  background: linear-gradient(135deg, #111820 0%, #0d1117 58%, #101720 100%);
+  border: 1px solid rgba(0, 229, 255, 0.18);
+  border-radius: 8px;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 390px);
+  overflow: hidden;
+  padding: 1.5rem;
+}
+
+.home-hero-copy {
+  align-self: center;
+  min-width: 0;
+
+  h1 {
+    border: 0;
+    color: #ffffff;
+    font-size: clamp(2rem, 4vw, 4.2rem);
+    line-height: 0.95;
+    margin: 0 0 0.8rem;
+    max-width: 780px;
+    padding: 0;
+  }
+
+  p {
+    color: #aab6c5;
+    font-size: 1.08rem;
+    line-height: 1.55;
+    margin: 0;
+    max-width: 760px;
+  }
+}
+
+.home-brand-mark {
+  align-items: baseline;
+  display: inline-flex;
+  gap: 0.45rem;
+  margin: 0 0 0.85rem;
+  text-decoration: none !important;
+}
+
+.home-brand-mark__full {
+  color: #00e5ff;
+  font-family: "HemiHeadRG", "Courier New", monospace;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.12);
+}
+
+.home-brand-mark:hover {
+  .home-brand-mark__full {
+    color: #ffffff;
+  }
+}
+
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+}
+
+.home-btn {
+  border-radius: 4px;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.55rem 0.9rem;
+  text-decoration: none !important;
+}
+
+.home-btn--primary {
+  background: #00e5ff;
+  color: #0d1117 !important;
+
+  &:hover {
+    background: #ffffff;
+  }
+}
+
+.home-btn--secondary {
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  color: #00e5ff !important;
+
+  &:hover {
+    background: rgba(0, 229, 255, 0.08);
+    color: #ffffff !important;
+  }
+}
+
+.home-hero-panel {
+  background: rgba(8, 12, 16, 0.72);
+  border: 1px solid rgba(0, 229, 255, 0.16);
+  border-radius: 6px;
+  display: grid;
+  min-width: 0;
+
+  div {
+    display: grid;
+    gap: 0.15rem;
+    padding: 1rem;
+
+    + div {
+      border-top: 1px solid rgba(0, 229, 255, 0.1);
+    }
+  }
+
+  span {
+    color: #8b949e;
+    font-family: "Courier New", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  strong {
+    color: #e2eaf4;
+    font-family: "Rajdhani", sans-serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+  }
+}
+
+.home-value-strip,
+.home-featured-grid,
+.home-category-grid,
+.home-post-list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.home-value-strip {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  div {
+    background: #111820;
+    border: 1px solid rgba(0, 229, 255, 0.14);
+    border-radius: 6px;
+    padding: 0.9rem;
+  }
+
+  strong {
+    color: #e2eaf4;
+    display: block;
+    font-family: "Rajdhani", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+
+  span {
+    color: #8b949e;
+    font-size: 0.9rem;
+  }
+}
+
+.home-section {
+  padding-top: 0.6rem;
+}
+
+.home-section-heading {
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 229, 255, 0.16);
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.45rem;
+
+  h2 {
+    border: 0;
+    color: #00e5ff;
+    font-size: 1.35rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    font-family: "Rajdhani", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+}
+
+.home-featured-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.home-product-card,
+.home-category-card,
+.home-post-card {
+  background: #111820;
+  border: 1px solid rgba(0, 229, 255, 0.16);
+  border-radius: 6px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.home-product-card {
+  display: grid;
+  grid-template-rows: 190px 1fr;
+}
+
+.home-product-image {
+  align-items: center;
+  background: #080c10;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+
+  img {
+    display: block;
+    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    width: 100%;
+  }
+}
+
+.home-product-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.85rem;
+
+  h3 {
+    font-size: 1rem;
+    line-height: 1.25;
+    margin: 0;
+
+    a {
+      color: #e2eaf4;
+      display: -webkit-box;
+      overflow: hidden;
+      text-decoration: none;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+
+      &:hover {
+        color: #00e5ff;
+      }
+    }
+  }
+}
+
+.home-product-category {
+  color: #00e5ff !important;
+  font-family: "Courier New", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-decoration: none !important;
+  text-transform: uppercase;
+}
+
+.home-product-meta {
+  align-items: center;
+  display: flex;
+  gap: 0.55rem;
+  justify-content: space-between;
+  margin-top: auto;
+
+  strong {
+    color: #ffffff;
+    font-family: "Rajdhani", sans-serif;
+    font-size: 1.05rem;
+  }
+}
+
+.home-stock {
+  border-radius: 999px;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+}
+
+.home-stock--in {
+  background: rgba(126, 231, 135, 0.1);
+  border: 1px solid rgba(126, 231, 135, 0.32);
+  color: #7ee787;
+}
+
+.home-category-grid {
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.home-category-card {
+  display: grid;
+  gap: 0.15rem;
+  padding: 1rem;
+  text-decoration: none !important;
+
+  span {
+    color: #e2eaf4;
+    font-family: "Rajdhani", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  small {
+    color: #8b949e;
+    font-size: 0.85rem;
+  }
+
+  &:hover {
+    border-color: rgba(0, 229, 255, 0.45);
+
+    span {
+      color: #00e5ff;
+    }
+  }
+}
+
+.home-post-list {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.home-post-card {
+  padding: 1rem;
+
+  time {
+    color: #8b949e;
+    font-family: "Courier New", monospace;
+    font-size: 0.72rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    line-height: 1.25;
+    margin: 0.35rem 0 0.45rem;
+
+    a {
+      color: #e2eaf4;
+      text-decoration: none;
+
+      &:hover {
+        color: #00e5ff;
+      }
+    }
+  }
+
+  p {
+    color: #8b949e;
+    margin: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .home-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .home-hero-panel {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    div + div {
+      border-left: 1px solid rgba(0, 229, 255, 0.1);
+      border-top: 0;
+    }
+  }
+
+  .home-value-strip {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-page {
+    gap: 1rem;
+  }
+
+  .home-hero {
+    padding: 1rem;
+  }
+
+  .home-hero-copy h1 {
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .home-hero-panel {
+    grid-template-columns: 1fr;
+
+    div + div {
+      border-left: 0;
+      border-top: 1px solid rgba(0, 229, 255, 0.1);
+    }
+  }
+
+  .home-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
 }
 
 // ============================================================

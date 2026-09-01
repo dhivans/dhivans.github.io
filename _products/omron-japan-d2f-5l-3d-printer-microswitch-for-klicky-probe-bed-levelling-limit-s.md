@@ -11,6 +11,8 @@ featured: false
 sales_30d: 1
 badge: ""
 tags: []
+specs:
+  switch_type: "Microswitch (snap-action lever), for klicky probe / endstop"
 variants:
   - label: "1 Pack"
     asin: "B0DBGPD14M"

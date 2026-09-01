@@ -9,6 +9,10 @@ featured: false
 sales_30d: 1
 badge: ""
 tags: []
+specs:
+  connector_type: "15-pin FFC ribbon, 1.0mm pitch"
+  length: "15cm / 30cm / 50cm / 1m / 2m"
+  gauge_or_rating: "AWM 20624, 80C, 60V, VW-1"
 variants:
   - label: "2M"
     asin: "B0DV9S6X3X"

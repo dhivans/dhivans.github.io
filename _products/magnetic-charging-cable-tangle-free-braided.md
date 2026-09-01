@@ -13,6 +13,10 @@ featured: false
 sales_30d: 4
 badge: ""
 tags: ['cable', 'usb', 'charging']
+specs:
+  connector_type: "USB-A/USB-C to Lightning/USB-C (magnetic)"
+  length: "1m"
+  gauge_or_rating: "12W fast charging"
 variants:
   - label: "USB-A to Lightning, Black"
     asin: "B0D1VWBFRC"

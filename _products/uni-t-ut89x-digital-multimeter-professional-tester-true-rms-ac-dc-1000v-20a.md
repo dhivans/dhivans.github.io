@@ -12,4 +12,8 @@ featured: false
 sales_30d: 3
 badge: ""
 tags: []
+specs:
+  measurement_range: "AC/DC 1000V, AC/DC 20A"
+  resolution_or_accuracy: "True RMS"
+  extra_features: "Measures voltage, current, temperature, conductance"
 ---
