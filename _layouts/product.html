@@ -76,7 +76,12 @@ layout: default
       <div class="product-specs-panel">
         <div class="product-specs-heading">
           <h3>Specs</h3>
-          <a href="/how-we-test/">Where this comes from</a>
+          {% assign is_tested = false %}
+          {% if page.verified_specs != nil and page.verified_specs != empty %}{% assign is_tested = true %}{% endif %}
+          {% if is_tested %}
+          <span class="tested-by-dst-badge">&#10003; Tested by DST</span>
+          {% endif %}
+          <a href="/how-we-test/">How we test</a>
         </div>
 
         {% assign display_specs = page.specs %}
@@ -91,10 +96,7 @@ layout: default
           {% endif %}
         {% endfor %}
 
-        {% assign has_specs = false %}
-        {% if display_specs != nil and display_specs != empty %}{% assign has_specs = true %}{% endif %}
-        {% if page.verified_specs != nil and page.verified_specs != empty %}{% assign has_specs = true %}{% endif %}
-        {% if has_specs %}
+        {% if display_specs != nil and display_specs != empty %}
         <table class="product-specs-table">
           <tbody>
             {% if spec_fields %}
@@ -103,7 +105,7 @@ layout: default
                 {% if val %}
                 <tr>
                   <td>{{ field.label }}</td>
-                  <td>{{ val }}</td>
+                  <td>{{ val }}{% if page.verified_specs contains field.key %} <span class="spec-verified-check" title="Physically tested by DST">&#10003;</span>{% endif %}</td>
                 </tr>
                 {% endif %}
               {% endfor %}
@@ -111,23 +113,17 @@ layout: default
               {% for spec in display_specs %}
               <tr>
                 <td>{{ spec[0] | replace: '_', ' ' | capitalize }}</td>
-                <td>{{ spec[1] }}</td>
+                <td>{{ spec[1] }}{% if page.verified_specs contains spec[0] %} <span class="spec-verified-check" title="Physically tested by DST">&#10003;</span>{% endif %}</td>
               </tr>
               {% endfor %}
             {% endif %}
-            {% for spec in page.verified_specs %}
-            <tr>
-              <td>{{ spec.name | default: spec[0] }}</td>
-              <td>{{ spec.measured | default: spec.value | default: spec[1] }}</td>
-            </tr>
-            {% endfor %}
           </tbody>
         </table>
         {% else %}
         <p class="product-specs-note">Full specs for this product haven't been added yet.</p>
         {% endif %}
 
-        <p class="product-specs-note">DST physically checks every item before it ships. Specs come from the manufacturer or listing unless we've measured something ourselves.</p>
+        <p class="product-specs-note">Specs come from the manufacturer or listing. A checkmark means DST has physically tested and confirmed that one.</p>
 
         {% if page.test_notes %}
         <p class="product-specs-note">{{ page.test_notes }}</p>
