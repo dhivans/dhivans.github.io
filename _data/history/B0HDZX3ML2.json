@@ -1,0 +1,97 @@
+[
+  {
+    "date": "2026-08-13",
+    "price": 30.0,
+    "stock_qty": 0
+  },
+  {
+    "date": "2026-08-14",
+    "price": 30.0,
+    "stock_qty": 1
+  },
+  {
+    "date": "2026-08-15",
+    "price": 30.0,
+    "stock_qty": 0
+  },
+  {
+    "date": "2026-08-16",
+    "price": 30.0,
+    "stock_qty": 0
+  },
+  {
+    "date": "2026-08-17",
+    "price": 30.0,
+    "stock_qty": 0
+  },
+  {
+    "date": "2026-08-18",
+    "price": 30.0,
+    "stock_qty": 1
+  },
+  {
+    "date": "2026-08-19",
+    "price": 30.0,
+    "stock_qty": 0
+  },
+  {
+    "date": "2026-08-20",
+    "price": 30.0,
+    "stock_qty": 0
+  },
+  {
+    "date": "2026-08-21",
+    "price": 30.0,
+    "stock_qty": 0
+  },
+  {
+    "date": "2026-08-22",
+    "price": 30.0,
+    "stock_qty": 0
+  },
+  {
+    "date": "2026-08-23",
+    "price": 30.0,
+    "stock_qty": 1
+  },
+  {
+    "date": "2026-08-24",
+    "price": 30.0,
+    "stock_qty": 0
+  },
+  {
+    "date": "2026-08-25",
+    "price": 30.0,
+    "stock_qty": 0
+  },
+  {
+    "date": "2026-08-26",
+    "price": 30.0,
+    "stock_qty": 0
+  },
+  {
+    "date": "2026-08-27",
+    "price": 30.0,
+    "stock_qty": 0
+  },
+  {
+    "date": "2026-08-28",
+    "price": 30.0,
+    "stock_qty": 0
+  },
+  {
+    "date": "2026-08-29",
+    "price": 30.0,
+    "stock_qty": 1
+  },
+  {
+    "date": "2026-08-30",
+    "price": 30.0,
+    "stock_qty": 0
+  },
+  {
+    "date": "2026-08-31",
+    "price": 30.0,
+    "stock_qty": 0
+  }
+]

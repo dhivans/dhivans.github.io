@@ -11,16 +11,16 @@ images:
   - "https://m.media-amazon.com/images/I/615GSwQnqcL.jpg"
   - "https://m.media-amazon.com/images/I/61AGm5wCn1L.jpg"
 featured: false
-sales_30d: 163
+sales_30d: 138
 badge: ""
 tags: ['esp32', 'microcontroller']
 variants:
   - label: "ESP32 WROOM-32"
     asin: "B0DJPZHZ1X"
-    price: "£10.29"
+    price: "£12.04"
     url: "https://www.amazon.co.uk/dp/B0DJPZHZ1X"
     image: "https://m.media-amazon.com/images/I/41edbf6EvFL.jpg"
-    stock: 80
+    stock: 283
   - label: "ESP32-C3 Super Mini"
     asin: "B0DDL7WNZX"
     price: "£12.99"
@@ -28,4 +28,4 @@ variants:
     image: "https://m.media-amazon.com/images/I/515uvjqBzkL.jpg"
     stock: 0
 ---
-The ESP32 range of development boards combines Wi-Fi, Bluetooth, and Bluetooth Low Energy (BLE) capabilities, making them suitable for a wide range of applications. From low-power sensor networks to demanding tasks like voice encoding, music streaming, and MP3 decoding, these powerful boards offer a comprehensive solution. The ESP32 WROOM-32 is a full-featured module with dual-core processor and extensive GPIO, ideal for complex projects. The ESP32-C3 Super Mini is a compact single-core RISC-V board perfect for space-constrained applications while retaining full Wi-Fi and Bluetooth support. With its robust features and flexibility, the ESP32 range is an excellent choice for developers, makers, and IoT enthusiasts.
+The ESP32 WROOM-32 is a versatile development board that combines Wi-Fi, Bluetooth, and Bluetooth Low Energy (BLE) capabilities, making it suitable for a wide range of applications. From low-power sensor networks to demanding tasks like voice encoding, music streaming, and MP3 decoding, this powerful board offers a comprehensive solution. With its robust features and flexibility, the ESP32 WROOM-32 is an excellent choice for developers seeking to create innovative projects.

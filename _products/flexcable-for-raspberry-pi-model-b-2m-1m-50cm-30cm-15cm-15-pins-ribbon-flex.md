@@ -37,10 +37,10 @@ variants:
     price: "£6.99"
     url: "https://www.amazon.co.uk/dp/B0DV9T8YJS"
     image: "https://m.media-amazon.com/images/I/41riKZB9G1L.jpg"
-    stock: 0
+    stock: 1
   - label: "1M"
     asin: "B0DV9S5PB8"
-    price: "£9.99"
+    price: "£9.59"
     url: "https://www.amazon.co.uk/dp/B0DV9S5PB8"
     image: "https://m.media-amazon.com/images/I/41riKZB9G1L.jpg"
     stock: 1

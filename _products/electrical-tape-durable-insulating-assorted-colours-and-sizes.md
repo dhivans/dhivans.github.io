@@ -14,11 +14,11 @@ variants:
     asin: "B0DNNLMV1G"
     price: "£4.00"
     url: "https://www.amazon.co.uk/dp/B0DNNLMV1G"
-    image: "https://m.media-amazon.com/images/I/31rYEMWahVL.jpg"
-    stock: 0
+    image: "https://m.media-amazon.com/images/I/41Y6qK2VIUL.jpg"
+    stock: 1
   - label: "Blue, 30M"
     asin: "B0DNNMN9BV"
-    price: "£4.00"
+    price: "£3.84"
     url: "https://www.amazon.co.uk/dp/B0DNNMN9BV"
     image: "https://m.media-amazon.com/images/I/31rYEMWahVL.jpg"
     stock: 2
@@ -26,11 +26,11 @@ variants:
     asin: "B0DNNLN8QH"
     price: "£4.00"
     url: "https://www.amazon.co.uk/dp/B0DNNLN8QH"
-    image: "https://m.media-amazon.com/images/I/31rYEMWahVL.jpg"
+    image: "https://m.media-amazon.com/images/I/41Y6qK2VIUL.jpg"
     stock: 0
   - label: "Red, 30M"
     asin: "B0DNNJNFB2"
-    price: "£4.00"
+    price: "£3.84"
     url: "https://www.amazon.co.uk/dp/B0DNNJNFB2"
     image: "https://m.media-amazon.com/images/I/41ujDYvpgAL.jpg"
     stock: 1
@@ -38,13 +38,13 @@ variants:
     asin: "B0DNNMSHRJ"
     price: "£4.00"
     url: "https://www.amazon.co.uk/dp/B0DNNMSHRJ"
-    image: "https://m.media-amazon.com/images/I/31rYEMWahVL.jpg"
+    image: "https://m.media-amazon.com/images/I/41Y6qK2VIUL.jpg"
     stock: 0
   - label: "Yellow, 30M"
     asin: "B0DNNM2PGH"
     price: "£4.00"
     url: "https://www.amazon.co.uk/dp/B0DNNM2PGH"
-    image: "https://m.media-amazon.com/images/I/31rYEMWahVL.jpg"
+    image: "https://m.media-amazon.com/images/I/41Y6qK2VIUL.jpg"
     stock: 0
   - label: "Black, 100M"
     asin: "B0DNNMC7GC"
@@ -54,25 +54,25 @@ variants:
     stock: 0
   - label: "Blue, 100M"
     asin: "B0DNNMZXGS"
-    price: "£5.00"
+    price: "£4.80"
     url: "https://www.amazon.co.uk/dp/B0DNNMZXGS"
     image: "https://m.media-amazon.com/images/I/317OWpCl3hL.jpg"
     stock: 1
   - label: "Green, 100M"
     asin: "B0DNNLY9S3"
-    price: "£5.00"
+    price: "£4.80"
     url: "https://www.amazon.co.uk/dp/B0DNNLY9S3"
     image: "https://m.media-amazon.com/images/I/31MntqJhsXL.jpg"
     stock: 1
   - label: "Red, 100M"
     asin: "B0DNNM482Y"
-    price: "£5.00"
+    price: "£4.80"
     url: "https://www.amazon.co.uk/dp/B0DNNM482Y"
     image: "https://m.media-amazon.com/images/I/41AkZh9aO0L.jpg"
     stock: 1
   - label: "White, 100M"
     asin: "B0DNNLP5VL"
-    price: "£5.00"
+    price: "£4.80"
     url: "https://www.amazon.co.uk/dp/B0DNNLP5VL"
     image: "https://m.media-amazon.com/images/I/21R-dt-L6BL.jpg"
     stock: 1
