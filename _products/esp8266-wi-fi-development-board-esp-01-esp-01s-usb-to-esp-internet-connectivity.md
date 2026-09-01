@@ -9,6 +9,10 @@ featured: false
 sales_30d: 0
 badge: ""
 tags: ['esp8266', 'usb']
+specs:
+  connectivity: "Wi-Fi 802.11 b/g/n (ESP8266)"
+  supply_voltage: "3.3V logic (adaptor regulates from 5V USB)"
+  gpio_count: 2
 variants:
   - label: "ESP-01"
     asin: "B0DJPZDR6B"

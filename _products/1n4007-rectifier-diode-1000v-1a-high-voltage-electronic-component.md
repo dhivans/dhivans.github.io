@@ -11,6 +11,11 @@ featured: false
 sales_30d: 0
 badge: ""
 tags: ['diode']
+specs:
+  package: "DO-41"
+  voltage_rating: "1000V"
+  current_rating: "1A"
+  power_rating: "3W"
 variants:
   - label: "5"
     asin: "B0DRW6JJSY"

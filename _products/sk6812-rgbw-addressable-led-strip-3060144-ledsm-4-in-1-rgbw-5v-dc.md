@@ -9,6 +9,10 @@ featured: false
 sales_30d: 0
 badge: ""
 tags: ['sk6812', 'led']
+specs:
+  led_density: "30 / 60 / 144 LEDs/m (select variant)"
+  voltage: "5V DC"
+  protocol: "SK6812 addressable, RGBW 4-in-1, single-wire"
 variants:
   - label: "Black, 30 LEDs per Meter"
     asin: "B0DKQZ3YDH"

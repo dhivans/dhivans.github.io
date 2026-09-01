@@ -9,6 +9,9 @@ featured: false
 sales_30d: 0
 badge: ""
 tags: ['tape']
+specs:
+  width: "3mm / 5mm / 10mm"
+  length: "50m"
 variants:
   - label: "3mm"
     asin: "B0DH417TH9"

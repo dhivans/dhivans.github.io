@@ -9,6 +9,10 @@ featured: false
 sales_30d: 0
 badge: ""
 tags: ['cable']
+specs:
+  width: "2.5mm / 3mm"
+  length: "100mm / 150mm / 200mm"
+  colour: "Black / White"
 variants:
   - label: "Black, 100mm x 2.5mm"
     asin: "B0DJYRW3Y6"

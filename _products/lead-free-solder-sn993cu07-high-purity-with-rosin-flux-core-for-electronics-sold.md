@@ -9,6 +9,10 @@ featured: false
 sales_30d: 0
 badge: ""
 tags: ['solder']
+specs:
+  alloy: "Sn99.3/Cu0.7 (lead-free)"
+  diameter: "0.5mm / 0.6mm / 0.8mm / 1mm (select variant)"
+  flux_type: "Rosin core"
 variants:
   - label: "0.5mm, 30g"
     asin: "B0DRDCX9SS"

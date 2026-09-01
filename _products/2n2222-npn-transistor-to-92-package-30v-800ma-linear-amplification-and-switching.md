@@ -9,6 +9,11 @@ featured: false
 sales_30d: 0
 badge: ""
 tags: ['transistor']
+specs:
+  package: "TO-92"
+  voltage_rating: "30V"
+  current_rating: "800mA"
+  power_rating: "~625mW (typical for TO-92 package)"
 variants:
   - label: "5"
     asin: "B0DRW6P848"
