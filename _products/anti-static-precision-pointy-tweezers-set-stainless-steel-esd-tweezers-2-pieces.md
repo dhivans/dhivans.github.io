@@ -17,5 +17,8 @@ featured: false
 sales_30d: 35
 badge: ""
 tags: ['tweezers']
+specs:
+  material: "Stainless steel, anti-static coating"
+  piece_count: 2
 ---
 Introducing the 2pcs/lot Anti-static Precision Tweezers Set - an essential tool for electronics repair and maintenance. This set comprises two high-quality stainless steel tweezers designed with an anti-static coating, ensuring safe handling of sensitive electronic components. The precision tips allow for precise gripping and manipulation of even the smallest parts, making them indispensable for intricate tasks like soldering, component replacement, and circuit board work. With their durable construction and anti-static properties, these tweezers are a must-have in any electronics enthusiast's or professional's toolkit. Upgrade your workbench with this reliable and versatile set today.

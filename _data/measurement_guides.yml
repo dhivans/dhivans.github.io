@@ -82,6 +82,16 @@ detent-count:
     - "Repeat 2-3 times to make sure the count is consistent."
     - "Record the number of detents per full rotation."
 
+tip-shape-id:
+  title: "Identifying tweezer tip shape"
+  tools:
+    - "None, just the tweezers themselves"
+  steps:
+    - "Look at each tweezer separately, side-on."
+    - "Note whether the tip is straight, curved/angled, fine-pointed, or flat/blunt."
+    - "If the set has two different shapes, say which shape each piece is, not just one description for both."
+    - "A straight-on photo of the tips usually settles it if you're not sure what to call the shape."
+
 driver-chip-oled:
   title: "Identifying an OLED's driver chip"
   tools:
