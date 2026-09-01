@@ -1706,7 +1706,7 @@ $sidebar-speed: 0.25s ease;
   width: 100%;
 }
 
-.verified-specs-panel {
+.product-specs-panel {
   background: #111820;
   border: 1px solid rgba(0, 229, 255, 0.18);
   border-radius: 6px;
@@ -1718,104 +1718,66 @@ $sidebar-speed: 0.25s ease;
     width: 100%;
   }
 
-  th,
   td {
     border-bottom: 1px solid #21262d;
-    color: #8b949e;
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     padding: 0.45rem 0.35rem;
     text-align: left;
-  }
 
-  th {
-    color: #00e5ff;
-    font-family: "Courier New", monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
+    &:first-child {
+      color: #8b949e;
+    }
 
-  p {
-    color: #8b949e;
-    font-size: 0.88rem;
-    line-height: 1.55;
-    margin: 0.65rem 0 0;
+    &:last-child {
+      color: #e2eaf4;
+      font-family: "Courier New", monospace;
+      text-align: right;
+    }
   }
 }
 
-.verified-specs-heading {
+.product-specs-heading {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem 0.75rem;
   justify-content: space-between;
+  margin-bottom: 0.3rem;
+
+  h3 {
+    color: #e2eaf4;
+    font-family: "Courier New", monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    margin: 0;
+    text-transform: uppercase;
+  }
 
   a {
-    margin-left: auto;
+    font-size: 0.78rem;
   }
 }
 
-.tested-badge {
-  border: 1px solid rgba(126, 231, 135, 0.35);
-  border-radius: 4px;
-  color: #7ee787;
-  cursor: help;
-  display: inline-block;
-  font-family: "Courier New", monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  padding: 0.22rem 0.45rem;
-  position: relative;
-  text-transform: uppercase;
-
-  // Visual QC — the universal, always-true baseline claim. Uses the site's
-  // own primary accent rather than green, since green is reserved for the
-  // stronger bench-verified claim below (found live: without this split,
-  // "tested" meant three different things under one badge).
-  &.tested-badge-qc {
-    border-color: rgba(0, 229, 255, 0.4);
-    color: #00e5ff;
-  }
-
-  // Bench-Verified — DST physically measured this. The strongest claim,
-  // keeps the original green treatment.
-  &.tested-badge-bench {
-    border-color: rgba(126, 231, 135, 0.35);
-    color: #7ee787;
-  }
-
-  // Manufacturer Tested — reported, not independently checked by DST.
-  // Deliberately muted/amber, not green, so it never reads as a DST claim.
-  &.tested-badge-mfr {
-    border-color: rgba(242, 204, 96, 0.4);
-    color: #f2cc60;
-  }
-
-  &:hover::after,
-  &:focus::after {
-    background: #0d1117;
-    border: 1px solid rgba(0, 229, 255, 0.25);
-    border-radius: 6px;
-    color: #c9d1d9;
-    content: attr(data-tooltip);
-    font-family: "Rajdhani", sans-serif;
-    font-size: 0.82rem;
-    left: 0;
-    letter-spacing: normal;
-    line-height: 1.45;
-    padding: 0.65rem 0.75rem;
-    position: absolute;
-    text-transform: none;
-    top: 130%;
-    white-space: normal;
-    width: 260px;
-    z-index: 10;
-  }
-}
-
-.verified-specs-note,
-.datasheet-link {
+.product-specs-note {
+  color: #8b949e;
   font-size: 0.82rem;
+  line-height: 1.55;
+  margin: 0.65rem 0 0;
+}
+
+.product-specs-report {
+  margin: 0.75rem 0 0;
+
+  a {
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+}
+
+.datasheet-link {
+  display: inline-block;
+  font-size: 0.82rem;
+  margin-top: 0.6rem;
 }
 
 .product-variants-select {

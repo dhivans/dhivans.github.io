@@ -73,54 +73,71 @@ layout: default
       <p class="product-detail-desc">{{ page.description }}</p>
       {% endif %}
 
-      <div class="verified-specs-panel">
-        <div class="verified-specs-heading">
-          <span
-            class="tested-badge tested-badge-qc"
-            tabindex="0"
-            data-tooltip="Every item DST lists is physically handled and visually inspected by DST before it ships — packaging, visible condition, and that it's genuinely the part listed.">Visual QC by DST</span>
-          {% if page.verified_specs and page.verified_specs.size > 0 %}
-          <span
-            class="tested-badge tested-badge-bench"
-            tabindex="0"
-            data-tooltip="This unit has also been bench-tested by DST: specific specs below were physically measured, not just taken from the listing.">Bench-Verified by DST</span>
-          {% endif %}
-          {% if page.manufacturer_tested %}
-          <span
-            class="tested-badge tested-badge-mfr"
-            tabindex="0"
-            data-tooltip="Reported by the manufacturer, not independently checked by DST.">Manufacturer Tested</span>
-          {% endif %}
-          <a href="/how-we-test/">How we test</a>
+      <div class="product-specs-panel">
+        <div class="product-specs-heading">
+          <h3>Specs</h3>
+          <a href="/how-we-test/">Where this comes from</a>
         </div>
-        {% if page.verified_specs and page.verified_specs.size > 0 %}
-        <table>
-          <thead>
-            <tr>
-              <th>Spec</th>
-              <th>Claimed</th>
-              <th>Checked</th>
-            </tr>
-          </thead>
+
+        {% assign display_specs = page.specs %}
+        {% if page.variants != nil and page.variants != empty and page.variants[0].specs %}
+          {% assign display_specs = page.variants[0].specs %}
+        {% endif %}
+        {% assign spec_fields = nil %}
+        {% for group in site.data.spec_schema %}
+          {% if group[1].products contains page.slug %}
+            {% assign spec_fields = group[1].fields %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+
+        {% assign has_specs = false %}
+        {% if display_specs != nil and display_specs != empty %}{% assign has_specs = true %}{% endif %}
+        {% if page.verified_specs != nil and page.verified_specs != empty %}{% assign has_specs = true %}{% endif %}
+        {% if has_specs %}
+        <table class="product-specs-table">
           <tbody>
+            {% if spec_fields %}
+              {% for field in spec_fields %}
+                {% assign val = display_specs[field.key] %}
+                {% if val %}
+                <tr>
+                  <td>{{ field.label }}</td>
+                  <td>{{ val }}</td>
+                </tr>
+                {% endif %}
+              {% endfor %}
+            {% else %}
+              {% for spec in display_specs %}
+              <tr>
+                <td>{{ spec[0] | replace: '_', ' ' | capitalize }}</td>
+                <td>{{ spec[1] }}</td>
+              </tr>
+              {% endfor %}
+            {% endif %}
             {% for spec in page.verified_specs %}
             <tr>
               <td>{{ spec.name | default: spec[0] }}</td>
-              <td>{{ spec.claimed | default: "Listed" }}</td>
               <td>{{ spec.measured | default: spec.value | default: spec[1] }}</td>
             </tr>
             {% endfor %}
           </tbody>
         </table>
         {% else %}
-        <p class="verified-specs-note verified-specs-note-muted">Visually QC'd by DST before listing. Bench-measured specs haven't been added for this product yet — catalogue specs above are manufacturer/listing data, not independently checked.</p>
+        <p class="product-specs-note">Full specs for this product haven't been added yet.</p>
         {% endif %}
-        {% if page.manufacturer_tested %}
-        <p class="verified-specs-note">Manufacturer: {{ page.manufacturer_tested }}</p>
-        {% endif %}
+
+        <p class="product-specs-note">DST physically checks every item before it ships. Specs come from the manufacturer or listing unless we've measured something ourselves.</p>
+
         {% if page.test_notes %}
-        <p class="verified-specs-note">{{ page.test_notes }}</p>
+        <p class="product-specs-note">{{ page.test_notes }}</p>
         {% endif %}
+
+        {% assign mistake_subject = "Possible spec correction: " | append: page.title | url_encode %}
+        <p class="product-specs-report">
+          <a href="mailto:dhivanshahtech+corrections@gmail.com?subject={{ mistake_subject }}">Spot a mistake in these specs? Let us know &rarr;</a>
+        </p>
+
         {% if page.datasheet_url %}
         <a class="datasheet-link" href="{{ page.datasheet_url }}" target="_blank" rel="noopener noreferrer">Datasheet</a>
         {% endif %}
