@@ -347,6 +347,9 @@ hand-tools-misc:
     - key: tip_shape
       label: Tip Shape
       type: text
+    - key: tip_diameter
+      label: Tip Diameter
+      type: text
 
 measurement-instruments:
   label: Test & Measurement

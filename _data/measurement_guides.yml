@@ -92,6 +92,17 @@ tip-shape-id:
     - "If the set has two different shapes, say which shape each piece is, not just one description for both."
     - "A straight-on photo of the tips usually settles it if you're not sure what to call the shape."
 
+tip-diameter-measure:
+  title: "Measuring a fine tweezer tip"
+  tools:
+    - "Digital calipers with pointed/needle jaw tips (most standard digital calipers have these)"
+  steps:
+    - "Close the very tips of the caliper jaws around the last 1-2mm of the tweezer point, as close to the actual tip as you can get."
+    - "Read the width there. This is the tip diameter, not the width further back on the blade."
+    - "Repeat the measurement 2-3 times. Fine tips are easy to misjudge on a single reading."
+    - "If the tip is finer than your calipers can resolve accurately, say so and give your best estimate rather than a false-precise number."
+    - "Do this for each piece in the set separately if their tips differ."
+
 driver-chip-oled:
   title: "Identifying an OLED's driver chip"
   tools:
