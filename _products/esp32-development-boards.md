@@ -11,7 +11,7 @@ images:
   - "https://m.media-amazon.com/images/I/615GSwQnqcL.jpg"
   - "https://m.media-amazon.com/images/I/61AGm5wCn1L.jpg"
 featured: false
-sales_30d: 138
+sales_30d: 134
 badge: ""
 tags: ['esp32', 'microcontroller']
 variants:
@@ -20,7 +20,7 @@ variants:
     price: "£12.04"
     url: "https://www.amazon.co.uk/dp/B0DJPZHZ1X"
     image: "https://m.media-amazon.com/images/I/41edbf6EvFL.jpg"
-    stock: 283
+    stock: 280
     specs:
       connectivity: "Wi-Fi 802.11 b/g/n (2.4GHz) + Bluetooth v4.2 (BR/EDR + BLE)"
       supply_voltage: "5V (USB) / 3.3V logic"
