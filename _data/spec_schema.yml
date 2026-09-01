@@ -78,6 +78,9 @@ dev-boards:
     - key: gpio_count
       label: GPIO Count
       type: number
+    - key: usb_interface
+      label: USB / Programming Interface
+      type: text
 
 displays:
   label: Display Modules

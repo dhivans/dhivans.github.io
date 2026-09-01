@@ -37,8 +37,8 @@ title: DhivanSTech
 
   <section class="home-value-strip" aria-label="Why use DhivanSTech">
     <div>
-      <strong>Verified Specs</strong>
-      <span>Useful details checked before they hit the catalogue.</span>
+      <strong>Visually QC'd</strong>
+      <span>Every item is physically handled and checked by DST before it ships.</span>
     </div>
     <div>
       <strong>Stock-Aware Picks</strong>

@@ -1746,8 +1746,13 @@ $sidebar-speed: 0.25s ease;
 .verified-specs-heading {
   align-items: center;
   display: flex;
-  gap: 0.75rem;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
   justify-content: space-between;
+
+  a {
+    margin-left: auto;
+  }
 }
 
 .tested-badge {
@@ -1762,6 +1767,29 @@ $sidebar-speed: 0.25s ease;
   padding: 0.22rem 0.45rem;
   position: relative;
   text-transform: uppercase;
+
+  // Visual QC — the universal, always-true baseline claim. Uses the site's
+  // own primary accent rather than green, since green is reserved for the
+  // stronger bench-verified claim below (found live: without this split,
+  // "tested" meant three different things under one badge).
+  &.tested-badge-qc {
+    border-color: rgba(0, 229, 255, 0.4);
+    color: #00e5ff;
+  }
+
+  // Bench-Verified — DST physically measured this. The strongest claim,
+  // keeps the original green treatment.
+  &.tested-badge-bench {
+    border-color: rgba(126, 231, 135, 0.35);
+    color: #7ee787;
+  }
+
+  // Manufacturer Tested — reported, not independently checked by DST.
+  // Deliberately muted/amber, not green, so it never reads as a DST claim.
+  &.tested-badge-mfr {
+    border-color: rgba(242, 204, 96, 0.4);
+    color: #f2cc60;
+  }
 
   &:hover::after,
   &:focus::after {

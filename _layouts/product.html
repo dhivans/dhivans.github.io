@@ -76,9 +76,21 @@ layout: default
       <div class="verified-specs-panel">
         <div class="verified-specs-heading">
           <span
-            class="tested-badge"
+            class="tested-badge tested-badge-qc"
             tabindex="0"
-            data-tooltip="When a unit has been bench-tested, measured specs appear below, flagged separately from marketplace claims.">Tested by DST</span>
+            data-tooltip="Every item DST lists is physically handled and visually inspected by DST before it ships — packaging, visible condition, and that it's genuinely the part listed.">Visual QC by DST</span>
+          {% if page.verified_specs and page.verified_specs.size > 0 %}
+          <span
+            class="tested-badge tested-badge-bench"
+            tabindex="0"
+            data-tooltip="This unit has also been bench-tested by DST: specific specs below were physically measured, not just taken from the listing.">Bench-Verified by DST</span>
+          {% endif %}
+          {% if page.manufacturer_tested %}
+          <span
+            class="tested-badge tested-badge-mfr"
+            tabindex="0"
+            data-tooltip="Reported by the manufacturer, not independently checked by DST.">Manufacturer Tested</span>
+          {% endif %}
           <a href="/how-we-test/">How we test</a>
         </div>
         {% if page.verified_specs and page.verified_specs.size > 0 %}
@@ -100,6 +112,11 @@ layout: default
             {% endfor %}
           </tbody>
         </table>
+        {% else %}
+        <p class="verified-specs-note verified-specs-note-muted">Visually QC'd by DST before listing. Bench-measured specs haven't been added for this product yet — catalogue specs above are manufacturer/listing data, not independently checked.</p>
+        {% endif %}
+        {% if page.manufacturer_tested %}
+        <p class="verified-specs-note">Manufacturer: {{ page.manufacturer_tested }}</p>
         {% endif %}
         {% if page.test_notes %}
         <p class="verified-specs-note">{{ page.test_notes }}</p>

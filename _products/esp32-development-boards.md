@@ -21,6 +21,12 @@ variants:
     url: "https://www.amazon.co.uk/dp/B0DJPZHZ1X"
     image: "https://m.media-amazon.com/images/I/41edbf6EvFL.jpg"
     stock: 283
+    specs:
+      connectivity: "Wi-Fi 802.11 b/g/n (2.4GHz) + Bluetooth v4.2 (BR/EDR + BLE)"
+      supply_voltage: "5V (USB) / 3.3V logic"
+      flash_memory: "4MB"
+      gpio_count: 30
+      usb_interface: "USB-C (CH340 USB-to-serial)"
   - label: "ESP32-C3 Super Mini"
     asin: "B0DDL7WNZX"
     price: "£12.99"

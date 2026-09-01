@@ -27,4 +27,4 @@ Because most electronics listings on Amazon are low-information. It's hard to kn
 
 ---
 
-Questions or wholesale enquiries: reach out via the GitHub repository or Amazon store pages.
+Questions or wholesale enquiries: reach out via the GitHub repository or Amazon store pages. If you own a part we're missing real detail on, see [Help Us Document the Catalogue](/help-document/).
