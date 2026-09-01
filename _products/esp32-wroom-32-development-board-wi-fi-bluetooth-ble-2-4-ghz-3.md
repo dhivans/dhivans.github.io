@@ -23,5 +23,7 @@ specs:
   flash_memory: "4MB"
   gpio_count: 30
   usb_interface: "USB-C (CH340 USB-to-serial)"
+  dimensions: "51.5mm x 28.5mm"
+  weight: "12g"
 ---
 The ESP32 WROOM-32 is a versatile development board that combines Wi-Fi, Bluetooth, and Bluetooth Low Energy (BLE) capabilities, making it suitable for a wide range of applications. From low-power sensor networks to demanding tasks like voice encoding, music streaming, and MP3 decoding, this powerful board offers a comprehensive solution. With its robust features and flexibility, the ESP32 WROOM-32 is an excellent choice for developers seeking to create innovative projects.

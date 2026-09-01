@@ -1,0 +1,93 @@
+# Reusable step-by-step guides shown on /help-document/ when a "wanted" spec
+# is clicked. Keyed by id, referenced from info_requests.yml via `guide: <id>`
+# on a wanted item. Kept generic (tool + technique) rather than tied to one
+# product, so a single guide can serve every request that needs the same
+# kind of measurement.
+
+caliper-dimensions:
+  title: "Measuring dimensions with digital calipers"
+  tools:
+    - "Digital calipers (a ruler works in a pinch, but calipers are far more accurate)"
+  steps:
+    - "Zero the calipers with the jaws fully closed before measuring."
+    - "Measure the longest edge (length) first, then the shortest edge (width), using the outer jaws."
+    - "Include anything permanently attached (header pins, mounted connectors) in the measurement, but note in your reply what's included."
+    - "Take each measurement twice and use the average if the two readings differ."
+    - "Record to 1 decimal place in mm, e.g. \"25.4mm x 48.2mm\"."
+
+kitchen-scale-weight:
+  title: "Weighing with a digital scale"
+  tools:
+    - "Digital kitchen or parcel scale (0.1g resolution is ideal; 1g is fine for most items)"
+  steps:
+    - "Place the scale on a flat surface and let it settle."
+    - "Tare the scale to zero with nothing on it."
+    - "Place the item on the scale and wait for the reading to stop changing."
+    - "Weigh it 2-3 times, removing and replacing the item, to confirm a consistent reading."
+    - "Record the weight in grams."
+
+chip-marking-id:
+  title: "Reading a chip's identity from its markings"
+  tools:
+    - "Bright light or phone flashlight"
+    - "Phone camera (macro mode if available) or a magnifying glass"
+  steps:
+    - "Find the IC in question on the board and angle a light across it so the printed text catches shadow."
+    - "Photograph or zoom in on the top of the chip — the part number is usually the first line of text."
+    - "Search the part number as printed to confirm the manufacturer and exact variant."
+    - "If the chip is a black epoxy blob with no visible package (chip-on-board), the marking isn't accessible without desoldering — say so plainly rather than guessing."
+
+esptool-flash-id:
+  title: "Confirming flash size with esptool"
+  tools:
+    - "A PC with Python installed"
+    - "esptool (install with `pip install esptool`)"
+    - "USB cable"
+  steps:
+    - "Connect the board to your PC via USB."
+    - "Find the port: Windows — check Device Manager for the COM port; Mac/Linux — usually /dev/ttyUSB0 or /dev/tty.usbserial-*."
+    - "Run `esptool.py --port PORT flash_id` in a terminal, replacing PORT with the one you found."
+    - "If it can't connect, hold the BOOT button while it's trying, then release once it says \"Connecting...\"."
+    - "Read the \"Detected flash size\" line from the output, e.g. \"4MB\"."
+
+thread-gauge-measure:
+  title: "Sizing a panel-mount thread"
+  tools:
+    - "Digital calipers"
+    - "Thread pitch gauge (optional, but makes this much easier)"
+  steps:
+    - "Measure the outer diameter of the threaded barrel with calipers."
+    - "If you have a thread pitch gauge, find the leaf that meshes cleanly with the threads to read the pitch directly."
+    - "Without a gauge: count the number of thread peaks in 10mm along the barrel, then divide 10 by that count to get the pitch in mm."
+    - "Compare diameter + pitch against a standard metric thread table (e.g. M7 x 0.75, M9 x 0.75) to name the size."
+
+resistance-taper-test:
+  title: "Confirming linear vs logarithmic taper"
+  tools:
+    - "Multimeter (resistance/continuity mode)"
+  steps:
+    - "Set the multimeter to resistance (Ω) mode."
+    - "Measure resistance across the two outer terminals — this is the pot's rated total resistance."
+    - "Turn the shaft to its visual/mechanical midpoint, halfway between the two end stops."
+    - "Measure resistance between the wiper (middle) terminal and one outer terminal."
+    - "Divide that reading by the total from the first measurement. Close to 50% = linear taper. Well below (roughly 10-20%) = logarithmic/audio taper."
+
+detent-count:
+  title: "Counting rotary detents"
+  tools:
+    - "None — just the part itself"
+  steps:
+    - "Mark or note the starting position of the shaft, e.g. against a reference line on the housing."
+    - "Rotate the shaft one full 360° turn in one direction, counting each physical click/detent you feel."
+    - "Repeat 2-3 times to make sure the count is consistent."
+    - "Record the number of detents per full rotation."
+
+driver-chip-oled:
+  title: "Identifying an OLED's driver chip"
+  tools:
+    - "Bright light or phone flashlight"
+    - "Magnifying glass (helpful — the print is small)"
+  steps:
+    - "Check the PCB for small printed text near the connector or on the back — some boards print the driver name directly."
+    - "Check the edge of the glass/flex panel itself for a laser-etched part code."
+    - "If the driver is a black epoxy blob (chip-on-board) with no visible package, the part number genuinely isn't readable without desoldering — note that as your answer rather than guessing between SSD1306/SSD1315."

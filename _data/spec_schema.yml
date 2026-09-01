@@ -81,6 +81,12 @@ dev-boards:
     - key: usb_interface
       label: USB / Programming Interface
       type: text
+    - key: dimensions
+      label: Dimensions
+      type: text
+    - key: weight
+      label: Weight
+      type: text
 
 displays:
   label: Display Modules

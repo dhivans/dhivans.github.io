@@ -1,35 +1,71 @@
 # Community product-documentation requests.
 #
-# How to open a new request: add an entry with status: open. How to close
-# one: set status: closed once units_given reaches max_units (or you
-# otherwise decide to stop) -- it disappears from the public list on
-# /help-document/ automatically, no page edits needed.
+# Visibility on /help-document/ is automatic, driven by two counters you
+# update as things happen -- no page edits, no manually opening/closing:
+#
+#   units_given      bump by 1 when you post a unit out for this request
+#   units_fulfilled   bump by 1 when that person's info actually comes back
+#
+# A request is shown only while status: open AND
+# (units_given - units_fulfilled) < max_outstanding -- i.e. it auto-hides
+# once too many are out awaiting feedback, and auto-reopens the moment one
+# gets fulfilled. status: closed force-closes it regardless of the count,
+# for retiring a request permanently.
 #
 # slug must match the product's file name in _products/ (without .md).
+#
+# Each `wanted` entry is either a plain string, or an object with:
+#   label   the text shown on the card / put in the email
+#   guide   (optional) id of an entry in _data/measurement_guides.yml --
+#           when present, the card item becomes a clickable disclosure with
+#           tools-needed + step-by-step instructions for that measurement.
 
 - slug: oled-display-module-096-inch-128x64-lcd-ssd1306-i2c-iic-spi-serial-interface-yel
   wanted:
-    - "Dimensions: board and visible screen"
-    - "Weight"
-    - "Driver chip: SSD1306 or SSD1315?"
+    - label: "Dimensions: board and visible screen"
+      guide: caliper-dimensions
+    - label: "Weight"
+      guide: kitchen-scale-weight
+    - label: "Driver chip: SSD1306 or SSD1315?"
+      guide: driver-chip-oled
   status: open
-  max_units: 2
+  max_outstanding: 2
   units_given: 0
+  units_fulfilled: 0
 
 - slug: rotary-potentiometer-linear-taper-wh148-15mm-3-pin-with-black-aluminium-knobs
   wanted:
-    - "Shaft length and diameter"
-    - "Panel-mount thread size"
-    - "Taper: confirm linear, not logarithmic"
+    - label: "Shaft length and diameter"
+      guide: caliper-dimensions
+    - label: "Panel-mount thread size"
+      guide: thread-gauge-measure
+    - label: "Taper: confirm linear, not logarithmic"
+      guide: resistance-taper-test
   status: open
-  max_units: 2
+  max_outstanding: 2
   units_given: 0
+  units_fulfilled: 0
 
 - slug: ky-040-360-degree-rotary-encoder-module-with-knob-cap-5v
   wanted:
-    - "Detents per full rotation"
-    - "Board dimensions"
-    - "Knob shaft diameter"
+    - label: "Detents per full rotation"
+      guide: detent-count
+    - label: "Board dimensions"
+      guide: caliper-dimensions
+    - label: "Knob shaft diameter"
+      guide: caliper-dimensions
   status: open
-  max_units: 2
+  max_outstanding: 2
   units_given: 0
+  units_fulfilled: 0
+
+- slug: esp32-development-boards
+  wanted:
+    - label: "USB-to-serial chip: exact part marking (listed as CH340)"
+      guide: chip-marking-id
+    - label: "Flash size: confirm via esptool (listed as 4MB)"
+      guide: esptool-flash-id
+  status: open
+  max_outstanding: 2
+  units_given: 0
+  units_fulfilled: 0

@@ -27,6 +27,8 @@ variants:
       flash_memory: "4MB"
       gpio_count: 30
       usb_interface: "USB-C (CH340 USB-to-serial)"
+      dimensions: "51.5mm x 28.5mm"
+      weight: "12g"
   - label: "ESP32-C3 Super Mini"
     asin: "B0DDL7WNZX"
     price: "£12.99"
