@@ -58,3 +58,7 @@ exclude:
   - .gitignore
   - _site/
   - vendor/
+  # Planning doc for pasting into Claude Code sessions, not a real page --
+  # contains literal example Liquid syntax (e.g. `{% bom asins="..." %}`)
+  # that breaks the build if Jekyll tries to render it.
+  - dst-expansion-plan.md
