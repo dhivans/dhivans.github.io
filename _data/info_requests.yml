@@ -8,19 +8,28 @@
 # slug must match the product's file name in _products/ (without .md).
 
 - slug: oled-display-module-096-inch-128x64-lcd-ssd1306-i2c-iic-spi-serial-interface-yel
-  wanted: "Exact physical dimensions (board + visible screen area), weight, and confirmation of the exact driver chip (SSD1306 vs SSD1315 — listings for this module vary)."
+  wanted:
+    - "Dimensions: board and visible screen"
+    - "Weight"
+    - "Driver chip: SSD1306 or SSD1315?"
   status: open
   max_units: 2
   units_given: 0
 
 - slug: rotary-potentiometer-linear-taper-wh148-15mm-3-pin-with-black-aluminium-knobs
-  wanted: "Shaft length and diameter, panel-mount thread size, and confirmation the taper is genuinely linear (not logarithmic)."
+  wanted:
+    - "Shaft length and diameter"
+    - "Panel-mount thread size"
+    - "Taper: confirm linear, not logarithmic"
   status: open
   max_units: 2
   units_given: 0
 
 - slug: ky-040-360-degree-rotary-encoder-module-with-knob-cap-5v
-  wanted: "Detents per full rotation, module board dimensions, and knob shaft diameter."
+  wanted:
+    - "Detents per full rotation"
+    - "Board dimensions"
+    - "Knob shaft diameter"
   status: open
   max_units: 2
   units_given: 0

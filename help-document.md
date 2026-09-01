@@ -4,24 +4,24 @@ title: "Help Us Document the Catalogue"
 permalink: /help-document/
 ---
 
-<p class="shop-intro">DST wants real, checked technical detail on every product — dimensions, capabilities, exact specs — not just whatever the Amazon listing happens to say. We ask manufacturers directly first. When they can't or won't provide it, we ask people who actually own the part.</p>
+<p class="shop-intro">We ask manufacturers for real specs first. When they can't provide them, we ask people who own the part — in exchange for a free one.</p>
 
 ## How it works
 
-1. **Check the list below** for products currently requesting information. Each one says exactly what's needed.
-2. **Email [dhivanshahtech+dstspecs@gmail.com](mailto:dhivanshahtech+dstspecs@gmail.com)** — say which product you want, confirm you'll send back the requested information (with a photo as evidence — e.g. a caliper reading, or the part next to a ruler), and include your UK shipping address.
-3. **That email is the whole application.** There's no form. DST reviews requests directly and decides who gets a product — being on this list is not a guarantee, and not every applicant will be selected.
-4. **If you're picked**, DST posts the item to you at no cost.
-5. **You send back what you agreed to provide.** Once a product's request is fulfilled, it's marked closed here and comes off this list until reopened.
+1. Pick an open request below.
+2. Hit **Apply by email** — it pre-fills the product and what's needed.
+3. Add your UK address and send.
+4. If picked, DST posts the item free.
+5. Send back what's listed, with a photo as evidence.
 
-## The ground rules
+## Rules
 
-- **UK residents only.**
-- Every open request below has a cap on how many units go out for it. Once that's reached, it closes — applying again for a closed product won't do anything until it reopens.
-- Photo evidence is required alongside any measurement or claim — a number with no way to check it isn't useful to anyone.
-- Whatever you send back gets credited as community-provided information on the product page, clearly labelled as such — it's never presented as something DST independently verified.
+- UK only.
+- Each request has a unit cap — closes once reached.
+- Photo evidence required with every submission.
+- Credited as community-provided on the product page — never presented as a DST claim.
 
-## Currently open requests
+## Open requests
 
 <div class="deals-list">
 {% assign has_open = false %}
@@ -37,15 +37,22 @@ permalink: /help-document/
     {% endfor %}
     {% if product %}
     {% assign body_l1 = "I'd like to apply for: " | append: product.title | url_encode %}
-    {% assign body_l2 = "I confirm I will provide: " | append: req.wanted | url_encode %}
+    {% assign wanted_lines = "" %}
+    {% for w in req.wanted %}
+      {% assign line = "- " | append: w | url_encode %}
+      {% assign wanted_lines = wanted_lines | append: line | append: "%0A" %}
+    {% endfor %}
+    {% assign body_l2 = "I confirm I will provide:" | url_encode %}
     {% assign body_l3 = "My UK shipping address:" | url_encode %}
     {% assign body_l4 = "[add your address here]" | url_encode %}
-    {% assign mailto_body = body_l1 | append: "%0A%0A" | append: body_l2 | append: "%0A%0A" | append: body_l3 | append: "%0A" | append: body_l4 %}
+    {% assign mailto_body = body_l1 | append: "%0A%0A" | append: body_l2 | append: "%0A" | append: wanted_lines | append: "%0A" | append: body_l3 | append: "%0A" | append: body_l4 %}
     {% assign mailto_subject = "Info request: " | append: product.title | url_encode %}
-    <article class="deal-row">
+    <article class="deal-row help-doc-row">
       <div>
         <a href="{{ product.page_url | relative_url }}">{{ product.title }}</a>
-        <span>{{ req.wanted }}</span>
+        <ul class="help-doc-wanted">
+          {% for w in req.wanted %}<li>{{ w }}</li>{% endfor %}
+        </ul>
       </div>
       <div class="deal-prices">
         <span>{{ req.units_given | default: 0 }} of {{ req.max_units }} claimed</span>
@@ -56,6 +63,18 @@ permalink: /help-document/
   {% endif %}
 {% endfor %}
 {% unless has_open %}
-<p>Nothing open right now — check back later, or see the full catalogue in the <a href="/shop/">Shop</a>.</p>
+<p>Nothing open right now — check the <a href="/shop/">Shop</a>.</p>
 {% endunless %}
 </div>
+
+<style>
+.help-doc-wanted {
+  margin: 0.3rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.85rem;
+  color: #8b949e;
+}
+.help-doc-wanted li {
+  margin: 0.1rem 0;
+}
+</style>
