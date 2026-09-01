@@ -4,19 +4,15 @@ title: How We Test
 permalink: /how-we-test/
 ---
 
-DST treats marketplace listings as claims, not proof.
-
-A spec is either tested by DST or it isn't. There are no partial checks or tiers. If something hasn't been tested, it's shown as a plain fact from the manufacturer or listing, the same as everything else on the page.
+A checkmark next to a spec means DST has physically tested and confirmed it. Everything else is the manufacturer's or the listing's word.
 
 ## How specs get tested
 
 Dimensions and weight are measured directly with digital calipers and a scale. Electronics, such as flash size, chip identity, or GPIO count, are confirmed against the real hardware: reading chip markings directly, or using a tool like esptool. Anything else is checked by hand against the physical part, wherever that's actually possible.
 
-Most specs on a page are still just the manufacturer's or the listing's word. That's normal, and it's shown plainly.
-
 ## How it shows on a product page
 
-If DST has tested and confirmed at least one spec on a product, that page shows a Tested by DST badge next to the Specs heading. Any individual spec that's actually been tested gets a blue checkmark next to its value. If there's no badge or checkmark, we simply haven't checked it yet. That doesn't mean it's wrong.
+A product with at least one tested spec gets a Tested by DST badge next to the Specs heading, and each tested spec has its own checkmark next to the value.
 
 ## If something looks wrong
 
