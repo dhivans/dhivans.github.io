@@ -1,6 +1,6 @@
 ---
 layout: product
-title: "DST Liquid Electrical Tape, 100ml, Flexible Insulating Sealant, UV-Resistant, 1380V/ml"
+title: "DST Liquid Electrical Tape, 100ml, Flexible Insulating Sealant, UV-Resistant, 1380V/mil"
 description: "" # TODO: add description
 category: "electrical-components"
 price: "£6.99"
@@ -20,4 +20,4 @@ tags: []
 specs:
   voltage_rating: "1380V/mil (dielectric strength)"
 ---
-Liquid electrical tape is a versatile, fast-drying, and UV-resistant insulating sealant ideal for various electrical and waterproofing needs. It creates an airtight, flexible coating that withstands extreme conditions without cracking, hardening, or peeling. This 30ml liquid sealant is perfect for insulating connections on boats, trailers, automobiles, and outdoor equipment, including wiring, antennas, and switches. With a high electrical insulation capacity of 1380V/ml, it is reliable for multiple applications, offering dependable protection against moisture, corrosion, and environmental damage. Its flexible formula allows for expansion and contraction, ensuring long-lasting durability. Effortlessly apply this liquid tape with a brush or sponge for a neat, professional finish.
+Liquid electrical tape is a versatile, fast-drying, and UV-resistant insulating sealant ideal for various electrical and waterproofing needs. It creates an airtight, flexible coating that withstands extreme conditions without cracking, hardening, or peeling. This 30ml liquid sealant is perfect for insulating connections on boats, trailers, automobiles, and outdoor equipment, including wiring, antennas, and switches. With a high electrical insulation capacity of 1380V/mil, it is reliable for multiple applications, offering dependable protection against moisture, corrosion, and environmental damage. Its flexible formula allows for expansion and contraction, ensuring long-lasting durability. Effortlessly apply this liquid tape with a brush or sponge for a neat, professional finish.
