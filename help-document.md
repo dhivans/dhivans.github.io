@@ -17,9 +17,9 @@ permalink: /help-document/
 ## Rules
 
 - UK only.
-- Each request has a unit cap — closes once reached.
+- One product must be completed before another is sent out.
 - Photo evidence required with every submission.
-- Credited as community-provided on the product page — never presented as a DST claim.
+- Please provide as much detail as possible.
 
 ## Open requests
 
