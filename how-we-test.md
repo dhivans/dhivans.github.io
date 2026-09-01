@@ -1,10 +1,10 @@
 ---
 layout: page
-title: How We Test
+title: Testing
 permalink: /how-we-test/
 ---
 
-A checkmark next to a spec means DST has physically tested and confirmed it. Everything else is the manufacturer's or the listing's word.
+A checkmark next to a spec means DST has physically tested and confirmed it.
 
 ## How specs get tested
 
