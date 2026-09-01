@@ -103,6 +103,15 @@ tip-diameter-measure:
     - "If the tip is finer than your calipers can resolve accurately, say so and give your best estimate rather than a false-precise number."
     - "Do this for each piece in the set separately if their tips differ."
 
+supply-voltage-check:
+  title: "Checking a board's supply voltage rating"
+  tools:
+    - "None, or a magnifying glass if the print is small"
+  steps:
+    - "Check the PCB near the VCC/GND pins for printed voltage text, e.g. \"3-5V\" or \"3.3V\"."
+    - "Look for a small voltage regulator chip on the board, often a 3-pin part near the power pins, and note its part number if you can read it."
+    - "Don't power the board at a voltage you're not sure it supports to test this. If nothing is printed and you can't identify a regulator, say that rather than guessing."
+
 driver-chip-oled:
   title: "Identifying an OLED's driver chip"
   tools:

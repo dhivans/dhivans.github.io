@@ -28,6 +28,8 @@
       guide: kitchen-scale-weight
     - label: "Driver chip: SSD1306 or SSD1315?"
       guide: driver-chip-oled
+    - label: "Supply voltage rating (3.3V, 5V, or both?)"
+      guide: supply-voltage-check
   status: open
   max_outstanding: 2
   units_given: 0

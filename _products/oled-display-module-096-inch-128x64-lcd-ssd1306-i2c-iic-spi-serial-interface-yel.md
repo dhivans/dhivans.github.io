@@ -9,6 +9,10 @@ featured: false
 sales_30d: 25
 badge: ""
 tags: ['oled']
+specs:
+  resolution: "128x64 pixels"
+  interface: "I2C / SPI, 4-pin"
+  screen_size: "0.96 inch"
 variants:
   - label: "1, Blue, 0.96'"
     asin: "B0F2ZGGHVG"
