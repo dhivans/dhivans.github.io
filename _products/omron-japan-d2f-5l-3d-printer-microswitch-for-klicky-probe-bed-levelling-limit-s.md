@@ -12,10 +12,10 @@ sales_30d: 3
 badge: ""
 tags: []
 specs:
-  switch_type: "Microswitch (snap-action lever), for klicky probe / endstop"
+  switch_type: "Snap-action lever microswitch"
   rated_voltage: "250V AC"
   rated_current: "5A"
-  mounting_size: "PCB/chassis mount, M2 screws, 6.5mm hole spacing"
+  mounting_size: "M2 screws, 6.5mm hole spacing"
 datasheet_url: "https://omronfs.omron.com/en_US/ecb/products/pdf/en-d2f.pdf"
 variants:
   - label: "1 Pack"

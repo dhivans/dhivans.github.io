@@ -11,7 +11,7 @@ badge: ""
 tags: ['solder']
 specs:
   alloy: "Sn99.3/Cu0.7 (lead-free)"
-  diameter: "0.5mm / 0.6mm / 0.8mm / 1mm (select variant)"
+  diameter: "0.5mm / 0.6mm / 0.8mm / 1mm"
   flux_type: "Rosin core"
 variants:
   - label: "0.5mm, 30g"

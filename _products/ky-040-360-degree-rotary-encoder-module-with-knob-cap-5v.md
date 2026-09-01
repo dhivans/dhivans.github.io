@@ -16,7 +16,7 @@ sales_30d: 9
 badge: ""
 tags: ['encoder']
 specs:
-  type: "Rotary encoder (incremental, quadrature), with integrated push-button switch"
+  type: "Incremental quadrature encoder + push-button"
   pin_count: 5
   supply_voltage: "5V"
 ---

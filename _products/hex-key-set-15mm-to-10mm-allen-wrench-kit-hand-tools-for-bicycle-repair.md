@@ -16,7 +16,7 @@ badge: ""
 tags: ['hex key', 'tools']
 specs:
   dimensions: "1.5mm to 10mm hex sizes (set)"
-  piece_count: "7 or 9 (select variant)"
+  piece_count: "7 or 9"
 variants:
   - label: "7 Piece"
     asin: "B0F2ZF7LS6"

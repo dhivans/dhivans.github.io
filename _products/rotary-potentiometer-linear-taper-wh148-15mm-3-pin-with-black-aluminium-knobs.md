@@ -13,7 +13,7 @@ badge: ""
 tags: ['potentiometer']
 specs:
   type: "Linear taper"
-  resistance_or_range: "1K / 2K / 5K / 10K / 20K / 50K / 100K / 250K / 1M ohm (select variant)"
+  resistance_or_range: "1K-1M Ω (9 values)"
   pin_count: 3
 variants:
   - label: "1MOhm, 1"

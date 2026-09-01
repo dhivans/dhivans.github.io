@@ -13,7 +13,7 @@ sales_30d: 0
 badge: ""
 tags: []
 specs:
-  switch_type: "SPDT latching push button, illuminated, IP65 waterproof"
+  switch_type: "SPDT latching, illuminated, IP65"
   rated_voltage: "12V/24V (LED: 3V/6V/12V/24V)"
   rated_current: "1A"
   mounting_size: "16mm"

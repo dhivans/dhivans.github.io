@@ -1715,23 +1715,23 @@ $sidebar-speed: 0.25s ease;
 
   table {
     margin: 0.7rem 0;
+    table-layout: fixed;
     width: 100%;
   }
 
   td {
+    background: #111820;
     border-bottom: 1px solid #21262d;
+    color: #e2eaf4;
     font-size: 0.85rem;
-    padding: 0.45rem 0.35rem;
+    line-height: 1.5;
+    padding: 0.55rem 0.35rem;
     text-align: left;
+    vertical-align: top;
 
     &:first-child {
       color: #8b949e;
-    }
-
-    &:last-child {
-      color: #e2eaf4;
-      font-family: "Courier New", monospace;
-      text-align: right;
+      width: 38%;
     }
   }
 }

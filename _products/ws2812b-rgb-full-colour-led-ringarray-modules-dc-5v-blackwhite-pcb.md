@@ -10,7 +10,7 @@ sales_30d: 3
 badge: ""
 tags: ['ws2812b', 'led']
 specs:
-  led_count: "1, 8, 4, 16, 25, or 64 LEDs (1px, 1x8, 2x2, 4x4, 5x5, or 8x8 array)"
+  led_count: "1-64 LEDs (6 array sizes)"
   voltage: "5V DC"
   protocol: "WS2812B addressable, single-wire"
 variants:

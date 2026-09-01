@@ -17,7 +17,7 @@ specs:
   connector_type: "USB-A/USB-C to Lightning/USB-C (magnetic)"
   length: "1m"
   gauge_or_rating: "12W fast charging"
-  shielding: "Unshielded (standard charging cable, not data-shielded)"
+  shielding: "Unshielded (charging cable)"
 variants:
   - label: "USB-A to Lightning, Black"
     asin: "B0D1VWBFRC"

@@ -12,7 +12,7 @@ sales_30d: 5
 badge: ""
 tags: ['ws2812b', 'led']
 specs:
-  led_count: "8 / 16 / 24 / 35 / 45 LEDs (select ring size)"
+  led_count: "8-45 LEDs (5 sizes)"
   voltage: "5V DC"
   protocol: "WS2812B addressable, single-wire"
 variants:

@@ -16,7 +16,7 @@ sales_30d: 5
 badge: ""
 tags: ['usb']
 specs:
-  connector_type: "USB-A to USB-B (panel-mount feedthrough coupler)"
+  connector_type: "USB-A to USB-B feedthrough"
   mounting: "Panel/rack mount, D-series cutout"
   housing_material: "Metal"
 ---

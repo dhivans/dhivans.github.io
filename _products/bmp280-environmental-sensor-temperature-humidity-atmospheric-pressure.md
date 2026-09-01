@@ -13,8 +13,8 @@ badge: ""
 tags: ['sensor']
 specs:
   interface: "I2C / SPI"
-  supply_voltage: "1.8V - 3.6V (module regulates from the 3.3V/5V variant selected)"
-  measurement_range: "Pressure 300-1100 hPa, temperature -40°C to 85°C"
+  supply_voltage: "1.8V-3.6V (regulated from 3.3V/5V input)"
+  measurement_range: "300-1100 hPa, -40°C to 85°C"
   accuracy: "±1 hPa (pressure), ±1°C (temperature)"
 variants:
   - label: "3.3V"
