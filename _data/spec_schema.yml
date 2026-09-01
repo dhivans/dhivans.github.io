@@ -344,6 +344,9 @@ hand-tools-misc:
     - key: piece_count
       label: Piece Count
       type: number
+    - key: tip_shape
+      label: Tip Shape
+      type: text
 
 measurement-instruments:
   label: Test & Measurement

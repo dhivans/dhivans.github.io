@@ -69,14 +69,3 @@
   max_outstanding: 2
   units_given: 0
   units_fulfilled: 0
-
-- slug: anti-static-precision-pointy-tweezers-set-stainless-steel-esd-tweezers-2-pieces
-  wanted:
-    - label: "Length of each tweezer"
-      guide: caliper-dimensions
-    - label: "Tip shape of each piece (straight, curved, fine-pointed, etc.)"
-      guide: tip-shape-id
-  status: open
-  max_outstanding: 2
-  units_given: 0
-  units_fulfilled: 0
