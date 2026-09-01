@@ -18,6 +18,26 @@
 }
 
 // ============================================================
+// Small-text type scale
+// ============================================================
+// Sub-1rem sizes only (labels, captions, meta, badges, buttons at
+// this scale) -- headings, prices, and card/hero titles are >=1rem
+// and stay component-specific since they're already deliberately
+// varied by context. This block exists so every "small text" role
+// site-wide (there were 29 distinct one-off decimal sizes between
+// 0.62rem and 0.95rem before this) draws from one shared scale
+// instead of each component inventing its own value a few hundredths
+// of a rem from its neighbour. Named by number, not by role (e.g. not
+// "$fs-label"), because the same size is legitimately reused across
+// different visual roles (an eyebrow label and a plain caption can
+// share a size; what differs is weight/case/color, set per component).
+$fs-100: 0.7rem;
+$fs-200: 0.75rem;
+$fs-300: 0.8rem;
+$fs-400: 0.85rem;
+$fs-500: 0.95rem;
+
+// ============================================================
 // DST Dark Theme Overrides
 // ============================================================
 
@@ -134,7 +154,7 @@ h3 {
 
 h4, h5, h6 {
   font-family: "Courier New", Courier, monospace;
-  font-size: 0.8rem;
+  font-size: $fs-300;
   font-weight: normal;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -325,7 +345,7 @@ blockquote {
 .home-btn {
   border-radius: 4px;
   font-family: "Rajdhani", sans-serif;
-  font-size: 0.95rem;
+  font-size: $fs-500;
   font-weight: 700;
   letter-spacing: 0.04em;
   padding: 0.55rem 0.9rem;
@@ -371,7 +391,7 @@ blockquote {
   span {
     color: #8b949e;
     font-family: "Courier New", monospace;
-    font-size: 0.7rem;
+    font-size: $fs-100;
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
@@ -413,7 +433,7 @@ blockquote {
 
   span {
     color: #8b949e;
-    font-size: 0.9rem;
+    font-size: $fs-400;
   }
 }
 
@@ -440,7 +460,7 @@ blockquote {
 
   a {
     font-family: "Rajdhani", sans-serif;
-    font-size: 0.9rem;
+    font-size: $fs-500;
     font-weight: 700;
     text-decoration: none;
   }
@@ -511,7 +531,7 @@ blockquote {
 .home-product-category {
   color: #00e5ff !important;
   font-family: "Courier New", monospace;
-  font-size: 0.68rem;
+  font-size: $fs-100;
   letter-spacing: 0.08em;
   text-decoration: none !important;
   text-transform: uppercase;
@@ -534,7 +554,7 @@ blockquote {
 .home-stock {
   border-radius: 999px;
   font-family: "Rajdhani", sans-serif;
-  font-size: 0.78rem;
+  font-size: $fs-300;
   font-weight: 700;
   padding: 0.25rem 0.5rem;
 }
@@ -564,7 +584,7 @@ blockquote {
 
   small {
     color: #8b949e;
-    font-size: 0.85rem;
+    font-size: $fs-400;
   }
 
   &:hover {
@@ -586,7 +606,7 @@ blockquote {
   time {
     color: #8b949e;
     font-family: "Courier New", monospace;
-    font-size: 0.72rem;
+    font-size: $fs-100;
   }
 
   h3 {
@@ -692,7 +712,7 @@ blockquote {
 
   p {
     color: #8b949e;
-    font-size: 0.95rem;
+    font-size: $fs-500;
     margin-bottom: 0rem;
   }
 
@@ -943,7 +963,7 @@ $sidebar-speed: 0.25s ease;
   opacity: 0;
   margin-left: 0.85rem;
   font-family: "Rajdhani", sans-serif;
-  font-size: 0.95rem;
+  font-size: $fs-500;
   font-weight: 600;
   letter-spacing: 0.04em;
   transition: max-width $sidebar-speed, opacity $sidebar-speed;
@@ -968,7 +988,7 @@ $sidebar-speed: 0.25s ease;
   border: none;
   border-bottom: 1px solid rgba(0, 229, 255, 0.3);
   color: #e2eaf4;
-  font-size: 0.85rem;
+  font-size: $fs-400;
   font-family: "Rajdhani", sans-serif;
   outline: none;
   padding: 0 0 2px;
@@ -1144,7 +1164,7 @@ $sidebar-speed: 0.25s ease;
   }
 
   .project-meta {
-    font-size: 0.8rem;
+    font-size: $fs-300;
     color: #8b949e;
     margin-bottom: 0.6rem;
     font-family: "Courier New", monospace;
@@ -1152,12 +1172,12 @@ $sidebar-speed: 0.25s ease;
 
   p {
     color: #8b949e;
-    font-size: 0.95rem;
+    font-size: $fs-500;
     margin: 0 0 0.75rem;
   }
 
   .read-more {
-    font-size: 0.85rem;
+    font-size: $fs-400;
     font-family: "Rajdhani", sans-serif;
     font-weight: 600;
     color: #00e5ff;
@@ -1283,7 +1303,7 @@ $sidebar-speed: 0.25s ease;
 
 .widget-tile-name {
   font-family: "Rajdhani", sans-serif;
-  font-size: 0.88rem;
+  font-size: $fs-400;
   font-weight: 600;
   color: #e2eaf4;
   margin-bottom: 0.15rem;
@@ -1294,20 +1314,20 @@ $sidebar-speed: 0.25s ease;
 .widget-tile-meta,
 .widget-tile-price {
   font-family: "Courier New", monospace;
-  font-size: 0.7rem;
+  font-size: $fs-100;
   color: #00e5ff;
   margin-bottom: 0.2rem;
 }
 
 .widget-tile-desc {
-  font-size: 0.8rem;
+  font-size: $fs-300;
   color: #8b949e;
   line-height: 1.4;
   margin-bottom: 0.35rem;
 }
 
 .widget-tile-link {
-  font-size: 0.75rem;
+  font-size: $fs-200;
   font-family: "Rajdhani", sans-serif;
   font-weight: 600;
   color: #00e5ff;
@@ -1440,7 +1460,7 @@ $sidebar-speed: 0.25s ease;
 
 .product-category-tag {
   font-family: "Courier New", monospace;
-  font-size: 0.72rem;
+  font-size: $fs-100;
   text-transform: uppercase;
   color: rgba(0, 229, 255, 0.9);
   letter-spacing: 0.1em;
@@ -1461,7 +1481,7 @@ $sidebar-speed: 0.25s ease;
 }
 
 .product-card-desc {
-  font-size: 0.875rem;
+  font-size: $fs-400;
   color: #8b949e;
   margin: 0;
   display: -webkit-box;
@@ -1647,7 +1667,7 @@ $sidebar-speed: 0.25s ease;
   .star-empty { color: #404854; }
 
   .review-count {
-    font-size: 0.8rem;
+    font-size: $fs-300;
     color: #8b949e;
     margin-left: 0.35rem;
     font-family: "Courier New", monospace;
@@ -1677,7 +1697,7 @@ $sidebar-speed: 0.25s ease;
 
 .product-detail-desc {
   color: #8b949e;
-  font-size: 0.95rem;
+  font-size: $fs-500;
   line-height: 1.65;
   margin-bottom: 1.25rem;
 }
@@ -1696,7 +1716,7 @@ $sidebar-speed: 0.25s ease;
   gap: 0.75rem;
   color: #8b949e;
   font-family: "Courier New", monospace;
-  font-size: 0.72rem;
+  font-size: $fs-100;
   margin-bottom: 0.5rem;
 }
 
@@ -1729,7 +1749,7 @@ $sidebar-speed: 0.25s ease;
     background: #111820;
     border: none;
     border-bottom: 1px solid rgba(139, 148, 158, 0.16);
-    font-size: 0.85rem;
+    font-size: $fs-200;
     line-height: 1.5;
     padding: 0.6rem 0.4rem;
     text-align: left;
@@ -1737,15 +1757,14 @@ $sidebar-speed: 0.25s ease;
 
     &:first-child {
       color: #8b949e;
-      font-size: 0.76rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       width: 38%;
     }
 
     &:last-child {
-      color: #f2f6fa;
-      font-size: 0.95rem;
+      color: #e2eaf4;
+      font-size: $fs-500;
       font-weight: 600;
     }
   }
@@ -1760,16 +1779,13 @@ $sidebar-speed: 0.25s ease;
   margin-bottom: 0.3rem;
 
   h3 {
-    color: #e2eaf4;
+    color: #00e5ff;
     font-family: "Courier New", monospace;
-    font-size: 0.85rem;
+    font-size: $fs-300;
+    font-weight: 700;
     letter-spacing: 0.06em;
     margin: 0;
     text-transform: uppercase;
-  }
-
-  a {
-    font-size: 0.78rem;
   }
 }
 
@@ -1781,7 +1797,7 @@ $sidebar-speed: 0.25s ease;
   color: #00e5ff;
   display: inline-flex;
   font-family: "Courier New", monospace;
-  font-size: 0.72rem;
+  font-size: $fs-100;
   gap: 0.3rem;
   letter-spacing: 0.05em;
   margin-left: auto;
@@ -1795,7 +1811,7 @@ $sidebar-speed: 0.25s ease;
   border-radius: 50%;
   color: #0d1117;
   display: inline-flex;
-  font-size: 0.62rem;
+  font-size: $fs-100;
   font-weight: 700;
   height: 15px;
   justify-content: center;
@@ -1806,7 +1822,7 @@ $sidebar-speed: 0.25s ease;
 
 .product-specs-note {
   color: #8b949e;
-  font-size: 0.82rem;
+  font-size: $fs-300;
   line-height: 1.55;
   margin: 0.65rem 0 0;
 }
@@ -1815,14 +1831,14 @@ $sidebar-speed: 0.25s ease;
   margin: 0.75rem 0 0;
 
   a {
-    font-size: 0.85rem;
+    font-size: $fs-400;
     font-weight: 600;
   }
 }
 
 .datasheet-link {
   display: inline-block;
-  font-size: 0.82rem;
+  font-size: $fs-300;
   margin-top: 0.6rem;
 }
 
@@ -1832,7 +1848,7 @@ $sidebar-speed: 0.25s ease;
 
 .product-variants-label {
   font-family: "Courier New", monospace;
-  font-size: 0.75rem;
+  font-size: $fs-200;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: rgba(0, 229, 255, 0.7);
@@ -1894,7 +1910,7 @@ $sidebar-speed: 0.25s ease;
 }
 
 .product-amazon-note {
-  font-size: 0.78rem;
+  font-size: $fs-300;
   color: #8b949e;
   text-align: center;
   margin: 0 0 1.5rem;
@@ -1945,7 +1961,7 @@ $sidebar-speed: 0.25s ease;
       background: #161b22;
       color: #00e5ff;
       font-family: "Courier New", monospace;
-      font-size: 0.75rem;
+      font-size: $fs-200;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       padding: 0.6rem 0.9rem;
@@ -1977,7 +1993,7 @@ $sidebar-speed: 0.25s ease;
     border-bottom: 1px solid rgba(0, 229, 255, 0.15);
     color: #00e5ff;
     font-family: "Courier New", monospace;
-    font-size: 0.95rem;
+    font-size: $fs-500;
     letter-spacing: 0.08em;
     margin: 0 0 0.8rem;
     padding-bottom: 0.45rem;
@@ -1989,7 +2005,7 @@ $sidebar-speed: 0.25s ease;
   table {
     border-collapse: collapse;
     width: 100%;
-    font-size: 0.88rem;
+    font-size: $fs-400;
   }
 
   th,
@@ -2003,7 +2019,7 @@ $sidebar-speed: 0.25s ease;
   th {
     color: #00e5ff;
     font-family: "Courier New", monospace;
-    font-size: 0.7rem;
+    font-size: $fs-100;
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
@@ -2049,7 +2065,7 @@ $sidebar-speed: 0.25s ease;
   span {
     color: #8b949e;
     display: block;
-    font-size: 0.78rem;
+    font-size: $fs-300;
   }
 }
 
@@ -2065,7 +2081,7 @@ $sidebar-speed: 0.25s ease;
   border: 1px solid rgba(0, 229, 255, 0.35);
   border-radius: 4px;
   font-family: "Rajdhani", sans-serif;
-  font-size: 0.82rem;
+  font-size: $fs-300;
   font-weight: 700;
   padding: 0.25rem 0.55rem;
   text-decoration: none !important;
@@ -2090,7 +2106,7 @@ $sidebar-speed: 0.25s ease;
 
   span {
     color: #8b949e;
-    font-size: 0.8rem;
+    font-size: $fs-300;
   }
 }
 
@@ -2106,7 +2122,7 @@ $sidebar-speed: 0.25s ease;
     border-radius: 4px;
     color: #00e5ff;
     font-family: "Courier New", monospace;
-    font-size: 0.75rem;
+    font-size: $fs-200;
     padding: 0.25rem 0.45rem;
     text-decoration: none !important;
   }
@@ -2132,7 +2148,7 @@ $sidebar-speed: 0.25s ease;
   border: 0;
   color: #00e5ff;
   font-family: "Courier New", monospace;
-  font-size: 0.9rem;
+  font-size: $fs-500;
   letter-spacing: 0.08em;
   margin: 0 0 0.65rem;
   padding: 0;
@@ -2197,7 +2213,7 @@ $sidebar-speed: 0.25s ease;
   label {
     color: #8b949e;
     display: block;
-    font-size: 0.82rem;
+    font-size: $fs-300;
     margin-bottom: 0.4rem;
   }
 }
@@ -2274,18 +2290,18 @@ $sidebar-speed: 0.25s ease;
 
 .compare-result-title {
   color: #e2eaf4;
-  font-size: 0.85rem;
+  font-size: $fs-400;
 }
 
 .compare-result-meta {
   color: #8b949e;
   font-family: "Courier New", monospace;
-  font-size: 0.72rem;
+  font-size: $fs-100;
 }
 
 .compare-results-empty {
   color: #8b949e;
-  font-size: 0.85rem;
+  font-size: $fs-400;
   padding: 0.65rem 0.75rem;
 }
 
@@ -2447,7 +2463,7 @@ $sidebar-speed: 0.25s ease;
     background: rgba(0, 229, 255, 0.04) !important;
     color: rgba(0, 229, 255, 0.9);
     font-family: "Courier New", monospace;
-    font-size: 0.72rem;
+    font-size: $fs-100;
     font-weight: 700;
     letter-spacing: 0.08em;
     min-width: 140px;
@@ -2510,7 +2526,7 @@ $sidebar-speed: 0.25s ease;
   border-radius: 999px;
   display: inline-flex;
   font-family: "Rajdhani", sans-serif;
-  font-size: 0.88rem;
+  font-size: $fs-400;
   font-weight: 700;
   letter-spacing: 0.02em;
   line-height: 1;
@@ -2549,7 +2565,7 @@ $sidebar-speed: 0.25s ease;
 
 .compare-table-note {
   color: #586069;
-  font-size: 0.8rem;
+  font-size: $fs-300;
   margin-top: 0.6rem;
 }
 
@@ -2558,7 +2574,7 @@ $sidebar-speed: 0.25s ease;
   border: 1px dashed rgba(0, 229, 255, 0.2);
   border-radius: 6px;
   color: #8b949e;
-  font-size: 0.9rem;
+  font-size: $fs-500;
   padding: 1.5rem;
   text-align: center;
 }
@@ -2606,7 +2622,7 @@ $sidebar-speed: 0.25s ease;
 
   span {
     color: #8b949e;
-    font-size: 0.82rem;
+    font-size: $fs-300;
   }
 }
 
@@ -2628,7 +2644,7 @@ $sidebar-speed: 0.25s ease;
   span {
     color: #8b949e;
     display: block;
-    font-size: 0.82rem;
+    font-size: $fs-300;
   }
 }
 
