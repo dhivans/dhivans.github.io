@@ -13,6 +13,13 @@ featured: false
 sales_30d: 5
 badge: ""
 tags: []
+specs:
+  input: "USB Type-C"
+  max_charge_current: "1A"
+  battery_type: "Single 18650 Li-ion"
+  protection_features: "Onboard charge protection circuitry"
+  dimensions: "28mm x 17mm x 4mm"
+  weight: "~6g"
 variants:
   - label: "1 Pack"
     asin: "B0DFKDM1NN"

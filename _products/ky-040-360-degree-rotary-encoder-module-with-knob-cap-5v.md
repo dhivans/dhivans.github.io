@@ -15,5 +15,9 @@ featured: false
 sales_30d: 9
 badge: ""
 tags: ['encoder']
+specs:
+  type: "Rotary encoder (incremental, quadrature), with integrated push-button switch"
+  pin_count: 5
+  supply_voltage: "5V"
 ---
 Introducing the KY-040 360 Degrees Rotary Encoder Module, a versatile electronic component that allows for precise rotational control in a wide range of applications. This compact module features a rotary encoder with a knob cap, enabling smooth and seamless rotation through 360 degrees. With its 5V operating voltage, it integrates effortlessly into various electronic projects, from robotics and automation systems to user interfaces and control panels. The rotary encoder module offers high-resolution sensing, ensuring accurate and responsive feedback with each turn. Its durable construction and easy-to-use interface make it a reliable choice for hobbyists, engineers, and makers alike. Whether you're building a volume control system, a menu navigation interface, or a positioning mechanism, this rotary encoder module provides the precision and flexibility you need. Enhance your projects with seamless rotational control by incorporating the KY-040 360 Degrees Rotary Encoder Module.

@@ -13,6 +13,10 @@ badge: ""
 tags: ['microswitch']
 specs:
   switch_type: "Microswitch (snap-action lever), for klicky probe / endstop"
+  rated_voltage: "30V DC"
+  rated_current: "0.1A max (gold contacts, low/micro-load switch)"
+  mounting_size: "PCB/chassis mount, M2 screws, 6.5mm hole spacing"
+datasheet_url: "https://omronfs.omron.com/en_US/ecb/products/pdf/en-d2f.pdf"
 variants:
   - label: "1"
     asin: "B0DFJ7DT9D"

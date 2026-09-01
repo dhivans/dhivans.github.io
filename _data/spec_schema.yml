@@ -190,6 +190,12 @@ power-modules:
     - key: protection_features
       label: Protection Features
       type: text
+    - key: dimensions
+      label: Dimensions
+      type: text
+    - key: weight
+      label: Weight
+      type: text
 
 breadboard-prototyping:
   label: Breadboards
