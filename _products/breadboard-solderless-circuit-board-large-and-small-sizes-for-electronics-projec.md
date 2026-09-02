@@ -15,7 +15,7 @@ variants:
     price: "£6.99"
     url: "https://www.amazon.co.uk/dp/B0DLYTCS3J"
     image: "https://m.media-amazon.com/images/I/414gncnd+JL.jpg"
-    stock: 487
+    stock: 1
     specs:
       size: "Half-size"
       piece_count: 1
@@ -27,7 +27,7 @@ variants:
     price: "£6.99"
     url: "https://www.amazon.co.uk/dp/B0DLYXPZ17"
     image: "https://m.media-amazon.com/images/I/3158P4rLkFL.jpg"
-    stock: 489
+    stock: 1
     specs:
       size: "Full-size"
       piece_count: 1
@@ -39,7 +39,7 @@ variants:
     price: "£9.99"
     url: "https://www.amazon.co.uk/dp/B0DSGJZ1XN"
     image: "https://m.media-amazon.com/images/I/414gncnd+JL.jpg"
-    stock: 0
+    stock: 1
     specs:
       size: "Half-size"
       piece_count: 3
@@ -51,7 +51,7 @@ variants:
     price: "£14.99"
     url: "https://www.amazon.co.uk/dp/B0DSJSNM61"
     image: "https://m.media-amazon.com/images/I/3158P4rLkFL.jpg"
-    stock: 0
+    stock: 1
     specs:
       size: "Full-size"
       piece_count: 3
