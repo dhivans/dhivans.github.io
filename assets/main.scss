@@ -246,8 +246,11 @@ blockquote {
   // table written directly in a guide's markdown looks native by default,
   // no custom HTML/classes required per post.
   table {
+    background: transparent !important;
+    border: 0 !important;
     border-collapse: separate;
     border-spacing: 0;
+    color: #c9d1d9 !important;
     display: block;
     margin: 1.5rem 0;
     overflow-x: auto;
@@ -255,14 +258,16 @@ blockquote {
 
     th,
     td {
-      border-bottom: 1px solid rgba(0, 229, 255, 0.09);
-      padding: 0.65rem 0.9rem;
-      text-align: left;
+      background: #0d1117 !important;
+      border: 0 !important;
+      border-bottom: 1px solid rgba(0, 229, 255, 0.09) !important;
+      padding: 0.65rem 0.9rem !important;
+      text-align: left !important;
     }
 
     th {
-      background: rgba(0, 229, 255, 0.04);
-      color: rgba(0, 229, 255, 0.9);
+      background: rgba(0, 229, 255, 0.1) !important;
+      color: rgba(0, 229, 255, 0.9) !important;
       font-family: "Courier New", monospace;
       font-size: $fs-100;
       font-weight: 700;
@@ -272,13 +277,13 @@ blockquote {
     }
 
     td {
-      color: #c9d1d9;
+      color: #c9d1d9 !important;
       font-family: "Rajdhani", sans-serif;
       font-size: 1rem;
     }
 
     tr:nth-child(even) td {
-      background: rgba(255, 255, 255, 0.025);
+      background: #161b22 !important;
     }
 
     tr:last-child td {
