@@ -133,6 +133,14 @@ where it's true, but where it's true, say exactly what was checked.
 
 ## 3. Trust system: "Tested by DST"
 
+**✅ Built and live, 🟡 not yet populated on any product.** The badge
+logic, the per-field checkmark, the schema behind it (`spec_schema.yml`),
+and the explainer page (`how-we-test.md`) all exist and work correctly —
+this section's design work is done. What's left is purely the physical
+work of actually testing specific products and filling in the field; zero
+products carry it today, which is the honest, correct state for a system
+that's never been used yet, not a bug.
+
 This is the honest answer to "why not just buy from AliExpress" — and it
 only works if it's specific and true, not a generic badge.
 
@@ -192,6 +200,16 @@ real demand (see Section 6).
 
 ### 4.2 Phase 2 pillar: project tutorials
 
+**🟡 A head start already exists.** Three real build-log posts are
+already live in `_projects/` (a bench PSU build, a 3D-printer endstop
+swap, and an ESP32 + WS2812B + rotary encoder "mood ring") — each with
+real wiring tables, working code, and an honest gotchas section. They're
+written as build logs rather than this section's "problem → buy these
+parts → build it" framing, and the mood-ring one is already close to it
+in spirit, cross-linking to its three component products. Reframing or
+extending these is a smaller lift than starting from nothing once this
+phase actually starts.
+
 Don't start this until Phase 1 is producing measurable outbound clicks to
 Amazon (see Section 6) — a project tutorial is far more expensive to
 produce well (wiring diagrams, real code, real photos, troubleshooting)
@@ -213,6 +231,12 @@ page type just creates two things to maintain instead of one, and dilutes
 the product page, which is where this information is actually needed.
 
 ### 4.4 Later: "DST Lab" — testing, teardowns, comparisons
+
+**🟡 The methodology page already exists** — `how-we-test.md` documents
+how the "Tested by DST" badge works and what gets checked. That's real
+groundwork, but it's a single policy/explainer page, not yet the content
+pillar this section describes (individual test/teardown write-ups per
+product or comparison).
 
 Genuinely one of the strongest differentiators in the original
 brainstorm — actual measurements are much harder for a competitor to
@@ -241,9 +265,14 @@ logic, build *that one* tool — not the full six-tool suite up front.
 - **"Product passport" pages** — this is just the product page standard
   from Section 2 done well. Treating it as a separate format duplicates
   effort for no benefit.
-- **Bundles/kits** — genuinely good for average-order-value, but this
-  requires new Amazon listings, real packaging, and inventory decisions.
-  It's a business decision, not a website task — see Section 10.
+- **Bundles/kits — ✅ already live, see Section 8.** Originally flagged
+  here as needing a new Amazon listing, packaging, and inventory
+  decisions. What actually got built (`_bundles/`) sidesteps all of that:
+  a curated landing page over existing ASINs, each linking to its own
+  already-live Amazon listing, not a new combined product. That specific
+  concern no longer applies — a *physical* combined-SKU kit would still
+  be the open business decision in Section 10, but the content-bundle
+  version is done and live.
 - **Beginner "journey" pages, problem-based navigation rebuild** — good
   instincts, but this is largely what a well-cross-linked set of buying
   guides and product pages already achieves (Section 2's "commonly used
@@ -262,17 +291,22 @@ order the original brainstorm presented them.
 This is almost entirely one-time setup work, has zero ongoing content
 burden, and makes everything after it measurable instead of a guess.
 
-- **Google Search Console** — non-negotiable, set up before any content
-  work starts. This is also where future content topics should come from
-  (see Section 6) rather than guessing.
-- **Product structured data** (schema.org Product markup: price, stock,
-  brand, images, reviews) on every product page.
-- **Google Merchant Center** — free product listings across Search,
-  Shopping, Images, and related surfaces for eligible products. High
-  leverage, mostly a one-time technical/data-feed task rather than
-  ongoing content work, worth doing early.
-- **Basic analytics** on key events — product page view, outbound Amazon
-  click, guide page view — kept simple, not an elaborate dashboard.
+- **Google Search Console** ⬜ — not set up yet. Still the one
+  non-negotiable next step here; this is also where future content topics
+  should come from (see Section 6) rather than guessing.
+- **Product structured data** ✅ — done. Real JSON-LD Product schema
+  (price, availability, brand, image) is live on every product page.
+- **Google Merchant Center** ⬜ — not started; no product feed exists
+  yet. High leverage, mostly a one-time technical/data-feed task, worth
+  doing early once Search Console is in.
+- **Basic analytics** ✅ (partial) — Google Analytics (GA4) is live in
+  production. Specific event tracking (outbound Amazon click, guide page
+  view as distinct events) hasn't been confirmed as set up — worth
+  checking what's actually configured beyond pageviews before relying on
+  it for the Section 6 decisions.
+- **`sitemap.xml` / `robots.txt`** ✅ — done, via `jekyll-sitemap` and a
+  correct manual `robots.txt`. Not originally its own line item here, but
+  it's exactly the kind of Search Console prep this phase is about.
 
 ### 5.2 Ongoing, low-cost habits: Reddit and email
 
@@ -286,13 +320,15 @@ actually relevant. This costs minutes, not hours, and reads as authentic
 specifically because it isn't a campaign. Explicitly not: promotional
 posts, "check out my store."
 
-**Email.** Keep it small and low-pressure — no "10% off, sign up now"
-popup on arrival. Something like "get the ESP32-C3 pinout PDF" or "one
-genuinely useful project a month" gives people a real reason to hand over
-an email address, and gives repeat visitors a reason to come back without
-needing fresh distribution effort each time. Don't start this until
-there's Phase 1 content worth sending — an empty list with nothing useful
-to mail is wasted setup.
+**Email.** 🟡 The signup form itself is already built
+(`_includes/newsletter.html`), it's just switched off
+(`enabled: false`, no email service connected yet in `_data/site.yml`) —
+so turning this on later is a small task, not a new build. Keep it small
+and low-pressure — no "10% off, sign up now" popup on arrival. Something
+like "get the ESP32-C3 pinout PDF" or "one genuinely useful project a
+month" gives people a real reason to hand over an email address. Don't
+switch it on until there's Phase 1 content worth sending — an empty list
+with nothing useful to mail is wasted setup.
 
 ### 5.3 Deferred: video (YouTube and short-form)
 
@@ -422,29 +458,91 @@ should be running comfortably on its own before starting the next. The
 table below is everything in this document in one ranked, scannable list;
 the phases underneath explain the pacing logic behind that order.
 
-| # | What | Why | Phase |
-|---|---|---|---|
-| 1 | Product page standard (§2) | Converts the visitors already arriving | 0 |
-| 2 | Search Console + basic analytics | Tells you what's actually working | 0 |
-| 3 | Structured data + Merchant Center | Free discovery, mostly one-time setup | 0 |
-| 4 | Buying guides & comparisons (§4.1) | Highest intent-to-purchase content, cheapest to produce | 1 |
-| 5 | Internal linking | Free, compounds every guide written | 1, ongoing |
-| 6 | Project tutorials (§4.2) | Converts problems into product sales | 2 |
-| 7 | Reddit + email (§5.2) | Low-cost ongoing habits, repeat visitors | 2 |
-| 8 | Customer proof / UGC (§3) | Trust, cheap to collect once there's traffic | 2 |
-| 9 | QR-code packaging docs (§5.4) | Turns Amazon buyers into site visitors | 3 |
-| 10 | Bundles/kits (§4.6) | Increases basket size | 3, needs your sign-off |
-| 11 | DST Lab testing content (§4.4) | Hard-to-copy differentiator | 3+ |
-| 12 | Interactive tools (§4.5) | Backlinks, repeat visitors | 3+ |
-| 13 | Video (§5.3) | Distribution, evergreen discovery | 3+ |
-| 14 | Creator/sample outreach (§5.5) | Targeted awareness + backlinks | 3+, needs budget |
-| 15 | Paid advertising (§5.6) | Scale only what's already proven | Last |
+**Status column, audited against the actual repo on 2026-09-03** — ✅
+built and live, 🟡 mechanism/infrastructure exists but isn't populated or
+switched on yet, ⬜ not started, ◻ off-site activity this audit can't see
+(nothing in the codebase would show it either way).
+
+| # | What | Why | Phase | Status |
+|---|---|---|---|---|
+| 1 | Product page standard (§2) | Converts the visitors already arriving | 0 | 🟡 |
+| 2 | Search Console + basic analytics | Tells you what's actually working | 0 | 🟡 |
+| 3 | Structured data + Merchant Center | Free discovery, mostly one-time setup | 0 | 🟡 |
+| 4 | Buying guides & comparisons (§4.1) | Highest intent-to-purchase content, cheapest to produce | 1 | ⬜ |
+| 5 | Internal linking | Free, compounds every guide written | 1, ongoing | 🟡 |
+| 6 | Project tutorials (§4.2) | Converts problems into product sales | 2 | 🟡 |
+| 7 | Reddit + email (§5.2) | Low-cost ongoing habits, repeat visitors | 2 | 🟡 |
+| 8 | Customer proof / UGC (§3) | Trust, cheap to collect once there's traffic | 2 | ⬜ |
+| 9 | QR-code packaging docs (§5.4) | Turns Amazon buyers into site visitors | 3 | ⬜ |
+| 10 | Bundles/kits (§4.6) | Increases basket size | 3 | ✅ |
+| 11 | DST Lab testing content (§4.4) | Hard-to-copy differentiator | 3+ | 🟡 |
+| 12 | Interactive tools (§4.5) | Backlinks, repeat visitors | 3+ | ⬜ |
+| 13 | Video (§5.3) | Distribution, evergreen discovery | 3+ | ◻ |
+| 14 | Creator/sample outreach (§5.5) | Targeted awareness + backlinks | 3+, needs budget | ◻ |
+| 15 | Paid advertising (§5.6) | Scale only what's already proven | Last | ◻ |
+
+**What the 🟡 rows actually mean, in every case** — the underlying system
+was built properly, but hasn't been used on real content yet. That's a
+much smaller remaining task than building it was:
+
+- **#1 Product page standard** — the specs table, "Tested by DST" badge
+  logic, and schema.org structured data are all fully built and live on
+  every product page. What's still open: zero products currently have a
+  populated `verified_specs` field, so the badge has never actually shown
+  up yet — the honest "not yet checked" state is what every product
+  currently displays, correctly.
+- **#2 Analytics/Search Console** — Google Analytics (GA4) is real and
+  live in production (`_config.yml` has a live measurement ID, wired
+  through `_includes/google-analytics.html`). `sitemap.xml` and
+  `robots.txt` are both built and correct. Search Console verification
+  itself hasn't been set up — that's the one real remaining step here,
+  and it's small (add a verification meta tag or DNS record).
+- **#3 Structured data/Merchant Center** — the structured data half is
+  genuinely done: `_layouts/product.html` emits real JSON-LD Product
+  schema (price, availability, brand, image) on every product page.
+  Merchant Center itself — the actual product feed submission — hasn't
+  been started.
+- **#5 Internal linking** — there are two separate mechanisms. "Featured
+  In" (auto-links a product to any project that references its ASIN) is
+  built *and populated* — e.g. the ESP32/WS2812B/KY-040 products already
+  link to the mood-ring project. "Pairs Well With" (manually curated
+  cross-sell via a `related:` front-matter field) is built but not
+  populated on any product yet.
+- **#6 Project tutorials** — this one's ahead of where the plan assumed:
+  three real build-log posts already exist (bench PSU build, 3D-printer
+  endstop swap, ESP32 rotary RGB mood ring), each with real wiring,
+  code, and a "what actually mattered" gotchas section. They're written
+  as build logs rather than the plan's "problem → buy these parts →
+  build it" framing, but the mood-ring one is already close in spirit
+  and already cross-links to its three component products.
+- **#7 Reddit + email** — email has a real, working signup form
+  (`_includes/newsletter.html`) but it's currently switched off
+  (`enabled: false` in `_data/site.yml`, no email service connected yet).
+  Reddit is an off-site habit this audit can't see either way.
+- **#11 DST Lab** — `how-we-test.md` documents the testing methodology
+  and the badge system properly, but there's no "Lab" content hub with
+  individual test/teardown write-ups yet — right now it's one policy
+  page, not a content pillar.
+
+**The one genuine surprise: #10 Bundles/kits is already live**, and in a
+form that sidesteps the concern originally flagged in Section 10 —
+`_bundles/beginner-breadboarding-kit.md` is a curated landing page over
+seven *existing* ASINs, each linking out to its own already-live Amazon
+listing. No new Amazon listing, no new packaging, no inventory
+commitment — it's a content bundle, not a physical one, so the "needs
+your sign-off" flag in Section 10 didn't actually apply to what got
+built. It's also already been iterated on once (its own copy notes "the
+previous version... didn't even include a breadboard"). If a *real*
+combined-SKU kit is ever wanted, that's still the open business decision
+— but the content-bundle version this plan was hedging on is done.
 
 **Phase 0 — Foundation**
-Search Console, structured data, Google Merchant Center feed, basic
-analytics events. Apply the Section 2 product-page standard to the
-current best-sellers first (real photos, honest differentiation, "Tested
-by DST" where true, cross-sell links).
+Structured data, sitemap/robots.txt, and Google Analytics are already
+done (see the status notes in Section 5.1) — what's left here is Search
+Console verification and a Google Merchant Center feed. Then apply the
+Section 2 product-page standard to the current best-sellers first (real
+photos, honest differentiation, populate "Tested by DST" where it's
+actually true, cross-sell links).
 
 **Phase 1 — Buying guides**
 One well-researched comparison/buying guide roughly every one to two
@@ -460,12 +558,12 @@ Attribution, and begin the first project tutorials for whichever guide
 topics are performing best.
 
 **Phase 3 and beyond — revisit deferred items**
-QR-code packaging funnel, bundles/kits (pending sign-off), DST Lab
-testing content, interactive tooling, video, and creator outreach (pending
-budget) — only once the earlier phases are running themselves and there's
-spare capacity or clear evidence justifying the extra effort. Paid
-advertising comes last, and only once a bundle or proven page exists to
-point it at.
+QR-code packaging funnel, a real physical kit (if ever wanted — the
+content-only bundle is already live), DST Lab testing content, interactive
+tooling, video, and creator outreach (pending budget) — only once the
+earlier phases are running themselves and there's spare capacity or clear
+evidence justifying the extra effort. Paid advertising comes last, and
+only once a bundle or proven page exists to point it at.
 
 ---
 
@@ -501,10 +599,11 @@ this website plan. See Section 10.
 These need an actual decision from you before they can move from "idea"
 to "plan" — nothing here has been assumed one way or the other:
 
-- **Bundles/kits** — these need new Amazon listings, real packaging, and
-  an inventory commitment. Worth pursuing, but it's a business decision
-  with real cost, not something to fold into the website roadmap without
-  your sign-off.
+- **A real, physical combined-SKU kit** (as opposed to the content-only
+  bundle already live, see Section 8) would still need a new Amazon
+  listing, real packaging, and an inventory commitment. Worth pursuing
+  eventually, but it's a business decision with real cost, not something
+  to fold into the website roadmap without your sign-off.
 - **Video, ever** — deferred for now on effort grounds, not ruled out
   permanently. Worth revisiting explicitly once Phase 1/2 are running, but
   only if there's real appetite for it — not assumed here either way.
