@@ -547,7 +547,7 @@ though guides still lead as the main *content* pillar once that's done
 |---|---|---|---|
 | 1 | Custom domain migration (§5.1) | Gates QR codes and general credibility | ✅ (email decision still open, doesn't block anything else) |
 | 2 | Finish Search Console + Merchant Center (§5.2) | Closes out the foundation | ✅ (Search Console done on the new domain; Merchant Center resolved as not viable for DST, see §5.2 — nothing left to do here) |
-| 3 | Set up Amazon Attribution | Confirmed eligible (Brand Registry) — no reason left to wait, even though there's not much to attribute yet | ⬜ |
+| 3 | Set up Amazon Attribution | Confirmed eligible (Brand Registry) — no reason left to wait, even though there's not much to attribute yet. This is the mechanism for "which guides/bundles/pricing actually drive sales" — see the note below the table on why Amazon Associates isn't a substitute for this. | ⬜ |
 | 4 | Populate "Tested by DST" on a handful of real products | Cheap (badge already built), plays to actual strength, immediate trust payoff | 🟡 |
 | 5 | Buying guides & comparisons (§4.1) | Highest intent-to-purchase content, cheapest to produce even though writing isn't the favourite part | ⬜ |
 | 6 | Internal linking | Free, compounds every guide written | 🟡 |
@@ -566,6 +566,22 @@ Already done, sitting outside this ordered list because there's nothing
 left to schedule: **bundles/kits (§4.6)** — a content bundle already
 exists and works well; a physical combined-SKU version remains a
 separate future business decision, not a backlog item.
+
+**On Amazon Associates as a substitute for #3 — considered and rejected,
+2026-09-03:** the actual goal (confirmed directly) is tracking which DST
+content drives DST sales, to inform what guides/bundles/pricing to build
+next. That's exactly what Amazon Attribution is for, and Attribution is
+the better tool for it: no re-enrollment risk (Associates requires 3
+qualifying sales within 180 days of approval, which is what closed DST's
+previous Associates account, and the site doesn't have independent
+traffic to reliably clear that bar yet), and no self-referral question
+(Attribution is Amazon's own designed-for-sellers tool for measuring a
+seller's *own* external marketing, unlike Associates, which is built for
+promoting *other* people's listings). Associates would only earn its
+place back on this list for a genuinely different reason — e.g. earning
+commission recommending non-DST products inside buying guides (a
+soldering iron or multimeter DST doesn't stock, say) — which is a real,
+non-overlapping idea but a separate one from measurement, not raised yet.
 
 **On outsourcing the writing (#5):** this isn't a near-term budget line
 — the plan should wait for Section 6's actual revenue-per-visit data
