@@ -309,36 +309,31 @@ correctly configured for their actual provider now.
   Cloudflare Redirect Rule (proxied placeholder DNS records + a 301
   dynamic redirect preserving the request path). Confirmed working —
   `dhivanstech.com` returns a clean 301 to the matching `.co.uk` page.
+- New Google Search Console property for `dhivanstech.co.uk` (Domain
+  type, verified via a Namecheap DNS TXT record), and **Change of
+  Address** run from the old `dhivans.github.io` property to it — so
+  search history transfers instead of the new domain starting cold.
 
 **⬜ Still open:**
 
-1. **A new Google Search Console property for `dhivanstech.co.uk`.**
-   Since Namecheap is genuinely the authoritative DNS here, the
-   **Domain** property type with DNS TXT verification will actually work
-   this time (unlike the earlier attempt against the `github.io`
-   subdomain, which could never have worked). Once verified, run Search
-   Console's **Change of Address** tool from the old `dhivans.github.io`
-   property to tell Google this is the same site moving, rather than
-   letting the old property just go stale — this preserves search
-   ranking history better than a silent switch.
-2. **Email is a related but separate decision** — not required for the
-   domain migration itself, but worth deciding alongside it since it
-   feeds into §5.3's email plan. Namecheap offers free email forwarding
-   for domains registered there (simplest option, matches how DNS ended
-   up being managed); Cloudflare Email Routing was the original
-   suggestion but doesn't apply now that DNS isn't on Cloudflare.
+- **Email** — a related but separate decision, not required for the
+  domain migration itself but worth deciding alongside it since it feeds
+  into §5.3's email plan. Namecheap offers free email forwarding for
+  domains registered there (simplest option, matches how `.co.uk`'s DNS
+  ended up being managed).
 
 ### 5.2 Do this next: measurement and technical setup
 
 This is almost entirely one-time setup work, has zero ongoing content
 burden, and makes everything after it measurable instead of a guess.
 
-- **Google Search Console** ✅ (partial) — `dhivans.github.io` property
-  verified, sitemap submission still pending there. Now that §5.1's
-  domain migration is live, add a new Domain-type property for
-  `dhivanstech.co.uk` (verified via Namecheap DNS TXT record) and run a
-  **Change of Address** from the old property rather than leaving it
-  pointing at the retired GitHub Pages URL.
+- **Google Search Console** ✅ (one small step left) — new Domain-type
+  property for `dhivanstech.co.uk` verified via Namecheap DNS TXT record,
+  and **Change of Address** run from the old `dhivans.github.io` property
+  so search history transfers rather than starting cold. Still worth
+  submitting `sitemap.xml` under the *new* property directly (Sitemaps
+  tab, same as before) — Change of Address handles the old-URL-to-new-URL
+  mapping, it doesn't submit a sitemap for you.
 - **Product structured data** ✅ — done. Real JSON-LD Product schema
   (price, availability, brand, image) is live on every product page.
 - **Google Merchant Center** ⬜ — not started; no product feed exists
@@ -543,8 +538,8 @@ though guides still lead as the main *content* pillar once that's done
 
 | # | What | Why | Status |
 |---|---|---|---|
-| 1 | Custom domain migration (§5.1) | Gates QR codes, Merchant Center's canonical URL, and general credibility | 🟡 (site live, `.com` redirect + new GSC property still open) |
-| 2 | Finish Search Console + Merchant Center (§5.2) | Closes out the foundation — Merchant Center specifically still has an open policy question, see §5.2 | 🟡 |
+| 1 | Custom domain migration (§5.1) | Gates QR codes, Merchant Center's canonical URL, and general credibility | ✅ (email decision still open, doesn't block anything else) |
+| 2 | Finish Search Console + Merchant Center (§5.2) | Closes out the foundation — Merchant Center specifically still has an open policy question, see §5.2 | 🟡 (Search Console fully done on the new domain; Merchant Center still open) |
 | 3 | Set up Amazon Attribution | Confirmed eligible (Brand Registry) — no reason left to wait, even though there's not much to attribute yet | ⬜ |
 | 4 | Populate "Tested by DST" on a handful of real products | Cheap (badge already built), plays to actual strength, immediate trust payoff | 🟡 |
 | 5 | Buying guides & comparisons (§4.1) | Highest intent-to-purchase content, cheapest to produce even though writing isn't the favourite part | ⬜ |
