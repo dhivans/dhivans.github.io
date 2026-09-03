@@ -290,25 +290,29 @@ order the original brainstorm presented them.
 
 ### 5.1 Custom domain migration
 
-DST owns `dhivanstech.co.uk` (primary) and `dhivanstech.com` (redirects
-to it), registered at Namecheap. **DNS turned out to be managed directly
-in Namecheap, not Cloudflare** as first assumed — corrected below.
+DST owns `dhivanstech.co.uk` (primary) and `dhivanstech.com`
+(redirects to it), both registered at Namecheap — but **the two domains
+turned out to use different DNS providers**, not the single Cloudflare
+setup first assumed: `dhivanstech.co.uk`'s DNS is managed directly in
+Namecheap, while `dhivanstech.com`'s DNS is on Cloudflare. Both are
+correctly configured for their actual provider now.
 
-**✅ Done:** DNS records added in Namecheap (four `A` records for the
-apex domain at GitHub Pages' IPs, one `CNAME` for `www` →
-`dhivans.github.io`), confirmed resolving correctly, `CNAME` file added
-to the repo, `_config.yml`'s `url:` updated to `https://dhivanstech.co.uk`,
-and confirmed live serving the real site over HTTPS. `dhivans.github.io`
-now auto-redirects to the new domain, as GitHub Pages does automatically
-once a custom domain is set.
+**✅ Done:**
+- `dhivanstech.co.uk`: DNS records added in Namecheap (four `A` records
+  for the apex domain at GitHub Pages' IPs, one `CNAME` for `www` →
+  `dhivans.github.io`), confirmed resolving correctly, `CNAME` file added
+  to the repo, `_config.yml`'s `url:` updated to
+  `https://dhivanstech.co.uk`, confirmed live serving the real site over
+  HTTPS. `dhivans.github.io` now auto-redirects to the new domain, as
+  GitHub Pages does automatically once a custom domain is set.
+- `dhivanstech.com` → `dhivanstech.co.uk` redirect: set up via a
+  Cloudflare Redirect Rule (proxied placeholder DNS records + a 301
+  dynamic redirect preserving the request path). Confirmed working —
+  `dhivanstech.com` returns a clean 301 to the matching `.co.uk` page.
 
 **⬜ Still open:**
 
-1. **Redirect `dhivanstech.com` → `dhivanstech.co.uk`.** Namecheap has a
-   URL Redirect record type for exactly this (Advanced DNS tab, same
-   place the other records went) — simpler than Cloudflare's redirect
-   rules would have been, ironically, now that DNS lives there instead.
-2. **A new Google Search Console property for `dhivanstech.co.uk`.**
+1. **A new Google Search Console property for `dhivanstech.co.uk`.**
    Since Namecheap is genuinely the authoritative DNS here, the
    **Domain** property type with DNS TXT verification will actually work
    this time (unlike the earlier attempt against the `github.io`
@@ -317,7 +321,7 @@ once a custom domain is set.
    property to tell Google this is the same site moving, rather than
    letting the old property just go stale — this preserves search
    ranking history better than a silent switch.
-3. **Email is a related but separate decision** — not required for the
+2. **Email is a related but separate decision** — not required for the
    domain migration itself, but worth deciding alongside it since it
    feeds into §5.3's email plan. Namecheap offers free email forwarding
    for domains registered there (simplest option, matches how DNS ended
