@@ -37,10 +37,9 @@ good ideas that are too effort-heavy to start now are marked **Later**,
 not deleted — revisit them once the earlier phases are running themselves
 and there's real data to justify the extra effort.
 
-**Domains are owned, migration is planned (§5.1).** DST owns
-`dhivanstech.co.uk` (primary) and `dhivanstech.com` (redirects to it),
-registered at Namecheap with Cloudflare DNS. The migration steps are
-written up in §5.1 rather than left as a vague future assumption.
+**Domain migration is live (§5.1).** `dhivanstech.co.uk` (primary,
+DNS at Namecheap) is serving the real site over HTTPS as of this
+writing; `dhivanstech.com` still needs its redirect set up.
 
 **If something below depends on a decision only you can make — a real
 inventory/packaging change, a platform commitment, anything with a cost —
@@ -289,74 +288,41 @@ logic, build *that one* tool — not the full six-tool suite up front.
 Ranked by effort-to-value ratio for one part-time person — not in the
 order the original brainstorm presented them.
 
-### 5.1 Do this first, before anything else in this section: custom domain migration
+### 5.1 Custom domain migration
 
-DST owns `dhivanstech.co.uk` and `dhivanstech.com` (registered at
-Namecheap, DNS managed through Cloudflare). This gates several other
-items in this plan — the QR-code funnel (§5.5) explicitly needs a real
-domain in place, Merchant Center's feed wants a stable canonical URL to
-point at, and "dhivans.github.io" on a business card or packaging never
-reads as well as a real domain. Worth doing before investing further in
-the Search Console/Merchant Center work in §5.2, so that work targets the
-domain that'll actually be live going forward rather than needing to be
-partly redone.
+DST owns `dhivanstech.co.uk` (primary) and `dhivanstech.com` (redirects
+to it), registered at Namecheap. **DNS turned out to be managed directly
+in Namecheap, not Cloudflare** as first assumed — corrected below.
 
-**Decided: `dhivanstech.co.uk` is primary.** `dhivanstech.com` should
-redirect to it — a redirect rule in Cloudflare takes minutes and prevents
-a confusing split between the two.
+**✅ Done:** DNS records added in Namecheap (four `A` records for the
+apex domain at GitHub Pages' IPs, one `CNAME` for `www` →
+`dhivans.github.io`), confirmed resolving correctly, `CNAME` file added
+to the repo, `_config.yml`'s `url:` updated to `https://dhivanstech.co.uk`,
+and confirmed live serving the real site over HTTPS. `dhivans.github.io`
+now auto-redirects to the new domain, as GitHub Pages does automatically
+once a custom domain is set.
 
-**The technical steps — do these in order, DNS first.** Adding the
-`CNAME` file to the repo before DNS actually resolves would break the
-live site: GitHub Pages redirects the old `dhivans.github.io` URL to
-whatever's in that file as soon as it exists, regardless of whether the
-new domain is ready to receive traffic yet. So steps 1 happens in
-Cloudflare first (nothing for me to do there), and only once that's live
-does step 2 onward make sense:
+**⬜ Still open:**
 
-1. **DNS records in Cloudflare, for the primary domain:**
-   - Apex domain (`dhivanstech.co.uk`) → four `A` records pointing at
-     GitHub Pages' IPs: `185.199.108.153`, `185.199.109.153`,
-     `185.199.110.153`, `185.199.111.153` (add the matching `AAAA`
-     records too if IPv6 is wanted: `2606:50c0:8000::153`,
-     `8001::153`, `8002::153`, `8003::153`).
-   - `www` subdomain → a `CNAME` record pointing at `dhivans.github.io`.
-   - Set these records to **DNS only** (grey cloud, not the orange
-     "proxied" cloud) at first. GitHub's automatic HTTPS certificate
-     issuance can conflict with Cloudflare's proxy if it's on from the
-     start — safer to enable proxying afterward, once HTTPS is confirmed
-     working.
-2. **Add a `CNAME` file** to the repo root containing just the chosen
-   domain (e.g. `dhivanstech.co.uk`) — this is what tells GitHub Pages
-   which custom domain to serve.
-3. **Set the custom domain in the repo's GitHub Pages settings**
-   (Settings → Pages → Custom domain), wait for GitHub's DNS check to
-   pass, then tick **Enforce HTTPS** once it's available (this can take
-   up to a day after the DNS check passes).
-4. **Set up a redirect for the non-primary domain** to the primary one —
-   a Cloudflare redirect rule is the simplest way, since DNS for both
-   already lives there.
-5. **Update `_config.yml`'s `url:`** from `https://dhivans.github.io` to
-   the new domain — this automatically fixes the sitemap, structured
-   data, and RSS feed URLs, since they all read from this one value.
-6. **Re-enable Cloudflare's proxy** (orange cloud) if wanted, once HTTPS
-   is confirmed working — and set Cloudflare's SSL/TLS mode to **Full**
-   or **Full (strict)**, never **Flexible**, which causes a redirect loop
-   against GitHub Pages' enforced HTTPS.
-7. **Add a new Google Search Console property for the new domain** — and
-   this time the **Domain** property type with DNS TXT verification
-   actually works correctly, since DNS for this domain is genuinely
-   controlled in Cloudflare (unlike the `github.io` subdomain, which
-   isn't DST's DNS to verify). Once it's verified, run Search Console's
-   **Change of Address** tool from the old `dhivans.github.io` property
-   to tell Google this is the same site moving, rather than letting the
-   old property just go stale — this preserves search ranking history
-   better than a silent switch.
-8. **Email is a related but separate decision** — not required for the
+1. **Redirect `dhivanstech.com` → `dhivanstech.co.uk`.** Namecheap has a
+   URL Redirect record type for exactly this (Advanced DNS tab, same
+   place the other records went) — simpler than Cloudflare's redirect
+   rules would have been, ironically, now that DNS lives there instead.
+2. **A new Google Search Console property for `dhivanstech.co.uk`.**
+   Since Namecheap is genuinely the authoritative DNS here, the
+   **Domain** property type with DNS TXT verification will actually work
+   this time (unlike the earlier attempt against the `github.io`
+   subdomain, which could never have worked). Once verified, run Search
+   Console's **Change of Address** tool from the old `dhivans.github.io`
+   property to tell Google this is the same site moving, rather than
+   letting the old property just go stale — this preserves search
+   ranking history better than a silent switch.
+3. **Email is a related but separate decision** — not required for the
    domain migration itself, but worth deciding alongside it since it
-   feeds directly into §5.3's email plan. Cloudflare Email Routing (free,
-   just forwards `hello@dhivanstech.co.uk`-style addresses to an existing
-   inbox) covers the newsletter/contact use case without needing a full
-   paid mailbox product.
+   feeds into §5.3's email plan. Namecheap offers free email forwarding
+   for domains registered there (simplest option, matches how DNS ended
+   up being managed); Cloudflare Email Routing was the original
+   suggestion but doesn't apply now that DNS isn't on Cloudflare.
 
 ### 5.2 Do this next: measurement and technical setup
 
@@ -364,11 +330,11 @@ This is almost entirely one-time setup work, has zero ongoing content
 burden, and makes everything after it measurable instead of a guess.
 
 - **Google Search Console** ✅ (partial) — `dhivans.github.io` property
-  verified. Sitemap submission is the one remaining step there. Once
-  §5.1's domain migration happens, this property should get a
-  **Change of Address** to the new domain (or a fresh Domain-type
-  property verified via Cloudflare DNS) rather than being left pointing
-  at the GitHub Pages URL.
+  verified, sitemap submission still pending there. Now that §5.1's
+  domain migration is live, add a new Domain-type property for
+  `dhivanstech.co.uk` (verified via Namecheap DNS TXT record) and run a
+  **Change of Address** from the old property rather than leaving it
+  pointing at the retired GitHub Pages URL.
 - **Product structured data** ✅ — done. Real JSON-LD Product schema
   (price, availability, brand, image) is live on every product page.
 - **Google Merchant Center** ⬜ — not started; no product feed exists
@@ -573,7 +539,7 @@ though guides still lead as the main *content* pillar once that's done
 
 | # | What | Why | Status |
 |---|---|---|---|
-| 1 | Custom domain migration (§5.1) | Gates QR codes, Merchant Center's canonical URL, and general credibility | ⬜ |
+| 1 | Custom domain migration (§5.1) | Gates QR codes, Merchant Center's canonical URL, and general credibility | 🟡 (site live, `.com` redirect + new GSC property still open) |
 | 2 | Finish Search Console + Merchant Center (§5.2) | Closes out the foundation — Merchant Center specifically still has an open policy question, see §5.2 | 🟡 |
 | 3 | Set up Amazon Attribution | Confirmed eligible (Brand Registry) — no reason left to wait, even though there's not much to attribute yet | ⬜ |
 | 4 | Populate "Tested by DST" on a handful of real products | Cheap (badge already built), plays to actual strength, immediate trust payoff | 🟡 |
