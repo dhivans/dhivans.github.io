@@ -241,10 +241,10 @@ blockquote {
 
   // Plain markdown tables (kramdown's raw <table> output) otherwise render
   // with no theme styling at all — stark white cells on the dark site.
-  // Matches .compare-table's visual language (cyan header, faint zebra
-  // striping via low-opacity white rather than a hard colour swap) so any
-  // table written directly in a guide's markdown looks native by default,
-  // no custom HTML/classes required per post.
+  // Flat dark background throughout (no zebra striping, by preference —
+  // an earlier version alternated row shades and it wasn't wanted), cyan
+  // header, border-bottom row dividers only. Applies to any table written
+  // directly in a guide's markdown — no custom HTML/classes needed.
   table {
     background: transparent !important;
     border: 0 !important;
@@ -280,10 +280,6 @@ blockquote {
       color: #c9d1d9 !important;
       font-family: "Rajdhani", sans-serif;
       font-size: 1rem;
-    }
-
-    tr:nth-child(even) td {
-      background: #161b22 !important;
     }
 
     tr:last-child td {
