@@ -65,3 +65,6 @@ exclude:
   # Strategic planning doc, not a real page -- would otherwise publish as
   # an unstyled, publicly-indexed page at /dst-growth-strategy/.
   - dst-growth-strategy.md
+  # Internal reference for site/content conventions, not a real page --
+  # same reasoning as dst-growth-strategy.md above.
+  - dst-content-style-guide.md
