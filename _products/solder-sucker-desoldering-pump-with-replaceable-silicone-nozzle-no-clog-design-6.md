@@ -19,5 +19,8 @@ badge: ""
 tags: ['solder', 'nozzle']
 specs:
   material: "6061 aluminium, silicone nozzle"
+related:
+  - B0DR9788MS
+  - B0DFMNSTR3
 ---
 The Solder Sucker No Clog Desoldering Pump is an essential tool for efficient and hassle-free solder removal. Its unique no-clog design prevents the nozzle tip from clogging, allowing you to quickly extract molten solder without interruption. This streamlined solder removal tool leaves a clean working area, making it ideal for electronics repair and soldering projects. Constructed with premium 6061 aircraft-grade aluminium, this sturdy solder pump sucker ensures durability and longevity. The replaceable heat-resistant silicone sucking nozzle provides added convenience, allowing you to maintain optimal performance. With its ergonomic design and easy operation, this solder sucker simplifies the desoldering process, making it a must-have tool for hobbyists, technicians, and professionals alike.

@@ -9,6 +9,10 @@ featured: false
 sales_30d: 0
 badge: ""
 tags: ['esp8266', 'usb']
+related:
+  - B0DLYTCS3J
+  - B0DH8D9N9F
+  - B0DH3ZHHH9
 specs:
   connectivity: "Wi-Fi 802.11 b/g/n (ESP8266)"
   supply_voltage: "3.3V logic (adaptor regulates from 5V USB)"

@@ -16,6 +16,10 @@ specs:
   voltage_rating: "1000V"
   current_rating: "1A"
   power_rating: "3W"
+related:
+  - B0DLYTCS3J
+  - B0DRW5NXPH
+  - B0DH3ZHHH9
 variants:
   - label: "5"
     asin: "B0DRW6JJSY"

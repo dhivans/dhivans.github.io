@@ -13,6 +13,9 @@ specs:
   connector_type: "USB-A to USB-C / USB-C to USB-C"
   length: "1m"
   shielding: "Unshielded (standard charging cable)"
+related:
+  - B0DJPZHZ1X
+  - B0DFKDM1NN
 variants:
   - label: "Black USB-C to USB-C"
     asin: "B0DH8DDWFH"

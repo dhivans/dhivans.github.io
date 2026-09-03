@@ -18,6 +18,10 @@ specs:
   mounting_size: "M2 screws, 6.5mm hole spacing"
   contact_material: "Gold alloy"
   minimum_applicable_load: "1 mA at 5 VDC"
+related:
+  - B0DBGNPKVC
+  - B0DH3ZHHH9
+  - B0DBGPNMBL
 datasheet_url: "https://omronfs.omron.com/en_US/ecb/products/pdf/en-d2f.pdf"
 variants:
   - label: "1"

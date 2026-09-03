@@ -13,6 +13,9 @@ specs:
   measurement_range: "0-15cm"
   display: "LCD, mm/inch switchable"
   extra_features: "Stainless steel body, smooth sliding action"
+related:
+  - B07WYQHCY5
+  - B0DFKC13LR
 variants:
   - label: "Digital"
     asin: "B0DJYKBXVB"

@@ -16,4 +16,7 @@ specs:
   measurement_range: "AC/DC 1000V, AC/DC 20A"
   resolution_or_accuracy: "True RMS"
   extra_features: "Voltage, current, temperature, conductance"
+related:
+  - B08P55R959
+  - B0DJYKBXVB
 ---

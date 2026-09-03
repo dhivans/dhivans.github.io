@@ -15,6 +15,11 @@ specs:
   type: "Linear taper"
   resistance_or_range: "1K-1M Ω (9 values)"
   pin_count: 3
+related:
+  - B0DJPZHZ1X
+  - B0DLYTCS3J
+  - B0DJPYB5N8
+  - B0DH3ZHHH9
 variants:
   - label: "1MOhm, 1"
     asin: "B0DRW3M7B4"

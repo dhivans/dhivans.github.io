@@ -14,6 +14,8 @@ specs:
   length: "15cm / 30cm / 50cm / 1m / 2m"
   gauge_or_rating: "AWM 20624, 80C, 60V, VW-1"
   shielding: "Unshielded (flat flex ribbon cable)"
+related:
+  - B0DPBF5JHS
 variants:
   - label: "2M"
     asin: "B0DV9S6X3X"

@@ -18,6 +18,8 @@ specs:
   length: "1m"
   gauge_or_rating: "12W fast charging"
   shielding: "Unshielded (charging cable)"
+related:
+  - B0DH8D9N9F
 variants:
   - label: "USB-A to Lightning, Black"
     asin: "B0D1VWBFRC"

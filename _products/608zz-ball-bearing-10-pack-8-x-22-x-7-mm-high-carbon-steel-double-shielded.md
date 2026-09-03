@@ -18,5 +18,7 @@ specs:
   dimensions: "8mm x 22mm x 7mm (bore x OD x width)"
   material: "High-carbon steel"
   shielding: "Double-shielded (ZZ)"
+related:
+  - B0DZQ3V5TV
 ---
 Upgrade your machinery with these 608ZZ ball bearings, precision-crafted from high-carbon steel for exceptional durability. Featuring a double-shielded design and an ABEC-7 rating, these miniature bearings offer non-rolling smooth rotation and reduced friction for optimal performance. Measuring 8mm x 22mm x 7mm, this pack of 10 single-row deep groove ball bearings is perfect for various applications, from skateboards to office equipment. With their compact size and robust construction, these 608ZZ bearings ensure reliable operation and extended service life, making them an excellent choice for DIY projects or professional use.

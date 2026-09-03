@@ -17,6 +17,8 @@ tags: ['hex key', 'tools']
 specs:
   dimensions: "1.5mm to 10mm hex sizes (set)"
   piece_count: "7 or 9"
+related:
+  - B0DPLJN167
 variants:
   - label: "7 Piece"
     asin: "B0F2ZF7LS6"

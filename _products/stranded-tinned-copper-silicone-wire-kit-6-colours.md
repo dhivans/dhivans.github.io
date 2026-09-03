@@ -13,6 +13,9 @@ specs:
   length: "24m - 60m depending on gauge"
   gauge_or_rating: "16-28 AWG, 6 colours"
   shielding: "Insulated (silicone), not EM-shielded"
+related:
+  - B0DLYTCS3J
+  - B0DJPZHZ1X
 variants:
   - label: "16AWG 24M"
     asin: "B0DH3ZV6KK"

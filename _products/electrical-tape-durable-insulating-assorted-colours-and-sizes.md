@@ -9,6 +9,10 @@ featured: false
 sales_30d: 0
 badge: ""
 tags: ['tape']
+related:
+  - B0DH414VV2
+  - B0DMXTM7KP
+  - B0DH3ZHHH9
 variants:
   - label: "Black, 30M"
     asin: "B0DNNLMV1G"

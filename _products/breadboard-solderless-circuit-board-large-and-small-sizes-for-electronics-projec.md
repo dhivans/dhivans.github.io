@@ -9,6 +9,10 @@ featured: false
 sales_30d: 0
 badge: ""
 tags: ['breadboard']
+related:
+  - B0DJPZHZ1X
+  - B0DH3ZHHH9
+  - B0DH8D9N9F
 variants:
   - label: "Half-size, 1"
     asin: "B0DLYTCS3J"

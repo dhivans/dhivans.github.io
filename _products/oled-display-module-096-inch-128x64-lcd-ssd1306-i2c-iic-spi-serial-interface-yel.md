@@ -13,6 +13,10 @@ specs:
   resolution: "128x64 pixels"
   interface: "I2C / SPI, 4-pin"
   screen_size: "0.96 inch"
+related:
+  - B0DJPZHZ1X
+  - B0DLYTCS3J
+  - B0DH3ZHHH9
 variants:
   - label: "1, Blue, 0.96'"
     asin: "B0F2ZGGHVG"

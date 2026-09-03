@@ -14,6 +14,10 @@ specs:
   voltage_rating: "30V"
   current_rating: "800mA"
   power_rating: "~625mW (typical for TO-92 package)"
+related:
+  - B0DLYTCS3J
+  - B0DRW5CFQD
+  - B0DH3ZHHH9
 variants:
   - label: "5"
     asin: "B0DRW6P848"

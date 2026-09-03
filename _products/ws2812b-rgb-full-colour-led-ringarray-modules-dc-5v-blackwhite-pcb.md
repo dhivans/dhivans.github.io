@@ -13,6 +13,10 @@ specs:
   led_count: "1-64 LEDs (6 array sizes)"
   voltage: "5V DC"
   protocol: "WS2812B addressable, single-wire"
+related:
+  - B0DJPZHZ1X
+  - B0DLYTCS3J
+  - B0DH3ZHHH9
 variants:
   - label: "1 Pixel"
     asin: "B0DKLP3T1F"

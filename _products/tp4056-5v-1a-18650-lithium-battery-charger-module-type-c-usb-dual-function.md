@@ -20,6 +20,9 @@ specs:
   protection_features: "Onboard charge protection circuitry"
   dimensions: "28mm x 17mm x 4mm"
   weight: "~6g"
+related:
+  - B0DJPZHZ1X
+  - B0DH8D9N9F
 variants:
   - label: "1 Pack"
     asin: "B0DFKDM1NN"

@@ -15,6 +15,11 @@ specs:
   led_count: "8-45 LEDs (5 sizes)"
   voltage: "5V DC"
   protocol: "WS2812B addressable, single-wire"
+related:
+  - B0DJPZHZ1X
+  - B0DJPYB5N8
+  - B0DLYTCS3J
+  - B0DH3ZHHH9
 variants:
   - label: "8/16/24 LEDs, Black PCB"
     asin: "B0DH3YZVGX"

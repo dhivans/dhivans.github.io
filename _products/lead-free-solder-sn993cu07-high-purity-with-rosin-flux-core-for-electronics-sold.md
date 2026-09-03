@@ -13,6 +13,10 @@ specs:
   alloy: "Sn99.3/Cu0.7 (lead-free)"
   diameter: "0.5mm / 0.6mm / 0.8mm / 1mm"
   flux_type: "Rosin core"
+related:
+  - B0DFMNSTR3
+  - B0DMTZFP52
+  - B0DMV1DTR3
 variants:
   - label: "0.5mm, 30g"
     asin: "B0DRDCX9SS"

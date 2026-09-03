@@ -12,6 +12,9 @@ tags: ['tape']
 specs:
   width: "3mm / 5mm / 10mm"
   length: "50m"
+related:
+  - B0DNNJNFB2
+  - B0DMXTM7KP
 variants:
   - label: "3mm"
     asin: "B0DH417TH9"

@@ -17,5 +17,8 @@ specs:
   length: "0.3m"
   gauge_or_rating: "Cat5e UTP"
   shielding: "Unshielded (UTP)"
+related:
+  - B0FRZCTG8X
+  - B0FRZFZG45
 ---
 Connect your network devices with reliability using this high-quality Cat5e UTP Ethernet patch cable. Measuring 0.3 metres in length, this black patch cable features RJ45 connectors on both ends, making it perfect for short-distance connections between your router, switch, patch panel, or other networking equipment. The cable comes with moulded strain relief boots that protect the connectors from damage and ensure durability during daily use. Built to support high-speed data transmission, this Cat5e cable delivers consistent network performance for your home or office setup. The unshielded twisted pair (UTP) construction provides standard interference protection while maintaining flexibility and ease of installation. This compact 0.3m length is ideal for reducing cable clutter in tight spaces or when connecting nearby devices. Whether you're setting up a new network connection or replacing an old cable, this Cat5e patch cable offers a professional networking solution.

@@ -17,6 +17,11 @@ featured: false
 sales_30d: 0
 badge: ""
 tags: ['esp32', 'microcontroller']
+related:
+  - B0DLYTCS3J
+  - B0DH8D9N9F
+  - B0DJPZHZ1X
+  - B0DH3ZHHH9
 specs:
   connectivity: "Wi-Fi 802.11 b/g/n (2.4GHz) + Bluetooth v4.2 (BR/EDR + BLE)"
   supply_voltage: "5V (USB) / 3.3V logic"

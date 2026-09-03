@@ -13,6 +13,10 @@ specs:
   led_density: "30 / 60 / 144 LEDs/m"
   voltage: "5V DC"
   protocol: "SK6812 addressable, RGBW, single-wire"
+related:
+  - B0DJPZHZ1X
+  - B0DH3ZHHH9
+  - B0DNNJNFB2
 variants:
   - label: "Black, 30 LEDs per Meter"
     asin: "B0DKQZ3YDH"

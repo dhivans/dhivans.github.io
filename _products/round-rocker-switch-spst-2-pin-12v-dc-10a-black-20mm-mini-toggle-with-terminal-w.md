@@ -14,6 +14,10 @@ specs:
   rated_voltage: "12V DC"
   rated_current: "10A"
   mounting_size: "20mm"
+related:
+  - B0DH3ZHHH9
+  - B0DNNJNFB2
+  - B0DRW44SDH
 variants:
   - label: "1"
     asin: "B0DRW4GLJM"

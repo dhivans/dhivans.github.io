@@ -14,6 +14,11 @@ featured: false
 sales_30d: 130
 badge: ""
 tags: ['esp32', 'microcontroller']
+related:
+  - B0DLYTCS3J
+  - B0DH8D9N9F
+  - B0DH3ZHHH9
+  - B0F2ZD243Y
 variants:
   - label: "ESP32 WROOM-32"
     asin: "B0DJPZHZ1X"
