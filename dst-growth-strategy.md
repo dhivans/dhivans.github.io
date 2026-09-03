@@ -547,7 +547,7 @@ though guides still lead as the main *content* pillar once that's done
 |---|---|---|---|
 | 1 | Custom domain migration (§5.1) | Gates QR codes and general credibility | ✅ (email decision still open, doesn't block anything else) |
 | 2 | Finish Search Console + Merchant Center (§5.2) | Closes out the foundation | ✅ (Search Console done on the new domain; Merchant Center resolved as not viable for DST, see §5.2 — nothing left to do here) |
-| 3 | Set up Amazon Attribution | Confirmed eligible (Brand Registry) — no reason left to wait, even though there's not much to attribute yet. This is the mechanism for "which guides/bundles/pricing actually drive sales" — see the note below the table on why Amazon Associates isn't a substitute for this. | ⬜ |
+| 3 | Set up Amazon Attribution | Confirmed eligible (Brand Registry) — no reason left to wait, even though there's not much to attribute yet. This is the mechanism for "which guides/bundles/pricing actually drive sales" — see the notes below the table on why Amazon Associates isn't a substitute, and why this is set up manually rather than via API. | 🟡 (pilot campaign in progress, see note below the table) |
 | 4 | Populate "Tested by DST" on a handful of real products | Cheap (badge already built), plays to actual strength, immediate trust payoff | 🟡 |
 | 5 | Buying guides & comparisons (§4.1) | Highest intent-to-purchase content, cheapest to produce even though writing isn't the favourite part | ⬜ |
 | 6 | Internal linking | Free, compounds every guide written | 🟡 |
@@ -582,6 +582,52 @@ place back on this list for a genuinely different reason — e.g. earning
 commission recommending non-DST products inside buying guides (a
 soldering iron or multimeter DST doesn't stock, say) — which is a real,
 non-overlapping idea but a separate one from measurement, not raised yet.
+
+**On automating Attribution product-pool management via API — considered
+and rejected for now, 2026-09-03:** the console requires every product
+you want sales data for to sit in a per-campaign "product pool," added
+manually, with no confirmed way to auto-include new products as they're
+listed — a real, ongoing maintenance task, not a one-time setup step.
+Checked whether the existing Amazon Ads automation (the separate
+DataAnalysis/Amazon repo, which already holds live `ADS_CLIENT_ID` /
+`ADS_REFRESH_TOKEN` credentials and manages Sponsored Products bids
+automatically) could be extended to cover this. It can't, cheaply: that
+integration is scoped entirely to the Sponsored Products API
+(`adProduct: SPONSORED_PRODUCTS`) — confirmed directly in
+`pull_advertising.py`, nothing there touches Attribution at all, so
+there's no existing plumbing to extend. Separately, Amazon's own
+Attribution API docs describe it in agency/tool-provider terms
+("agencies and integrators... on behalf of their advertiser clients"),
+not clearly self-serve for a single seller the way Sponsored Products
+API access was — real uncertainty about whether DST could even get
+approved for direct access, not just an extra form to fill in. Weighed
+against the actual problem (adding one product to a pool takes ~30
+seconds, and the catalogue doesn't grow explosively often), building
+real API automation for this isn't worth it at today's scale. Decision:
+manage the product pool by hand in the console, folded into the
+existing "list a new product" workflow as one more step, not a separate
+task. Revisit only if guide/catalogue volume grows enough that manual
+upkeep becomes an actual bottleneck — not preemptively.
+
+**Attribution pilot setup, in progress 2026-09-03:** account/console
+access confirmed working. A custom Publisher named "DhivanSTech" was
+created (the prebuilt list is all major ad networks — eBay, Google,
+etc. — nothing for an owned website, so custom entry was needed).
+Channel set to "Search" for website/guide traffic — none of the five
+built-in options (Social, Video, Email, Display, Search) is a precise
+match for organic content traffic, but Search is the closest fit since
+that's how most guide readers will actually arrive; this is a reporting
+label only; it doesn't change what gets tracked. First ad group: name
+"Website — ESP32 Dev Board", click-through URL
+`https://www.amazon.co.uk/dp/B0DJPZHZ1X` (the ESP32 dev board's real
+Amazon page), used as the single pilot destination to prove the
+mechanism before creating more ad groups per product/guide. One
+important note on the account itself: the Ads console this pulls
+products from is not scoped to DST alone — it also lists unrelated
+items (e.g. "Camera 360 HD", "QRCode Barcode Scanner Pro") priced at
+£0.00, confirmed by the user to be real but not DST's — so "Add all on
+this page" must never be used when adding to the product pool; always
+search and add DST products by name individually.
 
 **On outsourcing the writing (#5):** this isn't a near-term budget line
 — the plan should wait for Section 6's actual revenue-per-visit data
