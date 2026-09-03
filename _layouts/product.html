@@ -162,9 +162,12 @@ layout: default
               {% break %}
             {% endif %}
           {% endfor %}
+          {% if forloop.first %}{% assign first_v_catalog = v_catalog %}{% endif %}
           <button
             class="variant-btn{% if forloop.first %} selected{% endif %}"
+            data-asin="{{ v.asin }}"
             data-price="{{ v.price }}"
+            data-price-amount="{{ v_catalog.price_amount }}"
             data-url="{{ v.amazon_url | default: v.url }}"
             data-stock="{{ v.stock }}"
             data-image="{{ v.image }}"
@@ -186,7 +189,19 @@ layout: default
         target="_blank"
         rel="noopener noreferrer">View on Amazon &rarr;</a>
 
-      <p class="product-amazon-note">You will be taken to Amazon to complete your purchase.</p>
+      <button
+        id="kit-btn"
+        type="button"
+        class="btn-add-kit btn-add-kit-detail"
+        data-kit-asin="{% if page.variants %}{{ page.variants[0].asin }}{% else %}{{ catalog_product.asin | default: page.asin }}{% endif %}"
+        data-kit-title="{{ page.title | escape }}"
+        data-kit-price="{% if page.variants %}{{ page.variants[0].price }}{% else %}{{ page.price }}{% endif %}"
+        data-kit-price-amount="{% if page.variants %}{{ first_v_catalog.price_amount }}{% else %}{{ catalog_product.price_amount }}{% endif %}"
+        data-kit-image="{% if page.variants %}{{ page.variants[0].image }}{% else %}{{ page.image }}{% endif %}"
+        data-kit-page-url="{{ page.url | relative_url }}"
+        data-kit-amazon-url="{% if page.variants %}{{ page.variants[0].amazon_url | default: page.variants[0].url }}{% elsif page.amazon_url %}{{ page.amazon_url }}{% endif %}">+ Add to Kit</button>
+
+      <p class="product-amazon-note">You will be taken to Amazon to complete your purchase. "Add to Kit" collects parts here first — one link sends the whole kit to your Amazon basket from the <a href="/kit/">Kit page</a>.</p>
 
       <a href="/shop/" class="product-back-link">&larr; Back to Shop</a>
 
@@ -314,6 +329,15 @@ layout: default
     if (priceEl && btn.dataset.price) priceEl.textContent = btn.dataset.price;
     var amazonBtn = document.getElementById('amazon-btn');
     if (amazonBtn && btn.dataset.url) amazonBtn.href = btn.dataset.url;
+
+    var kitBtn = document.getElementById('kit-btn');
+    if (kitBtn) {
+      if (btn.dataset.asin) kitBtn.dataset.kitAsin = btn.dataset.asin;
+      if (btn.dataset.price) kitBtn.dataset.kitPrice = btn.dataset.price;
+      if (btn.dataset.priceAmount) kitBtn.dataset.kitPriceAmount = btn.dataset.priceAmount;
+      if (btn.dataset.image) kitBtn.dataset.kitImage = btn.dataset.image;
+      if (btn.dataset.url) kitBtn.dataset.kitAmazonUrl = btn.dataset.url;
+    }
 
     var stockText = document.getElementById('stock-status-text');
     if (stockText && btn.dataset.stock) {

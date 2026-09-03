@@ -9,6 +9,7 @@ layout: default
   </header>
 
   {% assign total = 0 %}
+  {% assign kit_items_json = "" %}
   <div class="bundle-items">
     {% for ref in page.products %}
       {% assign ref_asin = ref.asin | default: ref %}
@@ -23,6 +24,9 @@ layout: default
       {% if product %}
         {% assign line_total = product.price_amount | times: ref_qty %}
         {% assign total = total | plus: line_total %}
+        {% capture kit_item_json %}{"asin": {{ product.asin | jsonify }}, "title": {{ product.title | jsonify }}, "price": {{ product.price | jsonify }}, "priceAmount": {{ product.price_amount | jsonify }}, "image": {{ product.image | jsonify }}, "pageUrl": {{ product.page_url | relative_url | jsonify }}, "amazonUrl": {{ product.amazon_url | jsonify }}, "qty": {{ ref_qty | jsonify }}}{% endcapture %}
+        {% if kit_items_json != "" %}{% assign kit_items_json = kit_items_json | append: "," %}{% endif %}
+        {% assign kit_items_json = kit_items_json | append: kit_item_json %}
         <article class="bundle-item">
           <img src="{{ product.image | default: '/assets/images/products/placeholder.svg' }}" alt="{{ product.title }}" onerror="this.src='/assets/images/products/placeholder.svg'">
           <div>
@@ -43,9 +47,24 @@ layout: default
   <aside class="bundle-total">
     <span>Approximate total</span>
     <strong>GBP {{ total | round: 2 }}</strong>
+    <button type="button" id="add-bundle-to-kit-btn" class="btn-add-kit btn-add-kit-detail">Add Full Kit to Cart</button>
   </aside>
 
   <div class="product-body-content">
     {{ content }}
   </div>
 </article>
+
+<script type="application/json" id="bundle-items-json">[{{ kit_items_json }}]</script>
+<script>
+(function () {
+  var btn = document.getElementById('add-bundle-to-kit-btn');
+  if (!btn || !window.DSTKit) return;
+  btn.addEventListener('click', function () {
+    var items = JSON.parse(document.getElementById('bundle-items-json').textContent || '[]');
+    window.DSTKit.addBundle(items);
+    btn.textContent = 'Added ✓ — View Kit';
+    btn.onclick = function () { window.location.href = '/kit/'; };
+  });
+})();
+</script>

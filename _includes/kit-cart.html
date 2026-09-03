@@ -1,0 +1,126 @@
+<script>
+(function () {
+  var STORAGE_KEY = 'dstKitCart';
+
+  function getCart() {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function saveCart(cart) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+    updateBadge();
+  }
+
+  function addToKit(item, qty) {
+    qty = qty || 1;
+    var cart = getCart();
+    var existing = cart.filter(function (i) { return i.asin === item.asin; })[0];
+    if (existing) {
+      existing.qty += qty;
+    } else {
+      cart.push({
+        asin: item.asin,
+        title: item.title,
+        price: item.price,
+        priceAmount: Number(item.priceAmount) || 0,
+        image: item.image,
+        pageUrl: item.pageUrl,
+        amazonUrl: item.amazonUrl,
+        qty: qty
+      });
+    }
+    saveCart(cart);
+  }
+
+  function addBundleToKit(items) {
+    (items || []).forEach(function (item) {
+      addToKit(item, item.qty || 1);
+    });
+  }
+
+  function removeFromKit(asin) {
+    saveCart(getCart().filter(function (i) { return i.asin !== asin; }));
+  }
+
+  function setKitQty(asin, qty) {
+    var cart = getCart();
+    var item = cart.filter(function (i) { return i.asin === asin; })[0];
+    if (!item) return;
+    if (qty <= 0) {
+      cart = cart.filter(function (i) { return i.asin !== asin; });
+    } else {
+      item.qty = qty;
+    }
+    saveCart(cart);
+  }
+
+  function clearKit() {
+    saveCart([]);
+  }
+
+  function kitCount() {
+    return getCart().reduce(function (sum, i) { return sum + i.qty; }, 0);
+  }
+
+  function kitTotal() {
+    return getCart().reduce(function (sum, i) { return sum + (i.priceAmount * i.qty); }, 0);
+  }
+
+  function updateBadge() {
+    var badge = document.getElementById('kit-badge');
+    if (!badge) return;
+    var count = kitCount();
+    badge.textContent = count;
+    badge.hidden = count === 0;
+  }
+
+  // Delegated so any element anywhere on the site with these data-kit-*
+  // attributes becomes an "Add to Kit" button with no per-page wiring.
+  // Capture phase (not bubble): the shop page's clickable product cards
+  // navigate on any click that isn't inside an <a>, and that listener is
+  // attached directly to the card, which fires before a document-level
+  // bubble listener would. Capturing on document runs first instead, so
+  // stopPropagation() here actually reaches the card handler in time.
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-kit-asin]');
+    if (!btn) return;
+    e.stopPropagation();
+    addToKit({
+      asin: btn.dataset.kitAsin,
+      title: btn.dataset.kitTitle,
+      price: btn.dataset.kitPrice,
+      priceAmount: btn.dataset.kitPriceAmount,
+      image: btn.dataset.kitImage,
+      pageUrl: btn.dataset.kitPageUrl,
+      amazonUrl: btn.dataset.kitAmazonUrl
+    }, 1);
+    var original = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Added ✓';
+    btn.classList.add('btn-add-kit--added');
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.classList.remove('btn-add-kit--added');
+      btn.disabled = false;
+    }, 1200);
+  }, true);
+
+  updateBadge();
+
+  window.DSTKit = {
+    get: getCart,
+    add: addToKit,
+    addBundle: addBundleToKit,
+    remove: removeFromKit,
+    setQty: setKitQty,
+    clear: clearKit,
+    count: kitCount,
+    total: kitTotal,
+    updateBadge: updateBadge
+  };
+})();
+</script>

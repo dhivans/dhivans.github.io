@@ -336,22 +336,28 @@ burden, and makes everything after it measurable instead of a guess.
   mapping, it doesn't submit a sitemap for you.
 - **Product structured data** ✅ — done. Real JSON-LD Product schema
   (price, availability, brand, image) is live on every product page.
-- **Google Merchant Center** ⬜ — not started; no product feed exists
-  yet, and unlike everything else in this list, this one isn't just
-  "unstarted," it's **genuinely unresolved and shouldn't be built on a
-  guess.** Checked Google's actual current marketplace-seller policy
-  before writing this: Google's own guidance is that an individual seller
-  on a marketplace should submit product data *through the marketplace*,
-  not via a separate manual feed — and Merchant Center's crawler
-  separately checks that a feed's price/availability match what's on the
-  linked landing page, which is awkward however this feed's `link` field
-  is pointed (DST's own pages have no checkout to match against; Amazon's
-  listings aren't DST's page to represent that way in a Google-facing
-  feed). Getting this wrong risks the whole Merchant Center account, not
-  one listing. Needs either a proper research pass on the specific
-  mechanism for marketplace-only sellers, or a look at what Google's own
-  signup flow actually asks for once the domain migration (§5.1) is done
-  and there's a stable canonical URL to build a feed around either way.
+- **Google Merchant Center** ❌ **dead end for DST as currently
+  structured — resolved 2026-09-03, don't re-propose without a real
+  change in circumstances.** Confirmed against Google's own primary
+  documentation, not a guess: the landing-page policy states outright
+  *"Only link to the domain from your Merchant Center account. Don't
+  redirect people to another website outside of the domain that you
+  claimed in your Merchant Center account,"* and the checkout
+  requirements separately require in-stock products to be "available to
+  add to cart and finalize their purchase" on that same claimed domain.
+  Merchant Center (standard self-service account, paid Shopping ads or
+  free listings alike) is built for retailers who fulfil the sale on
+  their own claimed site — not for a content site whose product pages
+  link out to Amazon for the actual purchase, which is exactly DST's
+  setup and isn't going to stop being DST's setup. The earlier framing
+  below ("submit through the marketplace instead") was on the right
+  track but understated it: that's not an alternate *mechanism* DST could
+  configure, it's that this channel belongs to Amazon (as the
+  marketplace operator's own Merchant Center presence for
+  Amazon-fulfilled listings), not to DST. The only way this becomes
+  viable is DST building real cart/checkout on dhivanstech.co.uk itself —
+  a genuinely different, much bigger undertaking, not a quick win to
+  revisit opportunistically. Not pursuing.
 - **Basic analytics** ✅ (partial) — Google Analytics (GA4) is live in
   production. Specific event tracking (outbound Amazon click, guide page
   view as distinct events) hasn't been confirmed as set up — worth
@@ -444,8 +450,9 @@ business:
 
 - **Google Search Ads** on strong buying-intent terms ("buy ESP32-C3
   UK") — the closest thing to guaranteed intent.
-- **Google Shopping**, once structured data and Merchant Center
-  (Section 5.2) are already in place.
+- ~~Google Shopping~~ — not viable while checkout lives on Amazon rather
+  than dhivanstech.co.uk; see §5.2's Merchant Center note. Would need
+  real on-site checkout first, which isn't planned.
 - **Retargeting** — showing a kit to someone who viewed the matching
   project guide but didn't buy — is a far more targeted spend than broad
   prospecting ads.
@@ -538,8 +545,8 @@ though guides still lead as the main *content* pillar once that's done
 
 | # | What | Why | Status |
 |---|---|---|---|
-| 1 | Custom domain migration (§5.1) | Gates QR codes, Merchant Center's canonical URL, and general credibility | ✅ (email decision still open, doesn't block anything else) |
-| 2 | Finish Search Console + Merchant Center (§5.2) | Closes out the foundation — Merchant Center specifically still has an open policy question, see §5.2 | 🟡 (Search Console fully done on the new domain; Merchant Center still open) |
+| 1 | Custom domain migration (§5.1) | Gates QR codes and general credibility | ✅ (email decision still open, doesn't block anything else) |
+| 2 | Finish Search Console + Merchant Center (§5.2) | Closes out the foundation | ✅ (Search Console done on the new domain; Merchant Center resolved as not viable for DST, see §5.2 — nothing left to do here) |
 | 3 | Set up Amazon Attribution | Confirmed eligible (Brand Registry) — no reason left to wait, even though there's not much to attribute yet | ⬜ |
 | 4 | Populate "Tested by DST" on a handful of real products | Cheap (badge already built), plays to actual strength, immediate trust payoff | 🟡 |
 | 5 | Buying guides & comparisons (§4.1) | Highest intent-to-purchase content, cheapest to produce even though writing isn't the favourite part | ⬜ |
@@ -582,8 +589,8 @@ much smaller remaining task than building it was:
 - **#2 Search Console + Merchant Center** — Google Analytics (GA4),
   `sitemap.xml`, `robots.txt`, and the schema.org structured data on every
   product page are all real and already live. Search Console verification
-  is in progress; the Merchant Center feed itself is on hold pending the
-  policy question noted in §5.2.
+  is done. Merchant Center is closed out as a resolved dead end (§5.2) —
+  not something left to finish, something decided against.
 - **#4 "Tested by DST"** — the badge logic, per-field checkmark, and
   `spec_schema.yml` behind it are all fully built and live. Zero products
   currently have a populated `verified_specs` field, so the badge has

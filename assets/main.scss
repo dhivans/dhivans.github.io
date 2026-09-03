@@ -956,6 +956,27 @@ $sidebar-speed: 0.25s ease;
   svg { display: block; }
 }
 
+.sidebar-icon-badge-wrap {
+  position: relative;
+}
+
+.sidebar-badge {
+  position: absolute;
+  top: -0.3rem;
+  right: -0.45rem;
+  min-width: 15px;
+  height: 15px;
+  padding: 0 3px;
+  border-radius: 999px;
+  background: #00e5ff;
+  color: #0d1117;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 15px;
+  text-align: center;
+}
+
 .sidebar-label {
   white-space: nowrap;
   overflow: hidden;
@@ -1562,6 +1583,45 @@ $sidebar-speed: 0.25s ease;
     background-color: #ffffff;
     color: #0d1117 !important;
   }
+}
+
+// "Add to Kit" — outlined so it reads as a secondary action next to the
+// solid .btn-buy-now / .btn-amazon-full purchase buttons.
+.btn-add-kit {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  border-radius: 4px;
+  color: #00e5ff;
+  cursor: pointer;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.3rem 0.6rem;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    border-color: #00e5ff;
+    background-color: rgba(0, 229, 255, 0.08);
+  }
+
+  &:disabled,
+  &.btn-add-kit--added {
+    color: #7ee787;
+    border-color: rgba(126, 231, 135, 0.4);
+    cursor: default;
+  }
+}
+
+.btn-add-kit-detail {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 // ============================================================

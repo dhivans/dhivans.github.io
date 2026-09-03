@@ -97,6 +97,16 @@ Prices are approximate and may vary. Amazon links are affiliate links.</p>
         <span class="price">{{ product.price }}</span>
         <div class="product-card-actions">
           <button class="btn-compare" type="button" data-compare-asin="{{ product.asin }}">Compare</button>
+          <button
+            class="btn-add-kit"
+            type="button"
+            data-kit-asin="{{ product.asin }}"
+            data-kit-title="{{ product.title | escape }}"
+            data-kit-price="{{ product.price | escape }}"
+            data-kit-price-amount="{{ product.price_amount }}"
+            data-kit-image="{{ product.image }}"
+            data-kit-page-url="{{ product_page_url | relative_url }}"
+            data-kit-amazon-url="{{ product_buy_url }}">+ Kit</button>
           {% assign buy_url = product_buy_url %}
           {% if buy_url %}
           <a href="{{ buy_url }}" class="btn-buy-now" target="_blank" rel="noopener noreferrer">Buy Now</a>
