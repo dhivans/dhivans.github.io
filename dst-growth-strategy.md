@@ -38,10 +38,9 @@ not deleted — revisit them once the earlier phases are running themselves
 and there's real data to justify the extra effort.
 
 **Domains are owned, migration is planned (§5.1).** DST owns
-`dhivanstech.co.uk` and `dhivanstech.com` (Namecheap registration,
-Cloudflare DNS). Which one is primary is still an open call — see
-Section 10 — but the migration steps themselves are written up in §5.1
-rather than left as a vague future assumption.
+`dhivanstech.co.uk` (primary) and `dhivanstech.com` (redirects to it),
+registered at Namecheap with Cloudflare DNS. The migration steps are
+written up in §5.1 rather than left as a vague future assumption.
 
 **If something below depends on a decision only you can make — a real
 inventory/packaging change, a platform commitment, anything with a cost —
@@ -302,16 +301,17 @@ the Search Console/Merchant Center work in §5.2, so that work targets the
 domain that'll actually be live going forward rather than needing to be
 partly redone.
 
-**Open decision — which domain is primary.** Not assumed here either
-way. `dhivanstech.co.uk` fits DST's UK-registered-company, UK-stock
-branding already used elsewhere in this plan; `dhivanstech.com` is what
-people default to typing from habit and reads better internationally if
-that ever matters. Whichever isn't primary should redirect to the one
-that is, not sit unused — a redirect takes minutes to set up in
-Cloudflare and prevents a confusing split. See Section 10.
+**Decided: `dhivanstech.co.uk` is primary.** `dhivanstech.com` should
+redirect to it — a redirect rule in Cloudflare takes minutes and prevents
+a confusing split between the two.
 
-**The technical steps, once that's decided** (all doable without touching
-application code beyond one config line and one new file):
+**The technical steps — do these in order, DNS first.** Adding the
+`CNAME` file to the repo before DNS actually resolves would break the
+live site: GitHub Pages redirects the old `dhivans.github.io` URL to
+whatever's in that file as soon as it exists, regardless of whether the
+new domain is ready to receive traffic yet. So steps 1 happens in
+Cloudflare first (nothing for me to do there), and only once that's live
+does step 2 onward make sense:
 
 1. **DNS records in Cloudflare, for the primary domain:**
    - Apex domain (`dhivanstech.co.uk`) → four `A` records pointing at
@@ -679,11 +679,6 @@ this website plan. See Section 10.
 These need an actual decision from you before they can move from "idea"
 to "plan" — nothing here has been assumed one way or the other:
 
-- **Which domain is primary** — `dhivanstech.co.uk` or `dhivanstech.com`
-  (§5.1). Leaning toward `.co.uk` given DST's UK-registered-company
-  branding elsewhere in this plan, but that's a suggestion, not a
-  decision made on your behalf — whichever isn't chosen should redirect
-  to the other rather than sit unused.
 - **A real, physical combined-SKU kit** (as opposed to the content-only
   bundle already live, see Section 8) would still need a new Amazon
   listing, real packaging, and an inventory commitment. Worth pursuing
