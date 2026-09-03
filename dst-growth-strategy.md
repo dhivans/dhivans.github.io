@@ -37,9 +37,11 @@ good ideas that are too effort-heavy to start now are marked **Later**,
 not deleted — revisit them once the earlier phases are running themselves
 and there's real data to justify the extra effort.
 
-**A domain is being handled separately.** This plan assumes a proper
-domain exists or will exist wherever it references email capture, QR
-codes, or "your domain" — it doesn't make that decision for you.
+**Domains are owned, migration is planned (§5.1).** DST owns
+`dhivanstech.co.uk` and `dhivanstech.com` (Namecheap registration,
+Cloudflare DNS). Which one is primary is still an open call — see
+Section 10 — but the migration steps themselves are written up in §5.1
+rather than left as a vague future assumption.
 
 **If something below depends on a decision only you can make — a real
 inventory/packaging change, a platform commitment, anything with a cost —
@@ -288,19 +290,103 @@ logic, build *that one* tool — not the full six-tool suite up front.
 Ranked by effort-to-value ratio for one part-time person — not in the
 order the original brainstorm presented them.
 
-### 5.1 Do this first, before writing anything: measurement and technical setup
+### 5.1 Do this first, before anything else in this section: custom domain migration
+
+DST owns `dhivanstech.co.uk` and `dhivanstech.com` (registered at
+Namecheap, DNS managed through Cloudflare). This gates several other
+items in this plan — the QR-code funnel (§5.5) explicitly needs a real
+domain in place, Merchant Center's feed wants a stable canonical URL to
+point at, and "dhivans.github.io" on a business card or packaging never
+reads as well as a real domain. Worth doing before investing further in
+the Search Console/Merchant Center work in §5.2, so that work targets the
+domain that'll actually be live going forward rather than needing to be
+partly redone.
+
+**Open decision — which domain is primary.** Not assumed here either
+way. `dhivanstech.co.uk` fits DST's UK-registered-company, UK-stock
+branding already used elsewhere in this plan; `dhivanstech.com` is what
+people default to typing from habit and reads better internationally if
+that ever matters. Whichever isn't primary should redirect to the one
+that is, not sit unused — a redirect takes minutes to set up in
+Cloudflare and prevents a confusing split. See Section 10.
+
+**The technical steps, once that's decided** (all doable without touching
+application code beyond one config line and one new file):
+
+1. **DNS records in Cloudflare, for the primary domain:**
+   - Apex domain (`dhivanstech.co.uk`) → four `A` records pointing at
+     GitHub Pages' IPs: `185.199.108.153`, `185.199.109.153`,
+     `185.199.110.153`, `185.199.111.153` (add the matching `AAAA`
+     records too if IPv6 is wanted: `2606:50c0:8000::153`,
+     `8001::153`, `8002::153`, `8003::153`).
+   - `www` subdomain → a `CNAME` record pointing at `dhivans.github.io`.
+   - Set these records to **DNS only** (grey cloud, not the orange
+     "proxied" cloud) at first. GitHub's automatic HTTPS certificate
+     issuance can conflict with Cloudflare's proxy if it's on from the
+     start — safer to enable proxying afterward, once HTTPS is confirmed
+     working.
+2. **Add a `CNAME` file** to the repo root containing just the chosen
+   domain (e.g. `dhivanstech.co.uk`) — this is what tells GitHub Pages
+   which custom domain to serve.
+3. **Set the custom domain in the repo's GitHub Pages settings**
+   (Settings → Pages → Custom domain), wait for GitHub's DNS check to
+   pass, then tick **Enforce HTTPS** once it's available (this can take
+   up to a day after the DNS check passes).
+4. **Set up a redirect for the non-primary domain** to the primary one —
+   a Cloudflare redirect rule is the simplest way, since DNS for both
+   already lives there.
+5. **Update `_config.yml`'s `url:`** from `https://dhivans.github.io` to
+   the new domain — this automatically fixes the sitemap, structured
+   data, and RSS feed URLs, since they all read from this one value.
+6. **Re-enable Cloudflare's proxy** (orange cloud) if wanted, once HTTPS
+   is confirmed working — and set Cloudflare's SSL/TLS mode to **Full**
+   or **Full (strict)**, never **Flexible**, which causes a redirect loop
+   against GitHub Pages' enforced HTTPS.
+7. **Add a new Google Search Console property for the new domain** — and
+   this time the **Domain** property type with DNS TXT verification
+   actually works correctly, since DNS for this domain is genuinely
+   controlled in Cloudflare (unlike the `github.io` subdomain, which
+   isn't DST's DNS to verify). Once it's verified, run Search Console's
+   **Change of Address** tool from the old `dhivans.github.io` property
+   to tell Google this is the same site moving, rather than letting the
+   old property just go stale — this preserves search ranking history
+   better than a silent switch.
+8. **Email is a related but separate decision** — not required for the
+   domain migration itself, but worth deciding alongside it since it
+   feeds directly into §5.3's email plan. Cloudflare Email Routing (free,
+   just forwards `hello@dhivanstech.co.uk`-style addresses to an existing
+   inbox) covers the newsletter/contact use case without needing a full
+   paid mailbox product.
+
+### 5.2 Do this next: measurement and technical setup
 
 This is almost entirely one-time setup work, has zero ongoing content
 burden, and makes everything after it measurable instead of a guess.
 
-- **Google Search Console** ⬜ — not set up yet. Still the one
-  non-negotiable next step here; this is also where future content topics
-  should come from (see Section 6) rather than guessing.
+- **Google Search Console** 🟡 — in progress: an HTML verification file
+  is live on `dhivans.github.io` and awaiting the Verify click as of this
+  writing. Once §5.1's domain migration happens, this property should get
+  a **Change of Address** to the new domain (or a fresh Domain-type
+  property verified via Cloudflare DNS) rather than being left pointing
+  at the GitHub Pages URL.
 - **Product structured data** ✅ — done. Real JSON-LD Product schema
   (price, availability, brand, image) is live on every product page.
 - **Google Merchant Center** ⬜ — not started; no product feed exists
-  yet. High leverage, mostly a one-time technical/data-feed task, worth
-  doing early once Search Console is in.
+  yet, and unlike everything else in this list, this one isn't just
+  "unstarted," it's **genuinely unresolved and shouldn't be built on a
+  guess.** Checked Google's actual current marketplace-seller policy
+  before writing this: Google's own guidance is that an individual seller
+  on a marketplace should submit product data *through the marketplace*,
+  not via a separate manual feed — and Merchant Center's crawler
+  separately checks that a feed's price/availability match what's on the
+  linked landing page, which is awkward however this feed's `link` field
+  is pointed (DST's own pages have no checkout to match against; Amazon's
+  listings aren't DST's page to represent that way in a Google-facing
+  feed). Getting this wrong risks the whole Merchant Center account, not
+  one listing. Needs either a proper research pass on the specific
+  mechanism for marketplace-only sellers, or a look at what Google's own
+  signup flow actually asks for once the domain migration (§5.1) is done
+  and there's a stable canonical URL to build a feed around either way.
 - **Basic analytics** ✅ (partial) — Google Analytics (GA4) is live in
   production. Specific event tracking (outbound Amazon click, guide page
   view as distinct events) hasn't been confirmed as set up — worth
@@ -310,7 +396,7 @@ burden, and makes everything after it measurable instead of a guess.
   correct manual `robots.txt`. Not originally its own line item here, but
   it's exactly the kind of Search Console prep this phase is about.
 
-### 5.2 Ongoing, low-cost habits: Reddit and email
+### 5.3 Ongoing, low-cost habits: Reddit and email
 
 Neither of these is a content production line — they're standing habits
 that reuse content already being written elsewhere, not a new workload.
@@ -332,7 +418,7 @@ month" gives people a real reason to hand over an email address. Don't
 switch it on until there are a few guides worth sending — an empty list
 with nothing useful to mail is wasted setup.
 
-### 5.3 Deferred: video (YouTube and short-form)
+### 5.4 Deferred: video (YouTube and short-form)
 
 The original brainstorm ranked YouTube as the single highest-priority
 channel. This isn't deferred because it's a poor fit skill-wise — there's
@@ -349,18 +435,18 @@ actually converts. The same applies to repurposing content across
 Instagram/TikTok/Pinterest — real production overhead for channels that
 haven't been validated yet.
 
-### 5.4 Later, needs real-world coordination: packaging QR-code funnel
+### 5.5 Later, needs real-world coordination: packaging QR-code funnel
 
 Genuinely clever: a QR code on packaging linking to a product-specific
 "thanks for buying, here's your quick-start" page turns an Amazon sale
 (where DST has no direct relationship with the buyer) into a visit to
 DST's own site. But it only works for products where DST controls the
 physical packaging — not generic dropshipped items — and needs the
-landing pages built and a real domain in place first. Worth doing, not
-worth doing before the buying-guides pillar and the basics in Section 5.1
-are running.
+landing pages built and the domain migration (§5.1) done first, so the
+QR code points somewhere permanent. Worth doing, not worth doing before
+the buying-guides pillar and the basics in Section 5.2 are running.
 
-### 5.5 Later, needs real budget: creator/sample outreach
+### 5.6 Later, needs real budget: creator/sample outreach
 
 Sending free parts to small creators (roughly 5k-50k followers, people
 who actually build electronics rather than general tech influencers) with
@@ -378,7 +464,7 @@ audience to read afterward wastes the spend. Start with a small number
 (a handful, not the twenty from the original brainstorm) as a trial before
 committing to more. See Section 10 for the budget decision this needs.
 
-### 5.6 Last, and only once something is proven: paid advertising
+### 5.7 Last, and only once something is proven: paid advertising
 
 Deliberately last, and for a good reason: paid traffic only makes sense
 once there's something worth paying to promote. Running ads to sell a
@@ -394,7 +480,7 @@ business:
 - **Google Search Ads** on strong buying-intent terms ("buy ESP32-C3
   UK") — the closest thing to guaranteed intent.
 - **Google Shopping**, once structured data and Merchant Center
-  (Section 5.1) are already in place.
+  (Section 5.2) are already in place.
 - **Retargeting** — showing a kit to someone who viewed the matching
   project guide but didn't buy — is a far more targeted spend than broad
   prospecting ads.
@@ -487,34 +573,35 @@ though guides still lead as the main *content* pillar once that's done
 
 | # | What | Why | Status |
 |---|---|---|---|
-| 1 | Finish Search Console + Merchant Center | Closes out the foundation, mostly small remaining steps | 🟡 |
-| 2 | Set up Amazon Attribution | Confirmed eligible (Brand Registry) — no reason left to wait, even though there's not much to attribute yet | ⬜ |
-| 3 | Populate "Tested by DST" on a handful of real products | Cheap (badge already built), plays to actual strength, immediate trust payoff | 🟡 |
-| 4 | Buying guides & comparisons (§4.1) | Highest intent-to-purchase content, cheapest to produce even though writing isn't the favourite part | ⬜ |
-| 5 | Internal linking | Free, compounds every guide written | 🟡 |
-| 6 | Rest of the product page standard (§2) | Real photos, cross-sell links, on the remaining catalogue | 🟡 |
-| 7 | Project tutorials (§4.2) | Converts problems into product sales | 🟡 |
-| 8 | Reddit + email (§5.2) | Low-cost ongoing habits, repeat visitors | 🟡 |
-| 9 | Customer proof / UGC (§3) | Trust, cheap to collect once there's traffic | ⬜ |
-| 10 | QR-code packaging docs (§5.4) | Turns Amazon buyers into site visitors | ⬜ |
-| 11 | DST Lab testing content hub (§4.4) | Hard-to-copy differentiator, and plays to strength — bigger lift than #3, this is full write-ups | 🟡 |
-| 12 | Interactive tools (§4.5) | Backlinks, repeat visitors | ⬜ |
-| 13 | Video (§5.3) | Distribution, evergreen discovery — see note below | ◻ |
-| 14 | Creator/sample outreach (§5.5) | Targeted awareness + backlinks, needs budget | ◻ |
-| 15 | Paid advertising (§5.6) | Scale only what's already proven | ◻ |
+| 1 | Custom domain migration (§5.1) | Gates QR codes, Merchant Center's canonical URL, and general credibility | ⬜ |
+| 2 | Finish Search Console + Merchant Center (§5.2) | Closes out the foundation — Merchant Center specifically still has an open policy question, see §5.2 | 🟡 |
+| 3 | Set up Amazon Attribution | Confirmed eligible (Brand Registry) — no reason left to wait, even though there's not much to attribute yet | ⬜ |
+| 4 | Populate "Tested by DST" on a handful of real products | Cheap (badge already built), plays to actual strength, immediate trust payoff | 🟡 |
+| 5 | Buying guides & comparisons (§4.1) | Highest intent-to-purchase content, cheapest to produce even though writing isn't the favourite part | ⬜ |
+| 6 | Internal linking | Free, compounds every guide written | 🟡 |
+| 7 | Rest of the product page standard (§2) | Real photos, cross-sell links, on the remaining catalogue | 🟡 |
+| 8 | Project tutorials (§4.2) | Converts problems into product sales | 🟡 |
+| 9 | Reddit + email (§5.3) | Low-cost ongoing habits, repeat visitors | 🟡 |
+| 10 | Customer proof / UGC (§3) | Trust, cheap to collect once there's traffic | ⬜ |
+| 11 | QR-code packaging docs (§5.5) | Turns Amazon buyers into site visitors | ⬜ |
+| 12 | DST Lab testing content hub (§4.4) | Hard-to-copy differentiator, and plays to strength — bigger lift than #4, this is full write-ups | 🟡 |
+| 13 | Interactive tools (§4.5) | Backlinks, repeat visitors | ⬜ |
+| 14 | Video (§5.4) | Distribution, evergreen discovery — see note below | ◻ |
+| 15 | Creator/sample outreach (§5.6) | Targeted awareness + backlinks, needs budget | ◻ |
+| 16 | Paid advertising (§5.7) | Scale only what's already proven | ◻ |
 
 Already done, sitting outside this ordered list because there's nothing
 left to schedule: **bundles/kits (§4.6)** — a content bundle already
 exists and works well; a physical combined-SKU version remains a
 separate future business decision, not a backlog item.
 
-**On outsourcing the writing (#4):** this isn't a near-term budget line
+**On outsourcing the writing (#5):** this isn't a near-term budget line
 — the plan should wait for Section 6's actual revenue-per-visit data
 before spending money there. Once a guide or two shows real
 outbound-click/revenue performance, *that's* the trigger to consider
 paying someone to write more like it, not a fixed point on this list.
 
-**On video (#13) staying this far down despite being a real skill:**
+**On video (#14) staying this far down despite being a real skill:**
 this is my inference, not something confirmed directly — worth
 correcting if it's off. Even with genuine video ability, each piece
 still takes real production time that competes with everything above
@@ -527,33 +614,33 @@ that's not the actual reasoning, this position should move.
 was built properly, but hasn't been used on real content yet. That's a
 much smaller remaining task than building it was:
 
-- **#1 Search Console + Merchant Center** — Google Analytics (GA4),
+- **#2 Search Console + Merchant Center** — Google Analytics (GA4),
   `sitemap.xml`, `robots.txt`, and the schema.org structured data on every
   product page are all real and already live. Search Console verification
-  and the actual Merchant Center feed submission are the two genuine
-  remaining steps.
-- **#3 "Tested by DST"** — the badge logic, per-field checkmark, and
+  is in progress; the Merchant Center feed itself is on hold pending the
+  policy question noted in §5.2.
+- **#4 "Tested by DST"** — the badge logic, per-field checkmark, and
   `spec_schema.yml` behind it are all fully built and live. Zero products
   currently have a populated `verified_specs` field, so the badge has
   never actually shown up yet — correctly, since nothing's been tested
   through it yet.
-- **#5 Internal linking** — two separate mechanisms exist. "Featured In"
+- **#6 Internal linking** — two separate mechanisms exist. "Featured In"
   (auto-links a product to any project referencing its ASIN) is built
   *and populated* — e.g. the ESP32/WS2812B/KY-040 products already link
   to the mood-ring project. "Pairs Well With" (manually curated cross-sell
   via a `related:` field) is built but not populated on any product yet.
-- **#7 Project tutorials** — ahead of where the plan assumed: three real
+- **#8 Project tutorials** — ahead of where the plan assumed: three real
   build-log posts already exist (bench PSU build, 3D-printer endstop
   swap, ESP32 rotary RGB mood ring), each with real wiring, code, and a
   "what actually mattered" gotchas section. They're written as build logs
   rather than this plan's "problem → buy these parts → build it" framing,
   but the mood-ring one is already close in spirit and cross-links to its
   three component products.
-- **#8 Reddit + email** — email has a real, working signup form
+- **#9 Reddit + email** — email has a real, working signup form
   (`_includes/newsletter.html`), just switched off (`enabled: false`,
   no email service connected yet). Reddit is an off-site habit this audit
   can't see either way.
-- **#11 DST Lab** — `how-we-test.md` documents the testing methodology
+- **#12 DST Lab** — `how-we-test.md` documents the testing methodology
   and badge system properly, but there's no "Lab" content hub with
   individual test/teardown write-ups yet — one policy page, not yet a
   content pillar.
@@ -592,6 +679,11 @@ this website plan. See Section 10.
 These need an actual decision from you before they can move from "idea"
 to "plan" — nothing here has been assumed one way or the other:
 
+- **Which domain is primary** — `dhivanstech.co.uk` or `dhivanstech.com`
+  (§5.1). Leaning toward `.co.uk` given DST's UK-registered-company
+  branding elsewhere in this plan, but that's a suggestion, not a
+  decision made on your behalf — whichever isn't chosen should redirect
+  to the other rather than sit unused.
 - **A real, physical combined-SKU kit** (as opposed to the content-only
   bundle already live, see Section 8) would still need a new Amazon
   listing, real packaging, and an inventory commitment. Worth pursuing
