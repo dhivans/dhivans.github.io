@@ -150,6 +150,12 @@ switches:
     - key: mounting_size
       label: Mounting Size
       type: text
+    - key: contact_material
+      label: Contact Material
+      type: text
+    - key: minimum_applicable_load
+      label: Minimum Applicable Load
+      type: text
 
 led-lighting:
   label: Addressable LED Lighting

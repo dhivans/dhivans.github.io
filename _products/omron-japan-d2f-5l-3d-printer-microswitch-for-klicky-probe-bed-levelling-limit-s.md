@@ -16,6 +16,8 @@ specs:
   rated_voltage: "250V AC"
   rated_current: "5A"
   mounting_size: "M2 screws, 6.5mm hole spacing"
+  contact_material: "Silver alloy"
+  minimum_applicable_load: "100 mA at 5 VDC"
 datasheet_url: "https://omronfs.omron.com/en_US/ecb/products/pdf/en-d2f.pdf"
 variants:
   - label: "1 Pack"
