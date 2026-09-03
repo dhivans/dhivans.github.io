@@ -62,3 +62,6 @@ exclude:
   # contains literal example Liquid syntax (e.g. `{% bom asins="..." %}`)
   # that breaks the build if Jekyll tries to render it.
   - dst-expansion-plan.md
+  # Strategic planning doc, not a real page -- would otherwise publish as
+  # an unstyled, publicly-indexed page at /dst-growth-strategy/.
+  - dst-growth-strategy.md
