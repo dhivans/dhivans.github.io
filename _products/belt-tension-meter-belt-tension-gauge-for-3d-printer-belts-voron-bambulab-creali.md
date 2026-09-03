@@ -4,7 +4,7 @@ title: "Belt Tension Meter, Belt Tension Gauge, for 3D Printer Belts, Voron Bamb
 description: "Achieve precise belt tension for your 3D printer with this indispensable belt tensioning tool, also known as a tensiometer or tension gauge. Specifically designed for 2GT timing belts with elastic properties, this tool ensures optimal performance and longevity for your Voron, Bambu Lab, Creality, and other 3D printers. Proper belt tension is crucial for maintaining accurate print quality and preventing skipped steps or layer shifts."
 category: "test-equipment"
 price: "£15.99"
-stock: 1
+stock: 0
 amazon_url: "https://www.amazon.co.uk/dp/B0DBGPNMBL"
 asin: "B0DBGPNMBL"
 image: "https://m.media-amazon.com/images/I/41dDASY6uOL.jpg"
