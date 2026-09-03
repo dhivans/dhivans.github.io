@@ -622,12 +622,14 @@ label only; it doesn't change what gets tracked. First ad group: name
 `https://www.amazon.co.uk/dp/B0DJPZHZ1X` (the ESP32 dev board's real
 Amazon page), used as the single pilot destination to prove the
 mechanism before creating more ad groups per product/guide. One
-important note on the account itself: the Ads console this pulls
-products from is not scoped to DST alone — it also lists unrelated
-items (e.g. "Camera 360 HD", "QRCode Barcode Scanner Pro") priced at
-£0.00, confirmed by the user to be real but not DST's — so "Add all on
-this page" must never be used when adding to the product pool; always
-search and add DST products by name individually.
+note on the account itself: the Ads console this pulls products from
+is not scoped to DST alone — it also lists unrelated items (e.g.
+"Camera 360 HD", "QRCode Barcode Scanner Pro") priced at £0.00,
+confirmed by the user to be real but not DST's. Initially assumed this
+meant "Add all on this page" was unsafe — tested directly and that's
+wrong: those items show as "Ineligible" (no real price/stock) and get
+excluded automatically, so "Add all" is fine to use and doesn't need
+the manual per-item search-and-add workaround.
 
 **On outsourcing the writing (#5):** this isn't a near-term budget line
 — the plan should wait for Section 6's actual revenue-per-visit data
