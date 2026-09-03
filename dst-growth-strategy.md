@@ -609,6 +609,17 @@ existing "list a new product" workflow as one more step, not a separate
 task. Revisit only if guide/catalogue volume grows enough that manual
 upkeep becomes an actual bottleneck — not preemptively.
 
+**Forward plan (stated by the user, 2026-09-03): the eventual target is
+a proper automated system built on a new, dedicated API integration**
+— not indefinite manual console work. The reasoning above is about
+sequencing, not a permanent no: prove the mechanism manually first (the
+pilot campaign/tag), let real guide content accumulate, and once
+there's enough recurring tag/product-pool upkeep to justify the build
+— new OAuth scope, an Attribution API client, a sync script — build it
+then. Revisit whether direct API access is realistic for a single
+seller (vs. needing a tool-provider partner) at that point, since that
+was unresolved in the research above, not confirmed either way.
+
 **Attribution pilot setup, in progress 2026-09-03:** account/console
 access confirmed working. A custom Publisher named "DhivanSTech" was
 created (the prebuilt list is all major ad networks — eBay, Google,
