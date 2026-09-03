@@ -363,10 +363,10 @@ does step 2 onward make sense:
 This is almost entirely one-time setup work, has zero ongoing content
 burden, and makes everything after it measurable instead of a guess.
 
-- **Google Search Console** 🟡 — in progress: an HTML verification file
-  is live on `dhivans.github.io` and awaiting the Verify click as of this
-  writing. Once §5.1's domain migration happens, this property should get
-  a **Change of Address** to the new domain (or a fresh Domain-type
+- **Google Search Console** ✅ (partial) — `dhivans.github.io` property
+  verified. Sitemap submission is the one remaining step there. Once
+  §5.1's domain migration happens, this property should get a
+  **Change of Address** to the new domain (or a fresh Domain-type
   property verified via Cloudflare DNS) rather than being left pointing
   at the GitHub Pages URL.
 - **Product structured data** ✅ — done. Real JSON-LD Product schema
