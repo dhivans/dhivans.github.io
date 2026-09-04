@@ -4,7 +4,7 @@ title: "ESP32 WROOM-32 Development Board, Wi-Fi, Bluetooth, BLE, 2.4 GHz (3)"
 description: "A 3-pack of the ESP32 WROOM-32 development board: Wi-Fi, Bluetooth, and BLE on a 30-pin, USB-C board for prototyping, IoT projects, and low-power sensor networks."
 category: "electrical-components"
 price: "£30.00"
-stock: 0
+stock: 1
 amazon_url: "https://www.amazon.co.uk/dp/B0HDZX3ML2"
 asin: "B0HDZX3ML2"
 image: "https://m.media-amazon.com/images/I/41edbf6EvFL.jpg"
