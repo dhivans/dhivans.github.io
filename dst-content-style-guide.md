@@ -47,6 +47,19 @@ build the same way as `dst-growth-strategy.md`.
   fact. The D2F-01 vs D2F-5L guide (2026-09-03) is the model: the whole
   piece exists because the real datasheet contradicted what the
   listings implied.
+- **Never display a number the site can't currently back up.** Found
+  2026-09-04: one product (1N4007 diode) had `rating: 4.5, reviews: 42`
+  in its front matter, rendering a real-looking star rating + review
+  count on the live page. Checked the actual Amazon listing directly —
+  it has 0 reviews. Nothing in `sync_products.py` or anywhere else in
+  the pipeline ever syncs rating/review data; this was manually typed
+  into exactly one of 46 products in an April 2026 bulk-normalize
+  commit and never touched again. Removed. The underlying
+  `page.rating`/`page.reviews` template feature in `product.html` is
+  fine to keep for if/when there's ever a real, kept-current source for
+  it — the fix was removing the fabricated data, not the feature. Same
+  root cause as the BMP280 humidity claim: a specific, checkable claim
+  that looked legitimate but nothing was actually keeping true.
 - **Categories**: `categories: [guides]` for buying guides/comparisons,
   `[general]` for site announcements/updates. Guides currently live in
   the existing `_posts` collection (reusing what's already built,

@@ -5,8 +5,6 @@ description: "The 1N4007 diode stands as a versatile rectifier diode engineered 
 category: "electrical-components"
 price: "From £5"
 image: "https://m.media-amazon.com/images/I/31z-CzlhsWL._SX522_.jpg"
-rating: 4.5
-reviews: 42
 featured: false
 sales_30d: 0
 badge: ""
