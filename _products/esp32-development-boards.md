@@ -11,7 +11,7 @@ images:
   - "https://m.media-amazon.com/images/I/615GSwQnqcL.jpg"
   - "https://m.media-amazon.com/images/I/61AGm5wCn1L.jpg"
 featured: false
-sales_30d: 122
+sales_30d: 119
 badge: ""
 tags: ['esp32', 'microcontroller']
 related:
@@ -25,7 +25,7 @@ variants:
     price: "£12.04"
     url: "https://www.amazon.co.uk/dp/B0DJPZHZ1X"
     image: "https://m.media-amazon.com/images/I/41edbf6EvFL.jpg"
-    stock: 1
+    stock: 270
     specs:
       connectivity: "Wi-Fi 802.11 b/g/n (2.4GHz) + Bluetooth v4.2 (BR/EDR + BLE)"
       supply_voltage: "5V (USB) / 3.3V logic"
@@ -39,6 +39,6 @@ variants:
     price: "£12.99"
     url: "https://www.amazon.co.uk/dp/B0DDL7WNZX"
     image: "https://m.media-amazon.com/images/I/515uvjqBzkL.jpg"
-    stock: 1
+    stock: 0
 ---
 The ESP32 WROOM-32 is a versatile development board that combines Wi-Fi, Bluetooth, and Bluetooth Low Energy (BLE) capabilities, making it suitable for a wide range of applications. From low-power sensor networks to demanding tasks like voice encoding, music streaming, and MP3 decoding, this powerful board offers a comprehensive solution. With its robust features and flexibility, the ESP32 WROOM-32 is an excellent choice for developers seeking to create innovative projects.

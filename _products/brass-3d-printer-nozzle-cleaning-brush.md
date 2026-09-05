@@ -4,7 +4,7 @@ title: "Brass 3D Printer Nozzle Cleaning Brush"
 description: "Maintain the optimal performance of your 3D printer with this brass nozzle brush. Designed to effectively clean the nozzle, it removes any residual filament or debris buildup, ensuring consistent and precise printing. The sturdy brass bristles are tough enough to dislodge stubborn material while being gentle on the nozzle's surface."
 category: "tools"
 price: "£4.99"
-stock: 1
+stock: 0
 amazon_url: "https://www.amazon.co.uk/dp/B0DFJXCM96"
 asin: "B0DFJXCM96"
 image: "https://m.media-amazon.com/images/I/41W97e3YAkL.jpg"
