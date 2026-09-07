@@ -5,7 +5,7 @@ description: "Introducing the KY-040 360 Degrees Rotary Encoder Module, a versat
 category: "electrical-components"
 price: "£4.15"
 stock: 15
-amazon_url: "https://www.amazon.co.uk/dp/B0DJPYB5N8"
+amazon_url: "https://www.amazon.co.uk/dp/B0DJPYB5N8?tag=dhivanstech-20"
 asin: "B0DJPYB5N8"
 image: "https://m.media-amazon.com/images/I/41t1wUgL-1L.jpg"
 images:

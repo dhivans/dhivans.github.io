@@ -23,7 +23,7 @@ variants:
   - label: "ESP32 WROOM-32"
     asin: "B0DJPZHZ1X"
     price: "£12.04"
-    url: "https://www.amazon.co.uk/dp/B0DJPZHZ1X"
+    url: "https://www.amazon.co.uk/dp/B0DJPZHZ1X?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/41edbf6EvFL.jpg"
     stock: 271
     specs:
@@ -37,7 +37,7 @@ variants:
   - label: "ESP32-C3 Super Mini"
     asin: "B0DDL7WNZX"
     price: "£12.99"
-    url: "https://www.amazon.co.uk/dp/B0DDL7WNZX"
+    url: "https://www.amazon.co.uk/dp/B0DDL7WNZX?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/515uvjqBzkL.jpg"
     stock: 0
 ---

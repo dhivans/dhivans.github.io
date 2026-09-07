@@ -5,7 +5,7 @@ description: "The NE8FDY-C6 etherCON Cat 6 panel-mount connector represents the 
 category: "electrical-components"
 price: "£11.22"
 stock: 22
-amazon_url: "https://www.amazon.co.uk/dp/B0FRZCTG8X"
+amazon_url: "https://www.amazon.co.uk/dp/B0FRZCTG8X?tag=dhivanstech-20"
 asin: "B0FRZCTG8X"
 image: "https://m.media-amazon.com/images/I/314Mm13+ieL.jpg"
 featured: false

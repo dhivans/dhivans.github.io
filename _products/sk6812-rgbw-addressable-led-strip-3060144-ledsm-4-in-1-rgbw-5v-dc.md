@@ -21,37 +21,37 @@ variants:
   - label: "Black, 30 LEDs per Meter"
     asin: "B0DKQZ3YDH"
     price: "£10.99"
-    url: "https://www.amazon.co.uk/dp/B0DKQZ3YDH"
+    url: "https://www.amazon.co.uk/dp/B0DKQZ3YDH?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/31AM0LLgFgL.jpg"
     stock: 0
   - label: "White, 30 LEDs per Meter"
     asin: "B0DKQT95K5"
     price: "£10.99"
-    url: "https://www.amazon.co.uk/dp/B0DKQT95K5"
+    url: "https://www.amazon.co.uk/dp/B0DKQT95K5?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/31TJ1Nu-TDL.jpg"
     stock: 0
   - label: "Black, 60 LEDs per Meter"
     asin: "B0DKQTDCDV"
     price: "£12.99"
-    url: "https://www.amazon.co.uk/dp/B0DKQTDCDV"
+    url: "https://www.amazon.co.uk/dp/B0DKQTDCDV?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/41O6k5Fd+dL.jpg"
     stock: 0
   - label: "White, 60 LEDs per Meter"
     asin: "B0DKR98YPQ"
     price: "£12.99"
-    url: "https://www.amazon.co.uk/dp/B0DKR98YPQ"
+    url: "https://www.amazon.co.uk/dp/B0DKR98YPQ?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/41FvewaapjL.jpg"
     stock: 0
   - label: "Black, 144 LEDs per Meter"
     asin: "B0DKR19CHL"
     price: "£15.99"
-    url: "https://www.amazon.co.uk/dp/B0DKR19CHL"
+    url: "https://www.amazon.co.uk/dp/B0DKR19CHL?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/41yeN-zcPsL.jpg"
     stock: 0
   - label: "White, 144 LEDs per Meter"
     asin: "B0DKR293H2"
     price: "£15.99"
-    url: "https://www.amazon.co.uk/dp/B0DKR293H2"
+    url: "https://www.amazon.co.uk/dp/B0DKR293H2?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/41ypGrV9nzL.jpg"
     stock: 0
 ---

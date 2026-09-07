@@ -21,37 +21,37 @@ variants:
   - label: "1, Blue, 0.96'"
     asin: "B0F2ZGGHVG"
     price: "£6.80"
-    url: "https://www.amazon.co.uk/dp/B0F2ZGGHVG"
+    url: "https://www.amazon.co.uk/dp/B0F2ZGGHVG?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/517HwwWGkOL.jpg"
     stock: 0
   - label: "1, White, 0.96'"
     asin: "B0F2ZFMPR6"
     price: "£8.47"
-    url: "https://www.amazon.co.uk/dp/B0F2ZFMPR6"
+    url: "https://www.amazon.co.uk/dp/B0F2ZFMPR6?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/517HwwWGkOL.jpg"
     stock: 32
   - label: "1, Yellow, 0.96'"
     asin: "B0F2ZFZWVW"
     price: "£4.99"
-    url: "https://www.amazon.co.uk/dp/B0F2ZFZWVW"
+    url: "https://www.amazon.co.uk/dp/B0F2ZFZWVW?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/517HwwWGkOL.jpg"
     stock: 0
   - label: "3, Blue, 0.96'"
     asin: "B0F2ZDJ672"
     price: "£12.99"
-    url: "https://www.amazon.co.uk/dp/B0F2ZDJ672"
+    url: "https://www.amazon.co.uk/dp/B0F2ZDJ672?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/517HwwWGkOL.jpg"
     stock: 0
   - label: "3, White, 0.96'"
     asin: "B0F2ZD243Y"
     price: "£12.99"
-    url: "https://www.amazon.co.uk/dp/B0F2ZD243Y"
+    url: "https://www.amazon.co.uk/dp/B0F2ZD243Y?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/517HwwWGkOL.jpg"
     stock: 0
   - label: "3, Yellow, 0.96'"
     asin: "B0F2ZF916M"
     price: "£12.99"
-    url: "https://www.amazon.co.uk/dp/B0F2ZF916M"
+    url: "https://www.amazon.co.uk/dp/B0F2ZF916M?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/517HwwWGkOL.jpg"
     stock: 0
 ---

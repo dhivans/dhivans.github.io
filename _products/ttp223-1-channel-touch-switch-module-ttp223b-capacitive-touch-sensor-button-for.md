@@ -5,7 +5,7 @@ description: "Introducing the TTP223 Touch Switch Module, a versatile and user-f
 category: "electrical-components"
 price: "£2.99"
 stock: 0
-amazon_url: "https://www.amazon.co.uk/dp/B0DKR6PHKG"
+amazon_url: "https://www.amazon.co.uk/dp/B0DKR6PHKG?tag=dhivanstech-20"
 asin: "B0DKR6PHKG"
 image: "https://m.media-amazon.com/images/I/41qizR1lfiL.jpg"
 featured: false

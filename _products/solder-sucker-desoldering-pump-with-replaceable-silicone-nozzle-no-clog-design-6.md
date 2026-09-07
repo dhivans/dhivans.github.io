@@ -5,7 +5,7 @@ description: "The Solder Sucker No Clog Desoldering Pump is an essential tool fo
 category: "tools"
 price: "£12.99"
 stock: 0
-amazon_url: "https://www.amazon.co.uk/dp/B0DMTZFP52"
+amazon_url: "https://www.amazon.co.uk/dp/B0DMTZFP52?tag=dhivanstech-20"
 asin: "B0DMTZFP52"
 image: "https://m.media-amazon.com/images/I/21k3e4luLxL.jpg"
 images:

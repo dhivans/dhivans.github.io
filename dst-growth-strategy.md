@@ -643,6 +643,46 @@ wrong: those items show as "Ineligible" (no real price/stock) and get
 excluded automatically, so "Add all" is fine to use and doesn't need
 the manual per-item search-and-add workaround.
 
+**Amazon Associates — reversed course, account created 2026-09-07.**
+The earlier note above (2026-09-03) concluded Associates wasn't worth
+pursuing for tracking purposes, since Attribution covers that without
+the re-enrollment risk. That reasoning still holds for the *tracking*
+use case. What changed: investigating whether review/rating data could
+be pulled automatically (it can't — confirmed directly against
+Amazon's own SP-API Catalog Items API schema, which has no rating/
+review field in its `includedData` options at all, for any seller,
+any tier) led to checking the Creators API (PA-API's replacement,
+PA-API itself now returning 403s), which **does** expose that kind of
+catalog data but gates it behind full Associates re-acceptance *plus*
+10 qualified sales within a rolling 30-day window — a materially
+higher bar than the 3-sales-in-180-days that closed the account
+before. Raised this plainly: getting Associates doesn't remove the
+traffic requirement, it just adds a program with a stricter one. The
+user chose to proceed anyway, explicitly reframing the sales
+requirement as a deadline to force real guide output rather than a
+reason to wait — a legitimate, considered call once the real numbers
+were on the table, not a reversal made without knowing them.
+
+**What's actually running now:** new Associates account, ID
+`dhivanstech-20`, created 2026-09-07. The real clock: **3 qualifying
+sales needed within 180 days of approval** (by ~2027-03-06) or the
+account risks the same closure as before — but this time it's a
+real, live requirement to track, not a hypothetical. Immediately
+fixed the actual precondition for that clock to move at all: **no
+outbound Amazon link on the site carried any tracking tag before
+today**, despite `/shop/`'s own copy already claiming "Amazon links
+are affiliate links" — that line was false until now. Fixed at the
+source, not just patched: `ASSOCIATE_TAG = "dhivanstech-20"` added to
+both `scripts/sync_products.py` (4 URL-construction sites) and
+`scripts/product_data.py` (the `amazon_url()` fallback that
+`build_catalog.py` depends on), so every future sync/build
+automatically produces tagged links — the same "fix root cause, not
+symptom" lesson as the Gemfile.lock incident. Bulk-retrofitted all
+174 existing stored URLs across the 46 product files plus the
+regenerated `catalog.json` to match. Verified live across every
+render path: product pages, shop cards, bundles, and the kit
+builder's client-side data.
+
 **On outsourcing the writing (#5):** this isn't a near-term budget line
 — the plan should wait for Section 6's actual revenue-per-visit data
 before spending money there. Once a guide or two shows real

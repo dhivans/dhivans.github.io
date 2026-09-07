@@ -77,6 +77,17 @@ SELLER_ID      = _require_env("AMAZON_SELLER_ID")
 # SP-API base URL — UK / EU endpoint (eu-west-1 region)
 SPAPI_BASE = "https://sellingpartnerapi-eu.amazon.com"
 
+# Amazon Associates tracking ID — not a secret, it's meant to be public in
+# URLs. Confirmed live 2026-09-07. Every generated/updated product URL
+# should carry this so outbound clicks actually count toward the Associates
+# account's qualifying-sales requirement.
+ASSOCIATE_TAG = "dhivanstech-20"
+
+
+def amazon_product_url(asin: str) -> str:
+    """Builds the canonical, tagged Amazon product URL for an ASIN."""
+    return f"https://www.amazon.co.uk/dp/{asin}?tag={ASSOCIATE_TAG}"
+
 # _products/ directory (two levels up from this script)
 PRODUCTS_DIR = Path(__file__).resolve().parent.parent / "_products"
 ROOT_DIR = PRODUCTS_DIR.parent
@@ -624,8 +635,8 @@ def update_sales_in_fm(fm_raw: str, sales: int) -> str:
 
 
 def update_url_in_fm(fm_raw: str, asin: str, variant_index: int | None) -> str:
-    """Ensures the Amazon product URL uses the clean https://www.amazon.co.uk/dp/{ASIN} format."""
-    url = f"https://www.amazon.co.uk/dp/{asin}"
+    """Ensures the Amazon product URL uses the clean, tagged canonical format."""
+    url = amazon_product_url(asin)
     if variant_index is None:
         return re.sub(
             r'^(amazon_url:\s*)["\']?[^\'"#\n]*["\']?',
@@ -811,7 +822,7 @@ def auto_add_variant(md_path: Path, asin: str, title: str,
     if not fm_raw:
         return False
 
-    url       = f"https://www.amazon.co.uk/dp/{asin}"
+    url       = amazon_product_url(asin)
     label     = _extract_variant_label(title)
     price_val = price or ""
 
@@ -840,7 +851,7 @@ def auto_add_variant(md_path: Path, asin: str, title: str,
     existing_price  = _get(r'^price:\s*["\']?([^"\'#\n]*)["\']?')
     existing_image  = _get(r'^image:\s*["\']?([^"\'#\n]*)["\']?')
     existing_url    = _get(r'^amazon_url:\s*["\']?([^"\'#\n]*)["\']?') \
-                      or f"https://www.amazon.co.uk/dp/{existing_asin}"
+                      or amazon_product_url(existing_asin)
     existing_stock_m = re.search(r'^stock:\s*(\d+)', fm_raw, re.MULTILINE)
     existing_stock  = int(existing_stock_m.group(1)) if existing_stock_m else 0
     existing_label  = _extract_variant_label(existing_title)
@@ -905,7 +916,7 @@ def create_product_file(asin: str, title: str, price: str | None, image_url: str
 
     category   = assign_category(title)
     price_str  = price or ""
-    amazon_url = f"https://www.amazon.co.uk/dp/{asin}"
+    amazon_url = amazon_product_url(asin)
 
     images_yaml = ""
     if extra_images:

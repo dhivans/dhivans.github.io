@@ -5,7 +5,7 @@ description: "" # TODO: add description
 category: "electrical-components"
 price: "£5.00"
 stock: 0
-amazon_url: "https://www.amazon.co.uk/dp/B0DRW44SDH"
+amazon_url: "https://www.amazon.co.uk/dp/B0DRW44SDH?tag=dhivanstech-20"
 asin: "B0DRW44SDH"
 image: "https://m.media-amazon.com/images/I/41gCVLkwYfL.jpg"
 featured: false

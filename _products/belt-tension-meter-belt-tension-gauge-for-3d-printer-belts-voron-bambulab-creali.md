@@ -5,7 +5,7 @@ description: "Achieve precise belt tension for your 3D printer with this indispe
 category: "test-equipment"
 price: "£15.99"
 stock: 0
-amazon_url: "https://www.amazon.co.uk/dp/B0DBGPNMBL"
+amazon_url: "https://www.amazon.co.uk/dp/B0DBGPNMBL?tag=dhivanstech-20"
 asin: "B0DBGPNMBL"
 image: "https://m.media-amazon.com/images/I/41dDASY6uOL.jpg"
 images:

@@ -21,19 +21,19 @@ variants:
   - label: "ESP-01"
     asin: "B0DJPZDR6B"
     price: "£3.99"
-    url: "https://www.amazon.co.uk/dp/B0DJPZDR6B"
+    url: "https://www.amazon.co.uk/dp/B0DJPZDR6B?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/31S7Z9NSCbL.jpg"
     stock: 0
   - label: "ESP-01S"
     asin: "B0DJPYB7D1"
     price: "£3.99"
-    url: "https://www.amazon.co.uk/dp/B0DJPYB7D1"
+    url: "https://www.amazon.co.uk/dp/B0DJPYB7D1?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/31RN2SINo6L.jpg"
     stock: 0
   - label: "USB to ESP Adaptor"
     asin: "B0DJPYKVP2"
     price: "£3.99"
-    url: "https://www.amazon.co.uk/dp/B0DJPYKVP2"
+    url: "https://www.amazon.co.uk/dp/B0DJPYKVP2?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/31vKIhlSASL.jpg"
     stock: 0
 ---

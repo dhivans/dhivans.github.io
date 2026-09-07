@@ -5,7 +5,7 @@ description: "The UNI-T UT89XD is a professional-grade True RMS digital multimet
 category: "test-equipment"
 price: "£52.43"
 stock: 8
-amazon_url: "https://www.amazon.co.uk/dp/B08P55R959"
+amazon_url: "https://www.amazon.co.uk/dp/B08P55R959?tag=dhivanstech-20"
 asin: "B08P55R959"
 image: "https://m.media-amazon.com/images/I/41mc-EcnsaL.jpg"
 featured: false

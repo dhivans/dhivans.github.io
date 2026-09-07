@@ -5,7 +5,7 @@ description: "Streamline your electrical projects with this comprehensive hand c
 category: "tools"
 price: "£12.99"
 stock: 0
-amazon_url: "https://www.amazon.co.uk/dp/B0DH3ZHSN6"
+amazon_url: "https://www.amazon.co.uk/dp/B0DH3ZHSN6?tag=dhivanstech-20"
 asin: "B0DH3ZHSN6"
 image: "https://m.media-amazon.com/images/I/51RH7qDAHPL.jpg"
 images:

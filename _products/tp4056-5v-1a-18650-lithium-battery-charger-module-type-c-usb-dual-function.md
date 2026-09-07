@@ -27,13 +27,13 @@ variants:
   - label: "1 Pack"
     asin: "B0DFKDM1NN"
     price: "£2.88"
-    url: "https://www.amazon.co.uk/dp/B0DFKDM1NN"
+    url: "https://www.amazon.co.uk/dp/B0DFKDM1NN?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/41E3x3NUjpL.jpg"
     stock: 0
   - label: "3 Pack"
     asin: "B0DFKNT4RG"
     price: "£4.29"
-    url: "https://www.amazon.co.uk/dp/B0DFKNT4RG"
+    url: "https://www.amazon.co.uk/dp/B0DFKNT4RG?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/41E3x3NUjpL.jpg"
     stock: 60
 ---

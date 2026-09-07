@@ -20,13 +20,13 @@ variants:
   - label: "Digital"
     asin: "B0DJYKBXVB"
     price: "£6.50"
-    url: "https://www.amazon.co.uk/dp/B0DJYKBXVB"
+    url: "https://www.amazon.co.uk/dp/B0DJYKBXVB?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/31QcyUwyihL.jpg"
     stock: 0
   - label: "Plastic"
     asin: "B0DJYP5Y4S"
     price: "£5.50"
-    url: "https://www.amazon.co.uk/dp/B0DJYP5Y4S"
+    url: "https://www.amazon.co.uk/dp/B0DJYP5Y4S?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/41EfW24TLDL.jpg"
     stock: 0
 ---

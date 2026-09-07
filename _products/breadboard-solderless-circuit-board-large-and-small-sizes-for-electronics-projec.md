@@ -17,7 +17,7 @@ variants:
   - label: "Half-size, 1"
     asin: "B0DLYTCS3J"
     price: "£6.99"
-    url: "https://www.amazon.co.uk/dp/B0DLYTCS3J"
+    url: "https://www.amazon.co.uk/dp/B0DLYTCS3J?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/414gncnd+JL.jpg"
     stock: 487
     specs:
@@ -29,7 +29,7 @@ variants:
   - label: "Full-size, 1"
     asin: "B0DLYXPZ17"
     price: "£6.99"
-    url: "https://www.amazon.co.uk/dp/B0DLYXPZ17"
+    url: "https://www.amazon.co.uk/dp/B0DLYXPZ17?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/3158P4rLkFL.jpg"
     stock: 489
     specs:
@@ -41,7 +41,7 @@ variants:
   - label: "Half-size, 3"
     asin: "B0DSGJZ1XN"
     price: "£9.99"
-    url: "https://www.amazon.co.uk/dp/B0DSGJZ1XN"
+    url: "https://www.amazon.co.uk/dp/B0DSGJZ1XN?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/414gncnd+JL.jpg"
     stock: 0
     specs:
@@ -53,7 +53,7 @@ variants:
   - label: "Full-size, 3"
     asin: "B0DSJSNM61"
     price: "£14.99"
-    url: "https://www.amazon.co.uk/dp/B0DSJSNM61"
+    url: "https://www.amazon.co.uk/dp/B0DSJSNM61?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/3158P4rLkFL.jpg"
     stock: 0
     specs:

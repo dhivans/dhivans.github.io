@@ -5,7 +5,7 @@ description: "Upgrade your machinery with these 608ZZ ball bearings, precision-c
 category: "mechanical-components"
 price: "£6.99"
 stock: 0
-amazon_url: "https://www.amazon.co.uk/dp/B0DPLJN167"
+amazon_url: "https://www.amazon.co.uk/dp/B0DPLJN167?tag=dhivanstech-20"
 asin: "B0DPLJN167"
 image: "https://m.media-amazon.com/images/I/41NoU7OFL8L.jpg"
 images:

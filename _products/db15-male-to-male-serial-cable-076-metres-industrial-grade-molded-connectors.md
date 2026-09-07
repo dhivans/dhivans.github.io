@@ -5,7 +5,7 @@ description: "Experience reliable connectivity with this premium DB15 male-to-ma
 category: "electrical-components"
 price: "£6.22"
 stock: 9
-amazon_url: "https://www.amazon.co.uk/dp/B0FTY84GX1"
+amazon_url: "https://www.amazon.co.uk/dp/B0FTY84GX1?tag=dhivanstech-20"
 asin: "B0FTY84GX1"
 image: "https://m.media-amazon.com/images/I/414YDezspEL.jpg"
 featured: false

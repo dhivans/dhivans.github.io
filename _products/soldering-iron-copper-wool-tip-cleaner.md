@@ -5,7 +5,7 @@ description: "This soldering iron copper wool tip cleaner is an essential tool f
 category: "tools"
 price: "£7.99"
 stock: 0
-amazon_url: "https://www.amazon.co.uk/dp/B0DFMNSTR3"
+amazon_url: "https://www.amazon.co.uk/dp/B0DFMNSTR3?tag=dhivanstech-20"
 asin: "B0DFMNSTR3"
 image: "https://m.media-amazon.com/images/I/41cfyHZnYrL.jpg"
 images:

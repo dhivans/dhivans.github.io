@@ -5,7 +5,7 @@ description: "Unlock seamless connectivity with this Micro HDMI to HDMI adapter,
 category: "electrical-components"
 price: "£4.99"
 stock: 0
-amazon_url: "https://www.amazon.co.uk/dp/B0DPBF5JHS"
+amazon_url: "https://www.amazon.co.uk/dp/B0DPBF5JHS?tag=dhivanstech-20"
 asin: "B0DPBF5JHS"
 image: "https://m.media-amazon.com/images/I/31lgbMwelmL.jpg"
 images:

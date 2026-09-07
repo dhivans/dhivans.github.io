@@ -5,7 +5,7 @@ description: "This stainless steel double-sided ruler is a precision measuring t
 category: "tools"
 price: "£9.99"
 stock: 0
-amazon_url: "https://www.amazon.co.uk/dp/B0DFKC13LR"
+amazon_url: "https://www.amazon.co.uk/dp/B0DFKC13LR?tag=dhivanstech-20"
 asin: "B0DFKC13LR"
 image: "https://m.media-amazon.com/images/I/31aRj0bEaRL.jpg"
 images:

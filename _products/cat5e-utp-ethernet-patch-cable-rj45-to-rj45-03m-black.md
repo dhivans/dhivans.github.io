@@ -5,7 +5,7 @@ description: "Connect your network devices with reliability using this high-qual
 category: "electrical-components"
 price: "£4.79"
 stock: 102
-amazon_url: "https://www.amazon.co.uk/dp/B0FRZDCQRP"
+amazon_url: "https://www.amazon.co.uk/dp/B0FRZDCQRP?tag=dhivanstech-20"
 asin: "B0FRZDCQRP"
 image: "https://m.media-amazon.com/images/I/51RQ8NSPM3L.jpg"
 featured: true

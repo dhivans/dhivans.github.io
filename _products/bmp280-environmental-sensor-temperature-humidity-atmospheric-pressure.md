@@ -24,13 +24,13 @@ variants:
   - label: "3.3V"
     asin: "B0DJYT1J4H"
     price: "£7.99"
-    url: "https://www.amazon.co.uk/dp/B0DJYT1J4H"
+    url: "https://www.amazon.co.uk/dp/B0DJYT1J4H?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/311hivCmHaL.jpg"
     stock: 0
   - label: "5V"
     asin: "B0DJYTSDW5"
     price: "£7.99"
-    url: "https://www.amazon.co.uk/dp/B0DJYTSDW5"
+    url: "https://www.amazon.co.uk/dp/B0DJYTSDW5?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/31fm7xohApL.jpg"
     stock: 0
 ---

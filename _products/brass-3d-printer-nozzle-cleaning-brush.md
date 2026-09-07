@@ -5,7 +5,7 @@ description: "Maintain the optimal performance of your 3D printer with this bras
 category: "tools"
 price: "£4.99"
 stock: 0
-amazon_url: "https://www.amazon.co.uk/dp/B0DFJXCM96"
+amazon_url: "https://www.amazon.co.uk/dp/B0DFJXCM96?tag=dhivanstech-20"
 asin: "B0DFJXCM96"
 image: "https://m.media-amazon.com/images/I/41W97e3YAkL.jpg"
 images:

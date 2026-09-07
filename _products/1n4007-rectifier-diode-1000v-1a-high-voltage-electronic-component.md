@@ -22,19 +22,19 @@ variants:
   - label: "5"
     asin: "B0DRW6JJSY"
     price: "£5.00"
-    url: "https://www.amazon.co.uk/dp/B0DRW6JJSY"
+    url: "https://www.amazon.co.uk/dp/B0DRW6JJSY?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/31z-CzlhsWL.jpg"
     stock: 0
   - label: "10"
     asin: "B0DRW5CFQD"
     price: "£7.00"
-    url: "https://www.amazon.co.uk/dp/B0DRW5CFQD"
+    url: "https://www.amazon.co.uk/dp/B0DRW5CFQD?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/31z-CzlhsWL.jpg"
     stock: 0
   - label: "15"
     asin: "B0DRW6KC4L"
     price: "£9.00"
-    url: "https://www.amazon.co.uk/dp/B0DRW6KC4L"
+    url: "https://www.amazon.co.uk/dp/B0DRW6KC4L?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/31z-CzlhsWL.jpg"
     stock: 0
 ---

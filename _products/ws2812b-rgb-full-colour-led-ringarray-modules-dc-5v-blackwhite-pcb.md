@@ -21,37 +21,37 @@ variants:
   - label: "1 Pixel"
     asin: "B0DKLP3T1F"
     price: "£1.99"
-    url: "https://www.amazon.co.uk/dp/B0DKLP3T1F"
+    url: "https://www.amazon.co.uk/dp/B0DKLP3T1F?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/41lI7inIDIL.jpg"
     stock: 0
   - label: "1x8 Array"
     asin: "B0DKLWDS16"
     price: "£2.99"
-    url: "https://www.amazon.co.uk/dp/B0DKLWDS16"
+    url: "https://www.amazon.co.uk/dp/B0DKLWDS16?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/41lI7inIDIL.jpg"
     stock: 0
   - label: "2x2 Array"
     asin: "B0DKLTCQRS"
     price: "£2.49"
-    url: "https://www.amazon.co.uk/dp/B0DKLTCQRS"
+    url: "https://www.amazon.co.uk/dp/B0DKLTCQRS?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/41lI7inIDIL.jpg"
     stock: 0
   - label: "4x4 Array"
     asin: "B0DKLSKKPM"
     price: "£3.99"
-    url: "https://www.amazon.co.uk/dp/B0DKLSKKPM"
+    url: "https://www.amazon.co.uk/dp/B0DKLSKKPM?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/41lI7inIDIL.jpg"
     stock: 0
   - label: "5x5 Array"
     asin: "B0DKLP2HPT"
     price: "£6.99"
-    url: "https://www.amazon.co.uk/dp/B0DKLP2HPT"
+    url: "https://www.amazon.co.uk/dp/B0DKLP2HPT?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/41lI7inIDIL.jpg"
     stock: 49
   - label: "8x8 Array"
     asin: "B0DKLQDN4D"
     price: "£6.29"
-    url: "https://www.amazon.co.uk/dp/B0DKLQDN4D"
+    url: "https://www.amazon.co.uk/dp/B0DKLQDN4D?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/41lI7inIDIL.jpg"
     stock: 0
 ---

@@ -52,10 +52,16 @@ def currency_from_price(value: Any) -> str:
     return "GBP"
 
 
+# Amazon Associates tracking ID — not a secret, meant to be public in URLs.
+# Confirmed live 2026-09-07. Kept in sync manually with the same constant in
+# sync_products.py (no shared import between the two, deliberately simple).
+ASSOCIATE_TAG = "dhivanstech-20"
+
+
 def amazon_url(asin: str, explicit: Any = None) -> str:
     if explicit:
         return str(explicit)
-    return f"https://www.amazon.co.uk/dp/{asin}"
+    return f"https://www.amazon.co.uk/dp/{asin}?tag={ASSOCIATE_TAG}"
 
 
 def bool_stock(stock_qty: int | None) -> bool:

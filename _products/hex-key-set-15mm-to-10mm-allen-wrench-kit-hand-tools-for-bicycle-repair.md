@@ -23,13 +23,13 @@ variants:
   - label: "7 Piece"
     asin: "B0F2ZF7LS6"
     price: "£9.59"
-    url: "https://www.amazon.co.uk/dp/B0F2ZF7LS6"
+    url: "https://www.amazon.co.uk/dp/B0F2ZF7LS6?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/41La44eo5GL.jpg"
     stock: 0
   - label: "9 Piece"
     asin: "B0DZQ3V5TV"
     price: "£29.39"
-    url: "https://www.amazon.co.uk/dp/B0DZQ3V5TV"
+    url: "https://www.amazon.co.uk/dp/B0DZQ3V5TV?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/41La44eo5GL.jpg"
     stock: 49
 ---

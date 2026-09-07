@@ -5,7 +5,7 @@ description: "Effortlessly crimp and connect wires with this ratcheting crimping
 category: "tools"
 price: "£29.99"
 stock: 0
-amazon_url: "https://www.amazon.co.uk/dp/B0DH3YX6QY"
+amazon_url: "https://www.amazon.co.uk/dp/B0DH3YX6QY?tag=dhivanstech-20"
 asin: "B0DH3YX6QY"
 image: "https://m.media-amazon.com/images/I/51RBQOuxyKL.jpg"
 images:

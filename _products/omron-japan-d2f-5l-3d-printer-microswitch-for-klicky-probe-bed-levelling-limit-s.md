@@ -27,25 +27,25 @@ variants:
   - label: "1 Pack"
     asin: "B0DBGPD14M"
     price: "£4.80"
-    url: "https://www.amazon.co.uk/dp/B0DBGPD14M"
+    url: "https://www.amazon.co.uk/dp/B0DBGPD14M?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/31JB4jBGnQL.jpg"
     stock: 62
   - label: "3 Pack"
     asin: "B0DBGNPKVC"
     price: "£8.29"
-    url: "https://www.amazon.co.uk/dp/B0DBGNPKVC"
+    url: "https://www.amazon.co.uk/dp/B0DBGNPKVC?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/31JB4jBGnQL.jpg"
     stock: 50
   - label: "5 Pack"
     asin: "B0DBGPT1XR"
     price: "£9.60"
-    url: "https://www.amazon.co.uk/dp/B0DBGPT1XR"
+    url: "https://www.amazon.co.uk/dp/B0DBGPT1XR?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/31JB4jBGnQL.jpg"
     stock: 0
   - label: "10 Pack"
     asin: "B0DBGPFZ4F"
     price: "£14.40"
-    url: "https://www.amazon.co.uk/dp/B0DBGPFZ4F"
+    url: "https://www.amazon.co.uk/dp/B0DBGPFZ4F?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/31JB4jBGnQL.jpg"
     stock: 0
 ---

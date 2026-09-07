@@ -19,19 +19,19 @@ variants:
   - label: "3mm"
     asin: "B0DH417TH9"
     price: "£9.99"
-    url: "https://www.amazon.co.uk/dp/B0DH417TH9"
+    url: "https://www.amazon.co.uk/dp/B0DH417TH9?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/51uAiUa065L.jpg"
     stock: 0
   - label: "5mm"
     asin: "B0DH426PYW"
     price: "£14.99"
-    url: "https://www.amazon.co.uk/dp/B0DH426PYW"
+    url: "https://www.amazon.co.uk/dp/B0DH426PYW?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/51uAiUa065L.jpg"
     stock: 0
   - label: "10mm"
     asin: "B0DH414VV2"
     price: "£19.99"
-    url: "https://www.amazon.co.uk/dp/B0DH414VV2"
+    url: "https://www.amazon.co.uk/dp/B0DH414VV2?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/51uAiUa065L.jpg"
     stock: 0
 ---

@@ -5,7 +5,7 @@ description: "Introducing the NAUSB-W, a professional-grade panel-mount USB feed
 category: "electrical-components"
 price: "£11.20"
 stock: 41
-amazon_url: "https://www.amazon.co.uk/dp/B0FRZFZG45"
+amazon_url: "https://www.amazon.co.uk/dp/B0FRZFZG45?tag=dhivanstech-20"
 asin: "B0FRZFZG45"
 image: "https://m.media-amazon.com/images/I/51SXJHQWddL.jpg"
 images:

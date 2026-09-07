@@ -5,7 +5,7 @@ description: "Introducing the 2pcs/lot Anti-static Precision Tweezers Set - an e
 category: "tools"
 price: "£11.86"
 stock: 117
-amazon_url: "https://www.amazon.co.uk/dp/B0DMV1DTR3"
+amazon_url: "https://www.amazon.co.uk/dp/B0DMV1DTR3?tag=dhivanstech-20"
 asin: "B0DMV1DTR3"
 image: "https://m.media-amazon.com/images/I/41YvgLkTXfL.jpg"
 images:
