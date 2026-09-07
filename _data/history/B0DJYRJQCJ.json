@@ -393,5 +393,25 @@
     "date": "2026-09-03",
     "price": 4.99,
     "stock_qty": 0
+  },
+  {
+    "date": "2026-09-04",
+    "price": 4.99,
+    "stock_qty": 1
+  },
+  {
+    "date": "2026-09-05",
+    "price": 4.99,
+    "stock_qty": 0
+  },
+  {
+    "date": "2026-09-06",
+    "price": 4.99,
+    "stock_qty": 0
+  },
+  {
+    "date": "2026-09-07",
+    "price": 4.99,
+    "stock_qty": 1
   }
 ]
