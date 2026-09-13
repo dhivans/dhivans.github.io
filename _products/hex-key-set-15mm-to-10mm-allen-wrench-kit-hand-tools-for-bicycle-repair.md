@@ -24,7 +24,7 @@ variants:
     asin: "B0F2ZF7LS6"
     price: "£9.59"
     url: "https://www.amazon.co.uk/dp/B0F2ZF7LS6?tag=dhivanstech-20"
-    image: "https://m.media-amazon.com/images/I/41La44eo5GL.jpg"
+    image: "https://m.media-amazon.com/images/I/41Qb6A7NVWL.jpg"
     stock: 0
   - label: "9 Piece"
     asin: "B0DZQ3V5TV"

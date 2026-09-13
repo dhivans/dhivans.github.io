@@ -30,7 +30,7 @@ variants:
     asin: "B0DNNLN8QH"
     price: "£4.00"
     url: "https://www.amazon.co.uk/dp/B0DNNLN8QH?tag=dhivanstech-20"
-    image: "https://m.media-amazon.com/images/I/41Y6qK2VIUL.jpg"
+    image: "https://m.media-amazon.com/images/I/31LfRzweUeL.jpg"
     stock: 0
   - label: "Red, 30M"
     asin: "B0DNNJNFB2"
@@ -42,19 +42,19 @@ variants:
     asin: "B0DNNMSHRJ"
     price: "£4.00"
     url: "https://www.amazon.co.uk/dp/B0DNNMSHRJ?tag=dhivanstech-20"
-    image: "https://m.media-amazon.com/images/I/41Y6qK2VIUL.jpg"
+    image: "https://m.media-amazon.com/images/I/31bMm+enNSL.jpg"
     stock: 0
   - label: "Yellow, 30M"
     asin: "B0DNNM2PGH"
     price: "£4.00"
     url: "https://www.amazon.co.uk/dp/B0DNNM2PGH?tag=dhivanstech-20"
-    image: "https://m.media-amazon.com/images/I/41Y6qK2VIUL.jpg"
+    image: "https://m.media-amazon.com/images/I/31kVL3gAfsL.jpg"
     stock: 0
   - label: "Black, 100M"
     asin: "B0DNNMC7GC"
     price: "£5.00"
     url: "https://www.amazon.co.uk/dp/B0DNNMC7GC?tag=dhivanstech-20"
-    image: "https://m.media-amazon.com/images/I/317OWpCl3hL.jpg"
+    image: "https://m.media-amazon.com/images/I/31PBJn65OfL.jpg"
     stock: 0
   - label: "Blue, 100M"
     asin: "B0DNNMZXGS"
