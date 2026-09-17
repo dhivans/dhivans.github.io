@@ -25,7 +25,7 @@ variants:
     asin: "B0D1VWBFRC"
     price: "£9.99"
     url: "https://www.amazon.co.uk/dp/B0D1VWBFRC?tag=dhivanstech-20"
-    image: "https://m.media-amazon.com/images/I/41MKsEzRHwL.jpg"
+    image: "https://m.media-amazon.com/images/I/51-7yXw+f0L.jpg"
     stock: 0
   - label: "USB-A to Lightning, White"
     asin: "B0D1VWFBJB"
@@ -37,8 +37,8 @@ variants:
     asin: "B0D1VWBT25"
     price: "£9.59"
     url: "https://www.amazon.co.uk/dp/B0D1VWBT25?tag=dhivanstech-20"
-    image: "https://m.media-amazon.com/images/I/41MKsEzRHwL.jpg"
-    stock: 0
+    image: "https://m.media-amazon.com/images/I/51-7yXw+f0L.jpg"
+    stock: 4
   - label: "USB-A to USB-C, White"
     asin: "B0D1VVTHKN"
     price: "£9.59"
@@ -49,7 +49,7 @@ variants:
     asin: "B0D1VW5D94"
     price: "£9.99"
     url: "https://www.amazon.co.uk/dp/B0D1VW5D94?tag=dhivanstech-20"
-    image: "https://m.media-amazon.com/images/I/41MKsEzRHwL.jpg"
+    image: "https://m.media-amazon.com/images/I/51-7yXw+f0L.jpg"
     stock: 0
   - label: "USB-C to Lightning, White"
     asin: "B0D1VX8RHV"
@@ -61,8 +61,8 @@ variants:
     asin: "B0CW3JCDRH"
     price: "£9.59"
     url: "https://www.amazon.co.uk/dp/B0CW3JCDRH?tag=dhivanstech-20"
-    image: "https://m.media-amazon.com/images/I/41MKsEzRHwL.jpg"
-    stock: 0
+    image: "https://m.media-amazon.com/images/I/51-7yXw+f0L.jpg"
+    stock: 2
   - label: "USB-C to USB-C, White"
     asin: "B0D1VW8W52"
     price: "£9.99"
