@@ -8,7 +8,7 @@ image: "https://m.media-amazon.com/images/I/31JB4jBGnQL.jpg"
 images:
   - "https://m.media-amazon.com/images/I/31Kn8BYdz6L.jpg"
 featured: false
-sales_30d: 3
+sales_30d: 4
 badge: ""
 tags: []
 specs:
@@ -29,13 +29,13 @@ variants:
     price: "£4.80"
     url: "https://www.amazon.co.uk/dp/B0DBGPD14M?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/31JB4jBGnQL.jpg"
-    stock: 61
+    stock: 60
   - label: "3 Pack"
     asin: "B0DBGNPKVC"
     price: "£8.29"
     url: "https://www.amazon.co.uk/dp/B0DBGNPKVC?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/31JB4jBGnQL.jpg"
-    stock: 48
+    stock: 47
   - label: "5 Pack"
     asin: "B0DBGPT1XR"
     price: "£9.60"
