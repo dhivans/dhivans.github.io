@@ -6,7 +6,7 @@ category: "electrical-components"
 price: "From £4.99"
 image: "https://m.media-amazon.com/images/I/51ZP2U5wPBL.jpg"
 featured: false
-sales_30d: 14
+sales_30d: 12
 badge: ""
 tags: ['oled']
 specs:
