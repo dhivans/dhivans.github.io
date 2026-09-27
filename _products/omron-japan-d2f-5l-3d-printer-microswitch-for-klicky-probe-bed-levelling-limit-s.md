@@ -29,7 +29,7 @@ variants:
     price: "£4.80"
     url: "https://www.amazon.co.uk/dp/B0DBGPD14M?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/31JB4jBGnQL.jpg"
-    stock: 60
+    stock: 61
   - label: "3 Pack"
     asin: "B0DBGNPKVC"
     price: "£8.29"
