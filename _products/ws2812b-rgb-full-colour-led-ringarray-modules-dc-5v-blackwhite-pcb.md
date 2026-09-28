@@ -6,7 +6,7 @@ category: "electrical-components"
 price: "From £1.99"
 image: "https://m.media-amazon.com/images/I/51m+4R4rPiL.jpg"
 featured: false
-sales_30d: 1
+sales_30d: 2
 badge: ""
 tags: ['ws2812b', 'led']
 specs:
@@ -47,7 +47,7 @@ variants:
     price: "£6.99"
     url: "https://www.amazon.co.uk/dp/B0DKLP2HPT?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/41lI7inIDIL.jpg"
-    stock: 49
+    stock: 48
   - label: "8x8 Array"
     asin: "B0DKLQDN4D"
     price: "£6.29"
