@@ -1,1 +1,52 @@
-[]
+[
+  {
+    "asin": "B0DJYPH322",
+    "currency": "GBP",
+    "date": "2026-10-04",
+    "direction": "drop",
+    "new_price": 6.04,
+    "old_price": 6.71,
+    "slug": "cable-ties-3mm-and-25mm-widths-100mm-150mm-and-200mm-lengths-black-and-white",
+    "title": "Cable Ties, 3mm and 2.5mm Widths, 100mm, 150mm, and 200mm Lengths, Black and White"
+  },
+  {
+    "asin": "B0DJYR6FRR",
+    "currency": "GBP",
+    "date": "2026-10-04",
+    "direction": "drop",
+    "new_price": 6.04,
+    "old_price": 6.71,
+    "slug": "cable-ties-3mm-and-25mm-widths-100mm-150mm-and-200mm-lengths-black-and-white",
+    "title": "Cable Ties, 3mm and 2.5mm Widths, 100mm, 150mm, and 200mm Lengths, Black and White"
+  },
+  {
+    "asin": "B0DZQ3V5TV",
+    "currency": "GBP",
+    "date": "2026-10-04",
+    "direction": "drop",
+    "new_price": 26.45,
+    "old_price": 29.39,
+    "slug": "hex-key-set-15mm-to-10mm-allen-wrench-kit-hand-tools-for-bicycle-repair",
+    "title": "Hex Key Set, 1.5mm to 10mm Allen Wrench Kit, Hand Tools for Bicycle Repair"
+  },
+  {
+    "asin": "B0FRZCTG8X",
+    "currency": "GBP",
+    "date": "2026-10-04",
+    "direction": "drop",
+    "new_price": 11.22,
+    "old_price": 19.67,
+    "slug": "ne8fdy-c6-ethercon-cat-6-panel-mount-connector-metal-housing-professional-audio",
+    "title": "NE8FDY-C6 EtherCON Cat 6 Panel-Mount Connector, Metal Housing, Professional Audio-Video"
+  },
+  {
+    "asin": "B0DH8D9N9F",
+    "currency": "GBP",
+    "date": "2026-10-04",
+    "direction": "drop",
+    "new_price": 3.46,
+    "old_price": 3.84,
+    "slug": "usb-c-cable-android-charging-fast-charger-durable",
+    "title": "DST USB-C Cable, Android Charging, Fast Charger, Durable"
+  }
+]
