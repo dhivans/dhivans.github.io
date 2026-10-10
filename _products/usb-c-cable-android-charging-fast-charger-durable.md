@@ -6,7 +6,7 @@ category: "electrical-components"
 price: "From £4"
 image: "https://m.media-amazon.com/images/I/31NxmjwC4IL.jpg"
 featured: false
-sales_30d: 0
+sales_30d: 1
 badge: ""
 tags: ['usb', 'cable']
 specs:
@@ -28,6 +28,6 @@ variants:
     price: "£3.46"
     url: "https://www.amazon.co.uk/dp/B0DH8D9N9F?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/31NxmjwC4IL.jpg"
-    stock: 29
+    stock: 28
 ---
 Upgrade your device connectivity with these sleek and durable USB cables. The 1 metre USB-A to USB-C cable in a crisp white colour allows you to seamlessly connect your USB-C devices to traditional USB-A ports. Simultaneously, the 1 metre USB-C to USB-C cable in a sophisticated black shade enables high-speed data transfer and charging between USB-C compatible devices. Crafted with premium materials, these cables offer reliable performance and longevity. Whether you need to transfer files, charge your gadgets, or simply keep your devices connected, this cable duo has you covered with its versatility and stylish design. Upgrade your tech accessories today and experience the convenience of efficient connectivity.
