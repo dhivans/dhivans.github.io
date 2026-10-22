@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "asin": "B0DRW4GLJM",
+    "currency": "GBP",
+    "date": "2026-10-22",
+    "direction": "drop",
+    "new_price": 6.49,
+    "old_price": 10.06,
+    "slug": "round-rocker-switch-spst-2-pin-12v-dc-10a-black-20mm-mini-toggle-with-terminal-w",
+    "title": "Round Rocker Switch, SPST 2-Pin, 12V DC, 10A, Black, 20mm Mini Toggle with Terminal Wires"
+  },
+  {
+    "asin": "B0DRW5HVGY",
+    "currency": "GBP",
+    "date": "2026-10-22",
+    "direction": "drop",
+    "new_price": 7.99,
+    "old_price": 11.77,
+    "slug": "round-rocker-switch-spst-2-pin-12v-dc-10a-black-20mm-mini-toggle-with-terminal-w",
+    "title": "Round Rocker Switch, SPST 2-Pin, 12V DC, 10A, Black, 20mm Mini Toggle with Terminal Wires"
+  },
+  {
+    "asin": "B0DRW2CXKT",
+    "currency": "GBP",
+    "date": "2026-10-22",
+    "direction": "drop",
+    "new_price": 9.99,
+    "old_price": 11.75,
+    "slug": "round-rocker-switch-spst-2-pin-12v-dc-10a-black-20mm-mini-toggle-with-terminal-w",
+    "title": "Round Rocker Switch, SPST 2-Pin, 12V DC, 10A, Black, 20mm Mini Toggle with Terminal Wires"
+  }
+]
