@@ -6,7 +6,7 @@ category: "electrical-components"
 price: "From £4"
 image: "https://m.media-amazon.com/images/I/317OWpCl3hL.jpg"
 featured: false
-sales_30d: 3
+sales_30d: 0
 badge: ""
 tags: ['tape']
 related:
