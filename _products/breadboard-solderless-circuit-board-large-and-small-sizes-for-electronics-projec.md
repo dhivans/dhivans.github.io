@@ -6,7 +6,7 @@ category: "electrical-components"
 price: "From £4.99"
 image: "https://m.media-amazon.com/images/I/3158P4rLkFL.jpg"
 featured: false
-sales_30d: 17
+sales_30d: 18
 badge: ""
 tags: ['breadboard']
 related:
@@ -19,7 +19,7 @@ variants:
     price: "£6.99"
     url: "https://www.amazon.co.uk/dp/B0DLYTCS3J?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/414gncnd+JL.jpg"
-    stock: 480
+    stock: 479
     specs:
       size: "Half-size"
       piece_count: 1
@@ -31,7 +31,7 @@ variants:
     price: "£6.99"
     url: "https://www.amazon.co.uk/dp/B0DLYXPZ17?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/3158P4rLkFL.jpg"
-    stock: 477
+    stock: 476
     specs:
       size: "Full-size"
       piece_count: 1
