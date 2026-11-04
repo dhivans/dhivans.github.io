@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "asin": "B0DMV1DTR3",
+    "currency": "GBP",
+    "date": "2026-11-04",
+    "direction": "drop",
+    "new_price": 10.49,
+    "old_price": 11.99,
+    "slug": "anti-static-precision-pointy-tweezers-set-stainless-steel-esd-tweezers-2-pieces",
+    "title": "Anti-Static Precision Pointy Tweezers Set, Stainless Steel ESD Tweezers, 2 Pieces, for Electronics Repair"
+  },
+  {
+    "asin": "B0DFKNT4RG",
+    "currency": "GBP",
+    "date": "2026-11-04",
+    "direction": "rise",
+    "new_price": 5.99,
+    "old_price": 4.29,
+    "slug": "tp4056-5v-1a-18650-lithium-battery-charger-module-type-c-usb-dual-function",
+    "title": "TP4056 5V 1A 18650 Lithium Battery Charger Module, Type-C USB, Dual Function"
+  }
+]
