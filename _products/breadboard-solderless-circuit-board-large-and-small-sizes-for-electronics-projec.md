@@ -6,7 +6,7 @@ category: "electrical-components"
 price: "From £4.99"
 image: "https://m.media-amazon.com/images/I/3158P4rLkFL.jpg"
 featured: false
-sales_30d: 19
+sales_30d: 20
 badge: ""
 tags: ['breadboard']
 related:
@@ -16,7 +16,7 @@ related:
 variants:
   - label: "Half-size, 1"
     asin: "B0DLYTCS3J"
-    price: "£6.99"
+    price: "£4.99"
     url: "https://www.amazon.co.uk/dp/B0DLYTCS3J?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/414gncnd+JL.jpg"
     stock: 1
@@ -28,7 +28,7 @@ variants:
       material: "ABS plastic"
   - label: "Full-size, 1"
     asin: "B0DLYXPZ17"
-    price: "£6.99"
+    price: "£5.99"
     url: "https://www.amazon.co.uk/dp/B0DLYXPZ17?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/3158P4rLkFL.jpg"
     stock: 1
