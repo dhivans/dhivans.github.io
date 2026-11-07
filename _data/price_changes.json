@@ -1,1 +1,42 @@
-[]
+[
+  {
+    "asin": "B0DFKGHT16",
+    "currency": "GBP",
+    "date": "2026-11-07",
+    "direction": "drop",
+    "new_price": 5.0,
+    "old_price": 8.29,
+    "slug": "d2f-01-3d-printer-microswitch-for-klicky-probe-bed-levelling-limit-switches-fila",
+    "title": "D2F-01, 3D Printer Microswitch for Klicky Probe, Bed Levelling, Limit Switches, Filament Sensors, Mouse Repairs"
+  },
+  {
+    "asin": "B0F2ZFMPR6",
+    "currency": "GBP",
+    "date": "2026-11-07",
+    "direction": "rise",
+    "new_price": 8.99,
+    "old_price": 8.47,
+    "slug": "oled-display-module-096-inch-128x64-lcd-ssd1306-i2c-iic-spi-serial-interface-yel",
+    "title": "OLED Display Module, 0.96 Inch, 128x64 LCD, SSD1306 I2C IIC SPI Serial Interface, Yellow-Blue/White-Blue, 4-Pin with Pre-soldered Headers"
+  },
+  {
+    "asin": "B0DBGPD14M",
+    "currency": "GBP",
+    "date": "2026-11-07",
+    "direction": "rise",
+    "new_price": 5.29,
+    "old_price": 4.8,
+    "slug": "omron-japan-d2f-5l-3d-printer-microswitch-for-klicky-probe-bed-levelling-limit-s",
+    "title": "Omron Japan D2F-5L, 3D Printer Microswitch for Klicky Probe, Bed Levelling, Limit Switches, Filament Sensors, Mouse Repairs"
+  },
+  {
+    "asin": "B0DBGNPKVC",
+    "currency": "GBP",
+    "date": "2026-11-07",
+    "direction": "rise",
+    "new_price": 8.99,
+    "old_price": 8.29,
+    "slug": "omron-japan-d2f-5l-3d-printer-microswitch-for-klicky-probe-bed-levelling-limit-s",
+    "title": "Omron Japan D2F-5L, 3D Printer Microswitch for Klicky Probe, Bed Levelling, Limit Switches, Filament Sensors, Mouse Repairs"
+  }
+]
