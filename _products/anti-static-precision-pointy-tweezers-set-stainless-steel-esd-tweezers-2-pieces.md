@@ -14,7 +14,7 @@ images:
   - "https://m.media-amazon.com/images/I/318rJu3N9QL.jpg"
   - "https://m.media-amazon.com/images/I/31baSLuFMTL.jpg"
 featured: false
-sales_30d: 29
+sales_30d: 25
 badge: ""
 tags: ['tweezers']
 specs:
