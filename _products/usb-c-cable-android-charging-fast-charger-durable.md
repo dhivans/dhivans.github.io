@@ -25,7 +25,7 @@ variants:
     stock: 1
   - label: "White USB-A to USB-C"
     asin: "B0DH8D9N9F"
-    price: "£3.70"
+    price: "£4.22"
     url: "https://www.amazon.co.uk/dp/B0DH8D9N9F?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/31NxmjwC4IL.jpg"
     stock: 1

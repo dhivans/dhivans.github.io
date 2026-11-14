@@ -64,7 +64,7 @@ variants:
     stock: 1
   - label: "Green, 100M"
     asin: "B0DNNLY9S3"
-    price: "£5.94"
+    price: "£5.95"
     url: "https://www.amazon.co.uk/dp/B0DNNLY9S3?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/41Y6qK2VIUL.jpg"
     stock: 1
