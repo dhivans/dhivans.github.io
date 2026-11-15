@@ -67,7 +67,7 @@ variants:
     stock: 1
   - label: "Black, 200mm x 2.5mm"
     asin: "B0DJYPH322"
-    price: "£4.90"
+    price: "£4.41"
     url: "https://www.amazon.co.uk/dp/B0DJYPH322?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/31pzUfhRLML.jpg"
     stock: 1
@@ -79,7 +79,7 @@ variants:
     stock: 1
   - label: "White, 200mm x 2.5mm"
     asin: "B0DJYR6FRR"
-    price: "£4.90"
+    price: "£4.41"
     url: "https://www.amazon.co.uk/dp/B0DJYR6FRR?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/21uwtCoOE9L.jpg"
     stock: 1

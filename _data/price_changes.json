@@ -1,32 +1,22 @@
 [
   {
-    "asin": "B0DNNLY9S3",
+    "asin": "B0DJYPH322",
     "currency": "GBP",
-    "date": "2026-11-14",
-    "direction": "rise",
-    "new_price": 5.95,
-    "old_price": 5.94,
-    "slug": "electrical-tape-durable-insulating-assorted-colours-and-sizes",
-    "title": "DST Electrical Tape, Durable, Insulating, Assorted Colours and Sizes"
+    "date": "2026-11-15",
+    "direction": "drop",
+    "new_price": 4.41,
+    "old_price": 4.9,
+    "slug": "cable-ties-3mm-and-25mm-widths-100mm-150mm-and-200mm-lengths-black-and-white",
+    "title": "Cable Ties, 3mm and 2.5mm Widths, 100mm, 150mm, and 200mm Lengths, Black and White"
   },
   {
-    "asin": "B08P55R959",
+    "asin": "B0DJYR6FRR",
     "currency": "GBP",
-    "date": "2026-11-14",
-    "direction": "rise",
-    "new_price": 61.32,
-    "old_price": 54.04,
-    "slug": "uni-t-ut89xd-digital-multimeter-professional-tester-true-rms-acdc-1000v-20a-volt",
-    "title": "UNI-T UT89XD Digital Multimeter Professional tester True RMS AC/DC 1000V 20A Voltage Current Temperature Conductance Meter"
-  },
-  {
-    "asin": "B0DH8D9N9F",
-    "currency": "GBP",
-    "date": "2026-11-14",
-    "direction": "rise",
-    "new_price": 4.22,
-    "old_price": 3.7,
-    "slug": "usb-c-cable-android-charging-fast-charger-durable",
-    "title": "DST USB-C Cable, Android Charging, Fast Charger, Durable"
+    "date": "2026-11-15",
+    "direction": "drop",
+    "new_price": 4.41,
+    "old_price": 4.9,
+    "slug": "cable-ties-3mm-and-25mm-widths-100mm-150mm-and-200mm-lengths-black-and-white",
+    "title": "Cable Ties, 3mm and 2.5mm Widths, 100mm, 150mm, and 200mm Lengths, Black and White"
   }
 ]
