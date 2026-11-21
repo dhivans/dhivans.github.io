@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "asin": "B0DNNLY9S3",
+    "currency": "GBP",
+    "date": "2026-11-21",
+    "direction": "rise",
+    "new_price": 6.19,
+    "old_price": 5.95,
+    "slug": "electrical-tape-durable-insulating-assorted-colours-and-sizes",
+    "title": "DST Electrical Tape, Durable, Insulating, Assorted Colours and Sizes"
+  },
+  {
+    "asin": "B0DFKDM1NN",
+    "currency": "GBP",
+    "date": "2026-11-21",
+    "direction": "rise",
+    "new_price": 2.92,
+    "old_price": 2.88,
+    "slug": "tp4056-5v-1a-18650-lithium-battery-charger-module-type-c-usb-dual-function",
+    "title": "TP4056 5V 1A 18650 Lithium Battery Charger Module, Type-C USB, Dual Function"
+  }
+]

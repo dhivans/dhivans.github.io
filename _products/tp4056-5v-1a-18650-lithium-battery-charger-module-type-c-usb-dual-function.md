@@ -10,7 +10,7 @@ images:
   - "https://m.media-amazon.com/images/I/512bZZmiykL.jpg"
   - "https://m.media-amazon.com/images/I/51MJzW4siFL.jpg"
 featured: false
-sales_30d: 6
+sales_30d: 5
 badge: ""
 tags: []
 specs:
@@ -26,7 +26,7 @@ related:
 variants:
   - label: "1 Pack"
     asin: "B0DFKDM1NN"
-    price: "£2.88"
+    price: "£2.92"
     url: "https://www.amazon.co.uk/dp/B0DFKDM1NN?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/41E3x3NUjpL.jpg"
     stock: 1
