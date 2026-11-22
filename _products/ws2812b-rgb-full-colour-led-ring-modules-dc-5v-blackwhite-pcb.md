@@ -41,7 +41,7 @@ variants:
     stock: 1
   - label: "Black, 16"
     asin: "B0DNNQQGND"
-    price: "£15.58"
+    price: "£14.02"
     url: "https://www.amazon.co.uk/dp/B0DNNQQGND?tag=dhivanstech-20"
     image: "https://m.media-amazon.com/images/I/41Tc+GeggyL.jpg"
     stock: 1
